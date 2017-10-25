@@ -37,19 +37,19 @@ public class XOmniTest extends XModule {
 
         //drive forward or backwards
         backRight.setPower(forwardBackAxis);
-        backLeft.setPower(-forwardBackAxis);
+        backLeft.setPower(forwardBackAxis);
         frontRight.setPower(forwardBackAxis);
         frontLeft.setPower(-forwardBackAxis);
 
         //drive left or right
         frontRight.setPower(-leftRightAxis);
         frontLeft.setPower(-leftRightAxis);
-        backRight.setPower(leftRightAxis);
-        backRight.setPower(leftRightAxis);
+        backRight.setPower(-leftRightAxis);
+        backLeft.setPower(leftRightAxis);
 
         //spin to left or right
         frontLeft.setPower(spinAxis);
-        frontRight.setPower(spinAxis);
+        frontRight.setPower(-spinAxis);
         backLeft.setPower(spinAxis);
         backRight.setPower(spinAxis);
         //Code for using joysticks
