@@ -27,9 +27,8 @@ public class XOmniTest extends XModule {
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+
     }
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y;
