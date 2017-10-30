@@ -44,7 +44,7 @@ public class ArmColor extends XModule {
     public void loop(){
         if (xGamepad1().a.wasPressed()){
             colorEval();
-        }
+            }
     }
     public void stop(){
         armColor.resetDeviceConfigurationForOpMode();

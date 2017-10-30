@@ -54,4 +54,10 @@ public class MechaBot extends XModule {
         frontRight.setPower(-spinRight);
         backRight.setPower(-spinRight);
     }
+    public void stop(){
+        frontLeft.setPower(0.0);
+        frontRight.setPower(0.0);
+        frontRight.setPower(0.0);
+        frontLeft.setPower(0.0);
+    }
 }
