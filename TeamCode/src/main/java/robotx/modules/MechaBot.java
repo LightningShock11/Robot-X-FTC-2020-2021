@@ -28,23 +28,26 @@ public class MechaBot extends XModule {
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
     }
-    public void loop(){
+    public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y;
         float leftRightAxis = xGamepad1().left_stick_x;
         float spinRight = xGamepad1().right_trigger;
         float spinLeft = xGamepad1().left_trigger;
 
-        frontRight.setPower(forwardBackAxis);
-        frontLeft.setPower(forwardBackAxis);
-        backLeft.setPower(forwardBackAxis);
-        backRight.setPower(forwardBackAxis);
+        //Sets motion to back and forth or left and right depending on which joystick value is greater
+        if (Math.abs(forwardBackAxis) > Math.abs(leftRightAxis)) {
+            frontRight.setPower(forwardBackAxis);
+            frontLeft.setPower(forwardBackAxis);
+            backLeft.setPower(forwardBackAxis);
+            backRight.setPower(forwardBackAxis);
+        } else {
+            frontLeft.setPower(leftRightAxis);
+            backLeft.setPower(-leftRightAxis);
+            frontRight.setPower(-leftRightAxis);
+            backRight.setPower(leftRightAxis);
+        }
 
-        frontLeft.setPower(leftRightAxis);
-        backLeft.setPower(-leftRightAxis);
-        frontRight.setPower(-leftRightAxis);
-        backRight.setPower(leftRightAxis);
-
-        frontLeft.setPower(-spinLeft);
+        /*frontLeft.setPower(-spinLeft);
         backLeft.setPower(-spinLeft);
         frontRight.setPower(spinLeft);
         frontLeft.setPower(spinLeft);
@@ -52,12 +55,12 @@ public class MechaBot extends XModule {
         frontLeft.setPower(spinRight);
         backLeft.setPower(spinRight);
         frontRight.setPower(-spinRight);
-        backRight.setPower(-spinRight);
+        backRight.setPower(-spinRight);*/
     }
     public void stop(){
         frontLeft.setPower(0.0);
         frontRight.setPower(0.0);
-        frontRight.setPower(0.0);
-        frontLeft.setPower(0.0);
+        backRight.setPower(0.0);
+        backLeft.setPower(0.0);
     }
 }
