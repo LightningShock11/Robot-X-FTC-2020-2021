@@ -15,17 +15,17 @@ import robotx.controls.*;
  * Created by Ben Sabo on 10/20/2017.
  */
 
-public class ArmColor extends XModule {
+public class JewelColor extends XModule {
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
 
     ColorSensor armColor;
 
-    public ArmColor(OpMode Op) {super (Op);}
+    public JewelColor(OpMode Op) {super (Op);}
 
     public void init(){
         armColor = opMode.hardwareMap.colorSensor.get("armColor");
-        armColor.setI2cAddress(I2cAddr.create7bit(0x39));
+        armColor.setI2cAddress(I2cAddr.create8bit(0x3c));
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
     }
