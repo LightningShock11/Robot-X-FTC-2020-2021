@@ -40,10 +40,7 @@ public class MechaBot extends XModule {
         float spinLeft = xGamepad1().left_trigger;
         float spin = spinRight - spinLeft;
 
-        boolean aPressed = xGamepad1().a.wasPressed();
-
-
-        if (aPressed == true)
+        if (xGamepad1().a.wasPressed())
         {
             armServo.setPosition(0.4);
         }

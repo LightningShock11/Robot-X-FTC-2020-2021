@@ -19,7 +19,10 @@ public class JewelColor extends XModule {
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
 
+    boolean armIsUp;
+
     ColorSensor armColor;
+    Servo armServo;
 
     public JewelColor(OpMode Op) {super (Op);}
 
@@ -28,6 +31,7 @@ public class JewelColor extends XModule {
         armColor.setI2cAddress(I2cAddr.create8bit(0x3c));
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
+        armServo = opMode.hardwareMap.servo.get("armServo");
     }
     public void colorEval(){
         if (armColor.blue() > armColor.red()){
@@ -41,12 +45,31 @@ public class JewelColor extends XModule {
             leftBallIsBlue = false;
         }
     }
+    public void toggleArm(){
+        if (armIsUp){
+            armServo.setPosition(.3);
+            armIsUp = false;
+        }
+        else{
+            armServo.setPosition(1);
+            armIsUp = true;
+        }
+    }
+    public void start(){
+        armServo.setPosition(.3);
+        armIsUp = true;
+    }
     public void loop(){
         if (xGamepad1().a.wasPressed()){
             colorEval();
             }
+        if (xGamepad1().b.wasPressed()){
+            toggleArm();
+        }
     }
     public void stop(){
+
         armColor.resetDeviceConfigurationForOpMode();
+        armServo.setPosition(.3);
     }
 }

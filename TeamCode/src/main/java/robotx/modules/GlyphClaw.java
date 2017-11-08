@@ -21,11 +21,11 @@ public class GlyphClaw extends XModule {
     }
     public void toggleClaw(){
         if (clawIsOpen){
-            clawServo.setPosition(1);
+            clawServo.setPosition(.3);
             clawIsOpen = false;
         }
         else{
-            clawServo.setPosition(0);
+            clawServo.setPosition(.9);
             clawIsOpen = true;
         }
     }
@@ -33,5 +33,8 @@ public class GlyphClaw extends XModule {
         if (xGamepad1().x.wasPressed()){
             toggleClaw();
         }
+    }
+    public void stop(){
+        clawServo.setPosition(.9);
     }
 }
