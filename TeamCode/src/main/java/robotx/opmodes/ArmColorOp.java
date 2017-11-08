@@ -11,12 +11,12 @@ import robotx.libraries.XOpMode;
  */
 @TeleOp (name = "ArmColorOp", group = "Tests")
 public class ArmColorOp extends XOpMode {
-    ArmColor armColor;
+    JewelColor armColor;
 
     public void initModules(){
         super.initModules();
 
-        armColor = new ArmColor(this);
+        armColor = new JewelColor(this);
         activeModules.add(armColor);
     }
     public void init(){super.init();}
