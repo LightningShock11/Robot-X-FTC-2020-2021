@@ -30,9 +30,12 @@ public class GlyphClaw extends XModule {
         }
     }
     public void loop(){
-        if (xGamepad1().x.wasPressed()){
-            toggleClaw();
+        while(xGamepad2().x.wasPressed()){
+            clawServo.setPosition(.3);
         }
+
+        clawServo.setPosition(.9);
+
     }
     public void stop(){
         clawServo.setPosition(.9);
