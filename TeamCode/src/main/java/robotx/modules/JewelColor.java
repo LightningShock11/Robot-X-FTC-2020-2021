@@ -32,6 +32,9 @@ public class JewelColor extends XModule {
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
+
+        armServo.setPosition(.3);
+        armIsUp = true;
     }
     public void colorEval(){
         if (armColor.blue() > armColor.red()){
@@ -52,7 +55,6 @@ public class JewelColor extends XModule {
             raiseArm();
         }
     }
-
     public void lowerArm() {
         armServo.setPosition(0.3);
         armIsUp = false;
@@ -66,6 +68,7 @@ public class JewelColor extends XModule {
     public void start(){
         raiseArm();
     }
+
     public void loop(){
         if (xGamepad1().a.wasPressed()){
             colorEval();
