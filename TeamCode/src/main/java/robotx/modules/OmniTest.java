@@ -38,17 +38,12 @@ public class OmniTest extends XModule {
         float leftRightAxis = xGamepad1().left_stick_x;
         float spinAxis = xGamepad1().right_stick_x;
 
-        backLeft.setPower(-forwardBackAxis);
-        frontRight.setPower(forwardBackAxis);
+        backLeft.setPower(-forwardBackAxis-spinAxis);
+        frontRight.setPower(forwardBackAxis+spinAxis);
 
-        frontLeft.setPower(-leftRightAxis);
-        backRight.setPower(leftRightAxis);
+        frontLeft.setPower(leftRightAxis+spinAxis);
+        backRight.setPower(-leftRightAxis-spinAxis);
 
-        frontLeft.setPower(spinAxis);
-        frontRight.setPower(-spinAxis);
-        backLeft.setPower(spinAxis);
-        backRight.setPower(-spinAxis);
-        //Code for using joysticks
     }
     public void stop() {
         frontLeft.setPower(0);
@@ -57,3 +52,4 @@ public class OmniTest extends XModule {
         backRight.setPower(0);
     }
 }
+//System.out.println("William has been here")
