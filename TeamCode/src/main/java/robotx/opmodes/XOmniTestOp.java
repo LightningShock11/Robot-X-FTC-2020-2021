@@ -3,20 +3,20 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.OmniTest;
+import robotx.modules.XOmniTest;
 
 /**
  * Created by Kushdalal on 10/25/2017.
  */
-@TeleOp (name = "OmniTestOp", group = "Tests")
+@TeleOp (name = "XOmniTestOp", group = "Tests")
 public class XOmniTestOp extends XOpMode {
-    OmniTest omniTest;
+    XOmniTest xOmniTest;
 
     public void initModules(){
         super.initModules();
 
-        omniTest = new OmniTest(this);
-        activeModules.add(omniTest);
+        xOmniTest = new XOmniTest(this);
+        activeModules.add(xOmniTest);
     }
     public void init(){
         super.init();
