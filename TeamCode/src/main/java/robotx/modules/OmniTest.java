@@ -45,9 +45,9 @@ public class OmniTest extends XModule {
         backRight.setPower(leftRightAxis);
 
         frontLeft.setPower(spinAxis);
-        frontRight.setPower(-spinAxis);
+        frontRight.setPower(spinAxis);
         backLeft.setPower(spinAxis);
-        backRight.setPower(-spinAxis);
+        backRight.setPower(spinAxis);
         //Code for using joysticks
     }
     public void stop() {
