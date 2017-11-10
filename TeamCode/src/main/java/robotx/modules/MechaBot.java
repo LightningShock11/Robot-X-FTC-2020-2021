@@ -3,6 +3,7 @@
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.libraries.XModule;
@@ -30,8 +31,6 @@ public class MechaBot extends XModule {
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        armServo = opMode.hardwareMap.servo.get("armServo");
     }
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y;
