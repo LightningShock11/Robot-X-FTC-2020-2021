@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
 import robotx.modules.XOmniTest;
-import robotx.modules.GlyphClaw;
+import robotx.modules.GlyphClawJV;
 
 /**
  * Created by Kush dalal on 11/10/2017.
@@ -13,7 +13,7 @@ import robotx.modules.GlyphClaw;
 public class JVomniOp extends XOpMode {
 
     XOmniTest xOmniTest;
-    GlyphClaw glyphClaw;
+    GlyphClawJV glyphClawJV;
 
     public void initModules(){
         super.initModules();
@@ -21,8 +21,8 @@ public class JVomniOp extends XOpMode {
         xOmniTest = new XOmniTest(this);
         activeModules.add(xOmniTest);
 
-        glyphClaw = new GlyphClaw(this);
-        activeModules.add(glyphClaw);
+        glyphClawJV = new GlyphClawJV(this);
+        activeModules.add(glyphClawJV);
     }
     public void init(){
         super.init();
