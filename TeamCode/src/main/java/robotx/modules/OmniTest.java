@@ -16,6 +16,8 @@ import robotx.libraries.*;
 
 public class OmniTest extends XModule {
 
+    static double ROOT2 = Math.sqrt(2.0);
+
     DcMotor frontRight;
     DcMotor frontLeft;
     DcMotor backRight;
@@ -34,15 +36,19 @@ public class OmniTest extends XModule {
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void loop() {
-        float forwardBackAxis = xGamepad1().left_stick_y;
-        float leftRightAxis = xGamepad1().left_stick_x;
-        float spinAxis = xGamepad1().right_stick_x;
+        double forwardBackAxis = -xGamepad1().left_stick_y;
+        double leftRightAxis = xGamepad1().left_stick_x;
+        double spinAxis = xGamepad1().right_stick_x;
 
-        backLeft.setPower(-forwardBackAxis-spinAxis);
-        frontRight.setPower(forwardBackAxis-spinAxis);
+        // Info on rotation: https://math.stackexchange.com/questions/383321/rotating-x-y-points-45-degrees
+        double rotatedXAxis = (leftRightAxis-forwardBackAxis) / ROOT2;
+        double rotatedYAxis = (forwardBackAxis+leftRightAxis) / ROOT2;
 
-        frontLeft.setPower(leftRightAxis+spinAxis);
-        backRight.setPower(-leftRightAxis+spinAxis);
+        backLeft.setPower(-rotatedYAxis-spinAxis);
+        frontRight.setPower(rotatedYAxis-spinAxis);
+
+        frontLeft.setPower(rotatedXAxis+spinAxis);
+        backRight.setPower(-rotatedXAxis+spinAxis);
 
     }
     public void stop() {
