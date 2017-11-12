@@ -31,21 +31,19 @@ public class MechaBot extends XModule {
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        armServo = opMode.hardwareMap.servo.get("armServo");
     }
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y;
         float leftRightAxis = xGamepad1().left_stick_x;
         float spinRight = xGamepad1().right_trigger;
         float spinLeft = xGamepad1().left_trigger;
-        float spin = spinRight - spinLeft;
+        float spin = spinLeft - spinRight;
 
         if (xGamepad1().a.wasPressed())
         {
-            armServo.setPosition(0.4);
-        }
-        else
-        {
-            armServo.setPosition(0.6);
+            toggleArm();
         }
          
         //Sets motion to back and forth or left and right depending on which joystick value is greater
@@ -76,6 +74,22 @@ public class MechaBot extends XModule {
         backLeft.setPower(spinRight);
         frontRight.setPower(-spinRight);
         backRight.setPower(-spinRight);*/
+    }
+    boolean armUp;
+    public void raiseArm() {
+        armUp = true;
+        armServo.setPosition(0.6);
+    }
+    public void lowerArm(){
+        armUp = false;
+        armServo.setPosition(0.4);
+    }
+    public void toggleArm() {
+        if (armUp) {
+            lowerArm();
+        } else {
+            raiseArm();
+        }
     }
     public void stop(){
         frontLeft.setPower(0.0);
