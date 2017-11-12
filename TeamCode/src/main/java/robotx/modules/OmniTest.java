@@ -38,8 +38,8 @@ public class OmniTest extends XModule {
         float leftRightAxis = xGamepad1().left_stick_x;
         float spinAxis = xGamepad1().right_stick_x;
 
-        backLeft.setPower(-forwardBackAxis+spinAxis);
-        frontRight.setPower(forwardBackAxis+spinAxis);
+        backLeft.setPower(-forwardBackAxis-spinAxis);
+        frontRight.setPower(forwardBackAxis-spinAxis);
 
         frontLeft.setPower(leftRightAxis+spinAxis);
         backRight.setPower(-leftRightAxis+spinAxis);

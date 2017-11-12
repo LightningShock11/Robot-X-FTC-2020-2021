@@ -3,8 +3,7 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.XOmniTest;
-import robotx.modules.GlyphClawJV;
+import robotx.modules.*;
 
 /**
  * Created by Kush dalal on 11/10/2017.
@@ -12,14 +11,14 @@ import robotx.modules.GlyphClawJV;
 @TeleOp (name = "JVomniOp", group = "Competition")
 public class JVomniOp extends XOpMode {
 
-    XOmniTest xOmniTest;
+    OmniTest omniTest;
     GlyphClawJV glyphClawJV;
 
-    public void initModules(){
+    public void initModules() {
         super.initModules();
 
-        xOmniTest = new XOmniTest(this);
-        activeModules.add(xOmniTest);
+        omniTest = new OmniTest(this);
+        activeModules.add(omniTest);
 
         glyphClawJV = new GlyphClawJV(this);
         activeModules.add(glyphClawJV);
