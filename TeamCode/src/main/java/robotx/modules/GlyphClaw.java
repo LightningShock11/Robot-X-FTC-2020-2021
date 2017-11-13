@@ -1,6 +1,7 @@
 package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.libraries.XModule;
@@ -12,13 +13,15 @@ import robotx.libraries.XModule;
 public class GlyphClaw extends XModule {
 
     Servo clawServo;
+    DcMotor rackMotor;
     boolean clawIsOpen = false;
 
     public GlyphClaw(OpMode op) {super(op);}
 
     public void init(){
         clawServo = opMode.hardwareMap.servo.get("clawServo");
-        opMode.telemetry.addLine("Servo initialized");
+        rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
+        opMode.telemetry.addLine("Initialization successful");
     }
     public void toggleClaw(){
         if (clawIsOpen){
@@ -36,8 +39,21 @@ public class GlyphClaw extends XModule {
         if(xGamepad1().x.wasPressed()) {
             toggleClaw();
         }
+        if (xGamepad1().dpad_up.wasPressed()){
+            rackMotor.setPower(1);
+        }
+        else if (xGamepad1().dpad_up.wasReleased()){
+            rackMotor.setPower(0);
+        }
+        if (xGamepad1().dpad_down.wasPressed()){
+            rackMotor.setPower(-1);
+        }
+        else if (xGamepad1().dpad_down.wasReleased()){
+            rackMotor.setPower(0.0);
+        }
     }
     public void stop(){
         clawServo.setPosition(.9);
+        rackMotor.setPower(0);
     }
 }
