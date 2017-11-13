@@ -21,39 +21,48 @@ public class GlyphClaw extends XModule {
     public void init(){
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
-        opMode.telemetry.addLine("Initialization successful");
+        rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
     public void toggleClaw(){
         if (clawIsOpen){
-            clawServo.setPosition(.3);
-            clawIsOpen = false;
-            opMode.telemetry.addLine("Closed claw");
-        }
-        else{
-            clawServo.setPosition(.9);
-            clawIsOpen = true;
-            opMode.telemetry.addLine("Opened claw");
+            closeClaw();
+        } else {
+            openClaw();
         }
     }
+    public void closeClaw() {
+        clawServo.setPosition(.9);
+        clawIsOpen = false;
+    }
+    public void openClaw() {
+        clawServo.setPosition(.3);
+        clawIsOpen = true;
+    }
+    public void raiseClaw() {
+        rackMotor.setPower(0.5);
+    }
+    public void lowerClaw() {
+        rackMotor.setPower(-0.5);
+    }
+    public void stopClaw() {
+        rackMotor.setPower(0.0);
+    }
+
     public void loop(){
         if(xGamepad1().x.wasPressed()) {
             toggleClaw();
         }
-        if (xGamepad1().dpad_up.wasPressed()){
-            rackMotor.setPower(1);
-        }
-        else if (xGamepad1().dpad_up.wasReleased()){
-            rackMotor.setPower(0);
-        }
-        if (xGamepad1().dpad_down.wasPressed()){
-            rackMotor.setPower(-1);
-        }
-        else if (xGamepad1().dpad_down.wasReleased()){
-            rackMotor.setPower(0.0);
+
+        if (xGamepad1().dpad_up.isDown()){
+            raiseClaw();
+        } else if (xGamepad1().dpad_down.isDown()) {
+            lowerClaw();
+        } else {
+            stopClaw();
         }
     }
     public void stop(){
-        clawServo.setPosition(.9);
-        rackMotor.setPower(0);
+        closeClaw();
+        stopClaw();
     }
 }
