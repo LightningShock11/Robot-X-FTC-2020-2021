@@ -1,8 +1,6 @@
 package robotx.controls;
 
-import com.qualcomm.robotcore.hardware.Gamepad;
-
-import robotx.libraries.DriveSystemControls;
+import robotx.libraries.*;
 
 /**
  * Created by Nicholas on 11/21/16.
@@ -10,10 +8,10 @@ import robotx.libraries.DriveSystemControls;
  */
 public class NullControls extends DriveSystemControls {
 
-	public double getLeftPower(Gamepad gamepad1, Gamepad gamepad2) {
+	public double getLeftPower(XGamepad gamepad1, XGamepad gamepad2) {
 		return 0.0;
 	}
-	public double getRightPower(Gamepad gamepad1, Gamepad gamepad2) {
+	public double getRightPower(XGamepad gamepad1, XGamepad gamepad2) {
 		return 0.0;
 	}
 

@@ -62,8 +62,8 @@ public abstract class DriveSystem extends XModule {
 
 	public void loop() {
 		if (controlsEnabled) {
-			setLeftPower(controls.getLeftPower(opMode.gamepad1, opMode.gamepad2));
-			setRightPower(controls.getRightPower(opMode.gamepad1, opMode.gamepad2));
+			setLeftPower(controls.getLeftPower(xGamepad1(), xGamepad2()));
+			setRightPower(controls.getRightPower(xGamepad1(), xGamepad2()));
 		}
 		opMode.telemetry.addData("Left Power", leftPower);
 		opMode.telemetry.addData("Right Power", rightPower);
