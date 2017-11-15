@@ -12,7 +12,7 @@ import robotx.modules.*;
 @TeleOp(name = "TileRunnerBetaOp", group = "Competition")
 public class TileRunnerBetaOp extends XOpMode {
 
-	DriveSystem tileRunnerDrive;
+	BasicDriveSystem tileRunnerDrive;
 	ButtonPusher buttonPusher;
 	FlipperLauncher flipperLauncher;
 	SweeperSystem sweeperSystem;

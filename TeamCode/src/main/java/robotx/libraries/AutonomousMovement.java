@@ -10,12 +10,12 @@ public class AutonomousMovement extends XModule {
 	// All distances are in centimeters.
 
 	AutonomousSystem sensors;
-	DriveSystem drive;
+	BasicDriveSystem drive;
 
 	public AutonomousMovement(OpMode op) {
 		super(op);
 	}
-	public AutonomousMovement(LinearOpMode op, AutonomousSystem s, DriveSystem d) {
+	public AutonomousMovement(LinearOpMode op, AutonomousSystem s, BasicDriveSystem d) {
 		super(op);
 		sensors = s;
 		drive = d;

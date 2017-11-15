@@ -10,7 +10,7 @@ import robotx.controls.NullControls;
  * Can be used for 2,4,6 wheel drive systems, but not Mechanum.
  * Handles different control schemes for 2-sided drive systems.
  */
-public abstract class DriveSystem extends XModule {
+public abstract class BasicDriveSystem extends XModule {
 
 	private double leftPower = 0.0;
 	private double rightPower = 0.0;
@@ -19,7 +19,7 @@ public abstract class DriveSystem extends XModule {
 
 	public boolean controlsEnabled = true;
 
-	public DriveSystem(OpMode op) {
+	public BasicDriveSystem(OpMode op) {
 		super(op);
 		controls = new NullControls();
 	}

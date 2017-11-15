@@ -13,7 +13,7 @@ import robotx.modules.*;
 public class TileRunnerSweeperOp extends XOpMode {
 
 	SweeperSystem sweeperSystem;
-	DriveSystem tileRunnerDrive;
+	BasicDriveSystem tileRunnerDrive;
 	ButtonPusher buttonPusher;
 	TwoWheelLauncher twoWheelLauncher;
 	TeleOpTimerDisplay timerDisplay;

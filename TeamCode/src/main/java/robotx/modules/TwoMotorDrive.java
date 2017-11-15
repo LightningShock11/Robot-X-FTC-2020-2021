@@ -3,12 +3,12 @@ package robotx.modules;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import robotx.libraries.DriveSystem;
+import robotx.libraries.BasicDriveSystem;
 
 /**
  * Created by Nicholas on 12/5/2016.
  */
-public class TwoMotorDrive extends DriveSystem {
+public class TwoMotorDrive extends BasicDriveSystem {
 
 	public DcMotor leftMotor;
 	public DcMotor rightMotor;

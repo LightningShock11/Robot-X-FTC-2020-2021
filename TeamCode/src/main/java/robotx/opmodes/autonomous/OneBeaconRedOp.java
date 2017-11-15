@@ -17,7 +17,7 @@ public class OneBeaconRedOp extends LinearOpMode {
 
 	ElapsedTime timer = new ElapsedTime();
 
-	DriveSystem tileRunnerDrive;
+	BasicDriveSystem tileRunnerDrive;
 	ButtonPusher buttonPusher;
 
 	ColorSensor floorSensor;

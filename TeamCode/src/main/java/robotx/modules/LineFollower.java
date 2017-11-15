@@ -3,7 +3,7 @@ package robotx.modules;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.*;
 
-import robotx.libraries.DriveSystem;
+import robotx.libraries.BasicDriveSystem;
 import robotx.libraries.XModule;
 import robotx.libraries.XLinearOpMode;
 
@@ -12,14 +12,14 @@ import robotx.libraries.XLinearOpMode;
  */
 public class LineFollower extends XModule {
 
-	DriveSystem driveSystem;
+	BasicDriveSystem driveSystem;
     OpticalDistanceSensor floorSensor;
 	XOpticalDistanceSensor opticalDistanceSensor;
 
 	public LineFollower(OpMode op) {
 		super(op);
 	}
-	public LineFollower(OpMode op, DriveSystem driveSystem) {
+	public LineFollower(OpMode op, BasicDriveSystem driveSystem) {
 		super(op);
 		this.driveSystem = driveSystem;
 	}
