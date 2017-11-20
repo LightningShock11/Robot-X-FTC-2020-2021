@@ -33,7 +33,7 @@ public class VuMarkDetection extends XModule {
 
         parameters.vuforiaLicenseKey = LICENSE_KEY;
 
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
         relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
