@@ -56,6 +56,7 @@ public abstract class OmniDriveSystem extends XModule {
     public void setAllPower(double power) {
         setXPower(power);
         setYPower(power);
+        setRotationPower(power);
     }
 
     public void brakeAllMotors() {
