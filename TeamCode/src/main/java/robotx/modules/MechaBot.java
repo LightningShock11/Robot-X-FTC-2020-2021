@@ -37,7 +37,7 @@ public class MechaBot extends XModule {
         float spinLeft = xGamepad1().left_trigger;
         float spin = spinLeft - spinRight;
 
-        
+
         //Sets motion to back and forth or left and right depending on which joystick value is greater
         // We should not use a casewise method for this.
         /*if (Math.abs(forwardBackAxis) > Math.abs(leftRightAxis)) {
