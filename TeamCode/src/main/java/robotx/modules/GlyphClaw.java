@@ -53,9 +53,11 @@ public class GlyphClaw extends XModule {
     public void toggleRotateClaw(){
         if (armIsUp){
             rotateClawDown();
+            armIsUp = false;
         }
         else{
             rotateClawUp();
+            armIsUp = true;
         }
     }
     public void raiseClaw() {
