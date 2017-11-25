@@ -81,7 +81,12 @@ public class SupremeRobo extends LinearOpMode {
           runtime.reset();
         while (opModeIsActive()){
             leftMotor.setPower(power);
-            rightMotor.setPower(power);
+            rightMotor.setPower(power);6
+
+            sleep(2000);
+
+            leftMotor.setPower(0.0);
+            rightMotor.setPower(0.0);
 
             sleep(2000);
 
@@ -89,6 +94,12 @@ public class SupremeRobo extends LinearOpMode {
             rightMotor.setPower(-power);
 
             sleep(2000);
+
+            leftMotor.setPower(0.0);
+            rightMotor.setPower(0.0);
+
+            sleep(2000);
+
 
         }
 
