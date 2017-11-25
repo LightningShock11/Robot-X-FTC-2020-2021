@@ -16,6 +16,7 @@ public class GlyphClaw extends XModule {
     DcMotor rackMotor;
     Servo slideServo;
     boolean clawIsOpen = false;
+    boolean armIsUp = true;
 
     public GlyphClaw(OpMode op) {super(op);}
 
@@ -26,6 +27,7 @@ public class GlyphClaw extends XModule {
         slideServo = opMode.hardwareMap.servo.get("slideServo");
         slideServo.setPosition(.5);
         openClaw();
+        rotateClawUp();
     }
     public void toggleClaw(){
         if (clawIsOpen){
@@ -41,6 +43,20 @@ public class GlyphClaw extends XModule {
     public void openClaw() {
         clawServo.setPosition(.3);
         clawIsOpen = true;
+    }
+    public void rotateClawUp(){
+        slideServo.setPosition(2);
+    }
+    public void rotateClawDown(){
+        slideServo.setPosition(0);
+    }
+    public void toggleRotateClaw(){
+        if (armIsUp){
+            rotateClawDown();
+        }
+        else{
+            rotateClawUp();
+        }
     }
     public void raiseClaw() {
         rackMotor.setPower(0.5);
@@ -65,12 +81,11 @@ public class GlyphClaw extends XModule {
             stopClaw();
         }
         if (xGamepad1().b.wasPressed()){
-            slideServo.setPosition(0);
+            toggleRotateClaw();
         }
     }
     public void stop(){
         closeClaw();
         stopClaw();
-
     }
 }
