@@ -37,35 +37,10 @@ public class MechaBot extends XModule {
         float spinLeft = xGamepad1().left_trigger;
         float spin = spinLeft - spinRight;
 
-
-        //Sets motion to back and forth or left and right depending on which joystick value is greater
-        // We should not use a casewise method for this.
-        /*if (Math.abs(forwardBackAxis) > Math.abs(leftRightAxis)) {
-            frontRight.setPower(forwardBackAxis);
-            frontLeft.setPower(forwardBackAxis);
-            backLeft.setPower(forwardBackAxis);
-            backRight.setPower(forwardBackAxis);
-        } else {
-            frontLeft.setPower(leftRightAxis);
-            backLeft.setPower(-leftRightAxis);
-            frontRight.setPower(-leftRightAxis);
-            backRight.setPower(leftRightAxis);
-        }*/
-
         frontRight.setPower(forwardBackAxis + leftRightAxis + spin);
         frontLeft.setPower(forwardBackAxis - leftRightAxis - spin);
         backRight.setPower(forwardBackAxis - leftRightAxis + spin);
         backLeft.setPower(forwardBackAxis + leftRightAxis - spin);
-
-        /*frontLeft.setPower(-spinLeft);
-        backLeft.setPower(-spinLeft);
-        frontRight.setPower(spinLeft);
-        frontLeft.setPower(spinLeft);
-
-        frontLeft.setPower(spinRight);
-        backLeft.setPower(spinRight);
-        frontRight.setPower(-spinRight);
-        backRight.setPower(-spinRight);*/
     }
 
     public void stop(){
