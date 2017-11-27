@@ -2,6 +2,7 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.libraries.XModule;
@@ -24,10 +25,11 @@ public class GlyphClaw extends XModule {
     public void init(){
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
+        rackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rotateServoRight = opMode.hardwareMap.servo.get("rotateServoRight");
         rotateServoLeft = opMode.hardwareMap.servo.get("rotateServoLeft");
-        openClaw();
+        closeClaw();
         rotateClawUp();
     }
     public void toggleClaw(){
@@ -47,11 +49,11 @@ public class GlyphClaw extends XModule {
     }
     public void rotateClawUp(){
         rotateServoRight.setPosition(.5);
-        rotateServoLeft.setPosition(0);
+        rotateServoLeft.setPosition(.4);
     }
     public void rotateClawDown(){
         rotateServoRight.setPosition(0);
-        rotateServoLeft.setPosition(.5);
+        rotateServoLeft.setPosition(.9);
     }
     public void toggleRotateClaw(){
         if (armIsUp){
@@ -64,7 +66,7 @@ public class GlyphClaw extends XModule {
         }
     }
     public void raiseClaw() {
-        rackMotor.setPower(0.5);
+        rackMotor.setPower(1);
     }
     public void lowerClaw() {
         rackMotor.setPower(-0.25);
