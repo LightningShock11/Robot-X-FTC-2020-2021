@@ -53,17 +53,19 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="SupremeRobo", group="Linear Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="Left_and_Right", group="Linear Opmode")  // @Autonomous(...) is the other common choice
 //@Disabled
-public class SupremeRobo extends LinearOpMode {
+public class Left_and_Right extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
     //DcMotor leftMotor = null;
     //DcMotor rightMotor = null;
 
-    DcMotor leftMotor;
-    DcMotor rightMotor;
+    DcMotor frontleftMotor;
+    DcMotor frontrightMotor;
+    DcMotor backrightMotor;
+    DcMotor backleftMotor  ;
 
     double power = 0.5;
 
@@ -72,41 +74,51 @@ public class SupremeRobo extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        leftMotor = hardwareMap.dcMotor.get("Left_Motor");
-        rightMotor = hardwareMap.dcMotor.get("Right_Motor");
+        frontleftMotor = hardwareMap.dcMotor.get("Front_Left_Motor");
+        frontrightMotor = hardwareMap.dcMotor.get("Front_Right_Motor");
+        backleftMotor = hardwareMap.dcMotor.get("Back_Left_Motor");
+        backrightMotor = hardwareMap.dcMotor.get("Back_Right_Motor");
 
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontleftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-         waitForStart();
-          runtime.reset();
+        waitForStart();
+        runtime.reset();
         while (opModeIsActive()){
-            leftMotor.setPower(power);
-            rightMotor.setPower(-power);
+            frontleftMotor.setPower(-power);
+            frontrightMotor.setPower(-power);
+            backleftMotor.setPower(power);
+            backrightMotor.setPower(power);
 
             sleep(2000);
 
-            leftMotor.setPower(0.0);
-            rightMotor.setPower(0.0);
+            frontleftMotor.setPower(0.0);
+            frontrightMotor.setPower(0.0);
+            backleftMotor.setPower(0.0);
+            backrightMotor.setPower(0.0);
 
             sleep(2000);
 
-            leftMotor.setPower(-power);
-            rightMotor.setPower(power);
+            frontleftMotor.setPower(power);
+            frontrightMotor.setPower(power);
+            backleftMotor.setPower(-power);
+            backrightMotor.setPower(-power);
 
             sleep(2000);
 
-            leftMotor.setPower(0.0);
-            rightMotor.setPower(0.0);
+            frontleftMotor.setPower(0.0);
+            frontrightMotor.setPower(0.0);
+            backleftMotor.setPower(0.0);
+            backrightMotor.setPower(0.0);
 
             sleep(2000);
 
 
         }
 
-        power=0.0;
-
-        leftMotor.setPower(power);
-        rightMotor.setPower(power);
+        frontleftMotor.setPower(0.0);
+        frontrightMotor.setPower(0.0);
+        backleftMotor.setPower(0.0);
+        backrightMotor.setPower(0.0);
 
 
         // run until the end of the match (driver presses STOP)
