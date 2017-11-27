@@ -2,6 +2,7 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import robotx.libraries.OmniDriveSystem;
 
@@ -22,13 +23,15 @@ public class MechanumDrive extends OmniDriveSystem {
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void updateMotors(){
-        frontLeft.setPower(getYPower() + getXPower() + getRotationPower());
-        frontRight.setPower(getYPower() - getXPower() - getRotationPower());
+        frontRight.setPower(getYPower() + getXPower() + getRotationPower());
+        frontLeft.setPower(getYPower() - getXPower() - getRotationPower());
         backRight.setPower(getYPower() - getXPower() + getRotationPower());
         backLeft.setPower(getYPower() + getXPower() - getRotationPower());
     }
