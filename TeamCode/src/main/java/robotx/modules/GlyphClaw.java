@@ -49,11 +49,11 @@ public class GlyphClaw extends XModule {
     }
     public void rotateClawUp(){
         rotateServoRight.setPosition(.5);
-        rotateServoLeft.setPosition(.4);
+        rotateServoLeft.setPosition(.5);
     }
     public void rotateClawDown(){
         rotateServoRight.setPosition(0);
-        rotateServoLeft.setPosition(.9);
+        rotateServoLeft.setPosition(1);
     }
     public void toggleRotateClaw(){
         if (armIsUp){
@@ -69,7 +69,7 @@ public class GlyphClaw extends XModule {
         rackMotor.setPower(1);
     }
     public void lowerClaw() {
-        rackMotor.setPower(-0.25);
+        rackMotor.setPower(-0.5);
     }
     public void stopClaw() {
         rackMotor.setPower(0.0);
