@@ -84,12 +84,21 @@ public class Left_and_Right extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        //Robot moves right
         while (opModeIsActive()){
+
+            //Robot moves forward
             frontleftMotor.setPower(power);
-            frontrightMotor.setPower(-power);
-            backleftMotor.setPower(power);
+            frontrightMotor.setPower(power);
+            backleftMotor.setPower(-power);
             backrightMotor.setPower(-power);
+
+            sleep(2000);
+
+            //Robot moves left
+            frontleftMotor.setPower(-power);
+            frontrightMotor.setPower(power);
+            backleftMotor.setPower(-power);
+            backrightMotor.setPower(power);
 
             sleep(2000);
 
@@ -100,10 +109,18 @@ public class Left_and_Right extends LinearOpMode {
 
             sleep(2000);
 
-            //Robot moves left
+            //Robot moves right
+            frontleftMotor.setPower(power);
+            frontrightMotor.setPower(-power);
+            backleftMotor.setPower(power);
+            backrightMotor.setPower(-power);
+
+            sleep(2000);
+
+            //Robot moves backwards
             frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(power);
-            backleftMotor.setPower(-power);
+            frontrightMotor.setPower(-power);
+            backleftMotor.setPower(power);
             backrightMotor.setPower(power);
 
             sleep(2000);
