@@ -53,9 +53,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Left_and_Right", group="Linear Opmode")  // @Autonomous(...) is the other common choice
+@Autonomous(name="JV_Movement", group="Linear Opmode")  // @Autonomous(...) is the other common choice
 //@Disabled
-public class Left_and_Right extends LinearOpMode {
+public class JV_Movement extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -80,57 +80,24 @@ public class Left_and_Right extends LinearOpMode {
         backrightMotor = hardwareMap.dcMotor.get("Back_Right_Motor");
 
         frontleftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontrightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()){
 
-            //Robot moves forward
-            frontleftMotor.setPower(power);
-            frontrightMotor.setPower(power);
-            backleftMotor.setPower(-power);
-            backrightMotor.setPower(-power);
+            driveForward(2);
+            stopDriving(2);
 
-            sleep(2000);
+            driveLeft(2);
+            stopDriving(2);
 
-            //Robot moves left
-            frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(power);
-            backleftMotor.setPower(-power);
-            backrightMotor.setPower(power);
+            driveRight(2);
+            stopDriving(2);
 
-            sleep(2000);
-
-            frontleftMotor.setPower(0.0);
-            frontrightMotor.setPower(0.0);
-            backleftMotor.setPower(0.0);
-            backrightMotor.setPower(0.0);
-
-            sleep(2000);
-
-            //Robot moves right
-            frontleftMotor.setPower(power);
-            frontrightMotor.setPower(-power);
-            backleftMotor.setPower(power);
-            backrightMotor.setPower(-power);
-
-            sleep(2000);
-
-            //Robot moves backwards
-            frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(-power);
-            backleftMotor.setPower(power);
-            backrightMotor.setPower(power);
-
-            sleep(2000);
-
-            frontleftMotor.setPower(0.0);
-            frontrightMotor.setPower(0.0);
-            backleftMotor.setPower(0.0);
-            backrightMotor.setPower(0.0);
-
-            sleep(2000);
+            driveBackward(2);
+            stopDriving(2);
 
 
         }
@@ -150,5 +117,52 @@ public class Left_and_Right extends LinearOpMode {
             // leftMotor.setPower(-gamepad1.left_stick_y);
             // rightMotor.setPower(-gamepad1.right_stick_y);
         }
+    }
+
+    public void stopDriving(double seconds) {
+
+        frontleftMotor.setPower(0.0);
+        frontrightMotor.setPower(0.0);
+        backleftMotor.setPower(0.0);
+        backrightMotor.setPower(0.0);
+
+        sleep((long)(seconds * 1000));
+    }
+
+    public void driveForward(double seconds) {
+
+        frontleftMotor.setPower(power);
+        frontrightMotor.setPower(-power);
+        backleftMotor.setPower(-power);
+        backrightMotor.setPower(-power);
+
+        sleep((long)(seconds * 1000));
+    }
+
+    public void driveLeft(double seconds) {
+        frontleftMotor.setPower(-power);
+        frontrightMotor.setPower(-power);
+        backleftMotor.setPower(-power);
+        backrightMotor.setPower(power);
+
+        sleep((long)(seconds * 1000));
+    }
+
+    public void driveRight(double seconds) {
+        frontleftMotor.setPower(power);
+        frontrightMotor.setPower(power);
+        backleftMotor.setPower(power);
+        backrightMotor.setPower(-power);
+
+        sleep((long)(seconds * 1000));
+    }
+
+    public void driveBackward(double seconds) {
+        frontleftMotor.setPower(-power);
+        frontrightMotor.setPower(power);
+        backleftMotor.setPower(power);
+        backrightMotor.setPower(power);
+
+        sleep((long)(seconds * 1000));
     }
 }
