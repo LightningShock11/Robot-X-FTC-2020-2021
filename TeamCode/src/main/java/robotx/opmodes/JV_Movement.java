@@ -125,8 +125,8 @@ public class JV_Movement extends LinearOpMode {
         frontrightMotor.setPower(0.0);
         backleftMotor.setPower(0.0);
         backrightMotor.setPower(0.0);
-
-        sleep((long)(seconds * 1000));
+        
+        rest(2)
     }
 
     public void driveForward(double seconds) {
@@ -136,7 +136,7 @@ public class JV_Movement extends LinearOpMode {
         backleftMotor.setPower(-power);
         backrightMotor.setPower(-power);
 
-        sleep((long)(seconds * 1000));
+        rest(2);
     }
 
     public void driveLeft(double seconds) {
@@ -145,7 +145,7 @@ public class JV_Movement extends LinearOpMode {
         backleftMotor.setPower(-power);
         backrightMotor.setPower(power);
 
-        sleep((long)(seconds * 1000));
+        rest(2);
     }
 
     public void driveRight(double seconds) {
@@ -154,7 +154,7 @@ public class JV_Movement extends LinearOpMode {
         backleftMotor.setPower(power);
         backrightMotor.setPower(-power);
 
-        sleep((long)(seconds * 1000));
+        rest(2);
     }
 
     public void driveBackward(double seconds) {
@@ -163,6 +163,10 @@ public class JV_Movement extends LinearOpMode {
         backleftMotor.setPower(power);
         backrightMotor.setPower(power);
 
+        rest(2);
+    }
+
+    public void rest(double seconds) {
         sleep((long)(seconds * 1000));
     }
 }
