@@ -35,7 +35,7 @@ public class MechaBot extends XModule {
         float leftRightAxis = xGamepad1().left_stick_x;
         float spinRight = xGamepad1().right_trigger;
         float spinLeft = xGamepad1().left_trigger;
-        float spin = spinLeft - spinRight;
+        float spin = spinRight - spinLeft; //Swapped spinRight and spinLeft to fix turning
 
         frontRight.setPower(forwardBackAxis + leftRightAxis + spin);
         frontLeft.setPower(forwardBackAxis - leftRightAxis - spin);
