@@ -30,9 +30,9 @@ public class MechanumDrive extends OmniDriveSystem {
     }
 
     public void updateMotors(){
-        frontRight.setPower(getYPower() + getXPower() + getRotationPower());
-        frontLeft.setPower(getYPower() - getXPower() - getRotationPower());
-        backRight.setPower(getYPower() - getXPower() + getRotationPower());
-        backLeft.setPower(getYPower() + getXPower() - getRotationPower());
+        frontRight.setPower(getYPower() + getXPower() - getRotationPower());
+        frontLeft.setPower(getYPower() - getXPower() + getRotationPower());
+        backRight.setPower(getYPower() - getXPower() - getRotationPower());
+        backLeft.setPower(getYPower() + getXPower() + getRotationPower());
     }
 }
