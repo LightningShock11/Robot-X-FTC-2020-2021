@@ -71,13 +71,29 @@ public abstract class OmniDriveSystem extends XModule {
 
     public void loop() {
         if (controlsEnabled) {
-            setXPower(xGamepad1().left_stick_x);
-            setYPower(xGamepad1().left_stick_y);
-            setRotationPower(xGamepad1().right_stick_x);
+            double xPow = controlRamp(xGamepad1().left_stick_x);
+            double yPow = controlRamp(xGamepad1().left_stick_y);
+            double rotPow = controlRamp(xGamepad1().right_stick_x);
+
+            setXPower(xPow);
+            setYPower(yPow);
+            setRotationPower(rotPow);
         }
         opMode.telemetry.addData("X Power", xPower);
         opMode.telemetry.addData("Y Power", yPower);
         opMode.telemetry.addData("Rotation Power", rotationPower);
+    }
+    private double controlRamp(double input) {
+        double output = input;
+        double coeff = 1.0;
+        if (xGamepad1().left_bumper.isDown()) {
+            coeff = coeff / 2.0;
+        }
+        if (xGamepad1().right_bumper.isDown()) {
+            coeff = coeff / 2.0;
+        }
+
+        return output*coeff;
     }
 
     public void stop() {
