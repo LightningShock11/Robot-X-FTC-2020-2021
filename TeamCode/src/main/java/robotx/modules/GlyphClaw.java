@@ -31,8 +31,6 @@ public class GlyphClaw extends XModule {
         rotateServoRight = opMode.hardwareMap.servo.get("rotateServoRight");
         rotateServoLeft = opMode.hardwareMap.servo.get("rotateServoLeft");
         //pushServo = opMode.hardwareMap.servo.get("pushServo");
-        closeClaw();
-        rotateClawUp();
     }
     public void toggleClaw(){
         if (clawIsOpen){
@@ -84,6 +82,11 @@ public class GlyphClaw extends XModule {
         pushServo.setPosition(0);
     }
     */
+
+    public void start(){
+        closeClaw();
+        rotateClawUp();
+    }
 
     public void loop(){
         if(xGamepad2().x.wasPressed()) {
