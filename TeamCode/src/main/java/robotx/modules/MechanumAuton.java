@@ -13,8 +13,8 @@ import robotx.libraries.*;
 public class MechanumAuton extends OmniAutonomousSystem {
     ModernRoboticsI2cGyro gyroSensor;
     // Be sure to assign these before use.
-    public DcMotor leftMotor;
-    public DcMotor rightMotor;
+    public DcMotor frontLeftMotor;
+    public DcMotor frontRightMotor;
 
     public MechanumAuton(OpMode op) {
         super(op);
@@ -33,12 +33,12 @@ public class MechanumAuton extends OmniAutonomousSystem {
     // Return the current distance the left side has traveled, in encoder ticks.
     public int getXTicks() {
         // TODO Write implementation for this.
-        return leftMotor.getCurrentPosition();
+        return frontLeftMotor.getCurrentPosition();
     }
     // Return the current distance the right side has traveled, in encoder ticks.
     public int getYTicks() {
         // TODO Write implementation for this.
-        return rightMotor.getCurrentPosition();
+        return frontRightMotor.getCurrentPosition();
     }
 
     // Input encoder ticks and return centimeters.

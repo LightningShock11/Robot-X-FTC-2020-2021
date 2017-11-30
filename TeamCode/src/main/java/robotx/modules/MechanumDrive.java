@@ -11,10 +11,10 @@ import robotx.libraries.OmniDriveSystem;
  */
 
 public class MechanumDrive extends OmniDriveSystem {
-    DcMotor frontLeft;
-    DcMotor frontRight;
-    DcMotor backLeft;
-    DcMotor backRight;
+    public DcMotor frontLeft;
+    public DcMotor frontRight;
+    public DcMotor backLeft;
+    public DcMotor backRight;
 
     public MechanumDrive(OpMode op) {
         super(op);
