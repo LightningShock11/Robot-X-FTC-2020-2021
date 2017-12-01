@@ -72,7 +72,7 @@ public abstract class OmniDriveSystem extends XModule {
     public void loop() {
         if (controlsEnabled) {
             double xPow = controlRamp(xGamepad1().left_stick_x);
-            double yPow = controlRamp(xGamepad1().left_stick_y);
+            double yPow = controlRamp(-xGamepad1().left_stick_y); // Negate the left stick value because negative is up.
             double rotPow = controlRamp(xGamepad1().right_stick_x);
 
             setXPower(xPow);

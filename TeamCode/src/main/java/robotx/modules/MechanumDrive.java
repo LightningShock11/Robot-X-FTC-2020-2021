@@ -22,17 +22,21 @@ public class MechanumDrive extends OmniDriveSystem {
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void updateMotors(){
-        frontRight.setPower(getYPower() + getXPower() - getRotationPower());
-        frontLeft.setPower(getYPower() - getXPower() + getRotationPower());
-        backRight.setPower(getYPower() - getXPower() - getRotationPower());
-        backLeft.setPower(getYPower() + getXPower() + getRotationPower());
+        opMode.telemetry.addData("frontRight", getYPower() - getXPower() + getRotationPower());
+        frontRight.setPower(getYPower() - getXPower() + getRotationPower());
+        opMode.telemetry.addData("frontLeft", getYPower() + getXPower() - getRotationPower());
+        frontLeft.setPower(getYPower() + getXPower() - getRotationPower());
+        opMode.telemetry.addData("backRight", getYPower() + getXPower() + getRotationPower());
+        backRight.setPower(getYPower() + getXPower() + getRotationPower());
+        opMode.telemetry.addData("backLeft", getYPower() - getXPower() - getRotationPower());
+        backLeft.setPower(getYPower() - getXPower() - getRotationPower());
     }
 }
