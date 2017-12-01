@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * It includes all the skeletal structure that all linear OpModes contain.
  *
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+ * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpM''ode list
  */
 
 @Autonomous(name="JV_Movement", group="Linear Opmode")  // @Autonomous(...) is the other common choice
@@ -78,9 +78,6 @@ public class JV_Movement extends LinearOpMode {
         frontrightMotor = hardwareMap.dcMotor.get("Front_Right_Motor");
         backleftMotor = hardwareMap.dcMotor.get("Back_Left_Motor");
         backrightMotor = hardwareMap.dcMotor.get("Back_Right_Motor");
-
-        frontleftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontrightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
@@ -125,14 +122,14 @@ public class JV_Movement extends LinearOpMode {
         frontrightMotor.setPower(0.0);
         backleftMotor.setPower(0.0);
         backrightMotor.setPower(0.0);
-        
-        rest(2)
+
+        rest(2);
     }
 
     public void driveForward(double seconds) {
 
-        frontleftMotor.setPower(power);
-        frontrightMotor.setPower(-power);
+        frontleftMotor.setPower(-power);
+        frontrightMotor.setPower(power);
         backleftMotor.setPower(-power);
         backrightMotor.setPower(-power);
 
@@ -140,8 +137,8 @@ public class JV_Movement extends LinearOpMode {
     }
 
     public void driveLeft(double seconds) {
-        frontleftMotor.setPower(-power);
-        frontrightMotor.setPower(-power);
+        frontleftMotor.setPower(power);
+        frontrightMotor.setPower(power);
         backleftMotor.setPower(-power);
         backrightMotor.setPower(power);
 
@@ -149,8 +146,8 @@ public class JV_Movement extends LinearOpMode {
     }
 
     public void driveRight(double seconds) {
-        frontleftMotor.setPower(power);
-        frontrightMotor.setPower(power);
+        frontleftMotor.setPower(-power);
+        frontrightMotor.setPower(-power);
         backleftMotor.setPower(power);
         backrightMotor.setPower(-power);
 
@@ -158,8 +155,8 @@ public class JV_Movement extends LinearOpMode {
     }
 
     public void driveBackward(double seconds) {
-        frontleftMotor.setPower(-power);
-        frontrightMotor.setPower(power);
+        frontleftMotor.setPower(power);
+        frontrightMotor.setPower(-power);
         backleftMotor.setPower(power);
         backrightMotor.setPower(power);
 
