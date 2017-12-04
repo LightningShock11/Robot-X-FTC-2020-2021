@@ -17,11 +17,15 @@ public class AutonTestingOp extends XLinearOpMode {
     MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
     VuMarkDetection vuMarkDetection;
+    JewelColorBLUE jewelColorBLUE;
 
     public void runOpMode() {
         // Do initialization.
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
+
+        jewelColorBLUE = new JewelColorBLUE(this);
+        jewelColorBLUE.init();
 
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
