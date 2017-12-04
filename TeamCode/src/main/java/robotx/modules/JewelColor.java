@@ -15,7 +15,7 @@ import robotx.controls.*;
  * Created by Ben Sabo on 10/20/2017.
  */
 
-public class JewelColorBLUE extends XModule {
+public class JewelColor extends XModule {
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
 
@@ -24,7 +24,7 @@ public class JewelColorBLUE extends XModule {
     ColorSensor armColor;
     Servo armServo;
 
-    public JewelColorBLUE(OpMode Op) {super (Op);}
+    public JewelColor(OpMode Op) {super (Op);}
 
     public void init(){
         armColor = opMode.hardwareMap.colorSensor.get("armColor");
