@@ -63,11 +63,20 @@ public class AutonTestingOp extends XLinearOpMode {
 
         ///
 
-
-        movement.driveForward(0.7, 100);
+        mechanumDrive.setYPower(1.0);
+        sleep(800);
+        mechanumDrive.brakeAllMotors();
         sleep(2000);
 
-        movement.driveBackward(0.7, 100);
+        mechanumDrive.setYPower(-1.0);
+        sleep(800);
+        mechanumDrive.brakeAllMotors();
+        sleep(2000);
+
+        movement.driveForward(0.5, 50);
+        sleep(2000);
+
+        movement.driveBackward(0.5, 50);
         sleep(2000);
 
     }
