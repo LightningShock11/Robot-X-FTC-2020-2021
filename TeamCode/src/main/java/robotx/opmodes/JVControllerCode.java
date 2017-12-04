@@ -3,12 +3,14 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import robotx.libraries.XOpMode;
+
 /**
  * Created by William on 12/1/17.
  */
 @TeleOp(name = "JVControllerCode", group = "Default")
 
-public class JVControllerCode extends OpMode {
+public class JVControllerCode extends XOpMode {
 
     DcMotor frontleftMotor;
     DcMotor frontrightMotor;
@@ -17,58 +19,76 @@ public class JVControllerCode extends OpMode {
 
     double power = 0.5;
 
-    frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
-    frontrightMotor = hardwareMap.dcMotor.get("FrontRightMotor");
-    backleftMotor = hardwareMap.dcMotor.get("BackLeftMotor");
-    backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
-
     @Override
     public void init() {
+        super.init();
+        frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
+        frontrightMotor = hardwareMap.dcMotor.get("FrontRightMotor");
+        backleftMotor = hardwareMap.dcMotor.get("BackLeftMotor");
+        backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
 
     }
 
     @Override
     public void init_loop() {
-
+        super.init_loop();
     }
 
     @Override
     public void start() {
-
+        super.start();
     }
 
     @Override
     public void loop() {
+        super.loop();
 
         //Forward
-        frontleftMotor.setPower(-power);
-        frontrightMotor.setPower(power);
-        backleftMotor.setPower(-power);
-        backrightMotor.setPower(-power);
+        if (xGamepad1.dpad_up.isDown()) {
+
+            frontleftMotor.setPower(-power);
+            frontrightMotor.setPower(-power);
+            backleftMotor.setPower(-power);
+            backrightMotor.setPower(power);
+        }
 
         //Left
-        frontleftMotor.setPower(power);
-        frontrightMotor.setPower(power);
-        backleftMotor.setPower(-power);
-        backrightMotor.setPower(power);
+        else if (xGamepad1.dpad_left.isDown()) {
+
+            frontleftMotor.setPower(-power);
+            frontrightMotor.setPower(power);
+            backleftMotor.setPower(power);
+            backrightMotor.setPower(power);
+        }
 
         //Right
-        frontleftMotor.setPower(-power);
-        frontrightMotor.setPower(-power);
-        backleftMotor.setPower(power);
-        backrightMotor.setPower(-power);
+        else if (xGamepad1.dpad_right.isDown()) {
+
+            frontleftMotor.setPower(power);
+            frontrightMotor.setPower(-power);
+            backleftMotor.setPower(-power);
+            backrightMotor.setPower(-power);
+        }
 
         //Backward
-        frontleftMotor.setPower(power);
-        frontrightMotor.setPower(-power);
-        backleftMotor.setPower(power);
-        backrightMotor.setPower(power);
+        else if (xGamepad1.dpad_down.isDown()) {
 
+            frontleftMotor.setPower(power);
+            frontrightMotor.setPower(power);
+            backleftMotor.setPower(power);
+            backrightMotor.setPower(- power);
+        }
 
+        else {
+            frontleftMotor.setPower(0.0);
+            frontrightMotor.setPower(0.0);
+            backleftMotor.setPower(0.0);
+            backrightMotor.setPower(0.0);
+        }
     }
 
     @Override
     public void stop() {
-
+        super.stop();
     }
 }
