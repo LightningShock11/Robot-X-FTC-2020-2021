@@ -13,6 +13,7 @@ import robotx.libraries.XModule;
 
 public class GlyphClaw extends XModule {
 
+    double clawServoPosition = 0.0;
     Servo clawServo;
     DcMotor rackMotor;
     Servo rotateServoRight;
@@ -40,11 +41,13 @@ public class GlyphClaw extends XModule {
         }
     }
     public void closeClaw() {
-        clawServo.setPosition(.9);
+        clawServoPosition = 1.0;
+        updateClawServo();
         clawIsOpen = false;
     }
     public void openClaw() {
-        clawServo.setPosition(0);
+        clawServoPosition = 0.0;
+        updateClawServo();
         clawIsOpen = true;
     }
     public void rotateClawUp(){
@@ -75,6 +78,10 @@ public class GlyphClaw extends XModule {
         rackMotor.setPower(0.0);
     }
 
+    private void updateClawServo() {
+        clawServo.setPosition(clawServoPosition);
+    }
+
     /*public void pusherOut(){
         pushServo.setPosition(1);
     }
@@ -89,6 +96,23 @@ public class GlyphClaw extends XModule {
     }
 
     public void loop(){
+        opMode.telemetry.addData("Servo Position:", clawServo.getPosition());
+
+        double updateServoPosition = (xGamepad2().right_trigger-xGamepad2().left_trigger)/20.0;
+        clawServoPosition += updateServoPosition;
+        updateClawServo();
+
+        if(xGamepad2().b.wasPressed()){
+            clawServoPosition = 0.90;
+        }
+
+        if (clawServoPosition > 0.95) {
+            clawIsOpen = false;
+        }
+        if (clawServoPosition < 0.05) {
+            clawIsOpen = true;
+        }
+
         if(xGamepad2().x.wasPressed()) {
             toggleClaw();
         }
