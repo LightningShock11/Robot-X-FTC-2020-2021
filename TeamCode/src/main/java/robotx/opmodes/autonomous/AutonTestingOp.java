@@ -12,7 +12,7 @@ import robotx.modules.*;
 @Autonomous(name = "AutonTestingOp", group = "Autonomous")
 public class AutonTestingOp extends XLinearOpMode {
 
-    OmniAutonomousMovement movement;
+    //OmniAutonomousMovement movement;
     MechanumAuton sensors;
     MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
@@ -33,13 +33,13 @@ public class AutonTestingOp extends XLinearOpMode {
         sensors = new MechanumAuton(this);
         sensors.init();
 
-        mechanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        /*mechanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mechanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sensors.frontLeftMotor = mechanumDrive.frontLeft;
-        sensors.frontRightMotor = mechanumDrive.frontRight;
+        sensors.frontRightMotor = mechanumDrive.frontRight;*/
 
-        movement = new OmniAutonomousMovement(this, sensors, mechanumDrive);
-        movement.init();
+        //movement = new OmniAutonomousMovement(this, sensors, mechanumDrive);
+        //movement.init();
 
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
@@ -54,31 +54,60 @@ public class AutonTestingOp extends XLinearOpMode {
         telemetry.addData("Stage", "Start");
         this.updateTelemetry(telemetry);
 
-        movement.start();
-        sensors.start();
+        //movement.start();
+        //sensors.start();
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
 
 
         ///
+        mechanumDrive.setRotationPower(1.0);
+        sleep(2000);
+        mechanumDrive.setRotationPower(0.0);
+        sleep(2000);
+        mechanumDrive.setRotationPower(-1.0);
+        sleep(2000);
+
+        mechanumDrive.brakeAllMotors();
+        sleep(4000);
 
         mechanumDrive.setYPower(1.0);
         sleep(800);
         mechanumDrive.brakeAllMotors();
         sleep(2000);
 
+        /*
+        movement.pointTurnLeft(180);
+        sleep(2000);
+
         mechanumDrive.setYPower(-1.0);
-        sleep(800);
+        sleep(400);
         mechanumDrive.brakeAllMotors();
         sleep(2000);
 
-        movement.driveForward(0.5, 50);
+        movement.pointTurnRight(90);
         sleep(2000);
 
-        movement.driveBackward(0.5, 50);
+        mechanumDrive.setYPower(0.3);
+        sleep(400);
+        mechanumDrive.brakeAllMotors();
+        sleep(1000);
+
+        movement.pointTurnRight(90);
+        sleep(1000);
+
+        mechanumDrive.setYPower(0.3);
+        sleep(400);
+        mechanumDrive.brakeAllMotors();
+        sleep(1000);
+
+        movement.driveForward(0.5, 20);
         sleep(2000);
 
+        movement.driveBackward(0.5, 20);
+        sleep(2000);
+        */
     }
 
 }
