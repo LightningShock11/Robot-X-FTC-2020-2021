@@ -26,7 +26,8 @@ public class OmniAutonomousMovement extends XModule {
         sensors.resetNavigationSensors();
         drive.setAllPower(0.0);
         while( (sensors.changeInYCentimeters() < distance) && !((XLinearOpMode) opMode).stopping() ) {
-            drive.setAllPower( rampAdjustment(power, distance, sensors.changeInYCentimeters()) );
+            //drive.setYPower( rampAdjustment(power, distance, sensors.changeInYCentimeters()) );
+            drive.setYPower( power );
             opMode.telemetry.addData("Progress", sensors.changeInYCentimeters() + "cm / " + distance + "cm");
             opMode.telemetry.update();
         }
@@ -36,7 +37,8 @@ public class OmniAutonomousMovement extends XModule {
         sensors.resetNavigationSensors();
         drive.setAllPower(0.0);
         while( (-sensors.changeInYCentimeters() < distance) && !((XLinearOpMode) opMode).stopping() ) {
-            drive.setAllPower( -rampAdjustment(power, distance, -sensors.changeInYCentimeters()) );
+            //drive.setYPower( -rampAdjustment(power, distance, -sensors.changeInYCentimeters()) );
+            drive.setYPower( -power );
             opMode.telemetry.addData("Progress", -sensors.changeInYCentimeters() + "cm / " + distance + "cm");
             opMode.telemetry.update();
         }
@@ -46,7 +48,7 @@ public class OmniAutonomousMovement extends XModule {
         sensors.resetNavigationSensors();
         drive.setAllPower(0.0);
         while( (sensors.changeInXCentimeters() < distance) && !((XLinearOpMode) opMode).stopping() ) {
-            drive.setAllPower( rampAdjustment(power, distance, sensors.changeInXCentimeters()) );
+            drive.setXPower( rampAdjustment(power, distance, sensors.changeInXCentimeters()) );
             opMode.telemetry.addData("Progress", sensors.changeInXCentimeters() + "cm / " + distance + "cm");
             opMode.telemetry.update();
         }
@@ -56,7 +58,7 @@ public class OmniAutonomousMovement extends XModule {
         sensors.resetNavigationSensors();
         drive.setAllPower(0.0);
         while( (-sensors.changeInXCentimeters() < distance) && !((XLinearOpMode) opMode).stopping() ) {
-            drive.setAllPower( -rampAdjustment(power, distance, -sensors.changeInXCentimeters()) );
+            drive.setXPower( -rampAdjustment(power, distance, -sensors.changeInXCentimeters()) );
             opMode.telemetry.addData("Progress", -sensors.changeInXCentimeters() + "cm / " + distance + "cm");
             opMode.telemetry.update();
         }
@@ -95,6 +97,28 @@ public class OmniAutonomousMovement extends XModule {
         double a = 0.1; // a is the minimum power
         double outputPower = maxPower * (coeff - a*coeff + a);
         return outputPower; // Range output power
+    }
+
+    public void pointTurnLeft(int degrees) {
+        sensors.resetNavigationSensors();
+        opMode.telemetry.addData("StartAngle", -sensors.getHeadingAngle() + "deg");
+        opMode.telemetry.update();
+        drive.setRotationPower(-0.3);
+        while ( (sensors.changeInHeadingAngle() < degrees) && !((XLinearOpMode) opMode).stopping() ) {
+            opMode.telemetry.addData("Progress", sensors.changeInHeadingAngle() + "deg / " + degrees + "deg");
+            opMode.telemetry.update();
+        }
+        drive.brakeAllMotors();
+    }
+    public void pointTurnRight(int degrees) {
+        sensors.resetNavigationSensors();
+        opMode.telemetry.addData("StartAngle", sensors.getHeadingAngle() + "deg");
+        drive.setRotationPower(0.3);
+        while ( (-sensors.changeInHeadingAngle() < degrees) && !((XLinearOpMode) opMode).stopping() ) {
+            opMode.telemetry.addData("Progress", -sensors.changeInHeadingAngle() + "deg / " + degrees + "deg");
+            opMode.telemetry.update();
+        }
+        drive.brakeAllMotors();
     }
 
 }
