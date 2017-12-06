@@ -3,7 +3,9 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
+import robotx.libraries.XGamepad;
 import robotx.libraries.XOpMode;
 
 /**
@@ -18,6 +20,9 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     DcMotor backleftMotor;
     DcMotor backrightMotor;
 
+    Servo rightServo;
+    Servo leftServo;
+
     double power = 0.5;
 
     @Override
@@ -29,6 +34,9 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
 
         backrightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        rightServo = hardwareMap.servo.get("RightServo");
+        leftServo = hardwareMap.servo.get("LeftServo");
 
     }
 
@@ -46,11 +54,17 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     public void loop() {
         super.loop();
 
+    if (xGamepad2.right_bumper.isDown()) {
+
+        rightServo.setPosition(0);
+        leftServo.setPosition(0);
+        
+    }
+
         double x = xGamepad1.left_stick_x;
         double y = xGamepad1.left_stick_y;
 
         double rotationPower = xGamepad1.right_stick_x;
-
 
         double rotX = x*0.707 - y*-0.707;
         double rotY = x*-0.707 + y*0.707;
