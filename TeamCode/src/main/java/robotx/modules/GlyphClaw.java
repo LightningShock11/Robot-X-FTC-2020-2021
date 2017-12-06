@@ -103,7 +103,7 @@ public class GlyphClaw extends XModule {
         updateClawServo();
 
         if(xGamepad2().b.wasPressed()){
-            clawServoPosition = 0.90;
+            clawServoPosition = 0.70;
         }
 
         if (clawServoPosition > 0.95) {
