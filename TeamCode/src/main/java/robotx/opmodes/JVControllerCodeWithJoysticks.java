@@ -49,13 +49,18 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         double x = xGamepad1.left_stick_x;
         double y = xGamepad1.left_stick_y;
 
+        double rotationPower = xGamepad1.right_stick_x;
+
+
         double rotX = x*0.707 - y*-0.707;
         double rotY = x*-0.707 + y*0.707;
 
-        frontleftMotor.setPower(rotX);
-        frontrightMotor.setPower(rotY);
-        backleftMotor.setPower(rotY);
-        backrightMotor.setPower(rotX);
+        frontleftMotor.setPower(rotX+rotationPower);
+        frontrightMotor.setPower(rotY+rotationPower);
+        backleftMotor.setPower(rotY+rotationPower);
+        backrightMotor.setPower(rotX-rotationPower);
+
+
 
         /*
         //Forward
@@ -64,7 +69,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             frontleftMotor.setPower(-power);
             frontrightMotor.setPower(-power);
             backleftMotor.setPower(-power);
-            backrightMotor.setPower(power);
+            backrightMotor.setPower(-power);
         }
 
         //Left
@@ -73,7 +78,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             frontleftMotor.setPower(-power);
             frontrightMotor.setPower(power);
             backleftMotor.setPower(power);
-            backrightMotor.setPower(power);
+            backrightMotor.setPower(-power);
         }
 
         //Right
@@ -82,7 +87,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             frontleftMotor.setPower(power);
             frontrightMotor.setPower(-power);
             backleftMotor.setPower(-power);
-            backrightMotor.setPower(-power);
+            backrightMotor.setPower(power);
         }
 
         //Backward
@@ -91,7 +96,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             frontleftMotor.setPower(power);
             frontrightMotor.setPower(power);
             backleftMotor.setPower(power);
-            backrightMotor.setPower(- power);
+            backrightMotor.setPower(power);
         }
 
         else {
