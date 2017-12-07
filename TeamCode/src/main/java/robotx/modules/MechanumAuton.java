@@ -43,8 +43,7 @@ public class MechanumAuton extends OmniAutonomousSystem {
 
     // Input encoder ticks and return centimeters.
     public double ticksToCentimeters(int encoderTicks) {
-        // TODO Put the correct value here.
-        return encoderTicks * ((42.25/3600.0)*2.54);
+        return encoderTicks * ((42.25/3600.0)*2.54)*(100.0/116.5);
     }
 
     public void calibrateGyro() {

@@ -82,13 +82,13 @@ public class AutonTestingOp extends XLinearOpMode {
         movement.pointTurnLeft(180);
         sleep(2000);
 
-        movement.driveForward(0.5, 60);
+        movement.driveForward(0.5, 100);
         sleep(2000);
 
         movement.pointTurnLeft(180);
         sleep(2000);
 
-        movement.driveForward(0.5, 60);
+        movement.driveForward(0.5, 100);
         sleep(2000);
 
         /*
@@ -115,5 +115,4 @@ public class AutonTestingOp extends XLinearOpMode {
         sleep(2000);
         */
     }
-
 }
