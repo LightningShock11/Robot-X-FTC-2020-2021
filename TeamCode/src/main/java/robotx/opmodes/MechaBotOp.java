@@ -16,6 +16,7 @@ public class MechaBotOp extends XOpMode {
 
     MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
+    JewelColor jewelColor;
 
 
     public void initModules(){
@@ -26,6 +27,9 @@ public class MechaBotOp extends XOpMode {
 
         glyphClaw = new GlyphClaw(this);
         activeModules.add(glyphClaw);
+
+        jewelColor = new JewelColor(this);
+        activeModules.add(jewelColor);
     }
     public void init(){super.init();}
 }

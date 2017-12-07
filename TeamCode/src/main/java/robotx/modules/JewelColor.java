@@ -1,21 +1,46 @@
 package robotx.modules;
 
 import robotx.libraries.XModule;
-import com.qualcomm.robotcore.*;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.Servo;
-
-
-import robotx.libraries.*;
-import robotx.controls.*;
 
 /**
  * Created by Ben Sabo on 10/20/2017.
  */
 
 public class JewelColor extends XModule {
+
+    public enum GemStatus {
+        RED_BLUE,
+        BLUE_RED;
+
+        public static GemStatus BLUE_ON_LEFT() {
+            return BLUE_RED;
+        }
+        public static GemStatus BLUE_ON_RIGHT() {
+            return RED_BLUE;
+        }
+        public static GemStatus RED_ON_LEFT() {
+            return RED_BLUE;
+        }
+        public static GemStatus RED_ON_RIGHT() {
+            return BLUE_RED;
+        }
+
+        @Override
+        public String toString() {
+            if (this == GemStatus.RED_BLUE) {
+                return "RED_BLUE";
+            } else { // BLUE_RED
+                return "BLUE_RED";
+            }
+
+        }
+    }
+
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
 
@@ -28,7 +53,7 @@ public class JewelColor extends XModule {
 
     public void init(){
         armColor = opMode.hardwareMap.colorSensor.get("armColor");
-        armColor.setI2cAddress(I2cAddr.create7bit(0x39));
+        armColor.setI2cAddress(I2cAddr.create7bit(0x39)); // TODO Figure out if this address it correct.
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
@@ -37,17 +62,18 @@ public class JewelColor extends XModule {
         armIsUp = true;
 
     }
-    public void colorEval(){
+    public GemStatus colorEval(){
         if (armColor.blue() > armColor.red()){
             opMode.telemetry.addLine("Left ball is blue");
-            leftBallIsBlue = true;
-            leftBallIsRed = false;
+            return GemStatus.BLUE_ON_LEFT();
         }
         else if (armColor.blue() < armColor.red()){
             opMode.telemetry.addLine("Left ball is red");
-            leftBallIsRed = true;
-            leftBallIsBlue = false;
+
+            return GemStatus.RED_ON_LEFT();
         }
+        // We should return an error value here.
+        return GemStatus.RED_ON_LEFT();
     }
     public void toggleArm(){
         if (armIsUp) {
@@ -73,8 +99,6 @@ public class JewelColor extends XModule {
     public void loop(){
         if (xGamepad1().a.wasPressed()){
             colorEval();
-            }
-        if (xGamepad1().b.wasPressed()){
             toggleArm();
         }
     }
