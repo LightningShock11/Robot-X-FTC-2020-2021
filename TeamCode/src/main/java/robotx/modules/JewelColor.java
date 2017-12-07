@@ -53,7 +53,7 @@ public class JewelColor extends XModule {
 
     public void init(){
         armColor = opMode.hardwareMap.colorSensor.get("armColor");
-        armColor.setI2cAddress(I2cAddr.create7bit(0x39)); // TODO Figure out if this address it correct.
+        armColor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
