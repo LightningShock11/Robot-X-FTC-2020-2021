@@ -23,7 +23,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     Servo rightServo;
     Servo leftServo;
 
-    double power = 0.5;
+    double power = 0.7;
 
     @Override
     public void init() {
@@ -54,12 +54,23 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     public void loop() {
         super.loop();
 
-    if (xGamepad2.right_bumper.isDown()) {
+        if (xGamepad2.right_bumper.isDown()) {
 
-        rightServo.setPosition(0);
-        leftServo.setPosition(0);
-        
-    }
+            rightServo.setPosition(1);
+            leftServo.setPosition(1);
+
+        } else if (xGamepad2.left_bumper.isDown()){
+
+                rightServo.setPosition(0.5);
+                leftServo.setPosition(0.5);
+
+        } else {
+
+            rightServo.setPosition(0);
+            leftServo.setPosition(0);
+
+        }
+
 
         double x = xGamepad1.left_stick_x;
         double y = xGamepad1.left_stick_y;
