@@ -1,5 +1,6 @@
 package robotx.modules;
 
+import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XModule;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -41,8 +42,7 @@ public class JewelColor extends XModule {
         }
     }
 
-    boolean leftBallIsBlue;
-    boolean leftBallIsRed;
+    OmniAutonomousMovement autonomousMovement;
 
     boolean armIsUp;
 
