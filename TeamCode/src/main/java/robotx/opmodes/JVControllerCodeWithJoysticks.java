@@ -61,8 +61,8 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
         } else if (xGamepad2.left_bumper.isDown()){
 
-                rightServo.setPosition(0.5);
-                leftServo.setPosition(0.5);
+            rightServo.setPosition(1);
+            leftServo.setPosition(1);
 
         } else {
 
@@ -83,7 +83,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         frontleftMotor.setPower(rotX+rotationPower);
         frontrightMotor.setPower(rotY+rotationPower);
         backleftMotor.setPower(rotY+rotationPower);
-        backrightMotor.setPower(rotX-rotationPower);
+        backrightMotor.setPower(rotX+rotationPower);
 
 
 
@@ -136,4 +136,5 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     public void stop() {
         super.stop();
     }
+
 }
