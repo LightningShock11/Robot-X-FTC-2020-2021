@@ -58,7 +58,7 @@ public class JewelColor extends XModule {
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
 
-        raiseArm();
+        lowerArm();
         armIsUp = true;
 
     }
