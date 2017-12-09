@@ -15,7 +15,6 @@ import robotx.modules.VuMarkDetection;
  */
 @Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
 public class BlueCloseCryptoOp extends XLinearOpMode {
-
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
     MechanumDrive mechanumDrive;

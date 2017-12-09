@@ -40,7 +40,6 @@ public class JewelColor extends XModule {
 
         }
     }
-
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
 
@@ -60,7 +59,6 @@ public class JewelColor extends XModule {
 
         lowerArm();
         armIsUp = true;
-
     }
     public GemStatus colorEval(){
         if (armColor.blue() > armColor.red()){
