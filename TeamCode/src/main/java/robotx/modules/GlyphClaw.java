@@ -32,6 +32,8 @@ public class GlyphClaw extends XModule {
         rotateServoRight = opMode.hardwareMap.servo.get("rotateServoRight");
         rotateServoLeft = opMode.hardwareMap.servo.get("rotateServoLeft");
         //pushServo = opMode.hardwareMap.servo.get("pushServo");
+        closeClaw();
+        rotateClawUp();
     }
     public void toggleClaw(){
         if (clawIsOpen){
@@ -51,8 +53,8 @@ public class GlyphClaw extends XModule {
         clawIsOpen = true;
     }
     public void rotateClawUp(){
-        rotateServoRight.setPosition(.5);
-        rotateServoLeft.setPosition(.5);
+        rotateServoRight.setPosition(.6);
+        rotateServoLeft.setPosition(.4);
     }
     public void rotateClawDown(){
         rotateServoRight.setPosition(0);
@@ -133,6 +135,8 @@ public class GlyphClaw extends XModule {
             pusherIn();
         }
         */
+        //Debug code:
+        opMode.telemetry.addData("ClawIsOpen", clawIsOpen);
     }
     public void stop(){
         closeClaw();

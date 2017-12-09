@@ -46,7 +46,7 @@ public class JewelColor extends XModule {
         }
     }
 
-    OmniAutonomousMovement autonomousMovement;
+    public OmniAutonomousMovement autonomousMovement;
 
     boolean armIsUp;
 
@@ -61,7 +61,7 @@ public class JewelColor extends XModule {
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
-
+        raiseArm();
     }
 
     private void sleep(long milliseconds) {
@@ -71,14 +71,14 @@ public class JewelColor extends XModule {
     }
 
     public GemStatus colorEval(){
-        if (armColor.blue() > armColor.red()){
-            opMode.telemetry.addLine("Left ball is blue");
-            return GemStatus.BLUE_ON_LEFT();
+        opMode.telemetry.addData("Red", armColor.red());
+        opMode.telemetry.addData("Blue", armColor.blue());
+            if (armColor.blue() > armColor.red()){
+            return GemStatus.BLUE_ON_RIGHT();
         }
         else if (armColor.blue() < armColor.red()){
-            opMode.telemetry.addLine("Left ball is red");
 
-            return GemStatus.RED_ON_LEFT();
+            return GemStatus.RED_ON_RIGHT();
         }
 
         return GemStatus.ERROR;
@@ -128,7 +128,9 @@ public class JewelColor extends XModule {
         }
     }
     public void lowerArm() {
-        armServo.setPosition(1.0);
+        armServo.setPosition(1.0
+
+        );
         armIsUp = false;
     }
     public void raiseArm() {
@@ -142,6 +144,7 @@ public class JewelColor extends XModule {
     }
 
     public void loop(){
+        opMode.telemetry.addData("Color", colorEval().toString());
         if (xGamepad2().a.wasPressed()){
             toggleArm();
         }
