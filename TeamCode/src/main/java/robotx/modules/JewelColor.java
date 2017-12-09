@@ -128,9 +128,7 @@ public class JewelColor extends XModule {
         }
     }
     public void lowerArm() {
-        armServo.setPosition(1.0
-
-        );
+        armServo.setPosition(1.0);
         armIsUp = false;
     }
     public void raiseArm() {
