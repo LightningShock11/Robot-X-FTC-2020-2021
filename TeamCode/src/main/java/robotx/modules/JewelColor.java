@@ -73,11 +73,9 @@ public class JewelColor extends XModule {
     public GemStatus colorEval(){
         opMode.telemetry.addData("Red", armColor.red());
         opMode.telemetry.addData("Blue", armColor.blue());
-            if (armColor.blue() > armColor.red()){
+        if (armColor.blue() > armColor.red()) {
             return GemStatus.BLUE_ON_RIGHT();
-        }
-        else if (armColor.blue() < armColor.red()){
-
+        } else if (armColor.blue() < armColor.red()) {
             return GemStatus.RED_ON_RIGHT();
         }
 
