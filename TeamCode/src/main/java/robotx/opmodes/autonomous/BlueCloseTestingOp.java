@@ -13,8 +13,8 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
-public class BlueCloseCryptoOpTesting extends XLinearOpMode {
+@Autonomous(name = "BlueCloseTestingOp", group = "Autonomous")
+public class BlueCloseTestingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
