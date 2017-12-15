@@ -11,10 +11,10 @@ import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
 
 /**
- * Created by Robot-X Team Member on 12/6/2017.
+ * Created by Kush Dalal on 12/6/2017.
  */
 @Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
-public class BlueCloseCryptoOp extends XLinearOpMode {
+public class BlueCloseCryptoOpTesting extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
@@ -75,27 +75,31 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
-
+        movement.driveForward(0.4, 40);
+        sleep(1000);
+        movement.driveForward(0.4, 60);
+        sleep(750);
         glyphClaw.rotateClawDown();
         sleep(500);
         glyphClaw.closeClaw();
         sleep(500);
-        glyphClaw.raiseClaw();
-        sleep(400);
-        glyphClaw.stopClaw();
-        sleep(200);
+        movement.driveForward(0.4, 120);
+        sleep(750);
+
+
 
         // Knock off the correct jewel.
-        jewelColor.knockOffRedGem();
+       /* jewelColor.knockOffRedGem();
         sleep(1000);
 
         // Drive straight off the balancing stone.
         movement.driveForward(0.4, 60);
 
         sleep(1000);
+        */
 
         // Turn and face the cryptobox.
-        movement.pointTurnLeft(90);
+        movement.pointTurnLeft(-90);
 
         // Do something based on the vuMarkStatus
         if (isLeft) {
