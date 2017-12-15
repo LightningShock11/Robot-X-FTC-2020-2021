@@ -1,7 +1,9 @@
 package robotx.modules;
 
+import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XModule;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -15,7 +17,8 @@ public class JewelColor extends XModule {
 
     public enum GemStatus {
         RED_BLUE,
-        BLUE_RED;
+        BLUE_RED,
+        ERROR;
 
         public static GemStatus BLUE_ON_LEFT() {
             return BLUE_RED;
@@ -34,14 +37,16 @@ public class JewelColor extends XModule {
         public String toString() {
             if (this == GemStatus.RED_BLUE) {
                 return "RED_BLUE";
-            } else { // BLUE_RED
+            } else if (this == GemStatus.BLUE_RED) {
                 return "BLUE_RED";
+            } else { // ERROR
+                return "ERROR";
             }
 
         }
     }
-    boolean leftBallIsBlue;
-    boolean leftBallIsRed;
+
+    public OmniAutonomousMovement autonomousMovement;
 
     boolean armIsUp;
 
@@ -56,23 +61,65 @@ public class JewelColor extends XModule {
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
-
-        lowerArm();
-        armIsUp = true;
+        raiseArm();
     }
+
+    private void sleep(long milliseconds) {
+        if (opMode instanceof LinearOpMode) {
+            ((LinearOpMode) opMode).sleep(milliseconds);
+        }
+    }
+
     public GemStatus colorEval(){
-        if (armColor.blue() > armColor.red()){
-            opMode.telemetry.addLine("Left ball is blue");
-            return GemStatus.BLUE_ON_LEFT();
+        opMode.telemetry.addData("Red", armColor.red());
+        opMode.telemetry.addData("Blue", armColor.blue());
+            if (armColor.blue() > armColor.red()){
+            return GemStatus.BLUE_ON_RIGHT();
         }
         else if (armColor.blue() < armColor.red()){
-            opMode.telemetry.addLine("Left ball is red");
 
-            return GemStatus.RED_ON_LEFT();
+            return GemStatus.RED_ON_RIGHT();
         }
-        // We should return an error value here.
-        return GemStatus.RED_ON_LEFT();
+
+        return GemStatus.ERROR;
     }
+
+    public void knockOffRightGem() {
+        lowerArm();
+        sleep(500);
+        autonomousMovement.pointTurnRight(15);
+        sleep(500);
+        raiseArm();
+        sleep(500);
+        autonomousMovement.pointTurnLeft(15);
+    }
+    public void knockOffLeftGem() {
+        lowerArm();
+        sleep(500);
+        autonomousMovement.pointTurnLeft(15);
+        sleep(500);
+        raiseArm();
+        sleep(500);
+        autonomousMovement.pointTurnRight(15);
+    }
+
+    public void knockOffRedGem() {
+        GemStatus gemStatus = colorEval();
+        if (gemStatus == GemStatus.RED_ON_LEFT()) {
+            knockOffLeftGem();
+        } else if (gemStatus == GemStatus.RED_ON_RIGHT()) {
+            knockOffRightGem();
+        }
+    }
+    public void knockOffBlueGem() {
+        GemStatus gemStatus = colorEval();
+        if (gemStatus == GemStatus.BLUE_ON_LEFT()) {
+            knockOffLeftGem();
+        } else if (gemStatus == GemStatus.BLUE_ON_RIGHT()) {
+            knockOffRightGem();
+        }
+    }
+
     public void toggleArm(){
         if (armIsUp) {
             lowerArm();
@@ -81,11 +128,11 @@ public class JewelColor extends XModule {
         }
     }
     public void lowerArm() {
-        armServo.setPosition(0.3);
+        armServo.setPosition(1.0);
         armIsUp = false;
     }
     public void raiseArm() {
-        armServo.setPosition(1.0);
+        armServo.setPosition(0.4);
         armIsUp = true;
     }
 
@@ -95,13 +142,13 @@ public class JewelColor extends XModule {
     }
 
     public void loop(){
-        if (xGamepad1().a.wasPressed()){
-            colorEval();
+        opMode.telemetry.addData("Color", colorEval().toString());
+        if (xGamepad2().a.wasPressed()){
             toggleArm();
         }
     }
     public void stop(){
         armColor.resetDeviceConfigurationForOpMode();
-        lowerArm();
+        raiseArm();
     }
 }

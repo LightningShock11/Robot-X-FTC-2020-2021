@@ -1,0 +1,456 @@
+[START commit][author=Nicholas Reichert][time=1512754468][message=Adapted JewelColor to support moving the robot as well.][hash=0b109192ec72892bb084a4f88f4070b3c8549f29]
+ 1 file changed, 55 insertions(+), 11 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512746058][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=d30cbf74c72629ac2481a214b1b971b2c879c351]
+[START commit][author=Nicholas Reichert][time=1512746015][message=Added the autonomous movement module][hash=9cf0a68f32a4c4182edfcce5c0220ccfb338b15f]
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=Ben Sabo][time=1512743185][message=Switched which method is called at the init phase becsuae they are reversed.][hash=6833c67549ffe85cff266d96ca1320a07be0a6cc]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Ben Sabo][time=1512684075][message=Changed comment. This I2C address is the same for all REV color sensors.][hash=205926276136b4c22a0636a2012f7835096593ee]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1512605936][message=Did a lot of work on JewelColor and started a basic autonomous.][hash=b998b5879653d0962e6a5c2c60ab1c92aecaf981]
+ 3 files changed, 148 insertions(+), 13 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512605911][message=Refined mechanum driving distances so they should be more accurate.][hash=9cc6fe7357206b72849a0f227adfa15a82db03b2]
+ 2 files changed, 3 insertions(+), 5 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512602671][message=Deleted lots of old, unused autonomous programs.][hash=f970b50b1f18461118ffd43a524c6ac9f5f7e849]
+ 9 files changed, 1340 deletions(-)
+
+[START commit][author=Ben Sabo][time=1512523435][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=1b5b73d4008d1b70853ccfa121fded191a045e44]
+[START commit][author=Ben Sabo][time=1512523354][message=Tweaked servo position.][hash=95113e488d283387d640aabc2c69ff9ed1e87d12]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1512517976][message=Testing out some different things with the autonomous code. This is still the testing phase and we should have a code that tries to do tasks soon.][hash=aa640a037ec21208a417bbbc02532098e69da0b5]
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+
+[START commit][author=Ben Sabo][time=1512512913][message=Changed the way the claw opens and added a way to open part of the way][hash=cd923060045f11af6d1601449e112b873f6127e7]
+ 1 file changed, 26 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512433914][message=Made many changes and tweaks to test out different things in AutonTestingOp.][hash=39a5fb7ccc5cabfc29f8f3c4dc2d6a7e6749032a]
+ 1 file changed, 39 insertions(+), 10 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512433893][message=Disable power ramping on the OmniAutonomousSystem and added rotation methods.][hash=1b6c7d78a3aad27c4514cb2323b37e4912981054]
+ 1 file changed, 28 insertions(+), 4 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512422278][message=Renamed JewelColorBLUE back to JewelColor.][hash=cbcbbf17859d4be8531a3108874365f70462705b]
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+[START commit][author=Ben Sabo][time=1512420976][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=0488cb24dec178505818cd3967d85f660772e27f]
+[START commit][author=Ben Sabo][time=1512420923][message=Added the jewel color evaluation to the autonomous testing program][hash=cefb51e3fa295e857645bb045f9da7e0d7139c8b]
+ 4 files changed, 15 insertions(+), 5 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512171693][message=Wrote code in AutonTestingOp to test autonomous driving methods.][hash=93bfb92f5db9ea60a5ab92373c41b2838fc4da27]
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512171672][message=Reversed the direction of the Y power so it matches the documentation. driveForward and driveBackware methods now go the correct direction.][hash=64f00ec040b9a0b828b961456f8367567eee7892]
+ 2 files changed, 11 insertions(+), 7 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512171438][message=Added a wirelessADB.bat script that doesn't work.][hash=9dc3f319eda1d5da7b76f0e65a7374bed99e30de]
+ 1 file changed, 9 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1512081105][message=Added new AutonTestingOp for testing out autonomous driving methods.][hash=3ab81b1071443e3a7752431f47d56d5569bd9ad0]
+ 1 file changed, 71 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1512080977][message=Modified variable access levels for MechnumAutonomous so it can be used properly.][hash=ac3580f3ddadcb188d25df45634f99ae7c7da61f]
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1512080804][message=Moved servo setup motions for the GlyphClaw into the start method, so they don't run until start.][hash=1a65fe03f2d470a36b03180021caa2448fa0419b]
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511996350][message=Added new controlRamp function to allow more precise, slower movement in TeleOp.][hash=1198ac3aa735f1206f74078c7b949a9362fefb84]
+ 1 file changed, 19 insertions(+), 3 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511996320][message=Reversed the motor powers for rotation on the MechanumDrive so it matches the controller.][hash=0b409540f4ea418f210a06b415d618c89d324b66]
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511910490][message=Commented out code for a servo that is not mounted yet.][hash=8c5f7cc5f08163d67c934260ad71be2f9faab073]
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511907250][message=Deleted the opmode that had the new drive system controls becsaue it is used in the MechaBotOp.][hash=1782a09651be33dae71c7209afd13e317103ad17]
+ 1 file changed, 25 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511907137][message=Updated servo positions.][hash=1e81628962f34af06cdfb8f82679b2163242045e]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Lego][time=1511907073][message=Changed controls on the MechaBotOp for driving to the effective way, Replaced old controls.][hash=7d5add7581dca54b8aa463a4a2eeea4974e7b391]
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511825513][message=Changed some motor math for the MechanumDrive class.  This is untested.][hash=4c49417df7d974a1264043a8b9a3e4fbdb2081b0]
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511824815][message=Changed more servo positions and doubled the descent power of the claw.][hash=0818bae08f4cf786de7f9681c89de9a702a85b2b]
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511824265][message=Changed some servo positions and set the motors to full power rather than half.][hash=996a011293e36229b7d72ca296be30ebc7f4a26f]
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511820822][message=Deleted old code that was commented out.][hash=65d524be8a4dc0a3db247a2f6daaba63b99466bc]
+ 1 file changed, 25 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511820803][message=Added the second servo, renamed them "rotateServoLeft" and "rotateServoRight" for self-documentation, and changed the manipulators to be controlled with gamepad 2.][hash=e80c8d68f06ea274d2972c55c557fa520cf6508a]
+ 1 file changed, 12 insertions(+), 9 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511819651][message=Added some basic autonomous methods for the omni-based drives.][hash=37833a048ab0a51a4ef7dc6f2514dad8fc8da40f]
+ 3 files changed, 221 insertions(+)
+
+[START commit][author=Lego][time=1511646728][message=Mechanum drive auton stuff. still needs testing][hash=964c423fd457ffa7b1af1ce98fed0637f25ea32e]
+ 3 files changed, 61 insertions(+), 1 deletion(-)
+
+[START commit][author=Ben Sabo][time=1511639698][message=added something i forgot in the code][hash=03080b49d72016b5d006124390cc8db017886b6e]
+ 1 file changed, 2 insertions(+)
+
+[START commit][author=Ben Sabo][time=1511638255][message=Added toggle feature to the rotation of the claw so that it can rotate back up after being lowered.][hash=7cb23037f7330028701ce982c75a06d7899a9716]
+ 1 file changed, 17 insertions(+), 2 deletions(-)
+
+[START commit][author=Ben Sabo][time=1511305041][message=Halved motor power when lowering the claw. Fixed servo positions.][hash=0b7c182a491cae5a5a7effc985616279b8b64621]
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511304542][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=9454674e558c91a2ba2ed3a8e418c651a1e90545]
+[START commit][author=Nicholas Reichert][time=1511304527][message=Added rotationPower to setAllPower(double) method of OmniDriveSystem. Before, the robot would keep rotating if you told it to brakeAllMotors()][hash=9fa6d5a99c6c4488c7e8554b0b16b37f43c60473]
+ 1 file changed, 1 insertion(+)
+
+[START commit][author=Lego][time=1511304308][message=sabo did something][hash=deddb939a57c2937370ef134d76907e9f197026c]
+[START commit][author=Lego][time=1511304212][message=Created some code/ opmode for the two wheel sucker prototype. Prototype failed. Edited glyph claw. Fixed mecha bot thingy][hash=af039e4f4372279761c88a62c9bda0acf8e6b54f]
+ 4 files changed, 68 insertions(+), 43 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511301462][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=7c4c7faf63922459d69baef5211ec2c281641b9f]
+[START commit][author=Nicholas Reichert][time=1511301449][message=Wrote abstract DriveSystem class for omnidirectional drives.][hash=d78681f777d61112b1a994e2c817f9e0cf8cc3ea]
+ 1 file changed, 86 insertions(+)
+
+[START commit][author=Ben Sabo][time=1511225014][message=Added horizontal sliding capabilities into the GlyphClaw moduel. Has not been tested yet.][hash=8cffd550c717768208fa30df6b9c69929ed35bc7]
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1511219411][message=Added new VuforiaTestOp to test out the VuMarkDetection module.][hash=8d0cbbb82d31ee44f633b03edad4b8746f59831c]
+ 1 file changed, 36 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1511219385][message=Changed VuMarkDetection to use the front camera.][hash=cbfe695a0a64b602846c11a9ca84d0445b1f2c78]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1511217776][message=Deleted broken XOmniTest module and op mode.  The OmniTest module supercedes it and works properly.][hash=da0bac6c3f60797fc2082e62deba0398748c5cca]
+ 2 files changed, 87 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1511217580][message=Created untested VuMarkDetection module.][hash=057db3480ad0c720d92e25bac3fa42c5dc2b6118]
+ 1 file changed, 66 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1510786175][message=Renamed DriveSystem to BasicDriveSystem.][hash=0a5d2cca100a51284f95f050f772bd9f9d0c2b62]
+ 9 files changed, 15 insertions(+), 15 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510785938][message=Migrated DriveSystem class to use XGamepads instead of the vanilla FTC Gamepad objects.][hash=32502caa613be0eb6cc5fd95f3d29efaf9c0bf64]
+ 4 files changed, 11 insertions(+), 15 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510611897][message=Refactored GlyphClaw class.  Abstracted hardware interaction into separate methods.][hash=c2465b13d12a8c48455a54445acfa620d5abd408]
+ 1 file changed, 31 insertions(+), 22 deletions(-)
+
+[START commit][author=Ben Sabo][time=1510610419][message=Added the rack and pinion code which uses the dpads.][hash=bab35e7ef675cceb0492ff689a3d34a4446d0bd3]
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1510521064][message=Started work on rotating the coordinate system for the omni drive. It currently rotates to the wrong direction, though.][hash=bcc6375c1965997345098589301e95a2c07edb33]
+ 1 file changed, 13 insertions(+), 7 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510510043][message=Fixed bug in installDriverStation.bat script.][hash=31bfacbe13157030416bfad2a4646363ff7f4237]
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+[START commit][author=Nicholas Reichert][time=1510504084][message=Added basic installDriverStation script that may or may not work.][hash=40a283805605c887833f9857f5293dd35104355a]
+ 1 file changed, 7 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1510504055][message=Revised toggle arm code in MechaBot.  We'll have to move this to a separate Module later. Also flipped spin signs to make it match the current robot configuration.][hash=00f37aab8f80ddf327ca5616c7ed1026abb12dd2]
+ 1 file changed, 20 insertions(+), 6 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510501750][message=Fixed many logic errors in JVomniOp and module code.][hash=1db227a9c3e1aa028d8fa51c7df8ae9bac33fb9f]
+ 3 files changed, 9 insertions(+), 12 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510349536][message=Finally finished OmniBot spin code.  Tested and it works.][hash=67642c00d3eb258bd07cd62644dbbbdb8b077c1d]
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510347536][message=Reset OmniTest programs to before Kush deleted them.][hash=067bb4bd3c206dca65ed02d2f78f2e0a6cadd8c8]
+ 2 files changed, 79 insertions(+)
+
+[START commit][author=Lego][time=1510329826][message=Edited the glyph claw code sabo made, to work for jv, As well as compiled the JV op mode for comps][hash=cda89d90202c5bd40b308b1ad71ececf263131e1]
+ 2 files changed, 50 insertions(+), 4 deletions(-)
+
+[START commit][author=Lego][time=1510321295][message=More github Issues Can remove this commit later][hash=b3c9954e024938d135f70317902133e754c509c0]
+[START commit][author=Lego][time=1510320924][message=accccidently edited wrong file and github wants it comitted, so that is what i shall do (file is not in use anyways)][hash=81f586ae0875ceb7f67bf01162618287514f73de]
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=Lego][time=1510320827][message=Fixed XOmniTest ( i think) fo JV as well as put together the JVomniOp which would be their competition op mode. has both the arm and drive platform][hash=9fdfb6c78f4fc41e1f0d909d1bdc228f5a9f8a9b]
+ 2 files changed, 35 insertions(+), 5 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510265002][message=Added new OmniTestOp that allows it to rotate.][hash=f59c34ddfd83471b8b92242325a9a830d7329213]
+ 2 files changed, 29 insertions(+), 9 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510260292][message=Merge branch 'master' of https://github.com/Robot-X-4969/RobotX-FTC-2017][hash=28e986e84401ba49ab3069c542658614570351fa]
+[START commit][author=Nicholas Reichert][time=1510259884][message=Improved jewel arm code.][hash=25e63db889289caa7222df6334e1b1d12012e69e]
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+
+[START commit][author=Ben Sabo][time=1510194274][message=Deleted unused programs][hash=250ac1ca5ec511b47f474042b125db0c6ebf4414]
+[START commit][author=Ben Sabo][time=1510194215][message=Trying to fix major problem with the code where the opmode will not start after being initialized and giving a crazy error.][hash=a34e321843f0a84f7d1c5120a38f4f73da02fa3a]
+ 4 files changed, 11 insertions(+), 16 deletions(-)
+
+[START commit][author=Lego][time=1510183428][message=just a commit, Not enought time to write DESC, Gotta run (nothing new)][hash=014598921b19bdbc962b1b9e08b45a59ad7e3863]
+[START commit][author=Ben Sabo][time=1510181435][message=Changed that way the claw works.][hash=e40b858b27e2d5f1d59165bcdf6b6a5e245030af]
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510175380][message=Edited the code for the glyph claw and color sensor arm and added the correct servo positions. These modules were also added to the MechaBotOp][hash=fe4a7ff3e724da5b09c90ef2c59860412fef93b4]
+ 4 files changed, 39 insertions(+), 6 deletions(-)
+
+[START commit][author=Nicholas Reichert][time=1510097216][message=Added code for a servo on the MechaBot and improved Mechanum code.][hash=fc5cae655430bb84cf971546a321ffc9778dedb0]
+ 1 file changed, 27 insertions(+), 3 deletions(-)
+
+[START commit][author=Ben Sabo][time=1510006022][message=Did some renaming and made some new cool programs.][hash=d4a3e0ced5374d8863e0f562b01720a09c35e4fe]
+ 3 files changed, 42 insertions(+), 5 deletions(-)
+
+[START commit][author=Ben Sabo][time=1510000919][message=Changes the structure to an if/else statement, using the absolute value of the joysticks.][hash=3ae975b79ac97875326ab1b6f1ac7fb5d445ed8e]
+ 1 file changed, 17 insertions(+), 14 deletions(-)
+
+[START commit][author=Ben Sabo][time=1509398413][message=Added a stop method][hash=7ae143b0306fc1eb5234abf9e396af66f70bed68]
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+[START commit][author=Ben Sabo][time=1508966617][message=Deleted duplicate file][hash=472949860833a6de87e31f35448b67afcc67c25b]
+ 1 file changed, 25 deletions(-)
+
+[START commit][author=DESKTOP-DM8CSLJ\Ben Sabo][time=1508966130][message=Created MechaBot module and MechaBotOp opmode to control new mechanum tile runner][hash=23707d7f9a9a6e985a3f6e83f0c326fa78ffd514]
+ 6 files changed, 88 insertions(+), 5 deletions(-)
+
+[START commit][author=Lego][time=1508965860][message=GOT THE ROBOT WORKING! 1 week later, X omni bot works, Code is good, spinning should be double checked tho][hash=2e288c017d337b4396d5246d0813b02d7fec07f6]
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+[START commit][author=Lego][time=1508962205][message=Code for the X shaped omnibot, Still needs testing!][hash=ee5be10b85e6490fed768e467346458342e71c65]
+[START commit][author=Lego][time=1508961344][message=Code for the X-omni bot and the op mode  to go along, STILL NEEDS TESTING][hash=a505ae39334bd19231da65026fb51f9f8f55abec]
+ 2 files changed, 88 insertions(+)
+
+[START commit][author=Ben Sabo][time=1508961048][message=Other initial commits][hash=e765bf57e3c13948c855060ac3072c2d99ac921f]
+ 457 files changed, 136901 insertions(+)
+
+[START commit][author=Nicholas Reichert][time=1508881434][message=Committed all code from previous year and beginning of this year.][hash=1b92b12c47504303bc390e8ea4b5922eb5e4fab6]
+ 53 files changed, 4291 insertions(+)
+
+[START commit][author=FTCTechNH][time=1504740550][message=v3.4][hash=9f1e829930e7e5e9c74d26aada5e19742dcd1e82]
+ 14 files changed, 12 insertions(+), 2 deletions(-)
+
+[START commit][author=FTCTechNH][time=1504572487][message=v3.3 release][hash=3f199d5898b08dfba751c74d8a5deec0fcd944da]
+ 119 files changed, 3700 insertions(+), 2354 deletions(-)
+
+[START commit][author=FTCTechNH][time=1501762556][message=removed files no longer needed with v3.2 project folder][hash=62af45b653885ec0e051126d81e6752c52c95dcf]
+ 8 files changed, 594 deletions(-)
+
+[START commit][author=FTCTechNH][time=1501721226][message=Rebuilt APKs with correct version number (v3.2).][hash=459e02fb74826275ba54ce22a7c59c15cd7f1c17]
+ 8 files changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=FTCTechNH][time=1501720338][message=Commit to upload missing files from v3.2 release.][hash=9f2f6ffd2ac25245b69a0686debbe0ff928adc65]
+ 30 files changed, 486 insertions(+), 196 deletions(-)
+
+[START commit][author=Thomas Eng][time=1501688810][message=minor change to README.][hash=5eda879a7f7dd7b070b27882486091531c8d3ef5]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=Thomas Eng][time=1501688719][message=updated README again.][hash=64c9e0b965c17fd30008becde818a44e62f60cdb]
+ 1 file changed, 2 insertions(+)
+
+[START commit][author=Thomas Eng][time=1501688518][message=Minor changes to README file.][hash=ee4f107e19eb6e9821acf05f792694ac505ea2a1]
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=Thomas Eng][time=1501688223][message=introduction of OnBot Java changes.  Additional fixes and improvements.][hash=e2e1a59baf9f51c7ea4cadf86fba49f9a88838eb]
+ 84 files changed, 3209 insertions(+), 6131 deletions(-)
+
+[START commit][author=FTCTechNH][time=1494856333][message=Removed SensorAdafruitIMU.java and sensorAdafruitIMUCalibration.java op modes. SensorAdafruitIMU class has been changed to BNO055IMU since the Adafruit IMU uses the same Bosch BNO055 sensor as the REV Expansion Hub.][hash=900fd3ef0ade4b0b48eaf331b268994f4ce7d603]
+ 2 files changed, 426 deletions(-)
+
+[START commit][author=FTCTechNH][time=1494359502][message=v3.1][hash=04c8987b7736a1214a5701d7f5f450a80c404d3a]
+ 316 files changed, 52655 insertions(+), 20686 deletions(-)
+
+[START commit][author=FTCTechNH][time=1494251483][message=Merge branch 'alpha' of https://github.com/ftctechnh/ftc_app into alpha][hash=8c0c2a8d90d52068167c3b17ab9de57cb8068743]
+[START commit][author=FTCTechNH][time=1494250498][message=Updated README to include some additional important notes regarding v3.00 release.][hash=a481d913fcb8eda9101d7efb9de3b23194dc51a0]
+ 1 file changed, 10 insertions(+)
+
+[START commit][author=Robert Atkinson][time=1492132565][message=fix small typos][hash=63a9f61275fc42c783304d02605c88c7444f358e]
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+[START commit][author=FTCTechNH][time=1492113317][message=v3.00 release][hash=8e3f545428f5ffaeb2bd515d2c2aa3b172492f1d]
+ 29 files changed, 1470 insertions(+), 130 deletions(-)
+
+[START commit][author=FTCTechNH][time=1483825973][message=corrected typo][hash=c544198fc8306c0d2e40588c892443b6a6f998b0]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=FTCTechNH][time=1483814014][message=v2.62 with changes to improve USB comm to Modern Robotics DC Motor Controller.][hash=32474ab78dc915f1b522295c01363478ed09ad51]
+ 15 files changed, 9 insertions(+), 8 deletions(-)
+
+[START commit][author=FTCTechNH][time=1482204329][message=Fixed typo in README.md][hash=2fdc96ac23db8a3db06e953bcc7a410e4f7f3fc1]
+ 1 file changed, 1 insertion(+)
+
+[START commit][author=FTCTechNH][time=1482159852][message=v2.61][hash=26f813849574dcf8fb70a0e3db4df7785cd21ff6]
+ 20 files changed, 92 insertions(+), 57 deletions(-)
+
+[START commit][author=FTCTechNH][time=1481944934][message=v2.6 release][hash=6ad032646043600cf6a71f47d12116fbac0c8a21]
+ 13 files changed, 62 insertions(+), 2 deletions(-)
+
+[START commit][author=FTCTechNH][time=1481940903][message=Merge branch 'beta' (release v2.4) into master branch.][hash=a337d8124b93802804d6d23aadea957373543862]
+[START commit][author=FTC Engineering][time=1481140117][message=Updated README.md with URL Javadoc page.][hash=5c9165def7a8d81b57dc289eaf8e7cf15be15e33]
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+[START commit][author=FTCTechNH][time=1479041507][message=Updated README with v2.4 info.][hash=144efa0a61f9bc71b55b40b40c421349c200c498]
+ 1 file changed, 36 insertions(+)
+
+[START commit][author=FTCTechNH][time=1479041408][message=Updated javadoc for v2.4.][hash=f79c4deab8b889fcd7e54903f342aec941ee72f5]
+ 7 files changed, 86 insertions(+), 136 deletions(-)
+
+[START commit][author=FTCTechNH][time=1479041355][message=Changes for release v2.4.][hash=d74a01c6920575bcaadb5eec83be4a4b387fa525]
+ 16 files changed, 26 insertions(+), 13 deletions(-)
+
+[START commit][author=FTCTechNH][time=1478914384][message=Added guidelines for contributing to the repository and issuing pull requests.][hash=295a9e41f948791a7abc9d0a49f94a7d6aed5a22]
+ 3 files changed, 69 insertions(+)
+
+[START commit][author=FTCTechNH][time=1475946775][message=removed the PDF from the doc/tutorial...replaced with a README.txt.  The PDF files are now found on the Releases page of the GitHub repository.][hash=e5b437727b5d969f5cc89a42f8d09c2023464284]
+ 1 file changed, 7 insertions(+)
+
+[START commit][author=FTCTechNH][time=1475847313][message=fixed typo... "2.31" corrected to "2.35".][hash=36752280f223e39731960dfcee0eb3e38ad364c7]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+[START commit][author=FTCTechNH][time=1475793460][message=v2.35 - Removed unnecesary idle() call from blocks for new project.][hash=8fc158815f5a6c62540129ae417c39a4f354593e]
+ 14 files changed, 9 insertions(+), 2 deletions(-)
+
+[START commit][author=FTCTechNH][time=1475696033][message=V2.3 release][hash=e8bee83a555afa6300e0c290f384066d2a379077]
+ 94 files changed, 1270 insertions(+), 1796 deletions(-)
+
+[START commit][author=FTCTechNH][time=1473436853][message=added javadoc][hash=4f43db2704168250524373240c48de3254d1f3e3]
+ 238 files changed, 93227 insertions(+)
+
+[START commit][author=FTCTechNH][time=1473432148][message=disabled debuggable mode for release version of the FTC Robot Controller app.][hash=c7c0b22efed10aeed2b32bcff4c636a570ce5237]
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=FTCTechNH][time=1473429702][message=The apk files are now zipaligned.][hash=9de63fc4d4524294674c42fc7c41ec6f6137f610]
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=FTCTechNH][time=1473379051][message=added gradlew files back (sorry about this again...).][hash=3180689564b0d6e768e5033f3fb053031ccf484e]
+ 2 files changed, 254 insertions(+)
+
+[START commit][author=FTCTechNH][time=1473377800][message=v2.2 (released on 20160908)][hash=d66c8dc45672fb6e1d64752eff34e684da934780]
+ 256 files changed, 280 insertions(+), 92420 deletions(-)
+
+[START commit][author=FTCTechNH][time=1472935315][message=Release v2.1 (160903).][hash=df3c7e9c0f5e04e39b108dacbdcb1d206fe88033]
+ 102 files changed, 6485 insertions(+), 940 deletions(-)
+
+[START commit][author=FTCTechNH][time=1471647819][message=update gradlew and gradlew.bat][hash=42d9927d987e802c7dd392d9ec40b6e2fd6d7382]
+ 2 files changed, 93 insertions(+), 97 deletions(-)
+
+[START commit][author=FTCTechNH][time=1471647325][message=restored gradlew and gradlew.bat which were accidentally removed in the push of v 2.0][hash=3ce1121a97092ecab31534556e7c34e539cb7012]
+ 2 files changed, 254 insertions(+)
+
+[START commit][author=FTCTechNH][time=1471636002][message=v 2.0 (released on 20160819).][hash=a0dee0e26d0e587da4e28b1fe2e349917eabb976]
+ 355 files changed, 45198 insertions(+), 11325 deletions(-)
+
+[START commit][author=FTCTechNH][time=1468001074][message=updated README file.][hash=0a51936fca67da4dbd2b9ab5c08858010a6d9d12]
+ 1 file changed, 7 insertions(+)
+
+[START commit][author=FTCTechNH][time=1468000322][message=update the gradle files to support newer Android Studio 2.1.x environment.][hash=88d6f68d2685449c049bf94497bce9a0d93a807d]
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+[START commit][author=FTCTechNH][time=1459375353][message=updated README.md file.][hash=afbf1b085d23074fcacfb8c26c18efbe694cb902]
+ 1 file changed, 9 insertions(+)
+
+[START commit][author=FTCTechNH][time=1459371345][message=updated FtcCommon, Hardware and RobotCore AAR files with 16.03.30 versions.][hash=93dbed7d7c84cb9cad70fdc84f299a538855ab27]
+ 4 files changed, 2 insertions(+), 2 deletions(-)
+
+[START commit][author=FTCTechNH][time=1459371216][message=updated javadoc][hash=b0c0864fd336a2fbfebf9008e00ea64aff79dab4]
+ 137 files changed, 463 insertions(+), 338 deletions(-)
+
+[START commit][author=FTCTechNH][time=1459371134][message=updated .apk files to v1.77 versions][hash=5e9be32e85a67c7b7963b3d849cd61aba302a701]
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=FTCTechNH][time=1457627830][message=Updated README.md file to reflect 16.03.09 changes.][hash=0844cf421d54cc368566408a40bb2b65955bba74]
+ 1 file changed, 34 insertions(+)
+
+[START commit][author=FTCTechNH][time=1457627762][message=Update .aar files with new versions from 16.03.09. Update FtcRobotController/build.gradle to use compileSdkVersion 19. Added FtcRobotController/libs/ftc.debug.keystore so all user generated apps are signed by the same key. Update AndroidManifest.xml with current version number.][hash=952045b4fc62dfbaa923c3b9645bcb16725d4061]
+ 6 files changed, 10 insertions(+), 6 deletions(-)
+
+[START commit][author=FTCTechNH][time=1457627283][message=removed ftc_app.iml and FtcRobotController.iml files from repo.][hash=be950d18550ff9a1d34481a05d9440ea5e0a9731]
+ 2 files changed, 115 deletions(-)
+
+[START commit][author=FTCTechNH][time=1457627167][message=updated javadoc for library built on 16.03.09.][hash=a906f603beae5d788d12a9e7319861f045cd986d]
+ 138 files changed, 10961 insertions(+), 893 deletions(-)
+
+[START commit][author=FTCTechNH][time=1457627014][message=Added v1.7 (with library 16.03.09) driver station and robot controller APK files.][hash=7ea3b8fac30f8e8d512ad0d1fd9da76d8e83d2ba]
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=FTCTechNH][time=1455046795][message=Release v 16.02.09][hash=2f2609e7f750a7db360e6b4a453d3216b08ca64d]
+ 137 files changed, 5853 insertions(+), 1965 deletions(-)
+
+[START commit][author=FTCTechNH][time=1451947091][message=Updated README.md][hash=30360604ba330afddb0a1eb2aeadf80a9c4b76aa]
+ 1 file changed, 35 insertions(+)
+
+[START commit][author=FTCTechNH][time=1451940563][message=release 20160104][hash=288e47e9dcd04e00fd6420a80f61d0e028bc3c4f]
+ 10 files changed, 221 insertions(+), 17 deletions(-)
+
+[START commit][author=FTC Engineer][time=1446662021][message=Release 15.11.04.001.][hash=8e450b0fff0e0f085defee8d8020205ccbce7470]
+ 200 files changed, 11220 insertions(+), 42613 deletions(-)
+
+[START commit][author=FTC Engineer][time=1444167155][message=Release 15.10.06.002 - support for legacy Matrix motor servo controller.][hash=6b3fe9a26fb3e507f1b6593b84d927a76ecaa9cd]
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+[START commit][author=FTC Engineer][time=1444166801][message=Release 15.10.06.002 - support for legacy Matrix motor servo controller.][hash=f2adafba1c75f59e73c2455901f5164e6ec9988c]
+ 183 files changed, 31512 insertions(+), 1038 deletions(-)
+
+[START commit][author=Thomas Eng][time=1443049858][message=rel 20150918_001][hash=579a6a95b7921301db06638db6c0be5f468472f6]
+ 175 files changed, 7378 insertions(+), 3119 deletions(-)
+
+[START commit][author=Thomas Eng][time=1441025095][message=corrected .gitignore error.][hash=dcefb832f0da416d12ddc37f33ee44d05d2fa7d6]
+ 1 file changed, 1 deletion(-)
+
+[START commit][author=Thomas Eng][time=1440776368][message=updated K9 bot disclaimer. also, removed non-generic .pdf file names.][hash=3565cab25c3904b1a0d6169ba5c206672f3b994c]
+ 4 files changed, 4 insertions(+)
+
+[START commit][author=Thomas Eng][time=1439595311][message=added Telemetry class back to javadoc documents.][hash=24391fff787114e8f41353ef568ca8874180ab74]
+ 112 files changed, 1227 insertions(+), 241 deletions(-)
+
+[START commit][author=Thomas Eng][time=1438632087][message=Beta 20150803_001 (app version 1.05)][hash=6458432ae1f1d6e93ee5167502d7c3ec707421b8]
+ 200 files changed, 12567 insertions(+), 6874 deletions(-)
+
+[START commit][author=Thomas Eng][time=1433531105][message=Added an empty op mode that teams can use as a template for creating their own op mode.][hash=2c671ad435de2964b7fa167400106e4ed2d75758]
+ 1 file changed, 44 insertions(+)
+
+[START commit][author=Thomas Eng][time=1433528066][message=Minor updates to .pdf files for tutorial. Added disclaimer for K9bot.][hash=2f73054fe1eee3154a149221d942791b504e7e4c]
+ 6 files changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=Thomas Eng][time=1433527961][message=Merge branch 'JacobAMason-master'][hash=d39389f5953c65dbaf0f5f771c5134af29aff6c8]
+[START commit][author=JacobAMason][time=1433465911][message=Adds minimal .gitignore][hash=fb22997913aa1d668bc916e9bd112df2cb710c71]
+ 1 file changed, 25 insertions(+)
+
+[START commit][author=Thomas Eng][time=1433367536][message=corrected error in training manual][hash=2dcbc3e1a0ed7b4821b5396942dd60e05c245937]
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=Thomas Eng][time=1433363594][message=updated build guide - now with parts inventory.][hash=83a167ead8e9a6297bc3ab9c292ba4ef81089576]
+ 3 files changed, 1 deletion(-)
+
+[START commit][author=Thomas Eng][time=1433341552][message=Added team and mentor guide.][hash=801f7f33d10ab8c3510bac034f6521e753fb1d19]
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+[START commit][author=Thomas Eng][time=1433340317][message=rearranged doc folder.  created javadoc subdirectory, added tutorial files, and also created subdirectory with the release .apk files.][hash=4bfb5b466701bc7117eb1ba78d0df00095961ffe]
+ 93 files changed, 1 insertion(+)
+
+[START commit][author=Thomas Eng][time=1432922916][message=added javadoc documentation.  note that the javadoc documentation has several entries that are out of date and need to be updated.][hash=4e835bab10e588546535f422089ec87f91694bfd]
+ 88 files changed, 28080 insertions(+)
+
+[START commit][author=Thomas Eng][time=1432834664][message=Merge branch 'master' of https://github.com/ftctechnh/ftc_app][hash=faafc8d5213a4c57ae1968888f783511d6b2d07a]
+[START commit][author=Thomas Eng][time=1432834511][message=cleaned up and some old files.][hash=cbd67d6293baa62bb5daf0a9bd575c456356bbbd]
+ 9 files changed, 1264 deletions(-)
+
+[START commit][author=FTC Engineering][time=1432821369][message=Create README.md][hash=a03b985322398e872684b6eefac6e800d17cd478]
+ 1 file changed, 20 insertions(+)
+
+[START commit][author=Thomas Eng][time=1432820386][message=removed .idea and .gradle][hash=4ce84392f5c4eadf7d6dc34d58c9995ac6dcdb07]
+ 21 files changed, 1731 deletions(-)
+
+[START commit][author=Thomas Eng][time=1432820061][message=included changes to manifest file to use string literals rather than string resources.  Allows the APK to be scanned properly by Google Play during upload.][hash=d0e5c1a31bc3284ddc2f5c54e486ecb0a8464c8d]
+ 26 files changed, 1732 insertions(+), 249 deletions(-)
+
+[START commit][author=Thomas Eng][time=1432651710][message=Merge branch 'master' of https://github.com/ftctechnh/ftc_app][hash=08de4b2fbd81c8d0c4c0ccadaa4718ccb8de06a0]
+[START commit][author=Thomas Eng][time=1432651694][message=removed .gitignore][hash=2b5769a427add1414cc6cfe8e6abcaae9fa26abb]
+ 1 file changed, 2 deletions(-)
+
+[START commit][author=FTC Engineering][time=1432651582][message=Delete .gitignore][hash=7c7970a36fa34309ab724aa0510921838557a6a5]
+ 1 file changed, 2 deletions(-)
+
+[START commit][author=Thomas Eng][time=1432651412][message=Initial upload][hash=1cc635f2a0b9daacb76b4461f336e1b9f29d9979]
+ 98 files changed, 9969 insertions(+)

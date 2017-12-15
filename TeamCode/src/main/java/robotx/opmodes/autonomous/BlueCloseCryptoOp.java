@@ -27,28 +27,31 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
-        jewelColor = new JewelColor(this);
-        jewelColor.init();
-
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
 
         sensors = new MechanumAuton(this);
         sensors.init();
 
-        /*mechanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        mechanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
         sensors.frontLeftMotor = mechanumDrive.frontLeft;
         sensors.frontRightMotor = mechanumDrive.frontRight;
 
         movement = new OmniAutonomousMovement(this, sensors, mechanumDrive);
         movement.init();
 
+        jewelColor = new JewelColor(this);
+        jewelColor.autonomousMovement = movement;
+        jewelColor.init();
+
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
 
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
+
+        // Initialize servo positions.
+        glyphClaw.start();
+        jewelColor.start();
 
         // Calibrate gyro.
         sensors.calibrateGyro();
@@ -72,13 +75,18 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
 
+        glyphClaw.rotateClawDown();
+        sleep(500);
+        glyphClaw.closeClaw();
+        sleep(500);
+        glyphClaw.raiseClaw();
+        sleep(400);
+        glyphClaw.stopClaw();
+        sleep(200);
+
         // Knock off the correct jewel.
-        jewelColor.lowerArm();
-        sleep(500);
-        jewelColor.colorEval();
-        sleep(500);
-        jewelColor.raiseArm();
-        sleep(2000);
+        jewelColor.knockOffRedGem();
+        sleep(1000);
 
         // Drive straight off the balancing stone.
         movement.driveForward(0.4, 60);
@@ -91,16 +99,19 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         // Do something based on the vuMarkStatus
         if (isLeft) {
             telemetry.addData("VuMark", "LEFT");
+            //movement.pointTurnLeft(45);
         } else if (isCenter) {
             telemetry.addData("VuMark", "CENTER");
+            //movement.driveBackward(0.5, 20);
         } else if (isRight) {
             telemetry.addData("VuMark", "RIGHT");
+            //movement.pointTurnRight(45);
         } else {
             telemetry.addData("VuMark", "UNKNOWN");
         }
         this.updateTelemetry(telemetry);
 
-        sleep(1000);
+        sleep(8000);
 
     }
 }
