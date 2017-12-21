@@ -21,14 +21,16 @@ public class ContinuousRotationServoTest extends XModule {
         super(op);
     }
 
-    public void init() {
-
+    public void init(){
         rotationServo = opMode.hardwareMap.servo.get("rotationServo");
     }
 
     public void loop(){
 
-        rotationServo.setPosition(xGamepad1().left_stick_y);
+        float rotationPower = xGamepad1().left_stick_y;
+        rotationPower /= 0.5;
+        rotationPower += 0.5;
+        rotationServo.setPosition(rotationPower);
         double currentSpeed = xGamepad1().left_stick_y;
         opMode.telemetry.addData("Servo Speed:", currentSpeed);
     }
