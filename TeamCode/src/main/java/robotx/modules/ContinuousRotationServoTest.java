@@ -28,6 +28,8 @@ public class ContinuousRotationServoTest extends XModule {
     public void loop(){
 
         float rotationPower = xGamepad1().left_stick_y;
+        rotationPower /= 0.5;
+        rotationPower += 0.5;
         rotationServo.setPower(rotationPower);
         double currentSpeed = xGamepad1().left_stick_y;
         opMode.telemetry.addData("Servo Speed:", currentSpeed);
