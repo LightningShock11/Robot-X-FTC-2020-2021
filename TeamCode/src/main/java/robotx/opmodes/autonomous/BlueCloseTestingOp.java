@@ -13,8 +13,8 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
-public class BlueCloseCryptoOpTesting extends XLinearOpMode {
+@Autonomous(name = "BlueCloseTestingOp", group = "Autonomous")
+public class BlueCloseTestingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
@@ -75,16 +75,27 @@ public class BlueCloseCryptoOpTesting extends XLinearOpMode {
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
-        movement.driveForward(0.4, 40);
+        movement.driveForward(0.8, 1);
         sleep(1000);
-        movement.driveForward(0.4, 60);
+        movement.driveBackward(0.3, 3);
+        sleep(1000);
+        movement.driveForward(0.2, 10);
         sleep(750);
+        movement.driveBackward(0.4, 4);
+        sleep(500);
         glyphClaw.rotateClawDown();
         sleep(500);
         glyphClaw.closeClaw();
         sleep(500);
-        movement.driveForward(0.4, 120);
+        glyphClaw.raiseClaw();
+        sleep(200);
+        glyphClaw.stopClaw();
+        sleep(200);
+        movement.driveForward(0.4, 30);
         sleep(750);
+        movement.pointTurnLeft(90);
+        sleep(750);
+        movement.stop();
 
 
 
@@ -99,7 +110,7 @@ public class BlueCloseCryptoOpTesting extends XLinearOpMode {
         */
 
         // Turn and face the cryptobox.
-        movement.pointTurnLeft(-90);
+
 
         // Do something based on the vuMarkStatus
         if (isLeft) {
