@@ -91,10 +91,16 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(200);
         glyphClaw.stopClaw();
         sleep(200);
-        movement.driveForward(0.4, 30);
+        movement.driveForward(0.4, 35);
         sleep(750);
         movement.pointTurnLeft(90);
         sleep(750);
+        glyphClaw.openClaw();
+        sleep(500);
+        glyphClaw.rotateClawUp();
+        sleep(750);
+        movement.driveForward(0.4, 10);
+        sleep(200);
         movement.stop();
 
 
