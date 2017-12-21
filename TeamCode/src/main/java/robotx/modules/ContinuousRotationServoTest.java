@@ -15,22 +15,20 @@ import robotx.controls.*;
 
 public class ContinuousRotationServoTest extends XModule {
 
-    Servo rotationServo;
+    CRServo rotationServo;
 
     public ContinuousRotationServoTest(OpMode op) {
         super(op);
     }
 
     public void init(){
-        rotationServo = opMode.hardwareMap.servo.get("rotationServo");
+        rotationServo = opMode.hardwareMap.crservo.get("rotationServo");
     }
 
     public void loop(){
 
         float rotationPower = xGamepad1().left_stick_y;
-        rotationPower /= 0.5;
-        rotationPower += 0.5;
-        rotationServo.setPosition(rotationPower);
+        rotationServo.setPower(rotationPower);
         double currentSpeed = xGamepad1().left_stick_y;
         opMode.telemetry.addData("Servo Speed:", currentSpeed);
     }
