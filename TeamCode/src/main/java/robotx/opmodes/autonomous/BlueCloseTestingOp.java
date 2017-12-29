@@ -11,10 +11,11 @@ import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
 
 /**
- * Created by Robot-X Team Member on 12/6/2017.
+ * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
-public class BlueCloseCryptoOp extends XLinearOpMode {
+@Autonomous(name = "BlueCloseTestingOp", group = "Autonomous")
+public class BlueCloseTestingOp extends XLinearOpMode {
+
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
     MechanumDrive mechanumDrive;
@@ -74,27 +75,48 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
-
+        movement.driveForward(0.8, 1);
+        sleep(1000);
+        movement.driveBackward(0.3, 3);
+        sleep(1000);
+        movement.driveForward(0.2, 10);
+        sleep(750);
+        movement.driveBackward(0.4, 4);
+        sleep(500);
         glyphClaw.rotateClawDown();
         sleep(500);
-        glyphClaw.closeClaw();
+        glyphClaw.openClaw();
         sleep(500);
         glyphClaw.raiseClaw();
-        sleep(400);
+        sleep(200);
         glyphClaw.stopClaw();
         sleep(200);
+        movement.driveForward(0.4, 35);
+        sleep(750);
+        movement.pointTurnLeft(90);
+        sleep(750);
+        glyphClaw.closeClaw();
+        sleep(500);
+        glyphClaw.rotateClawUp();
+        sleep(750);
+        movement.driveForward(0.4, 10);
+        sleep(200);
+        movement.stop();
+
+
 
         // Knock off the correct jewel.
-        jewelColor.knockOffRedGem();
+       /* jewelColor.knockOffRedGem();
         sleep(1000);
 
         // Drive straight off the balancing stone.
         movement.driveForward(0.4, 60);
 
         sleep(1000);
+        */
 
         // Turn and face the cryptobox.
-        movement.pointTurnLeft(90);
+
 
         // Do something based on the vuMarkStatus
         if (isLeft) {
