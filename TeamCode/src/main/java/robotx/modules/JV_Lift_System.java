@@ -13,7 +13,7 @@ public class JV_Lift_System extends XOpMode
 {
     DcMotor liftMotor;
 
-    double power = 0.5;
+    double power2 = 0.5;
 
     @Override
     public void init()
@@ -38,16 +38,16 @@ public class JV_Lift_System extends XOpMode
         super.loop();
 
         //Up
-        if (xGamepad1.dpad_up.isDown())
+        if (xGamepad2.dpad_up.isDown())
         {
-            liftMotor.setPower(power);
+            liftMotor.setPower(power2);
 
         }
 
         //Down
-        else if (xGamepad1.dpad_down.isDown())
+        else if (xGamepad2.dpad_down.isDown())
         {
-            liftMotor.setPower(-power);
+            liftMotor.setPower(-power2);
         }
 
         else
