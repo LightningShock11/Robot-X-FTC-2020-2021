@@ -47,26 +47,26 @@ public class JVControllerCode extends XOpMode {
         if (xGamepad1.dpad_up.isDown()) {
 
             frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(-power);
+            frontrightMotor.setPower(power);
             backleftMotor.setPower(-power);
-            backrightMotor.setPower(power);
+            backrightMotor.setPower(-power);
         }
 
         //Left
         else if (xGamepad1.dpad_left.isDown()) {
 
-            frontleftMotor.setPower(-power);
+            frontleftMotor.setPower(power);
             frontrightMotor.setPower(power);
-            backleftMotor.setPower(power);
+            backleftMotor.setPower(-power);
             backrightMotor.setPower(power);
         }
 
         //Right
         else if (xGamepad1.dpad_right.isDown()) {
 
-            frontleftMotor.setPower(power);
+            frontleftMotor.setPower(-power);
             frontrightMotor.setPower(-power);
-            backleftMotor.setPower(-power);
+            backleftMotor.setPower(power);
             backrightMotor.setPower(-power);
         }
 
@@ -74,9 +74,9 @@ public class JVControllerCode extends XOpMode {
         else if (xGamepad1.dpad_down.isDown()) {
 
             frontleftMotor.setPower(power);
-            frontrightMotor.setPower(power);
+            frontrightMotor.setPower(-power);
             backleftMotor.setPower(power);
-            backrightMotor.setPower(- power);
+            backrightMotor.setPower(power);
         }
 
         else {

@@ -19,10 +19,10 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     DcMotor frontrightMotor;
     DcMotor backleftMotor;
     DcMotor backrightMotor;
-
+/*
     Servo rightServo;
     Servo leftServo;
-
+*/
     double power = 0.7;
 
     @Override
@@ -34,10 +34,12 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
 
         backrightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        frontrightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontleftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+/*
         rightServo = hardwareMap.servo.get("RightServo");
         leftServo = hardwareMap.servo.get("LeftServo");
-
+*/
     }
 
     @Override
@@ -53,7 +55,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     @Override
     public void loop() {
         super.loop();
-
+/*
         if (xGamepad2.right_bumper.isDown()) {
 
             rightServo.setPosition(1);
@@ -70,21 +72,30 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             leftServo.setPosition(0);
 
         }
-
+        */
 
         double x = xGamepad1.left_stick_x;
         double y = xGamepad1.left_stick_y;
-
+/*
+        double rotX = x;
+        double rotY = y;
+*/
         double rotationPower = xGamepad1.right_stick_x;
 
-        double rotX = x*0.707 - y*-0.707;
-        double rotY = x*-0.707 + y*0.707;
+        double rotX = x*0.707 - y*0.707;
+        double rotY = x*0.707 + y*0.707;
 
         frontleftMotor.setPower(rotX+rotationPower);
         frontrightMotor.setPower(rotY+rotationPower);
-        backleftMotor.setPower(rotY+rotationPower);
-        backrightMotor.setPower(rotX+rotationPower);
+        backleftMotor.setPower(rotY-rotationPower);
+        backrightMotor.setPower(rotX-rotationPower);
 
+
+/*       frontleftMotor.setPower(rotX);
+        frontrightMotor.setPower(rotY);
+        backleftMotor.setPower(rotY);
+        backrightMotor.setPower(rotX);
+*/
 
 
         /*
