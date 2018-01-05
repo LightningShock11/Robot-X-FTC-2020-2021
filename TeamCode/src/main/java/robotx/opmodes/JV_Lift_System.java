@@ -1,4 +1,4 @@
-package robotx.modules;
+package robotx.opmodes;
 
 /**
  * Created by Adithya on 1/5/2018.
@@ -61,8 +61,12 @@ public class JV_Lift_System extends XOpMode
         }
     }
     @Override
-    public void stop() {
+    public void stop()
+    {
         super.stop();
     }
 }
+
+
+
 
