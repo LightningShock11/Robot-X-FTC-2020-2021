@@ -61,7 +61,7 @@ public class JV_Grabs extends XOpMode {
             leftServo.setPosition(0.9);
         }
     }
-    
+
     @Override
     public void stop() {
         super.stop();
