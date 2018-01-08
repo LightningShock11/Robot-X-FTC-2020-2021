@@ -19,11 +19,12 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     DcMotor frontrightMotor;
     DcMotor backleftMotor;
     DcMotor backrightMotor;
-/*
-    Servo rightServo;
     Servo leftServo;
-*/
+    Servo rightServo;
+    DcMotor liftMotor;
+
     double power = 0.7;
+    double power2 = 1.0;
 
     @Override
     public void init() {
@@ -40,6 +41,10 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         rightServo = hardwareMap.servo.get("RightServo");
         leftServo = hardwareMap.servo.get("LeftServo");
 */
+        rightServo = hardwareMap.servo.get("rightServo");
+        leftServo = hardwareMap.servo.get("leftServo");
+
+        liftMotor = hardwareMap.dcMotor.get("liftMotor");
     }
 
     @Override
@@ -142,6 +147,41 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             backrightMotor.setPower(0.0);
         }
 */
+        if (xGamepad2.x.isDown())       //x will open the claw all the way
+        {
+            rightServo.setPosition(0.85);
+            leftServo.setPosition(0.1);
+        }
+
+        else if (xGamepad2.y.isDown()) //y will set it to the optimal, middle position
+        {
+            rightServo.setPosition(0.4);
+            leftServo.setPosition(0.5);
+
+        }
+
+        else if (xGamepad2.b.isDown())  //b will close the claw all the way
+        {
+            rightServo.setPosition(0.0);
+            leftServo.setPosition(0.9);
+            //Up
+            if (xGamepad2.dpad_up.isDown())
+            {
+                liftMotor.setPower(power2);
+
+            }
+
+            //Down
+            else if (xGamepad2.dpad_down.isDown())
+            {
+                liftMotor.setPower(-power2);
+            }
+
+            else
+            {
+                liftMotor.setPower(0.0);
+            }
+        }
     }
 
     @Override

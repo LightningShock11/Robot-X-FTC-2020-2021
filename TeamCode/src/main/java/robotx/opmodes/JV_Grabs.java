@@ -14,18 +14,17 @@ import robotx.libraries.XOpMode;
  */
 @TeleOp(name = "JV_Grabs", group = "Default")
 
+
 public class JV_Grabs extends XOpMode {
     Servo leftServo;
     Servo rightServo;
-
-    double Power3 = 0.5;
 
     @Override
     public void init()
     {
         super.init();
-        rightServo = hardwareMap.servo.get("RightServo");
-        leftServo = hardwareMap.servo.get("LeftServo")
+        rightServo = hardwareMap.servo.get("rightServo");
+        leftServo = hardwareMap.servo.get("leftServo");
     }
 
     @Override
@@ -45,7 +44,7 @@ public class JV_Grabs extends XOpMode {
         if (xGamepad2.x.isDown())       //x will open the claw all the way
         {
             rightServo.setPosition(0.85);
-            leftServo.setPosition(0.9);
+            leftServo.setPosition(0.1);
         }
 
         else if (xGamepad2.y.isDown()) //y will set it to the optimal, middle position
