@@ -34,13 +34,13 @@ public class MechanumDrive extends OmniDriveSystem {
     }
 
     public void updateMotors(){
-        opMode.telemetry.addData("frontRight", getYPower() - getXPower() + getRotationPower());
+        opMode.telemetry.addData("frontRight", getYPower() - getXPower() - getRotationPower());
         frontRight.setPower(getYPower() - getXPower() + getRotationPower());
-        opMode.telemetry.addData("frontLeft", getYPower() + getXPower() - getRotationPower());
+        opMode.telemetry.addData("frontLeft", getYPower() + getXPower() + getRotationPower());
         frontLeft.setPower(getYPower() + getXPower() - getRotationPower());
-        opMode.telemetry.addData("backRight", getYPower() + getXPower() + getRotationPower());
+        opMode.telemetry.addData("backRight", getYPower() + getXPower() - getRotationPower());
         backRight.setPower(getYPower() + getXPower() + getRotationPower());
-        opMode.telemetry.addData("backLeft", getYPower() - getXPower() - getRotationPower());
+        opMode.telemetry.addData("backLeft", getYPower() - getXPower() + getRotationPower());
         backLeft.setPower(getYPower() - getXPower() - getRotationPower());
     }
 }
