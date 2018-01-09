@@ -79,13 +79,16 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         }
         */
 
+
+
+
+        //DRIVING CODE
         double x = xGamepad1.left_stick_x;
+
         double y = xGamepad1.left_stick_y;
-/*
-        double rotX = x;
-        double rotY = y;
-*/
-        double rotationPower = xGamepad1.right_stick_x;
+
+        //double rotationPower = xGamepad1.right_stick_x;
+        double rotationPower = controlRamp(xGamepad1.right_stick_x);
 
         double rotX = x*0.707 - y*0.707;
         double rotY = x*0.707 + y*0.707;
@@ -94,13 +97,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         frontrightMotor.setPower(rotY+rotationPower);
         backleftMotor.setPower(rotY-rotationPower);
         backrightMotor.setPower(rotX-rotationPower);
-
-
-/*       frontleftMotor.setPower(rotX);
-        frontrightMotor.setPower(rotY);
-        backleftMotor.setPower(rotY);
-        backrightMotor.setPower(rotX);
-*/
 
 
 /*
@@ -147,6 +143,21 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             backrightMotor.setPower(0.0);
         }
 */
+
+
+
+
+
+        //GRABBER CODE
+
+        double LServo = 0;
+        double RServo = 0;
+        boolean LPressed = false;
+        boolean RPressed = false;
+
+        telemetry.addData("Right Servo Position:",rightServo.getPosition());
+        telemetry.addData("Left Servo Position:",leftServo.getPosition());
+
         if (xGamepad2.x.isDown())       //x will open the claw all the way
         {
             rightServo.setPosition(0.85);
@@ -155,8 +166,8 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
         else if (xGamepad2.y.isDown()) //y will set it to the optimal, middle position
         {
-            rightServo.setPosition(0.4);
-            leftServo.setPosition(0.5);
+            rightServo.setPosition(0.35);
+            leftServo.setPosition(0.55);
 
         }
 
@@ -164,8 +175,51 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         {
             rightServo.setPosition(0.0);
             leftServo.setPosition(0.9);
-            //Up
-            if (xGamepad2.dpad_up.isDown())
+        }
+
+
+
+
+            //ADDITIONAL GRABBER CODE FOR BUMPERS
+        if (xGamepad2.left_bumper.isDown())    //Left opens it
+        {
+            LPressed = true;
+        }
+        else if (xGamepad2.left_bumper.isUp())
+        {
+            LPressed = false;
+        }
+
+        if (LPressed == true)
+        {
+            LServo -= .05;
+            RServo += .05;
+            leftServo.setPosition(LServo);
+            rightServo.setPosition(RServo);
+        }
+
+
+        if (xGamepad2.right_bumper.isDown())   //Right closes it
+        {
+            RPressed = true;
+        }
+        else if (xGamepad2.right_bumper.isUp())
+        {
+            RPressed = false;
+        }
+
+        if (RPressed == true)
+        {
+            LServo += .05;
+            RServo -= .05;
+            leftServo.setPosition(LServo);
+            rightServo.setPosition(RServo);
+        }
+
+
+
+        //LIFT SYSTEM
+        if (xGamepad2.dpad_up.isDown())
             {
                 liftMotor.setPower(power2);
 
@@ -181,11 +235,34 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             {
                 liftMotor.setPower(0.0);
             }
-        }
     }
 
+
+
+
+    public double controlRamp(double input)
+    {
+        double output = input;
+        double coeff = 1.0;
+        if (xGamepad2.right_stick_button.isDown()) {
+            coeff = coeff / 1.0;
+        }
+
+        else
+
+        {
+            coeff = coeff / 2.0;
+        }
+
+        return output * coeff;
+    }
+
+
+
+
     @Override
-    public void stop() {
+    public void stop()
+    {
         super.stop();
     }
 }
