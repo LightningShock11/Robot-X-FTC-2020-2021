@@ -1,11 +1,14 @@
 package robotx.modules;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.libraries.XModule;
+import robotx.opmodes.autonomous.AutonTestingOp;
 
 /**
  * Created by Ben Sabo on 11/6/2017.
@@ -16,12 +19,16 @@ public class GlyphClaw extends XModule {
     double clawServoPosition = 0.0;
     Servo clawServo;
     DcMotor rackMotor;
-    Servo rotateServoRight;
-    Servo rotateServoLeft;
-    //Servo pushServo;
-    boolean clawIsOpen = false;
-    boolean armIsUp = true;
-
+    CRServo rotateServo;
+    boolean clawIsOpen;
+    boolean armIsUp;
+    public final void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public GlyphClaw(OpMode op) {super(op);}
 
     public void init(){
@@ -29,36 +36,41 @@ public class GlyphClaw extends XModule {
         rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
         rackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rotateServoRight = opMode.hardwareMap.servo.get("rotateServoRight");
-        rotateServoLeft = opMode.hardwareMap.servo.get("rotateServoLeft");
-        //pushServo = opMode.hardwareMap.servo.get("pushServo");
+        rotateServo = opMode.hardwareMap.crservo.get("rotateServo");
+
         closeClaw();
+        clawIsOpen = false;
         rotateClawUp();
+        armIsUp = true;
     }
     public void toggleClaw(){
         if (clawIsOpen){
             closeClaw();
+            clawIsOpen = false;
         } else {
             openClaw();
+            clawIsOpen = true;
         }
     }
     public void closeClaw() {
         clawServoPosition = 1.0;
         updateClawServo();
-        clawIsOpen = false;
+
     }
     public void openClaw() {
         clawServoPosition = 0.0;
         updateClawServo();
-        clawIsOpen = true;
+
     }
     public void rotateClawUp(){
-        rotateServoRight.setPosition(.6);
-        rotateServoLeft.setPosition(.4);
+        rotateServo.setPower(1);
+        sleep(1000);
+        rotateServo.setPower(0);
     }
     public void rotateClawDown(){
-        rotateServoRight.setPosition(0);
-        rotateServoLeft.setPosition(1);
+        rotateServo.setPower(-1);
+        sleep(1000);
+        rotateServo.setPower(0);
     }
     public void toggleRotateClaw(){
         if (armIsUp){
