@@ -100,48 +100,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
 
 /*
-        //Forward
-        if (xGamepad1.dpad_up.isDown()) {
-
-            frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(-power);
-            backleftMotor.setPower(-power);
-            backrightMotor.setPower(-power);
-        }
-
-        //Left
-        else if (xGamepad1.dpad_left.isDown()) {
-
-            frontleftMotor.setPower(-power);
-            frontrightMotor.setPower(power);
-            backleftMotor.setPower(power);
-            backrightMotor.setPower(-power);
-        }
-
-        //Right
-        else if (xGamepad1.dpad_right.isDown()) {
-
-            frontleftMotor.setPower(power);
-            frontrightMotor.setPower(-power);
-            backleftMotor.setPower(-power);
-            backrightMotor.setPower(power);
-        }
-
-        //Backward
-        else if (xGamepad1.dpad_down.isDown()) {
-
-            frontleftMotor.setPower(power);
-            frontrightMotor.setPower(power);
-            backleftMotor.setPower(power);
-            backrightMotor.setPower(power);
-        }
-
-        else {
-            frontleftMotor.setPower(0.0);
-            frontrightMotor.setPower(0.0);
-            backleftMotor.setPower(0.0);
-            backrightMotor.setPower(0.0);
-        }
 */
 
 
