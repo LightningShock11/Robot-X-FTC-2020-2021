@@ -91,7 +91,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(200);
         glyphClaw.stopClaw();
         sleep(200);
-        movement.driveForward(0.4, 35);
+        movement.driveForward(0.4, 45);
         sleep(750);
         movement.pointTurnLeft(90);
         sleep(750);
@@ -121,19 +121,31 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         // Do something based on the vuMarkStatus
         if (isLeft) {
             telemetry.addData("VuMark", "LEFT");
-            //movement.pointTurnLeft(45);
+            movement.pointTurnLeft(90);
+            sleep(200);
+            movement.driveForward(0.6, 15);
+            sleep(200);
+            movement.pointTurnRight(90);
+            sleep(200);
+            movement.driveForward(0.6, 15);
         } else if (isCenter) {
             telemetry.addData("VuMark", "CENTER");
-            //movement.driveBackward(0.5, 20);
+            movement.driveForward(0.5, 20);
         } else if (isRight) {
             telemetry.addData("VuMark", "RIGHT");
-            //movement.pointTurnRight(45);
+            movement.pointTurnRight(90);
+            sleep(200);
+            movement.driveForward(0.6, 15);
+            sleep(200);
+            movement.pointTurnLeft(90);
+            sleep(200);
+            movement.driveForward(0.6, 15);
         } else {
             telemetry.addData("VuMark", "UNKNOWN");
         }
         this.updateTelemetry(telemetry);
 
-        sleep(8000);
+        sleep(3000);
 
     }
 }
