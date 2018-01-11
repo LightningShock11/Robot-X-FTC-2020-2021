@@ -39,10 +39,9 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         runtime.reset();
 
             driveForward(0.8);
-
             rotateLeft(0.6);
-
             driveForward(1.1);
+            driveLeft(0.2);
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
