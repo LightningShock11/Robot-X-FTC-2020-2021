@@ -9,9 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "JVBlue1_Autonomous", group = "Default")
+@Autonomous(name = "JVRed2_Autonomous", group = "Default")
 
-public class JVBlue1_Autonomous extends LinearOpMode {
+public class JVRed2_Autonomous extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -33,17 +33,14 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         frontleftMotor = hardwareMap.dcMotor.get("Front_Left_Motor");
         frontrightMotor = hardwareMap.dcMotor.get("Front_Right_Motor");
         backleftMotor = hardwareMap.dcMotor.get("Back_Left_Motor");
-
-
         backrightMotor = hardwareMap.dcMotor.get("Back_Right_Motor");
 
         waitForStart();
         runtime.reset();
 
-            driveForward(0.8);
-            rotateLeft(0.6);
-            driveForward(1.1);
-            driveLeft(0.2);
+        driveRight(1.3);
+        rotateRight(1.2);
+        driveForward(0.4);
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
@@ -139,3 +136,4 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         sleep((long) (seconds * 1000));
     }
 }
+
