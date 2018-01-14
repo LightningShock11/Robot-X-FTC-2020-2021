@@ -30,10 +30,10 @@ public class JVBlue2_Autonomous extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        frontleftMotor = hardwareMap.dcMotor.get("Front_Left_Motor");
-        frontrightMotor = hardwareMap.dcMotor.get("Front_Right_Motor");
-        backleftMotor = hardwareMap.dcMotor.get("Back_Left_Motor");
-        backrightMotor = hardwareMap.dcMotor.get("Back_Right_Motor");
+        frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
+        frontrightMotor = hardwareMap.dcMotor.get("FrontRightMotor");
+        backleftMotor = hardwareMap.dcMotor.get("BackLeftMotor");
+        backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
 
         waitForStart();
         runtime.reset();
