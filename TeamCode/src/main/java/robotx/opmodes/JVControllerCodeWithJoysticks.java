@@ -130,7 +130,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
         }
 
-        else (xGamepad2.b.isDown())  //b will close the claw all the way
+        else if (xGamepad2.b.isDown())  //b will close the claw all the way
         {
             rightServo.setPosition(0.0);
             leftServo.setPosition(0.9);
