@@ -24,6 +24,7 @@ public class JVBlue2_Autonomous extends LinearOpMode {
     DcMotor liftMotor;
 
     double power = 0.5;
+    double power2 = 1.0;
 
     @Override
     public void runOpMode() {
@@ -38,9 +39,18 @@ public class JVBlue2_Autonomous extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        middleGrabber(0.1);
+        liftUp(1.4);
         driveLeft(1.3);
         rotateLeft(1.3);
         driveForward(0.4);
+        liftDown(1.8);
+        driveForward(0.2);
+        openGrabber(0.1);
+        driveBackward(0.2);
+        closeGrabber(0.1);
+
+
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
@@ -67,6 +77,10 @@ public class JVBlue2_Autonomous extends LinearOpMode {
         backrightMotor.setPower(0.0);
 
         rest(seconds);
+    }
+
+    public void stopLifting(double seconds) {
+        liftMotor.setPower(0.0);
     }
 
     public void driveForward(double seconds) {
@@ -129,6 +143,41 @@ public class JVBlue2_Autonomous extends LinearOpMode {
 
         rest(seconds);
         stopDriving(0);
+    }
+
+    public void liftUp (double seconds) {
+        liftMotor.setPower(power2);
+
+        rest(seconds);
+        stopLifting(0);
+    }
+
+    public void liftDown (double seconds) {
+        liftMotor.setPower(-power2);
+
+        rest(seconds);
+        stopLifting(0);
+    }
+
+    public void closeGrabber (double seconds) {
+        rightServo.setPosition(0.0);
+        leftServo.setPosition(0.9);
+
+        rest(seconds);
+    }
+
+    public void middleGrabber (double seconds) {
+        rightServo.setPosition(0.35);
+        leftServo.setPosition(0.55);
+
+        rest(seconds);
+    }
+
+    public void openGrabber (double seconds) {
+        rightServo.setPosition(0.85);
+        leftServo.setPosition(0.1);
+
+        rest(seconds);
     }
 
 
