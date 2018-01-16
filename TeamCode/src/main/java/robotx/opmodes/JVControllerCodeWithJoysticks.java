@@ -27,6 +27,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     double power2 = 1.0;
 
     @Override
+
     public void init() {
         super.init();
         frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
@@ -129,7 +130,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
         }
 
-        else if (xGamepad2.b.isDown())  //b will close the claw all the way
+        else (xGamepad2.b.isDown())  //b will close the claw all the way
         {
             rightServo.setPosition(0.0);
             leftServo.setPosition(0.9);

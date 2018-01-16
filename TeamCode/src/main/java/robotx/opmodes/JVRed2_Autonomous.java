@@ -24,6 +24,7 @@ public class JVRed2_Autonomous extends LinearOpMode {
     DcMotor liftMotor;
 
     double power = 0.5;
+    double power2 = 1.0;
 
     @Override
     public void runOpMode() {
@@ -38,9 +39,11 @@ public class JVRed2_Autonomous extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        liftUp(1.4);
         driveRight(1.3);
         rotateRight(1.2);
         driveForward(0.4);
+        liftDown(1.8);
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
@@ -67,6 +70,10 @@ public class JVRed2_Autonomous extends LinearOpMode {
         backrightMotor.setPower(0.0);
 
         rest(seconds);
+    }
+
+    public void stopLifting(double seconds) {
+        liftMotor.setPower(0.0);
     }
 
     public void driveForward(double seconds) {
@@ -129,6 +136,20 @@ public class JVRed2_Autonomous extends LinearOpMode {
 
         rest(seconds);
         stopDriving(0);
+    }
+
+    public void liftUp (double seconds) {
+        liftMotor.setPower(power2);
+
+        rest(seconds);
+        stopLifting(0);
+    }
+
+    public void liftDown (double seconds) {
+        liftMotor.setPower(-power2);
+
+        rest(seconds);
+        stopLifting(0);
     }
 
 
