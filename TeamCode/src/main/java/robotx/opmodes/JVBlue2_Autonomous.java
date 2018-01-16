@@ -36,6 +36,11 @@ public class JVBlue2_Autonomous extends LinearOpMode {
         backleftMotor = hardwareMap.dcMotor.get("BackLeftMotor");
         backrightMotor = hardwareMap.dcMotor.get("BackRightMotor");
 
+        rightServo = hardwareMap.servo.get("rightServo");
+        leftServo = hardwareMap.servo.get("leftServo");
+
+        liftMotor = hardwareMap.dcMotor.get("liftMotor");
+
         waitForStart();
         runtime.reset();
 
