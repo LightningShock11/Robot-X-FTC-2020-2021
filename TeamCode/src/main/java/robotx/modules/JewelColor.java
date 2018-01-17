@@ -142,9 +142,11 @@ public class JewelColor extends XModule {
     public void loop(){
         opMode.telemetry.addData("Color", colorEval().toString());
         raiseArm();
+        if (xGamepad2().a.isDown() && xGamepad2().a.isDown()){
+            lowerArm();
+        }
     }
     public void stop(){
-        armColor.resetDeviceConfigurationForOpMode();
         raiseArm();
     }
 }
