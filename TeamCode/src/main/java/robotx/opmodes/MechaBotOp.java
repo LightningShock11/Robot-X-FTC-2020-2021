@@ -7,6 +7,7 @@ import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
 import robotx.modules.MechaBot;
 import robotx.modules.MechanumDrive;
+import robotx.modules.MechanumDriveNoLag;
 
 /**
  * Created by Ben Sabo on 10/25/2017.
@@ -14,7 +15,7 @@ import robotx.modules.MechanumDrive;
 @TeleOp (name = "MechaBotOp", group = "Competition")
 public class MechaBotOp extends XOpMode {
 
-    MechanumDrive mechanumDrive;
+    MechanumDriveNoLag mechanumDriveNoLag;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
 
@@ -22,8 +23,8 @@ public class MechaBotOp extends XOpMode {
     public void initModules(){
         super.initModules();
 
-        mechanumDrive = new MechanumDrive(this);
-        activeModules.add(mechanumDrive);
+        mechanumDriveNoLag = new MechanumDriveNoLag(this);
+        activeModules.add(mechanumDriveNoLag);
 
         glyphClaw = new GlyphClaw(this);
         activeModules.add(glyphClaw);
