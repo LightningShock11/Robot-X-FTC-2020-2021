@@ -144,6 +144,7 @@ public class JewelColor extends XModule {
         if (xGamepad2().a.wasPressed()){
             toggleArm();
         }
+        raiseArm();
     }
     public void stop(){
         armColor.resetDeviceConfigurationForOpMode();
