@@ -41,6 +41,8 @@ public class MechaBot extends XModule {
         frontLeft.setPower(forwardBackAxis - leftRightAxis - spin);
         backRight.setPower(forwardBackAxis - leftRightAxis + spin);
         backLeft.setPower(forwardBackAxis + leftRightAxis - spin);
+
+
     }
 
     public void stop(){
