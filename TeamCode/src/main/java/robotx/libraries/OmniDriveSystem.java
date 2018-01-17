@@ -86,11 +86,11 @@ public abstract class OmniDriveSystem extends XModule {
     private double controlRamp(double input) {
         double output = input;
         double coeff = 1.0;
-        if (xGamepad1().left_bumper.isDown()) {
+        if (xGamepad1().left_bumper.isDown() || xGamepad1().right_bumper.isDown()) {
             coeff = coeff / 2.0;
         }
-        if (xGamepad1().right_bumper.isDown()) {
-            coeff = coeff / 2.0;
+        if (xGamepad1().right_bumper.isDown() && xGamepad1().left_bumper.isDown()) {
+            coeff = coeff / 8.0;
         }
 
         return output*coeff;
