@@ -85,7 +85,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(500);
         glyphClaw.rotateClawDown();
         sleep(500);
-        glyphClaw.openClaw();
+        glyphClaw.openClaw(); //This actually closes the claw
         sleep(500);
         glyphClaw.raiseClaw();
         sleep(200);
@@ -95,13 +95,15 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(750);
         movement.pointTurnLeft(90);
         sleep(750);
-        glyphClaw.closeClaw();
+        glyphClaw.closeClaw(); //Opens claw
         sleep(500);
         glyphClaw.rotateClawUp();
+        //
         sleep(750);
         movement.driveForward(0.4, 10);
         sleep(200);
         movement.stop();
+        //
 
 
 

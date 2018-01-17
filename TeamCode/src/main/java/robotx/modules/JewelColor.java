@@ -141,9 +141,6 @@ public class JewelColor extends XModule {
 
     public void loop(){
         opMode.telemetry.addData("Color", colorEval().toString());
-        if (xGamepad2().a.wasPressed()){
-            toggleArm();
-        }
         raiseArm();
     }
     public void stop(){
