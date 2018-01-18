@@ -47,11 +47,11 @@ public class JVRed1_Autonomous extends LinearOpMode {
         middleGrabber(0.1);
         liftUp(1.4);
         driveForward(0.8);
-        rotateRight(0.6);
+        rotateRight(0.49);
         driveForward(1.1);
-        driveRight(0.2);
+        driveRight(0.25);
         liftDown(1.8);
-        driveForward(0.2);
+        driveForward(0.4);
         openGrabber(0.1);
         driveBackward(0.2);
         closeGrabber(0.1);

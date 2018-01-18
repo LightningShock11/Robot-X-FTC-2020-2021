@@ -47,10 +47,11 @@ public class JVBlue1_Autonomous extends LinearOpMode {
             middleGrabber(0.1);
             liftUp(1.4);
             driveForward(0.8);
-            rotateLeft(0.6);
+            rotateLeft(0.49);
             liftDown(1.8);
             driveForward(1.1);
             driveLeft(0.2);
+            driveForward(0.8);
             openGrabber(0.1);
             driveBackward(0.2);
             closeGrabber(0.1);
