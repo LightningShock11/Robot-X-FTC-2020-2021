@@ -19,7 +19,7 @@ public class GlyphClaw extends XModule {
     double clawServoPosition = 0.0;
     Servo clawServo;
     DcMotor rackMotor;
-    CRServo rotateServo;
+    Servo rotateServo;
     boolean clawIsOpen;
     boolean armIsUp;
     public final void sleep(long milliseconds) {
@@ -36,7 +36,7 @@ public class GlyphClaw extends XModule {
         rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
         rackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rotateServo = opMode.hardwareMap.crservo.get("rotateServo");
+        rotateServo = opMode.hardwareMap.servo.get("rotateServo");
 
         closeClaw();
         clawIsOpen = false;
@@ -61,10 +61,10 @@ public class GlyphClaw extends XModule {
         updateClawServo();
     }
     public void rotateClawUp(){
-
+        rotateServo.setPosition(0.0);
     }
     public void rotateClawDown(){
-
+        rotateServo.setPosition(0.5);
     }
     public void toggleRotateClaw(){
         if (armIsUp){

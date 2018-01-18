@@ -130,7 +130,7 @@ public class JewelColor extends XModule {
         armIsUp = false;
     }
     public void raiseArm() {
-        armServo.setPosition(0.4);
+        armServo.setPosition(0.45);
         armIsUp = true;
     }
 
