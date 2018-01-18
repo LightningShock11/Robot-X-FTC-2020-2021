@@ -31,26 +31,37 @@ public class MechanumDriveNoLag extends XModule{
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y; //Forward and backwards axis
         float leftRightAxis = xGamepad1().left_stick_x; //Strafing axis
-        float spinAxis = xGamepad1().right_stick_x; //spinning axis
+        float spinAxis = -xGamepad1().right_stick_x; //spinning axis
 
         //will make these to methods later
         //drive forward/backward
-        frontLeft.setPower(forwardBackAxis);
+       /* frontLeft.setPower(forwardBackAxis - leftRightAxis - spinAxis);
         frontRight.setPower(forwardBackAxis);
         backLeft.setPower(forwardBackAxis);
         backRight.setPower(forwardBackAxis);
 
-        //drive strafe
-        frontRight.setPower(leftRightAxis);
-        frontLeft.setPower(leftRightAxis);
+        drive strafe
+        frontRight.setPower(-leftRightAxis);
         backRight.setPower(leftRightAxis);
-        backLeft.setPower(leftRightAxis);
+        backLeft.setPower(-leftRightAxis);
+        frontLeft.setPower(leftRightAxis);
 
-        //spin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //spin!
         frontLeft.setPower(spinAxis);
         frontRight.setPower(spinAxis);
-        backRight.setPower(spinAxis);
-        backLeft.setPower(spinAxis);
+        backRight.setPower(-spinAxis);
+        backLeft.setPower(-spinAxis);*/
+        opMode.telemetry.addData("frontRight", forwardBackAxis - leftRightAxis - spinAxis);
+        frontRight.setPower(forwardBackAxis - leftRightAxis + spinAxis);
+
+        opMode.telemetry.addData("frontLeft", forwardBackAxis + leftRightAxis + spinAxis);
+        frontLeft.setPower(forwardBackAxis + leftRightAxis - spinAxis);
+
+        opMode.telemetry.addData("backRight", forwardBackAxis + leftRightAxis - spinAxis);
+        backRight.setPower(forwardBackAxis + leftRightAxis + spinAxis);
+
+        opMode.telemetry.addData("backLeft", forwardBackAxis - leftRightAxis + spinAxis);
+        backLeft.setPower(forwardBackAxis - leftRightAxis - spinAxis);
 
     }
 
