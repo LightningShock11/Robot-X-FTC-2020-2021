@@ -12,8 +12,8 @@ import robotx.modules.MechanumDriveNoLag;
 /**
  * Created by Ben Sabo on 10/25/2017.
  */
-@TeleOp (name = "MechaBotOp", group = "Competition")
-public class MechaBotOp extends XOpMode {
+@TeleOp (name = "MechaBotFlashOp", group = "Competition")
+public class MechaBotFlashOp extends XOpMode {
 
     MechanumDriveNoLag mechanumDriveNoLag;
     //MechanumDrive mechanumDrive;
