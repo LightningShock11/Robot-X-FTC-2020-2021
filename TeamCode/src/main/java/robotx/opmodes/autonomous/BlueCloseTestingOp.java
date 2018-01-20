@@ -69,13 +69,27 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor.start();
 
 
-        ///
-
         // Get and store the vuMarkStatus
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
-        movement.driveForward(0.8, 1);
+
+        // Drive backward slightly to better grab the claw.
+        movement.driveBackward(0.2, 8);
+
+        // Grab the glyph that's in front of the robot.
+        glyphClaw.rotateClawDown();
+        sleep(500);
+        glyphClaw.closeClaw();
+        sleep(500);
+        glyphClaw.raiseClaw();
+        sleep(200);
+        glyphClaw.stopClaw();
+
+        // Drive forward to go back to the starting position.
+        movement.driveForward(0.2, 8);
+
+        /*movement.driveForward(0.8, 1);
         sleep(1000);
         movement.driveBackward(0.3, 3);
         sleep(1000);
@@ -98,14 +112,11 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw.closeClaw(); //Opens claw
         sleep(500);
         glyphClaw.rotateClawUp();
-        //
+
         sleep(750);
         movement.driveForward(0.4, 10);
         sleep(200);
         movement.stop();
-        //
-
-
 
         // Knock off the correct jewel.
        /* jewelColor.knockOffRedGem();
@@ -121,7 +132,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
 
         // Do something based on the vuMarkStatus
-        if (isLeft) {
+        /*if (isLeft) {
             telemetry.addData("VuMark", "LEFT");
             movement.pointTurnLeft(90);
             sleep(200);
@@ -147,7 +158,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         }
         this.updateTelemetry(telemetry);
 
-        sleep(3000);
+        sleep(3000);*/
 
     }
 }
