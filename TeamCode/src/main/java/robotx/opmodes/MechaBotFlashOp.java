@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import robotx.libraries.XOpMode;
 import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
+import robotx.modules.LedFlash;
 import robotx.modules.MechaBot;
 import robotx.modules.MechanumDrive;
 import robotx.modules.MechanumDriveNoLag;
@@ -19,6 +20,7 @@ public class MechaBotFlashOp extends XOpMode {
     MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
+    LedFlash ledFlash;
 
 
     public void initModules(){
@@ -37,6 +39,9 @@ public class MechaBotFlashOp extends XOpMode {
 
         jewelColor = new JewelColor(this);
         activeModules.add(jewelColor);
+
+        ledFlash = new LedFlash(this);
+        activeModules.add(ledFlash);
     }
     public void init(){super.init();}
 }
