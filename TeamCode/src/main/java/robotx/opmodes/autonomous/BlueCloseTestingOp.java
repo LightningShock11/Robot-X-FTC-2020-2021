@@ -36,6 +36,8 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         sensors.frontLeftMotor = mechanumDrive.frontLeft;
         sensors.frontRightMotor = mechanumDrive.frontRight;
+        sensors.backLeftMotor = mechanumDrive.backLeft;
+        sensors.backRightMotor = mechanumDrive.backRight;
 
         movement = new OmniAutonomousMovement(this, sensors, mechanumDrive);
         movement.init();
@@ -89,6 +91,9 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         // Drive forward to go back to the starting position.
         movement.driveForward(0.2, 8);*/
+        
+        glyphClaw.closeClaw();
+        sleep(3000);
 
         movement.driveForward(0.8, 1);
         sleep(1000);
