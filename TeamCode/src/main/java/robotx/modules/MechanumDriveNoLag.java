@@ -27,6 +27,7 @@ public class MechanumDriveNoLag extends XModule{
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
 
+
     }
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y; //Forward and backwards axis
@@ -51,18 +52,37 @@ public class MechanumDriveNoLag extends XModule{
         frontRight.setPower(spinAxis);
         backRight.setPower(-spinAxis);
         backLeft.setPower(-spinAxis);*/
-        opMode.telemetry.addData("frontRight", forwardBackAxis - leftRightAxis - spinAxis);
-        frontRight.setPower(forwardBackAxis - leftRightAxis + spinAxis);
 
-        opMode.telemetry.addData("frontLeft", forwardBackAxis + leftRightAxis + spinAxis);
-        frontLeft.setPower(forwardBackAxis + leftRightAxis - spinAxis);
+        float FRpower = forwardBackAxis - leftRightAxis + spinAxis;
+        float FLpower = forwardBackAxis + leftRightAxis - spinAxis;
+        float BRpower = forwardBackAxis + leftRightAxis + spinAxis;
+        float BLpower = forwardBackAxis - leftRightAxis - spinAxis;
 
-        opMode.telemetry.addData("backRight", forwardBackAxis + leftRightAxis - spinAxis);
-        backRight.setPower(forwardBackAxis + leftRightAxis + spinAxis);
+        opMode.telemetry.addData("frontRight", FRpower);
+        frontRight.setPower(FRpower);
 
-        opMode.telemetry.addData("backLeft", forwardBackAxis - leftRightAxis + spinAxis);
-        backLeft.setPower(forwardBackAxis - leftRightAxis - spinAxis);
+        opMode.telemetry.addData("frontLeft", FLpower);
+        frontLeft.setPower(FLpower);
 
+        opMode.telemetry.addData("backRight", BRpower);
+        backRight.setPower(BRpower);
+
+        if(xGamepad1().left_bumper.isDown() && xGamepad1().right_bumper.isDown()){
+            FLpower /= 5;
+            FRpower /= 5;
+            BRpower /= 5;
+            BLpower /= 5;
+        }
+
+        opMode.telemetry.addData("backLeft", BLpower);
+        backLeft.setPower(BLpower);
+
+        if(xGamepad1().left_bumper.isDown() || xGamepad1().right_bumper.isDown()){
+            FLpower /= 2;
+            FRpower /= 2;
+            BRpower /= 2;
+            BLpower /= 2;
+        }
     }
 
 
