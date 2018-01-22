@@ -2,6 +2,7 @@ package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -20,6 +21,7 @@ public class JVJewelColor extends XModule {
 
     ColorSensor armColor;
     Servo armServo;
+    DcMotor armMotor;
 
     public JVJewelColor(OpMode Op) {super (Op);}
 
@@ -29,6 +31,7 @@ public class JVJewelColor extends XModule {
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
+        armMotor = opMode.hardwareMap.dcMotor.get("armMotor");
 
         armServo.setPosition(.3);
         armIsUp = true;
