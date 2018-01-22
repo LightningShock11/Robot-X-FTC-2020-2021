@@ -16,6 +16,7 @@ public class MechanumAuton extends OmniAutonomousSystem {
     public DcMotor frontLeftMotor;
     public DcMotor frontRightMotor;
     public DcMotor backRightMotor;
+    public DcMotor backLeftMotor;
 
     public MechanumAuton(OpMode op) {
         super(op);
@@ -33,13 +34,11 @@ public class MechanumAuton extends OmniAutonomousSystem {
 
     // Return the current distance the left side has traveled, in encoder ticks.
     public int getXTicks() {
-        // TODO Write implementation for this.
         return backRightMotor.getCurrentPosition();
     }
     // Return the current distance the right side has traveled, in encoder ticks.
     public int getYTicks() {
-        // TODO Write implementation for this.
-        return frontRightMotor.getCurrentPosition();
+        return backLeftMotor.getCurrentPosition();
     }
 
     // Input encoder ticks and return centimeters.
