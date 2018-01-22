@@ -53,11 +53,11 @@ public class GlyphClaw extends XModule {
         }
     }
     public void closeClaw() {
-        clawServoPosition = 1.0;
+        clawServoPosition = 0.0;
         updateClawServo();
     }
     public void openClaw() {
-        clawServoPosition = 0.0;
+        clawServoPosition = 1.0;
         updateClawServo();
     }
     public void rotateClawUp(){
