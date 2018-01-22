@@ -47,6 +47,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
 
+
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
 
@@ -75,7 +76,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         boolean isRight = vuMarkDetection.isRight();
 
         // Drive backward slightly to better grab the claw.
-        movement.driveBackward(0.2, 8);
+        /*movement.driveBackward(0.2, 8);
 
         // Grab the glyph that's in front of the robot.
         glyphClaw.rotateClawDown();
@@ -87,9 +88,9 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw.stopClaw();
 
         // Drive forward to go back to the starting position.
-        movement.driveForward(0.2, 8);
+        movement.driveForward(0.2, 8);*/
 
-        /*movement.driveForward(0.8, 1);
+        movement.driveForward(0.8, 1);
         sleep(1000);
         movement.driveBackward(0.3, 3);
         sleep(1000);
@@ -99,7 +100,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(500);
         glyphClaw.rotateClawDown();
         sleep(500);
-        glyphClaw.openClaw(); //This actually closes the claw
+        glyphClaw.closeClaw();
         sleep(500);
         glyphClaw.raiseClaw();
         sleep(200);
@@ -109,10 +110,9 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(750);
         movement.pointTurnLeft(90);
         sleep(750);
-        glyphClaw.closeClaw(); //Opens claw
+        glyphClaw.openClaw(); 
         sleep(500);
         glyphClaw.rotateClawUp();
-
         sleep(750);
         movement.driveForward(0.4, 10);
         sleep(200);
