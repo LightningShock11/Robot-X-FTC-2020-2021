@@ -38,7 +38,7 @@ public class GlyphClaw extends XModule {
         rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rotateServo = opMode.hardwareMap.servo.get("rotateServo");
 
-        closeClaw();
+        openClaw();
         clawIsOpen = false;
         rotateClawUp();
         armIsUp = true;

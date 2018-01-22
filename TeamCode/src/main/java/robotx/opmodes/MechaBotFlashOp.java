@@ -16,8 +16,8 @@ import robotx.modules.MechanumDriveNoLag;
 @TeleOp (name = "MechaBotFlashOp", group = "Competition")
 public class MechaBotFlashOp extends XOpMode {
 
-    //MechanumDriveNoLag mechanumDriveNoLag;
-    MechanumDrive mechanumDrive;
+    MechanumDriveNoLag mechanumDriveNoLag;
+    //MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
     LedFlash ledFlash;
@@ -26,16 +26,12 @@ public class MechaBotFlashOp extends XOpMode {
     public void initModules(){
         super.initModules();
 
-        mechanumDrive = new MechanumDrive(this);
-        activeModules.add(mechanumDrive);
-
-
-       /* mechanumDrive = new MechanumDrive(this);
+        /*mechanumDrive = new MechanumDrive(this);
         activeModules.add(mechanumDrive);*/
 
 
-
-
+        mechanumDriveNoLag = new MechanumDriveNoLag(this);
+        activeModules.add(mechanumDriveNoLag);
 
         glyphClaw = new GlyphClaw(this);
         activeModules.add(glyphClaw);
