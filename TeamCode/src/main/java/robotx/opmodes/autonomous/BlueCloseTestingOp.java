@@ -77,23 +77,19 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
 
-        // Drive backward slightly to better grab the claw.
-        /*movement.driveBackward(0.2, 8);
-
-        // Grab the glyph that's in front of the robot.
-        glyphClaw.rotateClawDown();
-        sleep(500);
-        glyphClaw.closeClaw();
-        sleep(500);
-        glyphClaw.raiseClaw();
-        sleep(200);
-        glyphClaw.stopClaw();
-
-        // Drive forward to go back to the starting position.
-        movement.driveForward(0.2, 8);*/
-        
+        //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
         sleep(3000);
+
+
+
+
+        // Drive backward slightly to better grab the claw.
+        /*
+
+        // Drive forward to go back to the starting position.
+        movement.driveForward(0.2, 8);
+
 
         movement.driveForward(0.8, 1);
         sleep(1000);
@@ -121,7 +117,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(750);
         movement.driveForward(0.4, 10);
         sleep(200);
-        movement.stop();
+        movement.stop();/*
 
         // Knock off the correct jewel.
        /* jewelColor.knockOffRedGem();
