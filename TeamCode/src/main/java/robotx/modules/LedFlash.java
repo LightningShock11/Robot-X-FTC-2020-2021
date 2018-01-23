@@ -41,22 +41,25 @@ public class LedFlash extends XModule {
     public void ledOff(){
         blueLed.setPower(0.0);
     }
-    public void decreaseLed(){
-        double ledPowerDown = 1.0;
-        ledPowerDown -= 0.1;
-        blueLed.setPower(ledPowerDown);
-        if (ledPowerDown <= 0){
-            increaseLed();
+    public void decreaseLed() {
+            double ledPowerDown = 1.0;
+            ledPowerDown -= 0.1;
+            blueLed.setPower(ledPowerDown);
+            if (ledPowerDown <= 0) {
+                increaseLed();
+            }
         }
-    }
-    public void increaseLed(){
+
+    public void increaseLed() {
         double ledPowerUp = 0.0;
         ledPowerUp += 0.1;
         blueLed.setPower(ledPowerUp);
-        if (ledPowerUp >= 1){
+        if (ledPowerUp >= 1) {
             decreaseLed();
         }
     }
+
+
 
     public void toggleLed(){
         if (ledOff){
