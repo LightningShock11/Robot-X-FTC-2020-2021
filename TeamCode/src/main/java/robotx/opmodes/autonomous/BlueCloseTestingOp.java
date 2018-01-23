@@ -79,7 +79,40 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
-        sleep(3000);
+        sleep(2000);
+
+        //Knock Jews
+        jewelColor.lowerArm();
+        sleep(1000);
+        jewelColor.colorEval();
+        jewelColor.knockOffRedGem();
+        sleep(4000);
+        jewelColor.raiseArm();
+
+        //Cryptobox filling
+        if(isLeft){
+            movement.driveForward(1, 10);
+            sleep(1000);
+        } else if (isCenter){
+            movement.driveForward(1, 20);
+            sleep(1000);
+        }else if (isRight){
+            movement.driveForward(1, 30);
+            sleep(1000);
+        }
+        movement.pointTurnLeft(90);
+        sleep(500);
+        movement.driveForward(1, 5);
+        sleep(1000);
+        glyphClaw.rotateClawDown();
+        sleep(1000);
+        glyphClaw.openClaw();
+        sleep(1000);
+        glyphClaw.rotateClawUp();
+
+
+
+
 
 
 
