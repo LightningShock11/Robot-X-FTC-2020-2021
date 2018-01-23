@@ -8,7 +8,7 @@ import robotx.libraries.*;
 /**
  * Created and written by Kush & Ben on 1/28/17.
  */
-@TeleOp(name = "BatteryKillerOp", group = "Default")
+@TeleOp(name = "BatteryKillerOp", group = "Tests")
 public class BatteryKillerOp extends XLinearOpMode {
 
     DcMotor killerMotor;

@@ -9,7 +9,7 @@ import robotx.modules.ContinuousRotationServoTest;
 /**
  * Created by Ben Sabo on 12/21/2017.
  */
-@TeleOp(name = "ContinuousServoTestOp", group = "tests")
+@TeleOp(name = "ContinuousServoTestOp", group = "Tests")
 public class ContinuousServoTestOp extends XOpMode {
     ContinuousRotationServoTest continuousServoTestOp;
 
