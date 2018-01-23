@@ -24,28 +24,34 @@ public class AutonTestingOp extends XLinearOpMode {
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
-        jewelColor = new JewelColor(this);
-        jewelColor.init();
-
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
 
         sensors = new MechanumAuton(this);
         sensors.init();
 
-        /*mechanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        mechanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
         sensors.frontLeftMotor = mechanumDrive.frontLeft;
         sensors.frontRightMotor = mechanumDrive.frontRight;
+        sensors.backLeftMotor = mechanumDrive.backLeft;
+        sensors.backRightMotor = mechanumDrive.backRight;
 
         movement = new OmniAutonomousMovement(this, sensors, mechanumDrive);
         movement.init();
 
+        jewelColor = new JewelColor(this);
+        jewelColor.autonomousMovement = movement;
+        jewelColor.init();
+
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
 
+
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
+
+        // Initialize servo positions.
+        glyphClaw.start();
+        jewelColor.start();
 
         // Calibrate gyro.
         sensors.calibrateGyro();
@@ -61,58 +67,38 @@ public class AutonTestingOp extends XLinearOpMode {
         vuMarkDetection.start();
         jewelColor.start();
 
-
-        ///
-        /*mechanumDrive.setRotationPower(1.0);
-        sleep(2000);
-        mechanumDrive.setRotationPower(0.0);
-        sleep(2000);
-        mechanumDrive.setRotationPower(-1.0);
-        sleep(2000);
-
-        mechanumDrive.brakeAllMotors();
-        sleep(4000);
-
-        mechanumDrive.setYPower(1.0);
-        sleep(800);
-        mechanumDrive.brakeAllMotors();
-        sleep(2000);*/
-
-
-        movement.pointTurnLeft(180);
-        sleep(2000);
-
-        movement.driveForward(0.5, 100);
-        sleep(2000);
-
-        movement.pointTurnLeft(180);
-        sleep(2000);
-
-        movement.driveForward(0.5, 100);
-        sleep(2000);
-
-        /*
-        movement.pointTurnRight(90);
-        sleep(2000);
-
-        mechanumDrive.setYPower(0.3);
-        sleep(400);
-        mechanumDrive.brakeAllMotors();
+        // Test out movement.
+        sleep(1000);
+        movement.driveForward(0.4, 100);
+        sleep(1000);
+        movement.pointTurnRight(180);
+        sleep(1000);
+        movement.driveForward(0.8, 100);
+        sleep(1000);
+        movement.pointTurnLeft(90);
         sleep(1000);
 
-        movement.pointTurnRight(90);
+        // Test glyph claw and lift.
+        glyphClaw.openClaw();
+        sleep(1000);
+        glyphClaw.closeClaw();
+        sleep(1000);
+        glyphClaw.rotateClawDown();
+        sleep(1000);
+        glyphClaw.raiseClaw();
+        sleep(300);
+        glyphClaw.lowerClaw();
+        sleep(250);
+        glyphClaw.stopClaw();
+        sleep(1000);
+        glyphClaw.rotateClawUp();
         sleep(1000);
 
-        mechanumDrive.setYPower(0.3);
-        sleep(400);
-        mechanumDrive.brakeAllMotors();
+        // Test jewel color arm.
+        jewelColor.lowerArm();
+        sleep(1000);
+        jewelColor.raiseArm();
         sleep(1000);
 
-        movement.driveForward(0.5, 20);
-        sleep(2000);
-
-        movement.driveBackward(0.5, 20);
-        sleep(2000);
-        */
     }
 }
