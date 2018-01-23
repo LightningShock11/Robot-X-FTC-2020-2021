@@ -1,6 +1,6 @@
 package robotx.opmodes;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 
 import robotx.libraries.XOpMode;
 import robotx.modules.*;
@@ -9,6 +9,7 @@ import robotx.modules.*;
  * Created by Kush dalal on 11/10/2017.
  */
 @TeleOp (name = "JVomniOp", group = "Competition")
+@Disabled
 public class JVomniOp extends XOpMode {
 
     OmniTest omniTest;

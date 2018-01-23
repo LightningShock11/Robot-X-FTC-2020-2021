@@ -11,7 +11,7 @@ import robotx.libraries.*;
  * Hold down the back bumpers to change the unit,
  * and press the up and down buttons on the D-Pad to increment/decrement.
  */
-@TeleOp(name = "ServoTesterOp", group = "Debug")
+@TeleOp(name = "ServoTesterOp", group = "Tests")
 public class ServoTesterOp extends OpMode {
 
 	Servo testServo;

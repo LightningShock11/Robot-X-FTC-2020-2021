@@ -1,6 +1,6 @@
 package robotx.opmodes;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 
 import robotx.controls.*;
 import robotx.libraries.*;
@@ -10,6 +10,7 @@ import robotx.modules.*;
  * Created by Robot X Team 4969 on 11/22/16.
  */
 @TeleOp(name = "TileRunnerBetaOp", group = "Competition")
+@Disabled
 public class TileRunnerBetaOp extends XOpMode {
 
 	BasicDriveSystem tileRunnerDrive;

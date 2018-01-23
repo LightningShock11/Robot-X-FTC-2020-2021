@@ -10,6 +10,7 @@ import robotx.modules.*;
  * Created by Nicholas on 11/12/16.
  */
 @TeleOp(name = "TileRunnerSweeperOp", group = "Competition")
+@Disabled
 public class TileRunnerSweeperOp extends XOpMode {
 
 	SweeperSystem sweeperSystem;

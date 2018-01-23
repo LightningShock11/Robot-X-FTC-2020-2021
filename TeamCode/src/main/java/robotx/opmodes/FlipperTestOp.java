@@ -9,6 +9,7 @@ import robotx.modules.*;
  * Created by Ben on 12/28/2016.
  */
 @TeleOp(name = "FlipperTestOp", group = "Competition")
+@Disabled
 public class FlipperTestOp extends XOpMode {
 
 	FlipperLauncher flipperLauncher;

@@ -10,6 +10,7 @@ import robotx.modules.*;
  * Created by Robot-X Team 4969 on 11/15/2016.
  */
 @TeleOp(name = "BeaconTestOp", group = "Debug")
+@Disabled
 public class BeaconTestOp extends XOpMode {
 
 	ButtonPusher buttonPusher;
