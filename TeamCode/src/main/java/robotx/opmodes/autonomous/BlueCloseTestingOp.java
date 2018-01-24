@@ -45,10 +45,16 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor = new JewelColor(this);
         jewelColor.autonomousMovement = movement;
         jewelColor.init();
+        jewelColor.raiseArmAuton();
+        sleep(500);
 
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
-
+        glyphClaw.raiseClaw();
+        sleep(500);
+        jewelColor.raiseArm();
+        glyphClaw.lowerClaw();
+        sleep(500);
 
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
@@ -94,16 +100,16 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 10);
+            movement.driveForward(0.8, 60);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(0.8, 20);
+            movement.driveForward(0.8, 80);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.8, 30);
+            movement.driveForward(0.8, 100);
             sleep(1000);
         } else {
-            movement.driveForward(0.8, 20);
+            movement.driveForward(0.8, 80);
             sleep(2000);
         }
         //try to fill the cryptobox
