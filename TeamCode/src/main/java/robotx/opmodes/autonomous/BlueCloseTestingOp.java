@@ -94,28 +94,34 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 10);
+            movement.driveForward(0.8, 70);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(0.8, 20);
+            movement.driveForward(0.8, 90);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.8, 30);
+            movement.driveForward(0.8, 110);
             sleep(1000);
         } else {
-            movement.driveForward(0.8, 20);
+            movement.driveForward(0.8, 90);
             sleep(2000);
         }
         //try to fill the cryptobox
         movement.pointTurnLeft(90);
         sleep(500);
-        movement.driveForward(0.8, 5);
-        sleep(1000);
         glyphClaw.rotateClawDown();
         sleep(1000);
         glyphClaw.openClaw();
         sleep(1000);
         glyphClaw.rotateClawUp();
+        sleep(1000);
+        movement.driveBackward(0.8,5);
+        sleep(1000);
+        movement.driveForward(0.8, 10);
+        sleep(1000);
+        movement.driveBackward(0.8, 5);
+        sleep(1000);
+        movement.stop();
 
 
 
