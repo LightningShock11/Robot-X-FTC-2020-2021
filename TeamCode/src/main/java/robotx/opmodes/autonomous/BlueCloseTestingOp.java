@@ -71,11 +71,13 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         vuMarkDetection.start();
         jewelColor.start();
 
-
         // Get and store the vuMarkStatus
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
+        telemetry.addData("Left:", isLeft);
+        telemetry.addData("Center:", isCenter);
+        telemetry.addData("Right:", isRight);
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
@@ -88,6 +90,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor.knockOffRedGem();
         sleep(4000);
         jewelColor.raiseArm();
+        sleep(2000);
 
         //Cryptobox filling
         if(isLeft){
