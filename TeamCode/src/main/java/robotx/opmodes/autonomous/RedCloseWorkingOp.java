@@ -13,7 +13,7 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseTestingOp", group = "Autonomous")
+@Autonomous(name = "RedCloseWorkingOp", group = "Autonomous")
 public class RedCloseWorkingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
@@ -98,6 +98,7 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         sleep(2000);
         jewelColor.raiseArm();
         sleep(2000);
+        movement.pointTurnLeft(10);
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
@@ -114,7 +115,7 @@ public class RedCloseWorkingOp extends XLinearOpMode {
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnRight(90);
+        movement.pointTurnLeft(100);
         sleep(500);
         glyphClaw.rotateClawDown();
         sleep(1000);
@@ -122,11 +123,11 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         sleep(1000);
         glyphClaw.rotateClawUp();
         sleep(1000);
-        movement.driveForward(0.8,5);
+        movement.driveBackward(0.8,5);
         sleep(1000);
-        movement.driveBackward(0.8, 10);
+        movement.driveForward(0.8, 10);
         sleep(1000);
-        movement.driveForward(0.8, 5);
+        movement.driveBackward(0.8, 5);
         sleep(1000);
         movement.stop();
 
