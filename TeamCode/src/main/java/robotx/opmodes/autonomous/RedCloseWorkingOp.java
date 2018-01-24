@@ -51,7 +51,7 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
         glyphClaw.closeClaw();
-        sleep(500);
+        sleep(1500);
         glyphClaw.raiseClaw();
         sleep(750);
         jewelColor.raiseArm();
