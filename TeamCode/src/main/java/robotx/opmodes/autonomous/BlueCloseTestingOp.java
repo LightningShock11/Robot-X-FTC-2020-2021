@@ -51,10 +51,11 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
         glyphClaw.raiseClaw();
-        sleep(500);
-        jewelColor.raiseArm();
+        sleep(750);
         glyphClaw.lowerClaw();
-        sleep(500);
+        sleep(750);
+        jewelColor.raiseArm();
+
 
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
