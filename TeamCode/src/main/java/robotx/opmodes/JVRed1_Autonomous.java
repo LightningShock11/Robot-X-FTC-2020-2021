@@ -36,9 +36,6 @@ public class JVRed1_Autonomous extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-        telemetry.addData("Jewel Motor Position:", jewelMotor.getCurrentPosition());
 
         frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
         frontrightMotor = hardwareMap.dcMotor.get("FrontRightMotor");
@@ -54,20 +51,24 @@ public class JVRed1_Autonomous extends LinearOpMode {
         jewelServo = hardwareMap.servo.get("jewelServo");
         jewelMotor = hardwareMap.dcMotor.get("JewelMotor");
 
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+        telemetry.addData("Jewel Motor Position:", jewelMotor.getCurrentPosition());
+
         waitForStart();
         runtime.reset();
 
-
+        middleGrabber(0.1);
         jewelArmLower(2.5);
+        stopRobot(3.0);
         colorEval(3.0);
         jewelArmRaise(2.5);
-        middleGrabber(0.1);
         liftUp(1.4);
         driveForward(0.8);
-        rotateRight(0.49);
+        rotateRight(0.54);
         driveForward(1.1);
-        driveRight(0.25);
-        liftDown(1.8);
+        driveRight(0.4);
+        liftDown(1.4);
         driveForward(0.4);
         openGrabber(0.1);
         driveBackward(0.2);
@@ -107,6 +108,7 @@ public class JVRed1_Autonomous extends LinearOpMode {
         jewelMotor.setPower(0.5);
 
         rest(seconds);
+        stopJewelArm(0);
     }
 
     public void colorEval(double seconds) {
@@ -124,6 +126,8 @@ public class JVRed1_Autonomous extends LinearOpMode {
 
         if (leftBallIsRed = true) {
             jewelServo.setPosition(0.0);
+
+            rest(seconds);
         }
     }
 
@@ -133,6 +137,7 @@ public class JVRed1_Autonomous extends LinearOpMode {
         jewelMotor.setPower(-0.5);
 
         rest(seconds);
+        stopJewelArm(0);
     }
     public void stopDriving(double seconds) {
 
@@ -144,8 +149,30 @@ public class JVRed1_Autonomous extends LinearOpMode {
         rest(seconds);
     }
 
+    public void stopJewelArm (double seconds) {
+
+       jewelMotor.setPower(0.0);
+
+       rest(seconds);
+    }
+
     public void stopLifting(double seconds) {
+
         liftMotor.setPower(0.0);
+
+        rest(seconds);
+    }
+
+    public void stopRobot (double seconds) {
+
+        frontleftMotor.setPower(0.0);
+        frontrightMotor.setPower(0.0);
+        backleftMotor.setPower(0.0);
+        backrightMotor.setPower(0.0);
+        liftMotor.setPower(0.0);
+        jewelMotor.setPower(0.0);
+
+        rest(seconds);
     }
 
     public void driveForward(double seconds) {

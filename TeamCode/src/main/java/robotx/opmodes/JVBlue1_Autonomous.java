@@ -54,16 +54,21 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         runtime.reset();
 
             middleGrabber(0.1);
+            jewelArmLower(2.5);
+            stopRobot(3.0);
+            colorEval(3.0);
+            jewelArmRaise(2.5);
             liftUp(1.4);
             driveForward(0.8);
-            rotateLeft(0.49);
-            liftDown(1.8);
+            rotateLeft(0.54);
+            liftDown(1.4);
             driveForward(1.1);
-            driveLeft(0.2);
+            driveLeft(0.4);
             driveForward(0.8);
             openGrabber(0.1);
             driveBackward(0.2);
             closeGrabber(0.1);
+            driveForward(1.0);
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
@@ -111,14 +116,17 @@ public class JVBlue1_Autonomous extends LinearOpMode {
             leftBallIsBlue = false;
         }
 
-        if (leftBallIsBlue = true) {
+        if (leftBallIsBlue = false) {
             jewelServo.setPosition(1.0);
         }
 
-        if (leftBallIsRed = true) {
+        if (leftBallIsRed = false) {
             jewelServo.setPosition(0.0);
+
+            rest(seconds);
         }
     }
+
 
     public void jewelArmRaise(double seconds)
     {
@@ -151,6 +159,18 @@ public class JVBlue1_Autonomous extends LinearOpMode {
 
         rest(seconds);
         stopDriving(0);
+    }
+
+    public void stopRobot (double seconds) {
+
+        frontleftMotor.setPower(0.0);
+        frontrightMotor.setPower(0.0);
+        backleftMotor.setPower(0.0);
+        backrightMotor.setPower(0.0);
+        liftMotor.setPower(0.0);
+        jewelMotor.setPower(0.0);
+
+        rest(seconds);
     }
 
     public void driveLeft(double seconds) {
