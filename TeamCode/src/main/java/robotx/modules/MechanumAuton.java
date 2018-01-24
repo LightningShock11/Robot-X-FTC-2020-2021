@@ -38,7 +38,7 @@ public class MechanumAuton extends OmniAutonomousSystem {
     }
     // Return the current distance the right side has traveled, in encoder ticks.
     public int getYTicks() {
-        return backLeftMotor.getCurrentPosition();
+        return -backLeftMotor.getCurrentPosition();
     }
 
     // Input encoder ticks and return centimeters.
