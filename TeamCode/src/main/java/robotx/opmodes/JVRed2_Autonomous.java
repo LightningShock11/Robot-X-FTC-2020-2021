@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -23,6 +24,10 @@ public class JVRed2_Autonomous extends LinearOpMode {
     Servo rightServo;
     DcMotor liftMotor;
 
+    ColorSensor armColor;
+    Servo jewelServo;
+    DcMotor jewelMotor;
+
     double power = 0.5;
     double power2 = 1.0;
 
@@ -40,6 +45,10 @@ public class JVRed2_Autonomous extends LinearOpMode {
         leftServo = hardwareMap.servo.get("leftServo");
 
         liftMotor = hardwareMap.dcMotor.get("liftMotor");
+
+        armColor = hardwareMap.colorSensor.get("colorSensor");
+        jewelServo = hardwareMap.servo.get("jewelServo");
+        jewelMotor = hardwareMap.dcMotor.get("JewelMotor");
 
         waitForStart();
         runtime.reset();
@@ -70,6 +79,52 @@ public class JVRed2_Autonomous extends LinearOpMode {
             // leftMotor.setPower(-gamepad1.left_stick_y);
             // rightMotor.setPower(-gamepad1.right_stick_y);
         }
+    }
+
+    //THE JEWEL ARM CODE
+
+    boolean leftBallIsBlue;
+    boolean leftBallIsRed;
+
+
+
+    //servo positions (looking at the front)
+    //right: 0.0
+    //upright: 0.4
+    //Left: 1.0
+
+    public void jewelArmLower(double seconds)
+    {
+        jewelServo.setPosition(0.4);
+        jewelMotor.setPower(0.5);
+
+        rest(seconds);
+    }
+
+    public void colorEval(double seconds) {
+        if (armColor.blue() > armColor.red()) {
+            leftBallIsBlue = true;                  //when i say "left," i mean "left while looking at the balls from inside the field"
+            leftBallIsRed = false;
+        } else if (armColor.blue() < armColor.red()) {
+            leftBallIsRed = true;
+            leftBallIsBlue = false;
+        }
+
+        if (leftBallIsBlue = true) {
+            jewelServo.setPosition(1.0);
+        }
+
+        if (leftBallIsRed = true) {
+            jewelServo.setPosition(0.0);
+        }
+    }
+
+    public void jewelArmRaise(double seconds)
+    {
+        jewelServo.setPosition(0.4);
+        jewelMotor.setPower(-0.5);
+
+        rest(seconds);
     }
 
     public void stopDriving(double seconds) {

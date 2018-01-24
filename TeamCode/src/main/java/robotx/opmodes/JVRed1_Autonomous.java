@@ -1,3 +1,4 @@
+
 package robotx.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -37,6 +38,7 @@ public class JVRed1_Autonomous extends LinearOpMode {
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+        telemetry.addData("Jewel Motor Position:", jewelMotor.getCurrentPosition());
 
         frontleftMotor = hardwareMap.dcMotor.get("FrontLeftMotor");
         frontrightMotor = hardwareMap.dcMotor.get("FrontRightMotor");
@@ -48,9 +50,17 @@ public class JVRed1_Autonomous extends LinearOpMode {
 
         liftMotor = hardwareMap.dcMotor.get("liftMotor");
 
+        armColor = hardwareMap.colorSensor.get("colorSensor");
+        jewelServo = hardwareMap.servo.get("jewelServo");
+        jewelMotor = hardwareMap.dcMotor.get("JewelMotor");
+
         waitForStart();
         runtime.reset();
 
+
+        jewelArmLower(2.5);
+        colorEval(3.0);
+        jewelArmRaise(2.5);
         middleGrabber(0.1);
         liftUp(1.4);
         driveForward(0.8);
@@ -63,11 +73,6 @@ public class JVRed1_Autonomous extends LinearOpMode {
         driveBackward(0.2);
         closeGrabber(0.1);
 
-        jewelArmLower(1.5);
-        jewelArmRaise(1.5);
-
-
-
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
         backleftMotor.setPower(0.0);
@@ -78,10 +83,7 @@ public class JVRed1_Autonomous extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
-            telemetry.addData("Jewel Motor Position:", jewelMotor.getCurrentPosition());
-            // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
-            // leftMotor.setPower(-gamepad1.left_stick_y);
-            // rightMotor.setPower(-gamepad1.right_stick_y);
+
         }
     }
 
@@ -91,9 +93,8 @@ public class JVRed1_Autonomous extends LinearOpMode {
 
     boolean leftBallIsBlue;
     boolean leftBallIsRed;
-;
 
-    double power3 = 0.5;
+
 
     //servo positions (looking at the front)
     //right: 0.0
@@ -103,36 +104,33 @@ public class JVRed1_Autonomous extends LinearOpMode {
     public void jewelArmLower(double seconds)
     {
         jewelServo.setPosition(0.4);
-        jewelMotor.setPower(power3);
+        jewelMotor.setPower(0.5);
 
         rest(seconds);
     }
 
-    public void colorEval(){
-        if (armColor.blue() > armColor.red()){
+    public void colorEval(double seconds) {
+        if (armColor.blue() > armColor.red()) {
             leftBallIsBlue = true;                  //when i say "left," i mean "left while looking at the balls from inside the field"
             leftBallIsRed = false;
-        }
-        else if (armColor.blue() < armColor.red()){
+        } else if (armColor.blue() < armColor.red()) {
             leftBallIsRed = true;
             leftBallIsBlue = false;
         }
 
-        if (leftBallIsBlue = true)
-        {
+        if (leftBallIsBlue = true) {
             jewelServo.setPosition(1.0);
         }
 
-        if (leftBallIsRed = true)
-        {
+        if (leftBallIsRed = true) {
             jewelServo.setPosition(0.0);
         }
-
     }
+
     public void jewelArmRaise(double seconds)
     {
         jewelServo.setPosition(0.4);
-        jewelMotor.setPower(power3);
+        jewelMotor.setPower(-0.5);
 
         rest(seconds);
     }
@@ -227,7 +225,7 @@ public class JVRed1_Autonomous extends LinearOpMode {
     }
 
     public void closeGrabber (double seconds) {
-        rightServo.setPosition(0.0);
+        rightServo.setPosition(0.01);
         leftServo.setPosition(0.9);
 
         rest(seconds);

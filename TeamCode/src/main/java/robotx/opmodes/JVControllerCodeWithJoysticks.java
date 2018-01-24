@@ -81,7 +81,7 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         */
 
 
-
+        telemetry.addData("Front Left Motor:", frontleftMotor.getCurrentPosition());
 
         //DRIVING CODE
         double x = xGamepad1.left_stick_x;
