@@ -81,7 +81,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw.closeClaw();
         sleep(2000);
 
-        //Knock Jews
+        //Knock Jewels
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
@@ -89,20 +89,24 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(4000);
         jewelColor.raiseArm();
 
-        //Cryptobox filling
+        //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(1, 10);
+            movement.driveForward(0.8, 10);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(1, 20);
+            movement.driveForward(0.8, 20);
             sleep(1000);
-        }else if (isRight){
-            movement.driveForward(1, 30);
+        } else if (isRight){
+            movement.driveForward(0.8, 30);
             sleep(1000);
+        } else {
+            movement.driveForward(0.8, 20);
+            sleep(2000);
         }
+        //try to fill the cryptobox
         movement.pointTurnLeft(90);
         sleep(500);
-        movement.driveForward(1, 5);
+        movement.driveForward(0.8, 5);
         sleep(1000);
         glyphClaw.rotateClawDown();
         sleep(1000);
