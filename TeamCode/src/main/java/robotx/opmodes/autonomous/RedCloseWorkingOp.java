@@ -99,7 +99,7 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         jewelColor.knockOffBlueGem();
         sleep(2000);
         jewelColor.raiseArm();
-        sleep(2000);
+        sleep(1000);
         movement.pointTurnLeft(10);
 
         //Vuforia Movement that defines where the robot goes to

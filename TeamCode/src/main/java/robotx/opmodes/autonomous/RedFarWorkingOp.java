@@ -104,16 +104,16 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 60);
+            movement.driveForward(0.8, 40);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(0.8, 60);
+            movement.driveForward(0.8, 40);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.8, 60);
+            movement.driveForward(0.8, 40);
             sleep(1000);
         } else {
-            movement.driveBackward(1, 60);
+            movement.driveBackward(1, 40);
             sleep(1000);
         }
         //try to fill the cryptobox
@@ -139,83 +139,6 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
 
 
-
-        // Drive backward slightly to better grab the claw.
-        /*
-
-        // Drive forward to go back to the starting position.
-        movement.driveBackward(0.2, 8);
-
-
-        movement.driveBackward(0.8, 1);
-        sleep(1000);
-        movement.driveBackward(0.3, 3);
-        sleep(1000);
-        movement.driveBackward(0.2, 10);
-        sleep(750);
-        movement.driveBackward(0.4, 4);
-        sleep(500);
-        glyphClaw.rotateClawDown();
-        sleep(500);
-        glyphClaw.closeClaw();
-        sleep(500);
-        glyphClaw.raiseClaw();
-        sleep(200);
-        glyphClaw.stopClaw();
-        sleep(200);
-        movement.driveBackward(0.4, 45);
-        sleep(750);
-        movement.pointTurnLeft(90);
-        sleep(750);
-        glyphClaw.openClaw(); 
-        sleep(500);
-        glyphClaw.rotateClawUp();
-        sleep(750);
-        movement.driveBackward(0.4, 10);
-        sleep(200);
-        movement.stop();/*
-
-        // Knock off the correct jewel.
-       /* jewelColor.knockOffRedGem();
-        sleep(1000);
-
-        // Drive straight off the balancing stone.
-        movement.driveBackward(0.4, 60);
-
-        sleep(1000);
-        */
-
-        // Turn and face the cryptobox.
-
-
-        // Do something based on the vuMarkStatus
-        /*if (isLeft) {
-            telemetry.addData("VuMark", "LEFT");
-            movement.pointTurnLeft(90);
-            sleep(200);
-            movement.driveBackward(0.6, 15);
-            sleep(200);
-            movement.pointTurnRight(90);
-            sleep(200);
-            movement.driveBackward(0.6, 15);
-        } else if (isCenter) {
-            telemetry.addData("VuMark", "CENTER");
-            movement.driveBackward(0.5, 20);
-        } else if (isRight) {
-            telemetry.addData("VuMark", "RIGHT");
-            movement.pointTurnRight(90);
-            sleep(200);
-            movement.driveBackward(0.6, 15);
-            sleep(200);
-            movement.pointTurnLeft(90);
-            sleep(200);
-            movement.driveBackward(0.6, 15);
-        } else {
-            telemetry.addData("VuMark", "UNKNOWN");
-        }
-        this.updateTelemetry(telemetry);
-
-        sleep(3000);*/
 
     }
 }
