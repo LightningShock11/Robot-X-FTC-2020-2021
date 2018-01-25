@@ -59,7 +59,7 @@ public class GlyphClaw extends XModule {
         clawIsOpen = true;
     }
     public void rotateClawUp(){
-        rotateServo.setPosition(0.0);
+        rotateServo.setPosition(0.05);
         armIsUp = true;
     }
     public void rotateClawDown(){
