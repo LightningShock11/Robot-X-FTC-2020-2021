@@ -42,15 +42,15 @@ public class MechanumDriveNoLag extends XModule {
 
         // Slow down the robot if bumpers are held down.
         if (xGamepad1().left_bumper.isDown() && xGamepad1().right_bumper.isDown()){
-            FLpower /= 5;
-            FRpower /= 5;
-            BRpower /= 5;
-            BLpower /= 5;
+            FLpower = FLpower / 5;
+            FRpower = FRpower / 5;
+            BRpower = BRpower / 5;
+            BLpower = BLpower / 5;
         } else if (xGamepad1().left_bumper.isDown() || xGamepad1().right_bumper.isDown()){
-            FLpower /= 2;
-            FRpower /= 2;
-            BRpower /= 2;
-            BLpower /= 2;
+            FLpower = FLpower / 2;
+            FRpower = FRpower / 2;
+            BRpower = BRpower / 2;
+            BLpower = BLpower / 2;
         }
 
         // Assign the finalized powers to the motors.

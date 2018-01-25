@@ -127,7 +127,7 @@ public class RedFarWorkingOp extends XLinearOpMode {
         sleep(1000);
         movement.driveBackward(0.8,5);
         sleep(1000);
-        movement.driveForward(0.8, 10);
+        movement.driveForward(0.8, 18);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);
