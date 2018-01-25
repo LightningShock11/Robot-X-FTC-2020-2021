@@ -9,6 +9,7 @@ import robotx.modules.LedAlwaysOn;
 import robotx.modules.MechaBot;
 import robotx.modules.MechanumDrive;
 import robotx.modules.MechanumDriveNoLag;
+import robotx.modules.TeleOpTimerDisplay;
 
 /**
  * Created by Ben Sabo on 10/25/2017.
@@ -21,6 +22,7 @@ public class MechaBotOnOp extends XOpMode {
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
     LedAlwaysOn ledAlwaysOn;
+    TeleOpTimerDisplay timer;
 
 
     public void initModules(){
@@ -42,6 +44,10 @@ public class MechaBotOnOp extends XOpMode {
 
         ledAlwaysOn = new LedAlwaysOn(this);
         activeModules.add(ledAlwaysOn);
+
+        timer = new TeleOpTimerDisplay(this);
+        timer.displayGamePeriod = true;
+        activeModules.add(timer);
     }
     public void init(){super.init();}
 }
