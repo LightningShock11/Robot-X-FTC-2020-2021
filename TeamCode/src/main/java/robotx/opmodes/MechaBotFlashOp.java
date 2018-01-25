@@ -9,6 +9,7 @@ import robotx.modules.LedFlash;
 import robotx.modules.MechaBot;
 import robotx.modules.MechanumDrive;
 import robotx.modules.MechanumDriveNoLag;
+import robotx.modules.TeleOpTimerDisplay;
 
 /**
  * Created by Ben Sabo on 10/25/2017.
@@ -21,7 +22,7 @@ public class MechaBotFlashOp extends XOpMode {
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
     LedFlash ledFlash;
-
+    TeleOpTimerDisplay timer;
 
     public void initModules(){
         super.initModules();
@@ -41,6 +42,10 @@ public class MechaBotFlashOp extends XOpMode {
 
         ledFlash = new LedFlash(this);
         activeModules.add(ledFlash);
+
+        timer = new TeleOpTimerDisplay(this);
+        timer.displayGamePeriod = true;
+        activeModules.add(timer);
     }
     public void init(){super.init();}
 }
