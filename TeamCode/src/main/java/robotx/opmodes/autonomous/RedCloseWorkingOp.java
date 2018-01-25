@@ -13,8 +13,8 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseTestingOp", group = "Autonomous")
-public class BlueCloseTestingOp extends XLinearOpMode {
+@Autonomous(name = "RedCloseWorkingOp", group = "Autonomous")
+public class RedCloseWorkingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
@@ -58,7 +58,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(250);
         glyphClaw.lowerClaw();
         sleep(750);
-
+        
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
 
@@ -96,29 +96,28 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
-        jewelColor.knockOffRedGem();
-        sleep(1000);
+        jewelColor.knockOffBlueGem();
+        sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);
+        movement.pointTurnLeft(10);
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 70);
+            movement.driveBackward(0.8, 70);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(0.8, 90);
+            movement.driveBackward(0.8, 90);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.8, 110);
+            movement.driveBackward(0.8, 110);
             sleep(1000);
         } else {
-            movement.driveForward(0.8, 90);
+            movement.driveBackward(0.8, 75);
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnLeft(90);
-        sleep(500);
-        movement.driveBackward(0.8, 10);
+        movement.pointTurnLeft(85);
         sleep(500);
         glyphClaw.rotateClawDown();
         sleep(1000);
@@ -126,7 +125,9 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(1000);
         glyphClaw.rotateClawUp();
         sleep(1000);
-        movement.driveForward(0.8,25);
+        movement.driveBackward(0.8, 5);
+        sleep(1000);
+        movement.driveForward(0.8, 40);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);
@@ -143,14 +144,14 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         /*
 
         // Drive forward to go back to the starting position.
-        movement.driveForward(0.2, 8);
+        movement.driveBackward(0.2, 8);
 
 
-        movement.driveForward(0.8, 1);
+        movement.driveBackward(0.8, 1);
         sleep(1000);
         movement.driveBackward(0.3, 3);
         sleep(1000);
-        movement.driveForward(0.2, 10);
+        movement.driveBackward(0.2, 10);
         sleep(750);
         movement.driveBackward(0.4, 4);
         sleep(500);
@@ -162,7 +163,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(200);
         glyphClaw.stopClaw();
         sleep(200);
-        movement.driveForward(0.4, 45);
+        movement.driveBackward(0.4, 45);
         sleep(750);
         movement.pointTurnLeft(90);
         sleep(750);
@@ -170,7 +171,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(500);
         glyphClaw.rotateClawUp();
         sleep(750);
-        movement.driveForward(0.4, 10);
+        movement.driveBackward(0.4, 10);
         sleep(200);
         movement.stop();/*
 
@@ -179,7 +180,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(1000);
 
         // Drive straight off the balancing stone.
-        movement.driveForward(0.4, 60);
+        movement.driveBackward(0.4, 60);
 
         sleep(1000);
         */
@@ -192,23 +193,23 @@ public class BlueCloseTestingOp extends XLinearOpMode {
             telemetry.addData("VuMark", "LEFT");
             movement.pointTurnLeft(90);
             sleep(200);
-            movement.driveForward(0.6, 15);
+            movement.driveBackward(0.6, 15);
             sleep(200);
             movement.pointTurnRight(90);
             sleep(200);
-            movement.driveForward(0.6, 15);
+            movement.driveBackward(0.6, 15);
         } else if (isCenter) {
             telemetry.addData("VuMark", "CENTER");
-            movement.driveForward(0.5, 20);
+            movement.driveBackward(0.5, 20);
         } else if (isRight) {
             telemetry.addData("VuMark", "RIGHT");
             movement.pointTurnRight(90);
             sleep(200);
-            movement.driveForward(0.6, 15);
+            movement.driveBackward(0.6, 15);
             sleep(200);
             movement.pointTurnLeft(90);
             sleep(200);
-            movement.driveForward(0.6, 15);
+            movement.driveBackward(0.6, 15);
         } else {
             telemetry.addData("VuMark", "UNKNOWN");
         }

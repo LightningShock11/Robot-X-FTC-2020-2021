@@ -69,11 +69,11 @@ public class AutonTestingOp extends XLinearOpMode {
 
         // Test out movement.
         sleep(1000);
-        movement.driveForward(0.4, 100);
+        movement.driveForward(0.4, 50);
         sleep(1000);
         movement.pointTurnRight(180);
         sleep(1000);
-        movement.driveForward(0.8, 100);
+        movement.driveForward(0.8, 50);
         sleep(1000);
         movement.pointTurnLeft(90);
         sleep(1000);
@@ -86,12 +86,14 @@ public class AutonTestingOp extends XLinearOpMode {
         glyphClaw.rotateClawDown();
         sleep(1000);
         glyphClaw.raiseClaw();
-        sleep(300);
+        sleep(500);
         glyphClaw.lowerClaw();
-        sleep(250);
+        sleep(450);
         glyphClaw.stopClaw();
         sleep(1000);
         glyphClaw.rotateClawUp();
+        sleep(1000);
+        glyphClaw.openClaw();
         sleep(1000);
 
         // Test jewel color arm.

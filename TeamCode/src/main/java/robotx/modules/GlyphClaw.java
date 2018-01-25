@@ -115,10 +115,10 @@ public class GlyphClaw extends XModule {
         }
 
         if (clawServoPosition > 0.95) {
-            clawIsOpen = false;
+            clawIsOpen = true;
         }
         if (clawServoPosition < 0.05) {
-            clawIsOpen = true;
+            clawIsOpen = false;
         }
 
         if(xGamepad2().x.wasPressed()) {
