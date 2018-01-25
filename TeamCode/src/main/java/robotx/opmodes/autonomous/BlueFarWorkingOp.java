@@ -117,7 +117,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnRight(10);
+        movement.pointTurnRight(20);
         sleep(500);
         glyphClaw.rotateClawDown();
         sleep(1000);
