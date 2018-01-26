@@ -61,7 +61,6 @@ public class JewelColor extends XModule {
         armColor.enableLed(true);
         opMode.telemetry.addLine("Color sensor is online");
         armServo = opMode.hardwareMap.servo.get("armServo");
-        raiseArm();
     }
 
     private void sleep(long milliseconds) {

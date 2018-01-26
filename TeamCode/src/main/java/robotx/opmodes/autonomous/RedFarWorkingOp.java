@@ -50,21 +50,12 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
-        glyphClaw.closeClaw();
-        sleep(1500);
-        glyphClaw.raiseClaw();
-        sleep(750);
-        jewelColor.raiseArm();
-        sleep(250);
-        glyphClaw.lowerClaw();
-        sleep(750);
-        
+
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
 
         // Initialize servo positions.
         glyphClaw.start();
-        jewelColor.start();
 
         // Calibrate gyro.
         sensors.calibrateGyro();
@@ -78,7 +69,7 @@ public class RedFarWorkingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
-        jewelColor.start();
+
 
         // Get and store the vuMarkStatus
         boolean isLeft = vuMarkDetection.isLeft();
@@ -91,6 +82,14 @@ public class RedFarWorkingOp extends XLinearOpMode {
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
         sleep(2000);
+
+        //Get arm servo into correct position
+        glyphClaw.raiseClaw();
+        sleep(750);
+        jewelColor.raiseArm();
+        sleep(250);
+        glyphClaw.lowerClaw();
+        sleep(1750);
 
         //Knock Jewels
         jewelColor.lowerArm();

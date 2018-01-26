@@ -46,29 +46,19 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor.autonomousMovement = movement;
         jewelColor.init();
         jewelColor.raiseArmAuton();
-        sleep(500);
 
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
-        glyphClaw.closeClaw();
-        sleep(1500);
-        glyphClaw.raiseClaw();
-        sleep(750);
-        jewelColor.raiseArm();
-        sleep(250);
-        glyphClaw.lowerClaw();
-        sleep(750);
 
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
 
         // Initialize servo positions.
         glyphClaw.start();
-        jewelColor.start();
+
 
         // Calibrate gyro.
         sensors.calibrateGyro();
-
         waitForStart(); // Wait for start to be pressed.
         telemetry.addData("Stage", "Start");
         this.updateTelemetry(telemetry);
@@ -78,7 +68,6 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
-        jewelColor.start();
 
         // Get and store the vuMarkStatus
         boolean isLeft = vuMarkDetection.isLeft();
@@ -92,6 +81,14 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw.closeClaw();
         sleep(2000);
 
+        //Get arm servo into correct position
+        glyphClaw.raiseClaw();
+        sleep(750);
+        jewelColor.raiseArm();
+        sleep(250);
+        glyphClaw.lowerClaw();
+        sleep(1750);
+
         //Knock Jewels
         jewelColor.lowerArm();
         sleep(1000);
@@ -103,13 +100,13 @@ public class BlueCloseTestingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 70);
-            sleep(1000);
-        } else if (isCenter){
             movement.driveForward(0.8, 90);
             sleep(1000);
-        } else if (isRight){
+        } else if (isCenter){
             movement.driveForward(0.8, 110);
+            sleep(1000);
+        } else if (isRight){
+            movement.driveForward(0.8, 150);
             sleep(1000);
         } else {
             movement.driveForward(0.8, 90);
