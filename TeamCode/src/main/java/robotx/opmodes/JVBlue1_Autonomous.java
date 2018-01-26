@@ -63,7 +63,7 @@ public class JVBlue1_Autonomous extends LinearOpMode {
             rotateLeft(0.54);
             liftDown(1.4);
             driveForward(1.1);
-            driveLeft(0.4);
+            driveLeft(0.32);
             driveForward(0.8);
             openGrabber(0.1);
             driveBackward(0.2);
@@ -80,7 +80,6 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
-
             // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
             // leftMotor.setPower(-gamepad1.left_stick_y);
             // rightMotor.setPower(-gamepad1.right_stick_y);
@@ -116,12 +115,24 @@ public class JVBlue1_Autonomous extends LinearOpMode {
             leftBallIsBlue = false;
         }
 
-        if (leftBallIsBlue = false) {
-            jewelServo.setPosition(1.0);
+
+        if (leftBallIsBlue)
+        {
+            telemetry.addData("Amount of Red: ", armColor.red());
+            telemetry.addData("Amount of Blue", armColor.blue());
+            telemetry.update();
+
+            jewelServo.setPosition(0.0);
+
+            rest(seconds);
         }
 
-        if (leftBallIsRed = false) {
-            jewelServo.setPosition(0.0);
+        else if (leftBallIsRed) {
+            telemetry.addData("Amount of Red: ", armColor.red());
+            telemetry.addData("Amount of Blue: ", armColor.blue());
+            telemetry.update();
+
+            jewelServo.setPosition(1.0);
 
             rest(seconds);
         }

@@ -116,12 +116,26 @@ public class JVBlue2_Autonomous extends LinearOpMode {
             leftBallIsBlue = false;
         }
 
-        if (leftBallIsBlue = false) {
-            jewelServo.setPosition(1.0);
+        if (leftBallIsBlue) {
+
+            telemetry.addData("Amount of Red: ", armColor.red());
+            telemetry.addData("Amount of Blue", armColor.blue());
+            telemetry.update();
+
+            jewelServo.setPosition(0.0);
+
+            rest(seconds);
         }
 
-        if (leftBallIsBlue = true) {
-            jewelServo.setPosition(0.0);
+        else if (leftBallIsRed) {
+
+            telemetry.addData("Amount of Red: ", armColor.red());
+            telemetry.addData("Amount of Blue", armColor.blue());
+            telemetry.update();
+
+            jewelServo.setPosition(1.0);
+
+            rest(seconds);
         }
     }
 
