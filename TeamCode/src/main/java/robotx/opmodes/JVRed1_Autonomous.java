@@ -67,12 +67,16 @@ public class JVRed1_Autonomous extends LinearOpMode {
         driveForward(0.8);
         rotateRight(0.54);
         driveForward(1.1);
-        driveRight(0.4);
+        driveRight(0.323);
         liftDown(1.4);
         driveForward(0.4);
         openGrabber(0.1);
         driveBackward(0.2);
         closeGrabber(0.1);
+        driveForward(1.0);
+        driveBackward(0.2);
+        jewelArmLower(0.2);
+        stopRobot(0.1);
 
         frontleftMotor.setPower(0.0);
         frontrightMotor.setPower(0.0);
@@ -145,7 +149,6 @@ public class JVRed1_Autonomous extends LinearOpMode {
 
     public void jewelArmRaise(double seconds)
     {
-        jewelServo.setPosition(0.4);
         jewelMotor.setPower(-0.5);
 
         rest(seconds);

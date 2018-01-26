@@ -203,12 +203,20 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     {
         double output = input;
         double coeff = 1.0;
-        if (xGamepad2.right_stick_button.isDown()) {
+        if (xGamepad1.right_stick_button.isDown()) {
             coeff = coeff / 1.0;
         }
 
-        else
 
+        else if (xGamepad1.left_bumper.isDown()) {
+            coeff = coeff / 4.0;
+        }
+
+        else if (xGamepad1.right_bumper.isDown()) {
+            coeff = coeff / 4.0;
+        }
+
+        else
         {
             coeff = coeff / 2.0;
         }
