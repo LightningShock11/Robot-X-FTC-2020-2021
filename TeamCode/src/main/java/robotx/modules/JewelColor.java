@@ -84,20 +84,21 @@ public class JewelColor extends XModule {
     public void knockOffRightGem() {
         lowerArm();
         sleep(500);
-        autonomousMovement.pointTurnLeft(15);
+        autonomousMovement.pointTurnRight(15);
         sleep(500);
         raiseArm();
         sleep(500);
-        autonomousMovement.pointTurnRight(15);
+        autonomousMovement.pointTurnLeft(15);
     }
     public void knockOffLeftGem() {
         lowerArm();
         sleep(500);
-        autonomousMovement.pointTurnRight(15);
+        autonomousMovement.pointTurnLeft(15);
         sleep(500);
         raiseArm();
         sleep(500);
-        autonomousMovement.pointTurnLeft(15);
+        autonomousMovement.pointTurnRight(15);
+
     }
 
     public void knockOffRedGem() {
@@ -129,7 +130,7 @@ public class JewelColor extends XModule {
         armIsUp = false;
     }
     public void raiseArm() {
-        armServo.setPosition(0.4);
+        armServo.setPosition(0.45);
         armIsUp = true;
     }
     public void raiseArmAuton(){
@@ -144,7 +145,7 @@ public class JewelColor extends XModule {
     public void loop(){
         opMode.telemetry.addData("Color", colorEval().toString());
         raiseArm();
-        if (xGamepad2().dpad_right.isDown() && xGamepad1().dpad_right.isDown()){
+        if (xGamepad2().a.isDown()){
             lowerArm();
         }
     }

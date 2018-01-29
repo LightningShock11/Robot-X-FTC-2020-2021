@@ -84,12 +84,19 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.raiseClaw();
-        sleep(750);
-        jewelColor.raiseArm();
+        glyphClaw.startRaisingClaw();
+        long startRaiseTime = System.currentTimeMillis();
+        while ((System.currentTimeMillis()-startRaiseTime)<1200) {
+            glyphClaw.raiseClaw();
+            sleep(5);
+        }
+        glyphClaw.stopRaisingClaw();
         sleep(250);
+        jewelColor.raiseArm();
+        sleep(500);
         glyphClaw.lowerClaw();
-        sleep(1750);
+        sleep(1200);
+        glyphClaw.stopClaw();
 
         //Knock Jewels
         jewelColor.lowerArm();

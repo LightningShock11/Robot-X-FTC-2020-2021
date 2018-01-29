@@ -59,7 +59,7 @@ public class GlyphClaw extends XModule {
         clawIsOpen = true;
     }
     public void rotateClawUp(){
-        rotateServo.setPosition(0.05);
+        rotateServo.setPosition(0.025);
         armIsUp = true;
     }
     public void rotateClawDown(){
@@ -76,8 +76,30 @@ public class GlyphClaw extends XModule {
             armIsUp = true;
         }
     }
+    long timeStartedRaising = 0L;
+    boolean clawIsRaising = false;
+    public void startRaisingClaw(){
+        timeStartedRaising = System.currentTimeMillis();
+        clawIsRaising = true;
+    }
+    public void stopRaisingClaw(){
+        rackMotor.setPower(0.0);
+        clawIsRaising = false;
+    }
     public void raiseClaw() {
-        rackMotor.setPower(1);
+        double power = (double)(System.currentTimeMillis() - timeStartedRaising) / 700.0;
+        power = 0.5*Math.pow(power, 2.0) + 0.5;
+
+        // Clamp the power.
+        if (power>1.0) {
+            power = 1.0;
+        } else if (power<0.0) {
+            power = 0.0;
+        }
+
+        opMode.telemetry.addData("clawPower", power);
+
+        rackMotor.setPower(power);
     }
     public void lowerClaw() {
         rackMotor.setPower(-0.5);
@@ -121,6 +143,13 @@ public class GlyphClaw extends XModule {
             clawIsOpen = false;
         }
 
+        // New claw code for acceleration curve.
+        if (xGamepad2().dpad_up.wasPressed()) {
+            startRaisingClaw();
+        } else if (xGamepad2().dpad_down.wasReleased()) {
+            stopRaisingClaw();
+        }
+
         if(xGamepad2().x.wasPressed()) {
             toggleClaw();
         }
@@ -141,6 +170,9 @@ public class GlyphClaw extends XModule {
             pusherIn();
         }
         */
+
+
+
         //Debug code:
         opMode.telemetry.addData("clawIsOpen", clawIsOpen);
     }

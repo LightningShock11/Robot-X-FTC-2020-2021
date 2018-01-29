@@ -13,7 +13,7 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "BlueCloseWorkingOp", group = "Autonomous")
+@Autonomous(name = "BlueCloseNOTWorkingOp", group = "Autonomous")
 public class BlueCloseWorkingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;

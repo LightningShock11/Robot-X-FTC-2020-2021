@@ -82,19 +82,27 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.raiseClaw();
-        sleep(750);
-        jewelColor.raiseArm();
+        glyphClaw.startRaisingClaw();
+        long startRaiseTime = System.currentTimeMillis();
+        while ((System.currentTimeMillis()-startRaiseTime)<1200) {
+            glyphClaw.raiseClaw();
+            sleep(5);
+        }
+        glyphClaw.stopRaisingClaw();
         sleep(250);
+        jewelColor.raiseArm();
+        sleep(500);
         glyphClaw.lowerClaw();
-        sleep(1750);
+        sleep(1200);
+        glyphClaw.stopClaw();
+
 
         //Knock Jewels
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
-        jewelColor.knockOffRedGem();
-        sleep(1000);
+        jewelColor.knockOffBlueGem();
+        sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);
 
@@ -109,11 +117,11 @@ public class BlueCloseTestingOp extends XLinearOpMode {
             movement.driveForward(0.8, 150);
             sleep(1000);
         } else {
-            movement.driveForward(0.8, 90);
+            movement.driveForward(0.8, 95);
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnLeft(90);
+        movement.pointTurnLeft(85);
         sleep(500);
         movement.driveBackward(0.8, 10);
         sleep(500);

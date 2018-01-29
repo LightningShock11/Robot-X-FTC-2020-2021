@@ -83,27 +83,34 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.raiseClaw();
-        sleep(750);
-        jewelColor.raiseArm();
+        glyphClaw.startRaisingClaw();
+        long startRaiseTime = System.currentTimeMillis();
+        while ((System.currentTimeMillis()-startRaiseTime)<1200) {
+            glyphClaw.raiseClaw();
+            sleep(5);
+        }
+        glyphClaw.stopRaisingClaw();
         sleep(250);
+        jewelColor.raiseArm();
+        sleep(500);
         glyphClaw.lowerClaw();
-        sleep(750);
-        sleep(1000);
+        sleep(1200);
+        glyphClaw.stopClaw();
+
 
         //Knock Jewels
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
-        jewelColor.knockOffBlueGem();
+        jewelColor.knockOffRedGem();
         sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);
-        movement.pointTurnLeft(10);
+
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveBackward(0.8, 75);
+            movement.driveBackward(0.8, 70);
             sleep(1000);
         } else if (isCenter){
             movement.driveBackward(0.8, 90);
@@ -112,7 +119,7 @@ public class RedCloseWorkingOp extends XLinearOpMode {
             movement.driveBackward(0.8, 110);
             sleep(1000);
         } else {
-            movement.driveBackward(0.8, 75);
+            movement.driveBackward(0.8, 65);
             sleep(1000);
         }
         //try to fill the cryptobox
