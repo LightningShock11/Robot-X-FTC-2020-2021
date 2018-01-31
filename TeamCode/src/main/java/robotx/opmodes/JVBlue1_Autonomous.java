@@ -54,21 +54,23 @@ public class JVBlue1_Autonomous extends LinearOpMode {
         runtime.reset();
 
             middleGrabber(0.1);
-            jewelArmLower(2.5);
-            stopRobot(3.0);
+          jewelArmLower(2.5);
+           stopRobot(3.0);
             colorEval(3.0);
-            jewelArmRaise(2.5);
+            jewelArmRaise(2.0);
             liftUp(1.4);
             driveForward(0.8);
-            rotateLeft(0.54);
+            stopDriving(0.4);
+            rotateLeft(0.5);
             liftDown(1.4);
             driveForward(1.1);
-            driveLeft(0.35);
+            driveLeft(0.2);
             driveForward(0.8);
             openGrabber(0.1);
             driveBackward(0.2);
             closeGrabber(0.1);
             driveForward(1.0);
+            stopDriving(1.0);
             driveBackward(0.2);
             jewelArmLower(0.2);
             stopRobot(0.1);
@@ -98,12 +100,12 @@ public class JVBlue1_Autonomous extends LinearOpMode {
 
     //servo positions (looking at the front)
     //right: 0.0
-    //upright: 0.4
+    //upright: 0.5
     //Left: 1.0
 
     public void jewelArmLower(double seconds)
     {
-        jewelServo.setPosition(0.4);
+        jewelServo.setPosition(0.5);
         jewelMotor.setPower(0.5);
 
         rest(seconds);

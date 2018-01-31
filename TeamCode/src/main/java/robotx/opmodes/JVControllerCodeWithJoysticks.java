@@ -80,7 +80,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         }
         */
 
-
         telemetry.addData("Front Left Motor:", frontleftMotor.getCurrentPosition());
 
         //DRIVING CODE
@@ -98,13 +97,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         frontrightMotor.setPower(rotY+rotationPower);
         backleftMotor.setPower(rotY-rotationPower);
         backrightMotor.setPower(rotX-rotationPower);
-
-
-/*
-*/
-
-
-
 
 
         //GRABBER CODE
@@ -137,8 +129,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
         }
 
 
-
-
             //ADDITIONAL GRABBER CODE FOR BUMPERS
         if (xGamepad2.left_bumper.isDown())    //Left opens it
         {
@@ -157,7 +147,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             rightServo.setPosition(RServo);
         }
 
-
         if (xGamepad2.right_bumper.isDown())   //Right closes it
         {
             RPressed = true;
@@ -174,7 +163,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
             leftServo.setPosition(LServo);
             rightServo.setPosition(RServo);
         }
-
 
 
         //LIFT SYSTEM
@@ -197,16 +185,13 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
     }
 
 
+    public double controlRamp(double input) {
 
-
-    public double controlRamp(double input)
-    {
         double output = input;
         double coeff = 1.0;
         if (xGamepad1.right_stick_button.isDown()) {
             coeff = coeff / 1.0;
         }
-
 
         else if (xGamepad1.left_bumper.isDown()) {
             coeff = coeff / 4.0;
@@ -223,8 +208,6 @@ public class JVControllerCodeWithJoysticks extends XOpMode {
 
         return output * coeff;
     }
-
-
 
 
     @Override
