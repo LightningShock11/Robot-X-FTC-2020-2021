@@ -102,7 +102,8 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
-        jewelColor.knockOffRedGem();
+        sleep(10);
+        jewelColor.knockOffBlueGem();
         sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);

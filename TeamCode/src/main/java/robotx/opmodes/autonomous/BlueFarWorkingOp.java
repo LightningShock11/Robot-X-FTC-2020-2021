@@ -102,6 +102,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
+        sleep(10);
         jewelColor.knockOffRedGem();
         sleep(2000);
         jewelColor.raiseArm();

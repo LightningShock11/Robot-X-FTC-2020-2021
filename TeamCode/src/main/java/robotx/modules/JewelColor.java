@@ -84,20 +84,20 @@ public class JewelColor extends XModule {
     public void knockOffRightGem() {
         lowerArm();
         sleep(500);
-        autonomousMovement.pointTurnRight(15);
+        autonomousMovement.pointTurnLeft(15);
         sleep(500);
         raiseArm();
         sleep(500);
-        autonomousMovement.pointTurnLeft(15);
+        autonomousMovement.pointTurnRight(15);
     }
     public void knockOffLeftGem() {
         lowerArm();
         sleep(500);
-        autonomousMovement.pointTurnLeft(15);
+        autonomousMovement.pointTurnRight(15);
         sleep(500);
         raiseArm();
         sleep(500);
-        autonomousMovement.pointTurnRight(15);
+        autonomousMovement.pointTurnLeft(15);
 
     }
 
