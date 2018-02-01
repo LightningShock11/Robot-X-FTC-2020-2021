@@ -59,7 +59,7 @@ public class GlyphClaw extends XModule {
         clawIsOpen = true;
     }
     public void rotateClawUp(){
-        rotateServo.setPosition(0.025);
+        rotateServo.setPosition(0.05);
         armIsUp = true;
     }
     public void rotateClawDown(){
@@ -120,11 +120,6 @@ public class GlyphClaw extends XModule {
     }
     */
 
-    public void start(){
-        openClaw();
-        rotateClawUp();
-    }
-
     public void loop(){
         opMode.telemetry.addData("Servo Position:", clawServo.getPosition());
 
@@ -177,7 +172,6 @@ public class GlyphClaw extends XModule {
         opMode.telemetry.addData("clawIsOpen", clawIsOpen);
     }
     public void stop(){
-        closeClaw();
         stopClaw();
     }
 }
