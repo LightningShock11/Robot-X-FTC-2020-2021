@@ -107,7 +107,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);
-
+        movement.pointTurnRight(10);
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
@@ -120,16 +120,18 @@ public class BlueFarWorkingOp extends XLinearOpMode {
             movement.driveForward(0.8, 40);
             sleep(1000);
         } else {
-            movement.driveForward(1, 40);
+            movement.driveForward(0.5, 40);
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnRight(5);
-        sleep(500);
+
+
         glyphClaw.rotateClawDown();
         sleep(1000);
         glyphClaw.openClaw();
         sleep(1000);
+        movement.pointTurnRight(10);
+        sleep(500);
         glyphClaw.rotateClawUp();
         sleep(1000);
         movement.driveBackward(0.8,5);

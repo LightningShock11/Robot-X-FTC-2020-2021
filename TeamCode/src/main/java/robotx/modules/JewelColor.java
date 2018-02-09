@@ -104,17 +104,17 @@ public class JewelColor extends XModule {
     public void knockOffRedGem() {
         GemStatus gemStatus = colorEval();
         if (gemStatus == GemStatus.RED_ON_LEFT()) {
-            knockOffLeftGem();
-        } else if (gemStatus == GemStatus.RED_ON_RIGHT()) {
             knockOffRightGem();
+        } else if (gemStatus == GemStatus.RED_ON_RIGHT()) {
+            knockOffLeftGem();
         }
     }
     public void knockOffBlueGem() {
         GemStatus gemStatus = colorEval();
         if (gemStatus == GemStatus.BLUE_ON_LEFT()) {
-            knockOffLeftGem();
-        } else if (gemStatus == GemStatus.BLUE_ON_RIGHT()) {
             knockOffRightGem();
+        } else if (gemStatus == GemStatus.BLUE_ON_RIGHT()) {
+            knockOffLeftGem();
         }
     }
 
