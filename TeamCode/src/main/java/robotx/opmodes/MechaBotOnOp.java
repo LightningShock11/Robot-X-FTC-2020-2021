@@ -18,7 +18,6 @@ import robotx.modules.TeleOpTimerDisplay;
 public class MechaBotOnOp extends XOpMode {
 
     MechanumDriveNoLag mechanumDriveNoLag;
-   // MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
     LedAlwaysOn ledAlwaysOn;
