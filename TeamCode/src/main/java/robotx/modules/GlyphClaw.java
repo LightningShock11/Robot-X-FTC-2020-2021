@@ -34,7 +34,6 @@ public class GlyphClaw extends XModule {
     public void init(){
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         rackMotor = opMode.hardwareMap.dcMotor.get("rackMotor");
-        rackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         rackMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rotateServo = opMode.hardwareMap.servo.get("rotateServo");
 
