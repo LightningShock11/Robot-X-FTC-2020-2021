@@ -97,6 +97,11 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         glyphClaw.lowerClaw();
         sleep(1200);
         glyphClaw.stopClaw();
+        sleep(100);
+
+        //align robot
+        movement.driveBackward(0.3, 4);
+        sleep(500);
 
         //Knock Jewels
         jewelColor.lowerArm();
