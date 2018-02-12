@@ -98,7 +98,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(100);
 
         //align robot
-        movement.driveBackward(0.3, 4);
+        movement.driveBackward(0.3, 6);
         sleep(500);
 
 
@@ -139,7 +139,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         sleep(1000);
         movement.pointTurnLeft(10);
         sleep(1000);
-        movement.driveForward(0.8,25);
+        movement.driveForward(0.8,30);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);

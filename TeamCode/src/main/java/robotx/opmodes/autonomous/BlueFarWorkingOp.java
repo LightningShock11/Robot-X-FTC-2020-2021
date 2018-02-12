@@ -141,7 +141,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         sleep(1000);
         movement.driveBackward(0.8,5);
         sleep(1000);
-        movement.driveForward(0.8, 40);
+        movement.driveForward(0.8, 60);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);
