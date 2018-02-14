@@ -9,6 +9,7 @@ import robotx.modules.JewelColor;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
+import robotx.modules.LedAlwaysOn;
 
 /**
  * Created by Kush Dalal on 12/6/2017.
@@ -22,11 +23,16 @@ public class BlueFarWorkingOp extends XLinearOpMode {
     GlyphClaw glyphClaw;
     VuMarkDetection vuMarkDetection;
     JewelColor jewelColor;
+    LedAlwaysOn led;
 
     public void runOpMode() {
         // Do initialization.
+
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
+
+        led = new LedAlwaysOn(this);
+        led.init();
 
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
@@ -70,6 +76,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
+        led.start();
 
         // Get and store the vuMarkStatus
         boolean isLeft = vuMarkDetection.isLeft();
@@ -84,13 +91,14 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.startRaisingClaw();
+       /* glyphClaw.startRaisingClaw();
         long startRaiseTime = System.currentTimeMillis();
         while ((System.currentTimeMillis()-startRaiseTime)<1200) {
             glyphClaw.raiseClaw();
             sleep(5);
         }
-        glyphClaw.stopRaisingClaw();
+        glyphClaw.stopRaisingClaw();*/
+        glyphClaw.raiseClaw();
         sleep(250);
         jewelColor.raiseArm();
         sleep(500);
@@ -99,9 +107,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         glyphClaw.stopClaw();
         sleep(100);
 
-        //align robot
-        movement.driveBackward(0.3, 4);
-        sleep(500);
+
 
         //Knock Jewels
         jewelColor.lowerArm();
@@ -112,7 +118,7 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         sleep(2000);
         jewelColor.raiseArm();
         sleep(1000);
-        movement.pointTurnRight(10);
+        movement.pointTurnRight(20);
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){

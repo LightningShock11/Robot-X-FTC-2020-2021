@@ -22,4 +22,10 @@ public class LedAlwaysOn extends XModule {
     public void loop(){
         blueLed.setPower(1.0);
     }
+    public void ledOn(){
+        blueLed.setPower(1.0);
+    }
+    public void ledOff(){
+        blueLed.setPower(0.0);
+    }
 }

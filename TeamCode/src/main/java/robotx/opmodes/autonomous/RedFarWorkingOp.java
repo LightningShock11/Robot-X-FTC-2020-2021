@@ -1,11 +1,13 @@
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.LED;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
+import robotx.modules.LedAlwaysOn;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
@@ -22,11 +24,15 @@ public class RedFarWorkingOp extends XLinearOpMode {
     GlyphClaw glyphClaw;
     VuMarkDetection vuMarkDetection;
     JewelColor jewelColor;
+    LedAlwaysOn led;
 
     public void runOpMode() {
         // Do initialization.
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
+
+        led = new LedAlwaysOn(this);
+        led.init();
 
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
@@ -69,6 +75,7 @@ public class RedFarWorkingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
+        led.start();
 
 
         // Get and store the vuMarkStatus
@@ -84,13 +91,14 @@ public class RedFarWorkingOp extends XLinearOpMode {
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.startRaisingClaw();
+        /*glyphClaw.startRaisingClaw();
         long startRaiseTime = System.currentTimeMillis();
         while ((System.currentTimeMillis()-startRaiseTime)<1200) {
             glyphClaw.raiseClaw();
             sleep(5);
         }
-        glyphClaw.stopRaisingClaw();
+        glyphClaw.stopRaisingClaw();*/
+        glyphClaw.raiseClaw();
         sleep(250);
         jewelColor.raiseArm();
         sleep(500);
@@ -109,6 +117,7 @@ public class RedFarWorkingOp extends XLinearOpMode {
         sleep(1000);
 
 
+
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
             movement.driveForward(0.8, 40);
@@ -124,8 +133,10 @@ public class RedFarWorkingOp extends XLinearOpMode {
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnRight(170);
+        movement.pointTurnRight(178);
         sleep(500);
+        movement.driveBackward(0.5, 15);
+        sleep(250);
         glyphClaw.rotateClawDown();
         sleep(1000);
         glyphClaw.openClaw();

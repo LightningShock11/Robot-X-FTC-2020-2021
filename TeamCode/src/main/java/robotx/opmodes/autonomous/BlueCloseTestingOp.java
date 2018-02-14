@@ -6,6 +6,7 @@ import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
+import robotx.modules.LedAlwaysOn;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
@@ -22,11 +23,16 @@ public class BlueCloseTestingOp extends XLinearOpMode {
     GlyphClaw glyphClaw;
     VuMarkDetection vuMarkDetection;
     JewelColor jewelColor;
+    LedAlwaysOn led;
 
     public void runOpMode() {
         // Do initialization.
+
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
+
+        led = new LedAlwaysOn(this);
+        led.init();
 
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
@@ -68,28 +74,33 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
+        led.start();
 
         // Get and store the vuMarkStatus
+        sleep(1000);
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
         telemetry.addData("Left:", isLeft);
         telemetry.addData("Center:", isCenter);
         telemetry.addData("Right:", isRight);
+        updateTelemetry(telemetry);
+        sleep(1000);
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
         sleep(2000);
 
         //Get arm servo into correct position
-        glyphClaw.startRaisingClaw();
+        /*glyphClaw.startRaisingClaw();
         long startRaiseTime = System.currentTimeMillis();
         while ((System.currentTimeMillis()-startRaiseTime)<1200) {
             glyphClaw.raiseClaw();
             sleep(5);
         }
-        glyphClaw.stopRaisingClaw();
-        sleep(250);
+        glyphClaw.stopRaisingClaw();*/
+        glyphClaw.raiseClaw();
+        sleep(500);
         jewelColor.raiseArm();
         sleep(500);
         glyphClaw.lowerClaw();
@@ -97,9 +108,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         glyphClaw.stopClaw();
         sleep(100);
 
-        //align robot
-        movement.driveBackward(0.3, 6);
-        sleep(500);
+
 
 
         //Knock Jewels
@@ -112,15 +121,19 @@ public class BlueCloseTestingOp extends XLinearOpMode {
         jewelColor.raiseArm();
         sleep(1000);
 
+        //align robot
+        movement.pointTurnRight(10);
+        sleep(500);
+
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.5, 90);
+            movement.driveForward(0.5, 80);
             sleep(1000);
         } else if (isCenter){
-            movement.driveForward(0.5, 110);
+            movement.driveForward(0.5, 93);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.5, 150);
+            movement.driveForward(0.5, 105);
             sleep(1000);
         } else {
             movement.driveForward(0.5, 95);
