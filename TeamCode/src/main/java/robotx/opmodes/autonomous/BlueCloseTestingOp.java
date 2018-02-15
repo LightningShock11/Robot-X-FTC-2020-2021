@@ -133,7 +133,7 @@ public class BlueCloseTestingOp extends XLinearOpMode {
             movement.driveForward(0.5, 93);
             sleep(1000);
         } else if (isRight){
-            movement.driveForward(0.5, 105);
+            movement.driveForward(0.5, 102);
             sleep(1000);
         } else {
             movement.driveForward(0.5, 95);
