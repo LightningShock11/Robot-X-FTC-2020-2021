@@ -79,12 +79,15 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
 
         // Get and store the vuMarkStatus
+        sleep(1000);
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
         telemetry.addData("Left:", isLeft);
         telemetry.addData("Center:", isCenter);
         telemetry.addData("Right:", isRight);
+        updateTelemetry(telemetry);
+        sleep(1000);
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
@@ -120,32 +123,46 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveForward(0.8, 40);
+            movement.driveBackward(0.8, 40);
             sleep(1000);
+            movement.pointTurnRight(90);
+            sleep(500);
+            movement.driveForward(0.7, 34);
+            sleep(250);
+            movement.pointTurnRight(90);
+            sleep(250);
         } else if (isCenter){
-            movement.driveForward(0.8, 40);
+            movement.driveBackward(0.8, 40);
             sleep(1000);
+            movement.pointTurnRight(90);
+            sleep(500);
+            movement.driveForward(0.7, 19);
+            sleep(250);
+            movement.pointTurnRight(100);
+            sleep(250);
         } else if (isRight){
-            movement.driveForward(0.8, 40);
+            movement.driveBackward(0.8, 40);
             sleep(1000);
+            movement.pointTurnRight(173);
+            sleep(500);
+            movement.driveBackward(0.7, 10);
+            sleep(250);
         } else {
             movement.driveBackward(1, 40);
             sleep(1000);
         }
         //try to fill the cryptobox
-        movement.pointTurnRight(178);
-        sleep(500);
-        movement.driveBackward(0.5, 15);
-        sleep(250);
+
+
         glyphClaw.rotateClawDown();
-        sleep(1000);
+        sleep(1500);
         glyphClaw.openClaw();
         sleep(1000);
         glyphClaw.rotateClawUp();
         sleep(1000);
         movement.driveBackward(0.8,5);
         sleep(1000);
-        movement.driveForward(0.8, 18);
+        movement.driveForward(0.8, 40);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);

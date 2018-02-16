@@ -77,12 +77,15 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         led.start();
 
         // Get and store the vuMarkStatus
+        sleep(1000);
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
         telemetry.addData("Left:", isLeft);
         telemetry.addData("Center:", isCenter);
         telemetry.addData("Right:", isRight);
+        updateTelemetry(telemetry);
+        sleep(1000);
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
@@ -119,13 +122,13 @@ public class RedCloseWorkingOp extends XLinearOpMode {
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveBackward(0.8, 70);
+            movement.driveBackward(0.8, 86);
             sleep(1000);
         } else if (isCenter){
-            movement.driveBackward(0.8, 90);
+            movement.driveBackward(0.8, 70);
             sleep(1000);
         } else if (isRight){
-            movement.driveBackward(0.8, 110);
+            movement.driveBackward(0.8, 50);
             sleep(1000);
         } else {
             movement.driveBackward(0.8, 70);
@@ -137,7 +140,9 @@ public class RedCloseWorkingOp extends XLinearOpMode {
         movement.driveBackward(0.5, 15);
         sleep(250);
         glyphClaw.rotateClawDown();
-        sleep(1000);
+        sleep(1500);
+        movement.pointTurnLeft(7);
+        sleep(250);
         glyphClaw.openClaw();
         sleep(1000);
         glyphClaw.rotateClawUp();
