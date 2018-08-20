@@ -1,20 +1,16 @@
-package robotx.opmodes.autonomous;
+package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import robotx.libraries.OmniAutonomousMovement;
-import robotx.libraries.XLinearOpMode;
-import robotx.modules.GlyphClaw;
-import robotx.modules.JewelColor;
-import robotx.modules.MechanumAuton;
-import robotx.modules.MechanumDrive;
-import robotx.modules.VuMarkDetection;
+import robotx.libraries.*;
+import robotx.modules.*;
 
 /**
- * Created by Robot-X Team Member on 12/6/2017.
+ * Created by Robot-X Team Member on 12/9/2017.
  */
-@Autonomous(name = "BlueCloseCryptoOp", group = "Autonomous")
-public class BlueCloseCryptoOp extends XLinearOpMode {
+@Autonomous(name = "SafeZoneOp", group = "Autonomous")
+public class SafeZoneOp extends XLinearOpMode {
+
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
     MechanumDrive mechanumDrive;
@@ -75,17 +71,6 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
 
-        glyphClaw.rotateClawDown();
-        sleep(500);
-        glyphClaw.closeClaw();
-        sleep(500);
-        glyphClaw.raiseClaw();
-        sleep(400);
-        glyphClaw.stopClaw();
-        sleep(200);
-
-        // Knock off the correct jewel.
-        jewelColor.knockOffRedGem();
         sleep(1000);
 
         // Drive straight off the balancing stone.
@@ -93,25 +78,8 @@ public class BlueCloseCryptoOp extends XLinearOpMode {
 
         sleep(1000);
 
-        // Turn and face the cryptobox.
+        // Turn and face the glyph pile.
         movement.pointTurnLeft(90);
-
-        // Do something based on the vuMarkStatus
-        if (isLeft) {
-            telemetry.addData("VuMark", "LEFT");
-            //movement.pointTurnLeft(45);
-        } else if (isCenter) {
-            telemetry.addData("VuMark", "CENTER");
-            //movement.driveBackward(0.5, 20);
-        } else if (isRight) {
-            telemetry.addData("VuMark", "RIGHT");
-            //movement.pointTurnRight(45);
-        } else {
-            telemetry.addData("VuMark", "UNKNOWN");
-        }
-        this.updateTelemetry(telemetry);
-
-        sleep(8000);
-
     }
 }
+

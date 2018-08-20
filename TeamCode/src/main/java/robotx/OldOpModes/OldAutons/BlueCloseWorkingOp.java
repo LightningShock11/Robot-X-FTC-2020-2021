@@ -1,13 +1,11 @@
-package robotx.opmodes.autonomous;
+package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.LED;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
-import robotx.modules.LedAlwaysOn;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
@@ -15,8 +13,8 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
-@Autonomous(name = "RedFarWorkingOp", group = "Autonomous")
-public class RedFarWorkingOp extends XLinearOpMode {
+@Autonomous(name = "BlueCloseNOTWorkingOp", group = "Autonomous")
+public class BlueCloseWorkingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
@@ -24,15 +22,11 @@ public class RedFarWorkingOp extends XLinearOpMode {
     GlyphClaw glyphClaw;
     VuMarkDetection vuMarkDetection;
     JewelColor jewelColor;
-    LedAlwaysOn led;
 
     public void runOpMode() {
         // Do initialization.
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
-
-        led = new LedAlwaysOn(this);
-        led.init();
 
         mechanumDrive = new MechanumDrive(this);
         mechanumDrive.init();
@@ -56,12 +50,21 @@ public class RedFarWorkingOp extends XLinearOpMode {
 
         glyphClaw = new GlyphClaw(this);
         glyphClaw.init();
+        glyphClaw.closeClaw();
+        sleep(1500);
+        glyphClaw.raiseClaw();
+        sleep(750);
+        jewelColor.raiseArm();
+        sleep(250);
+        glyphClaw.lowerClaw();
+        sleep(750);
 
         vuMarkDetection = new VuMarkDetection(this);
         vuMarkDetection.init();
 
         // Initialize servo positions.
         glyphClaw.start();
+        jewelColor.start();
 
         // Calibrate gyro.
         sensors.calibrateGyro();
@@ -75,105 +78,59 @@ public class RedFarWorkingOp extends XLinearOpMode {
         mechanumDrive.start();
         glyphClaw.start();
         vuMarkDetection.start();
-        led.start();
-
+        jewelColor.start();
 
         // Get and store the vuMarkStatus
-        sleep(1000);
         boolean isLeft = vuMarkDetection.isLeft();
         boolean isCenter = vuMarkDetection.isCenter();
         boolean isRight = vuMarkDetection.isRight();
         telemetry.addData("Left:", isLeft);
         telemetry.addData("Center:", isCenter);
         telemetry.addData("Right:", isRight);
-        updateTelemetry(telemetry);
-        sleep(1000);
 
         //New Glyph Off the top Mechanism
         glyphClaw.closeClaw();
         sleep(2000);
 
-        //Get arm servo into correct position
-        /*glyphClaw.startRaisingClaw();
-        long startRaiseTime = System.currentTimeMillis();
-        while ((System.currentTimeMillis()-startRaiseTime)<1200) {
-            glyphClaw.raiseClaw();
-            sleep(5);
-        }
-        glyphClaw.stopRaisingClaw();*/
-        glyphClaw.raiseClaw();
-        sleep(250);
-        jewelColor.raiseArm();
-        sleep(500);
-        glyphClaw.lowerClaw();
-        sleep(1200);
-        glyphClaw.stopClaw();
-
         //Knock Jewels
         jewelColor.lowerArm();
         sleep(1000);
         jewelColor.colorEval();
-        sleep(10);
-        jewelColor.knockOffBlueGem();
-        sleep(2000);
+        jewelColor.knockOffRedGem();
+        sleep(4000);
         jewelColor.raiseArm();
-        sleep(1000);
-
-
+        sleep(2000);
 
         //Vuforia Movement that defines where the robot goes to
         if(isLeft){
-            movement.driveBackward(0.8, 40);
+            movement.driveForward(0.8, 70);
             sleep(1000);
-            movement.pointTurnRight(90);
-            sleep(500);
-            movement.driveForward(0.7, 34);
-            sleep(250);
-            movement.pointTurnRight(90);
-            sleep(250);
         } else if (isCenter){
-            movement.driveBackward(0.8, 40);
+            movement.driveForward(0.8, 90);
             sleep(1000);
-            movement.pointTurnRight(90);
-            sleep(500);
-            movement.driveForward(0.7, 19);
-            sleep(250);
-            movement.pointTurnRight(100);
-            sleep(250);
         } else if (isRight){
-            movement.driveBackward(0.8, 40);
+            movement.driveForward(0.8, 110);
             sleep(1000);
-            movement.pointTurnRight(173);
-            sleep(500);
-            movement.driveBackward(0.7, 10);
-            sleep(250);
         } else {
-            movement.driveBackward(1, 40);
-            sleep(1000);
+            movement.driveForward(0.8, 90);
+            sleep(2000);
         }
         //try to fill the cryptobox
-
-
+        movement.pointTurnLeft(90);
+        sleep(500);
         glyphClaw.rotateClawDown();
-        sleep(1500);
+        sleep(1000);
         glyphClaw.openClaw();
         sleep(1000);
         glyphClaw.rotateClawUp();
         sleep(1000);
         movement.driveBackward(0.8,5);
         sleep(1000);
-        movement.driveForward(0.8, 40);
+        movement.driveForward(0.8, 10);
         sleep(1000);
         movement.driveBackward(0.8, 5);
         sleep(1000);
         movement.stop();
-
-
-
-
-
-
-
 
     }
 }
