@@ -1,11 +1,11 @@
-package robotx.opmodes;
+package robotx.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
 import robotx.modules.GlyphClaw;
 import robotx.modules.JewelColor;
-import robotx.modules.LedAlwaysOn;
+import robotx.modules.LedFlash;
 import robotx.modules.MechaBot;
 import robotx.modules.MechanumDrive;
 import robotx.modules.MechanumDriveNoLag;
@@ -14,15 +14,15 @@ import robotx.modules.TeleOpTimerDisplay;
 /**
  * Created by Ben Sabo on 10/25/2017.
  */
-@TeleOp (name = "MechaBotOnOp", group = "Competition")
-public class MechaBotOnOp extends XOpMode {
+@TeleOp (name = "MechaBotFlashOp", group = "Competition")
+public class MechaBotFlashOp extends XOpMode {
 
     MechanumDriveNoLag mechanumDriveNoLag;
+    //MechanumDrive mechanumDrive;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
-    LedAlwaysOn ledAlwaysOn;
+    LedFlash ledFlash;
     TeleOpTimerDisplay timer;
-
 
     public void initModules(){
         super.initModules();
@@ -34,15 +34,14 @@ public class MechaBotOnOp extends XOpMode {
         mechanumDriveNoLag = new MechanumDriveNoLag(this);
         activeModules.add(mechanumDriveNoLag);
 
-
         glyphClaw = new GlyphClaw(this);
         activeModules.add(glyphClaw);
 
         jewelColor = new JewelColor(this);
         activeModules.add(jewelColor);
 
-        ledAlwaysOn = new LedAlwaysOn(this);
-        activeModules.add(ledAlwaysOn);
+        ledFlash = new LedFlash(this);
+        activeModules.add(ledFlash);
 
         timer = new TeleOpTimerDisplay(this);
         timer.displayGamePeriod = true;
