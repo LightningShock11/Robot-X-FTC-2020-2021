@@ -10,8 +10,8 @@ import robotx.modules.MechanumDriveNoLag;
 /**
  * Created by Ben Sabo on 2/8/2018.
  */
-@TeleOp(name = "MechaBotNoLed", group = "Competition")
-public class MechaBotNoLed extends XOpMode {
+@TeleOp(name = "MechaBotNoLedOp", group = "Competition")
+public class MechaBotNoLedOp extends XOpMode {
     MechanumDriveNoLag mechanumDriveNoLag;
     GlyphClaw glyphClaw;
     JewelColor jewelColor;
