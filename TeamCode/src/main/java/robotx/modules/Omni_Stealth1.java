@@ -40,13 +40,13 @@ public class Omni_Stealth1 extends XOpMode {
     public void loop() {
         super.loop();
 
-        float forwardBackAxis = xGamepad1.left_stick_y;
+        /*float forwardBackAxis = xGamepad1.left_stick_y;
         float rotate = xGamepad1.right_stick_x;
 
         leftMotor.setPower(forwardBackAxis + rotate);        //going forward and backward
         rightMotor.setPower(forwardBackAxis - rotate);       //going forward and backward
 
-
+        */
 
         if (xGamepad1.dpad_up.isDown())
         {
