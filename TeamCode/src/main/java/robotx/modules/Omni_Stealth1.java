@@ -63,13 +63,19 @@ public class Omni_Stealth1 extends XOpMode {
         if (xGamepad1.dpad_left.isDown())
         {
             leftMotor.setPower(0);
-            rightMotor.setPower(-power);
+            rightMotor.setPower(power);
         }
 
         if (xGamepad1.dpad_right.isDown())
         {
-            leftMotor.setPower(power);
+            leftMotor.setPower(-power);
             rightMotor.setPower(0);
+        }
+
+        else
+        {
+            leftMotor.setPower(0.0);
+            rightMotor.setPower(0.0);
         }
     }
 }

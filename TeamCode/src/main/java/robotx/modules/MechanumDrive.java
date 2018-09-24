@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import robotx.libraries.OmniDriveSystem;
 
 /**
- * Created by KD on 11/25/2017.
+ * Created by WB on 9/24/2018.
  */
 
 public class MechanumDrive extends OmniDriveSystem {
