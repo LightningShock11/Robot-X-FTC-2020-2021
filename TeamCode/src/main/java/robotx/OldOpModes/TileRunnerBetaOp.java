@@ -2,6 +2,10 @@ package robotx.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
+import robotx.OldModules.ButtonPusher;
+import robotx.OldModules.FlipperLauncher;
+import robotx.OldModules.LiftOneMotor;
+import robotx.OldModules.LiftSystem;
 import robotx.controls.*;
 import robotx.libraries.*;
 import robotx.modules.*;

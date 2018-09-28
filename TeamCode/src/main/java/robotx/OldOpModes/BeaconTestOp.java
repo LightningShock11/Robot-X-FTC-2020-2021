@@ -3,8 +3,8 @@ package robotx.OldOpModes;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
+import robotx.OldModules.ButtonPusher;
 import robotx.libraries.*;
-import robotx.modules.*;
 
 /**
  * Created by Robot-X Team 4969 on 11/15/2016.

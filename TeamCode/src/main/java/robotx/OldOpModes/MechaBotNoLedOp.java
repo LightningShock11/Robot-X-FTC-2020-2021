@@ -3,8 +3,8 @@ package robotx.OldOpModes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.GlyphClaw;
-import robotx.modules.JewelColor;
+import robotx.OldModules.GlyphClaw;
+import robotx.OldModules.JewelColor;
 import robotx.modules.MechanumDriveNoLag;
 
 /**
