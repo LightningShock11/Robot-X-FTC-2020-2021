@@ -2,7 +2,7 @@ package robotx.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
-import robotx.modules.*;
+import robotx.OldModules.JewelColor;
 
 import robotx.libraries.XOpMode;
 

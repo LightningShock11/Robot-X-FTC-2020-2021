@@ -1,8 +1,9 @@
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
-import com.qualcomm.robotcore.hardware.*;
 
+import robotx.OldModules.GlyphClaw;
+import robotx.OldModules.JewelColor;
 import robotx.libraries.*;
 import robotx.modules.*;
 

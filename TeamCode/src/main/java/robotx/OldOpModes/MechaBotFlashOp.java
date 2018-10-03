@@ -3,11 +3,9 @@ package robotx.OldOpModes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.GlyphClaw;
-import robotx.modules.JewelColor;
-import robotx.modules.LedFlash;
-import robotx.modules.MechaBot;
-import robotx.modules.MechanumDrive;
+import robotx.OldModules.GlyphClaw;
+import robotx.OldModules.JewelColor;
+import robotx.OldModules.LedFlash;
 import robotx.modules.MechanumDriveNoLag;
 import robotx.modules.TeleOpTimerDisplay;
 

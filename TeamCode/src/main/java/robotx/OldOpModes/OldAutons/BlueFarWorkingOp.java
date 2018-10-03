@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
-import robotx.modules.GlyphClaw;
-import robotx.modules.JewelColor;
+import robotx.OldModules.GlyphClaw;
+import robotx.OldModules.JewelColor;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
-import robotx.modules.LedAlwaysOn;
+import robotx.OldModules.LedAlwaysOn;
 
 /**
  * Created by Kush Dalal on 12/6/2017.

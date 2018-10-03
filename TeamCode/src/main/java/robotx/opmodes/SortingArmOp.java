@@ -9,6 +9,7 @@ import robotx.modules.SortingProtoArm;
 public class SortingArmOp extends XOpMode {
     SortingProtoArm sortingProtoArm;
 
+
     public void initModules(){
         super.initModules();
         sortingProtoArm = new SortingProtoArm(this);

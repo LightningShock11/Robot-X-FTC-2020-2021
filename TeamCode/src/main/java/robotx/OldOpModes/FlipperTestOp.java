@@ -2,8 +2,8 @@ package robotx.OldOpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
+import robotx.OldModules.FlipperLauncher;
 import robotx.libraries.*;
-import robotx.modules.*;
 
 /**
  * Created by Ben on 12/28/2016.

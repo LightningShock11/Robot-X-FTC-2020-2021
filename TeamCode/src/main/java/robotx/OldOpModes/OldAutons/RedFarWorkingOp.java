@@ -1,13 +1,12 @@
 package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.LED;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
-import robotx.modules.GlyphClaw;
-import robotx.modules.JewelColor;
-import robotx.modules.LedAlwaysOn;
+import robotx.OldModules.GlyphClaw;
+import robotx.OldModules.JewelColor;
+import robotx.OldModules.LedAlwaysOn;
 import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
