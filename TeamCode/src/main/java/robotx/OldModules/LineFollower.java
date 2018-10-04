@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.*;
 import robotx.libraries.BasicDriveSystem;
 import robotx.libraries.XModule;
 import robotx.libraries.XLinearOpMode;
+import robotx.modules.XOpticalDistanceSensor;
 
 /**
  * Created by Nicholas on 12/14/16.
@@ -14,7 +15,8 @@ public class LineFollower extends XModule {
 
 	BasicDriveSystem driveSystem;
     OpticalDistanceSensor floorSensor;
-	XOpticalDistanceSensor opticalDistanceSensor;
+    XOpticalDistanceSensor opticalDistanceSensor;
+    //This line caused a huge issue with Android Studio, possibly fixed
 
 	public LineFollower(OpMode op) {
 		super(op);
