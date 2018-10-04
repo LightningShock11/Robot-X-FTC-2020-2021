@@ -31,7 +31,7 @@ public class SortingProtoArm extends XModule {
     public void loop(){
         //constantly test the below
 
-        if (sortingColor.red() > 220 && sortingColor.green() > 220 && sortingColor.blue() < 220) {
+        if (sortingColor.red() > 220 && sortingColor.green() > 220 && sortingColor.blue() > 220) {
             //check if the color is close enough to white
 
             protoServo.setPosition(0.8); //set the servo the drop in white
@@ -45,7 +45,6 @@ public class SortingProtoArm extends XModule {
             //keep the servo open
             protoServo.setPosition(1.0); //set the servo to open for gold cubes
         }
-
 
     }
 }
