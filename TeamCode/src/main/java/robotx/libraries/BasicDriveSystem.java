@@ -2,6 +2,7 @@ package robotx.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
+import robotx.controls.BasicTankDriveControls;
 import robotx.controls.NullControls;
 
 /**
@@ -21,7 +22,7 @@ public abstract class BasicDriveSystem extends XModule {
 
 	public BasicDriveSystem(OpMode op) {
 		super(op);
-		controls = new NullControls();
+		controls = new BasicTankDriveControls();
 	}
 
 	// To be implemented by subclasses.
