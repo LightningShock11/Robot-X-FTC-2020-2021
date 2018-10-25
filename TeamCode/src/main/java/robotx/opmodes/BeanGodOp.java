@@ -3,6 +3,7 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+import robotx.modules.OneStickDrive;
 import robotx.modules.SortingProtoArm;
 import robotx.modules.TwoMotorDrive;
 

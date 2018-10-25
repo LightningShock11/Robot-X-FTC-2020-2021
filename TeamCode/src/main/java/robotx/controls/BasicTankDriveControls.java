@@ -13,7 +13,7 @@ public class BasicTankDriveControls extends DriveSystemControls {
 		return leftPower;
 	}
 	public double getRightPower(XGamepad gamepad1, XGamepad gamepad2) {
-		double rightPower = -1.0 * gamepad1.right_stick_y; // Invert it because -1.0 is up on the gamepads.
+		double rightPower = -1.0 * gamepad1.right_stick_x; // Invert it because -1.0 is up on the gamepads.
 
 		return rightPower;
 	}
