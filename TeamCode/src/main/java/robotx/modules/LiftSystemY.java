@@ -22,30 +22,37 @@ public class LiftSystemY extends XModule {
     public void init(){
         //initialize servo
         YMotor = opMode.hardwareMap.dcMotor.get("YMotor");
+        YMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         YMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         YMotor.getCurrentPosition();
+        YMotor.setTargetPosition(0);
+        YMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        YMotor.setPower(-1.0);
         }
     public void autoLift(){
         if (up){
             YMotor.setTargetPosition(0);
+            YMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             up = false;
         }
-        else if (up == false){
-            YMotor.setTargetPosition(1);
+        else{
+            YMotor.setTargetPosition(500);
+            YMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             up = true;
         }
     }
     public void loop(){
-        while (xGamepad2().dpad_up.isDown()){
-            YMotor.setPower(1.0);
-        }
-        while (xGamepad2().dpad_down.isDown()){
-            YMotor.setPower(-1.0);
-        }
+        opMode.telemetry.addData("Motor Position:", YMotor.getCurrentPosition());
+
         if (xGamepad2().a.wasPressed()){
             autoLift();
-            opMode.telemetry.addData("Motor Position:", YMotor.getCurrentPosition());
         }
+        if (YMotor.getCurrentPosition() >= 500){
+            YMotor.setPower(0);
+        }
+    }
+    public void stop(){
+        YMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
 }
