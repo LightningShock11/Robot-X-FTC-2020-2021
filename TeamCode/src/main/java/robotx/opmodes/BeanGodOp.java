@@ -4,11 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.OldModules.LiftSystem;
 import robotx.libraries.XOpMode;
-<<<<<<< HEAD
 import robotx.modules.LiftSystemY;
-=======
 import robotx.modules.OneStickDrive;
->>>>>>> f32547d297fcb0057628b018619dac1cf187049c
 import robotx.modules.SortingProtoArm;
 import robotx.modules.TwoMotorDrive;
 
