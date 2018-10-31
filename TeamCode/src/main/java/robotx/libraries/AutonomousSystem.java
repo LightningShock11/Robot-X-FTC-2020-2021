@@ -9,7 +9,7 @@ import robotx.controls.NullControls;
  */
 public abstract class AutonomousSystem extends XModule {
 
-	private int previousHeadingAngle = 0;
+	private double previousHeadingAngle = 0;
 	private double previousLeftCentimeters = 0.0;
 	private double previousRightCentimeters = 0.0;
 
@@ -22,7 +22,7 @@ public abstract class AutonomousSystem extends XModule {
 	// Return the current heading angle of the robot.
 	// This should not loop around at 360, and values should increase past 360.
 	// Use the rawZ() method of GyroSensor for this.
-	public abstract int getHeadingAngle();
+	public abstract double getHeadingAngle();
 
 	// Return the current distance the left side has traveled, in encoder ticks.
 	public abstract int getLeftTicks();
@@ -44,7 +44,7 @@ public abstract class AutonomousSystem extends XModule {
 	}
 
 	// Return the change in heading angle since the last reset.
-	public int changeInHeadingAngle() {
+	public double changeInHeadingAngle() {
 		return getHeadingAngle() - previousHeadingAngle;
 	}
 

@@ -1,9 +1,14 @@
 package robotx.modules;
 
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.*;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
 import robotx.libraries.*;
 
@@ -11,8 +16,9 @@ import robotx.libraries.*;
  * Created by Nicholas on 12/6/2016.
  */
 public class TileRunnerAuton extends AutonomousSystem {
+	int gyr;
+	BNO055IMU gyroSensor;
 
-	ModernRoboticsI2cGyro gyroSensor;
 	// Be sure to assign these before use.
 	public DcMotor leftMotor;
 	public DcMotor rightMotor;
@@ -22,13 +28,14 @@ public class TileRunnerAuton extends AutonomousSystem {
 	}
 
 	public void init() {
-		gyroSensor = (ModernRoboticsI2cGyro)opMode.hardwareMap.gyroSensor.get("gyroSensor");
+		gyroSensor = (BNO055IMU) opMode.hardwareMap.gyroSensor.get("gyroSensor");
 	}
 
 	// Return the current heading angle of the robot.
 	// This should not loop around at 360, and values should increase past 360.
-	public int getHeadingAngle() {
-		return gyroSensor.getIntegratedZValue();
+	public double getHeadingAngle() {
+
+		return gyroSensor.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
 	}
 
 	// Return the current distance the left side has traveled, in encoder ticks.
@@ -46,7 +53,6 @@ public class TileRunnerAuton extends AutonomousSystem {
 	}
 
 	public void calibrateGyro() {
-		gyroSensor.calibrate();
 	}
 
 }
