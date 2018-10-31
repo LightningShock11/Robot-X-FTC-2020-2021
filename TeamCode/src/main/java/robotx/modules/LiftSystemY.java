@@ -26,7 +26,7 @@ public class LiftSystemY extends XModule {
     public void loop(){
         if(xGamepad2().a.wasPressed()){
             YMotor.setPower(1);
-            
+
 
         }
 

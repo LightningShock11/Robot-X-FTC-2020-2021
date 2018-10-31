@@ -20,7 +20,7 @@ public class RedGoldAuton extends XLinearOpMode {
 
 
     public void runOpMode() {
-        //init
+        //////////////////////init//////////////////////////
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
@@ -32,6 +32,17 @@ public class RedGoldAuton extends XLinearOpMode {
 
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
+
+
+        ////////////////////////////////////////////////////
+
+        movement.driveForward(1, 10);
+        sleep(10);
+        movement.stop();
+
+
+
+
 
 
     }
