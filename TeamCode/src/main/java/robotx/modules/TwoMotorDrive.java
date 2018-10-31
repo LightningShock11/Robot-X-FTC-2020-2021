@@ -18,14 +18,23 @@ public class TwoMotorDrive extends BasicDriveSystem {
 	}
 
 	public void init() {
-		leftMotor = opMode.hardwareMap.dcMotor.get("2MD_leftMotor");
+		leftMotor = opMode.hardwareMap.dcMotor.get("leftMotor");
 		leftMotor.setDirection(DcMotor.Direction.REVERSE);
-		rightMotor = opMode.hardwareMap.dcMotor.get("2MD_rightMotor");
+		rightMotor = opMode.hardwareMap.dcMotor.get("rightMotor");
 	}
 
 	public void updateMotors() {
+<<<<<<< HEAD
 		leftMotor.setPower(getRightPower());
 		rightMotor.setPower(getLeftPower());
 	}
+=======
+		leftMotor.setPower(getLeftPower());
+		rightMotor.setPower(getLeftPower());
+
+		leftMotor.setPower(getRightPower());
+		rightMotor.setPower(-getRightPower());
+		}
+>>>>>>> f32547d297fcb0057628b018619dac1cf187049c
 
 }
