@@ -36,12 +36,9 @@ public class LiftSystemY extends XModule {
         }
     }
     public void loop(){
-<<<<<<< HEAD
-        if(xGamepad2().a.wasPressed()){
-            YMotor.setPower(1);
 
 
-=======
+
         while (xGamepad2().dpad_up.isDown()){
             YMotor.setPower(1.0);
         }
@@ -51,7 +48,6 @@ public class LiftSystemY extends XModule {
         if (xGamepad2().a.wasPressed()){
             autoLift();
             opMode.telemetry.addData("Motor Position:", YMotor.getCurrentPosition());
->>>>>>> 594af3a94b814a15b6e5cfa57fe74023ba4391d8
         }
     }
 

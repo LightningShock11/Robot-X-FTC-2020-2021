@@ -32,12 +32,9 @@ public class TwoMotorDrive extends BasicDriveSystem {
 
 		leftMotor.setPower(getRightPower());
 		rightMotor.setPower(-getRightPower());
-<<<<<<< HEAD
 	}
-=======
 		}
 
->>>>>>> 594af3a94b814a15b6e5cfa57fe74023ba4391d8
-}
+
 
 
