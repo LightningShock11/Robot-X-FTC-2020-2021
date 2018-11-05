@@ -6,6 +6,7 @@ import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.TileRunnerAuton;
 import robotx.modules.TwoMotorDrive;
+import robotx.modules.TwoWheelAutonIMU;
 
 /**
  * Created by Kush Dalal on 10/24/2018.
@@ -16,7 +17,7 @@ public class RedGoldAuton extends XLinearOpMode {
 
     AutonomousMovement movement;
     TileRunnerAuton sensors;
-    TwoMotorDrive twoMotorDrive;
+    TwoWheelAutonIMU twoWheelAutonIMU;
 
 
     public void runOpMode() {
@@ -24,13 +25,13 @@ public class RedGoldAuton extends XLinearOpMode {
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
-        twoMotorDrive = new TwoMotorDrive(this);
-        twoMotorDrive.init();
+        twoWheelAutonIMU = new TwoWheelAutonIMU(this);
+        twoWheelAutonIMU.init();
 
         sensors = new TileRunnerAuton(this);
         sensors.init();
 
-        movement = new AutonomousMovement(this, sensors, twoMotorDrive);
+        movement = new AutonomousMovement(this, sensors, twoWheelAutonIMU );
         movement.init();
 
 

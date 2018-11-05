@@ -2,6 +2,7 @@ package robotx.modules;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -11,11 +12,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import robotx.libraries.AutonomousSystem;
+import robotx.libraries.BasicDriveSystem;
 
 /**
  * Created by Kush Dalal on 10/31/2018
  */
-public class TwoWheelAutonIMU extends AutonomousSystem {
+public class TwoWheelAutonIMU extends BasicDriveSystem {
+
 	int gyr;
 	BNO055IMU gyroSensor;
 	Orientation lastAngles = new Orientation();
@@ -31,9 +34,29 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 		super(op);
 	}
 
+	@Override
+	public void updateMotors() {
+
+	}
+
 	public void init() {
-		gyroSensor = (BNO055IMU) opMode.hardwareMap.gyroSensor.get("gyroSensor");
+		//gyroSensor = (BNO055IMU) opMode.hardwareMap.gyroSensor.get("gyroSensor");
 		resetAngle();
+
+		BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+		parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+		parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+		parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+		parameters.loggingEnabled      = true;
+		parameters.loggingTag          = "IMU";
+		parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+		// Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
+		// on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
+		// and named "imu".
+		gyroSensor = opMode.hardwareMap.get(BNO055IMU.class, "gyroSensor");
+		gyroSensor.initialize(parameters);
+
 	}
 
 	// Return the current heading angle of the robot.
