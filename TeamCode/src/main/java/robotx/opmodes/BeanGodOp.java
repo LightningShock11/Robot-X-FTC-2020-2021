@@ -2,18 +2,18 @@ package robotx.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import robotx.OldModules.LiftSystem;
 import robotx.libraries.XOpMode;
-import robotx.modules.LiftSystemY;
-import robotx.modules.OneStickDrive;
+import robotx.modules.LiftSystemXY;
 import robotx.modules.SortingProtoArm;
+import robotx.modules.SweeperSystem;
 import robotx.modules.TwoMotorDrive;
 
 @TeleOp(name = "BeanGodOp", group = "Testing")
 public class BeanGodOp extends XOpMode {
     TwoMotorDrive twoMotorDrive;
     SortingProtoArm sortingProtoArm;
-    LiftSystemY liftSystemY;
+    LiftSystemXY liftSystemXY;
+    SweeperSystem sweeperSystem;
 
 
     public void initModules(){
@@ -25,8 +25,11 @@ public class BeanGodOp extends XOpMode {
         sortingProtoArm = new SortingProtoArm(this);
         activeModules.add(sortingProtoArm);
 
-        liftSystemY = new LiftSystemY(this);
-        activeModules.add(liftSystemY);
+        liftSystemXY = new LiftSystemXY(this);
+        activeModules.add(liftSystemXY);
+
+        sweeperSystem = new SweeperSystem(this);
+        activeModules.add(sweeperSystem);
     }
     public void init(){super.init();}
 
