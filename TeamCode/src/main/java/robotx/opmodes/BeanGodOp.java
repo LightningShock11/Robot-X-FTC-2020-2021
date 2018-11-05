@@ -7,14 +7,14 @@ import robotx.modules.LiftSystemXY;
 import robotx.modules.SortingProtoArm;
 import robotx.modules.SweeperSystem;
 import robotx.modules.TwoMotorDrive;
+import robotx.modules.XSweeper;
 
 @TeleOp(name = "BeanGodOp", group = "Testing")
 public class BeanGodOp extends XOpMode {
     TwoMotorDrive twoMotorDrive;
     SortingProtoArm sortingProtoArm;
     LiftSystemXY liftSystemXY;
-    SweeperSystem sweeperSystem;
-
+    XSweeper xSweeper;
 
     public void initModules(){
         super.initModules();
@@ -28,8 +28,8 @@ public class BeanGodOp extends XOpMode {
         liftSystemXY = new LiftSystemXY(this);
         activeModules.add(liftSystemXY);
 
-        sweeperSystem = new SweeperSystem(this);
-        activeModules.add(sweeperSystem);
+        xSweeper = new XSweeper(this);
+        activeModules.add(xSweeper);
     }
     public void init(){super.init();}
 
