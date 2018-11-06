@@ -33,7 +33,7 @@ public class RedGoldAuton extends XLinearOpMode {
         sensors = new TwoWheelAutonIMU(this);
         sensors.init();
 
-        //movement = new AutonomousMovement(this, sensors, twoMotorDrive);
+        movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
         sensors.leftMotor = twoMotorDrive.leftMotor;
