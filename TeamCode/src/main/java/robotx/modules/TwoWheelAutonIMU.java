@@ -12,12 +12,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import robotx.libraries.AutonomousSystem;
-import robotx.libraries.BasicDriveSystem;
 
 /**
  * Created by Kush Dalal on 10/31/2018
  */
-public class TwoWheelAutonIMU extends BasicDriveSystem {
+public class TwoWheelAutonIMU extends AutonomousSystem {
 
 	int gyr;
 	BNO055IMU gyroSensor;
@@ -34,14 +33,9 @@ public class TwoWheelAutonIMU extends BasicDriveSystem {
 		super(op);
 	}
 
-	@Override
-	public void updateMotors() {
-
-	}
-
 	public void init() {
 		//gyroSensor = (BNO055IMU) opMode.hardwareMap.gyroSensor.get("gyroSensor");
-		resetAngle();
+		//resetAngle();
 
 		BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 		parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -62,11 +56,11 @@ public class TwoWheelAutonIMU extends BasicDriveSystem {
 	// Return the current heading angle of the robot.
 	// This should not loop around at 360, and values should increase past 360.
 
-	public void resetAngle() {
+	/*public void resetAngle() {
 		lastAngles = gyroSensor.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
 		globalAngle = 0;
-	}
+	}*/
 
 	public double getHeadingAngle() {
 
