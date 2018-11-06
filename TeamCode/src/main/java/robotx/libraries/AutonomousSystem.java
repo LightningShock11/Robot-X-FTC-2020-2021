@@ -22,7 +22,7 @@ public abstract class AutonomousSystem extends XModule {
 	// Return the current heading angle of the robot.
 	// This should not loop around at 360, and values should increase past 360.
 	// Use the rawZ() method of GyroSensor for this.
-	public abstract double getHeadingAngle();
+	public abstract int getHeadingAngle();
 
 	// Return the current distance the left side has traveled, in encoder ticks.
 	public abstract int getLeftTicks();

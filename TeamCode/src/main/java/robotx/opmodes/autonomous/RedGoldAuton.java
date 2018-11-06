@@ -3,7 +3,6 @@ package robotx.opmodes.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import robotx.libraries.AutonomousMovement;
-import robotx.libraries.BasicDriveSystem;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.TileRunnerAuton;
 import robotx.modules.TwoMotorDrive;
@@ -32,7 +31,7 @@ public class RedGoldAuton extends XLinearOpMode {
         sensors = new TileRunnerAuton(this);
         sensors.init();
 
-        movement = new AutonomousMovement(this, sensors, );
+        movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
 

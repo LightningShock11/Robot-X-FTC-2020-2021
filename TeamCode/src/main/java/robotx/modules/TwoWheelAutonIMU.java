@@ -62,7 +62,7 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 		globalAngle = 0;
 	}*/
 
-	public double getHeadingAngle() {
+	public int getHeadingAngle() {
 
 		Orientation angles = gyroSensor.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 		double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
@@ -74,9 +74,11 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 
 		globalAngle += deltaAngle;
 
+		int finalAngle = (int) globalAngle;
+
 		lastAngles = angles;
 
-		return globalAngle;
+		return finalAngle;
 
 	}
 
