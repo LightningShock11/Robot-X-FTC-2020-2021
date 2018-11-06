@@ -1,4 +1,4 @@
-package robotx.modules;
+/*package robotx.modules;
 
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -17,6 +17,8 @@ import robotx.libraries.*;
 /**
  * Created by Nicholas on 12/6/2016, Redone for IMU by Kush Dalal on 10/31/2018
  */
+/*
+@Disabled
 public class TileRunnerAuton extends AutonomousSystem {
 	int gyr;
 	BNO055IMU gyroSensor;
@@ -82,3 +84,4 @@ public class TileRunnerAuton extends AutonomousSystem {
 
 
 }
+*/
