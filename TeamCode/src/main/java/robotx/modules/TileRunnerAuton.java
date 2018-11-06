@@ -1,4 +1,4 @@
-package robotx.modules;
+/*package robotx.modules;
 
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
@@ -10,6 +10,8 @@ import robotx.libraries.*;
 /**
  * Created by Nicholas on 12/6/2016.
  */
+/*
+@Disabled
 public class TileRunnerAuton extends AutonomousSystem {
 
 	ModernRoboticsI2cGyro gyroSensor;
@@ -50,3 +52,4 @@ public class TileRunnerAuton extends AutonomousSystem {
 	}
 
 }
+*/
