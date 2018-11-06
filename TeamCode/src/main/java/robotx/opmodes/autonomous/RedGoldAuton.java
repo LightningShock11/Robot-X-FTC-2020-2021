@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
-import robotx.modules.TileRunnerAuton;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
 
@@ -16,8 +15,9 @@ import robotx.modules.TwoWheelAutonIMU;
 public class RedGoldAuton extends XLinearOpMode {
 
     AutonomousMovement movement;
-    TileRunnerAuton sensors;
-    TwoWheelAutonIMU twoWheelAutonIMU;
+
+    TwoWheelAutonIMU sensors;
+    TwoMotorDrive twoMotorDrive;
 
 
     public void runOpMode() {
@@ -25,10 +25,10 @@ public class RedGoldAuton extends XLinearOpMode {
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
-        twoWheelAutonIMU = new TwoWheelAutonIMU(this);
-        twoWheelAutonIMU.init();
+        twoMotorDrive = new TwoMotorDrive(this);
+        twoMotorDrive.init();
 
-        sensors = new TileRunnerAuton(this);
+        sensors = new TwoWheelAutonIMU(this);
         sensors.init();
 
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);

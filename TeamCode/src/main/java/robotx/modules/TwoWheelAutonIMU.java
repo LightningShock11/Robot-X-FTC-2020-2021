@@ -51,6 +51,8 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 		gyroSensor = opMode.hardwareMap.get(BNO055IMU.class, "gyroSensor");
 		gyroSensor.initialize(parameters);
 
+		opMode.telemetry.addData("heading: ", getHeadingAngle());
+
 	}
 
 	// Return the current heading angle of the robot.
@@ -81,6 +83,9 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 		return finalAngle;
 
 	}
+
+
+
 
 	// Return the current distance the left side has traveled, in encoder ticks.
 	public int getLeftTicks() {
