@@ -52,6 +52,7 @@ public class TwoWheelAutonIMU extends AutonomousSystem {
 		gyroSensor.initialize(parameters);
 
 		opMode.telemetry.addData("heading: ", getHeadingAngle());
+		opMode.telemetry.update();
 
 
 	}
