@@ -15,7 +15,7 @@ import robotx.OldModules.LedAlwaysOn;
  * Created by Kush Dalal on 12/6/2017.
  */
 @Autonomous(name = "BlueFarWorkingOp", group = "Autonomous")
-public class BlueFarWorkingOp extends XLinearOpMode {
+public class  BlueFarWorkingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
     MechanumAuton sensors;
@@ -77,6 +77,8 @@ public class BlueFarWorkingOp extends XLinearOpMode {
         glyphClaw.start();
         vuMarkDetection.start();
         led.start();
+
+
 
         // Get and store the vuMarkStatus
         sleep(1000);

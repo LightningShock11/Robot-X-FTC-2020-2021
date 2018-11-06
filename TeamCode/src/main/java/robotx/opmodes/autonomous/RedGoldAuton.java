@@ -22,6 +22,8 @@ public class RedGoldAuton extends XLinearOpMode {
 
     public void runOpMode() {
         //////////////////////init//////////////////////////
+
+        //Initialize all systems on the robot. ALL SYSTEMS GO
         telemetry.addData("Stage", "Init");
         this.updateTelemetry(telemetry);
 
@@ -34,18 +36,32 @@ public class RedGoldAuton extends XLinearOpMode {
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
+        sensors.leftMotor = twoMotorDrive.leftMotor;
+        sensors.rightMotor = twoMotorDrive.rightMotor;
 
-        ////////////////////////////////////////////////////
 
-        movement.driveForward(1, 10);
-        sleep(10);
+        /////////////////////Start//////////////////////////
+
+        //Start all systems.
+        waitForStart(); // Wait for start to be pressed.
+        telemetry.addData("Stage", "Start");
+        this.updateTelemetry(telemetry);
+
+        movement.start();
+        sensors.start();
+        twoMotorDrive.start();
+
+
+        /////////////////////Movement///////////////////////
+
+        //movement test
+        movement.driveForward(0.8, 10);
+        sleep(2000);
         movement.stop();
 
 
 
-
-
-
+        ////////////////////////////////////////////////////
     }
 
 }
