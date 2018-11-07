@@ -55,7 +55,11 @@ public class RedGoldAuton extends XLinearOpMode {
         /////////////////////Movement///////////////////////
 
         //movement test
+<<<<<<< HEAD
         movement.driveForward(3.0, 10.0);
+=======
+        movement.driveForward(1, -10);
+>>>>>>> b68980321645d0ca4732aaa6a63d53ee9b52729d
         sleep(2000);
         movement.stop();
 
