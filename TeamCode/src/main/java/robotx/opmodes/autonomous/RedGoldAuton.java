@@ -15,7 +15,6 @@ import robotx.modules.TwoWheelAutonIMU;
 public class RedGoldAuton extends XLinearOpMode {
 
     AutonomousMovement movement;
-
     TwoWheelAutonIMU sensors;
     TwoMotorDrive twoMotorDrive;
 
@@ -45,6 +44,7 @@ public class RedGoldAuton extends XLinearOpMode {
         //Start all systems.
         waitForStart(); // Wait for start to be pressed.
         telemetry.addData("Stage", "Start");
+        telemetry.addLine().addData("Heading", sensors.getHeadingAngle());
         this.updateTelemetry(telemetry);
 
         movement.start();
@@ -55,7 +55,7 @@ public class RedGoldAuton extends XLinearOpMode {
         /////////////////////Movement///////////////////////
 
         //movement test
-        movement.driveForward(1, -10);
+        movement.driveForward(3.0, 10.0);
         sleep(2000);
         movement.stop();
 
