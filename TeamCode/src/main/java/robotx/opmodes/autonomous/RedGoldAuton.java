@@ -55,12 +55,14 @@ public class RedGoldAuton extends XLinearOpMode {
         /////////////////////Movement///////////////////////
 
         //movement test
-<<<<<<< HEAD
-        movement.driveForward(3.0, 10.0);
-=======
-        movement.driveForward(1, -10);
->>>>>>> b68980321645d0ca4732aaa6a63d53ee9b52729d
+        // movement.driveForward(3.0, 10.0);
+        twoMotorDrive.leftMotor.setPower(1.0);
+        twoMotorDrive.rightMotor.setPower(1.0);
         sleep(2000);
+        twoMotorDrive.brakeAllMotors();
+        movement.pointTurnLeft(90);
+        sleep(1000);
+        twoMotorDrive.stop();
         movement.stop();
 
 

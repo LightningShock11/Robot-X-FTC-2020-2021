@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
 import robotx.modules.LiftSystemXY;
+import robotx.modules.OneStickDrive;
 import robotx.modules.SortingProtoArm;
 import robotx.modules.SweeperSystem;
 import robotx.modules.TwoMotorDrive;
@@ -11,7 +12,8 @@ import robotx.modules.XSweeper;
 
 @TeleOp(name = "BeanGodOp", group = "Testing")
 public class BeanGodOp extends XOpMode {
-    TwoMotorDrive twoMotorDrive;
+    //TwoMotorDrive twoMotorDrive;
+    OneStickDrive oneStickDrive;
     SortingProtoArm sortingProtoArm;
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
@@ -19,8 +21,11 @@ public class BeanGodOp extends XOpMode {
     public void initModules(){
         super.initModules();
 
-        twoMotorDrive = new TwoMotorDrive(this);
-        activeModules.add(twoMotorDrive);
+        //twoMotorDrive = new TwoMotorDrive(this);
+        //activeModules.add(twoMotorDrive);
+
+        oneStickDrive = new OneStickDrive(this);
+        activeModules.add(oneStickDrive);
 
         sortingProtoArm = new SortingProtoArm(this);
         activeModules.add(sortingProtoArm);
