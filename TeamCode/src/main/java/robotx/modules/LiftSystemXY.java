@@ -15,6 +15,7 @@ import robotx.libraries.XModule;
 public class LiftSystemXY extends XModule {
 
     DcMotor yMotor;
+    DcMotor xMotor;
     DcMotor beltMotor;
     boolean up = false;
     boolean beltOn = false;
@@ -33,6 +34,15 @@ public class LiftSystemXY extends XModule {
         yMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         yMotor.getCurrentPosition();
         yMotor.setTargetPosition(0);
+        xMotor = opMode.hardwareMap.dcMotor.get("xMotor");
+        xMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        xMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        xMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        xMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        xMotor.getCurrentPosition();
+        xMotor.setTargetPosition(0);
+
+
         beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
         }
     public void autoLift(){
@@ -40,11 +50,15 @@ public class LiftSystemXY extends XModule {
         if (up){
             yMotor.setTargetPosition(0);
             yMotor.setPower(-1.0);
+            xMotor.setTargetPosition(0);
+            xMotor.setPower(-1.0);
             up = false;
         }
         else{
             yMotor.setTargetPosition(-36000);
             yMotor.setPower(1.0);
+            xMotor.setTargetPosition(-36000);
+            xMotor.setPower(1.0);
             up = true;
         }
     }
@@ -65,24 +79,29 @@ public class LiftSystemXY extends XModule {
         //If the motor has reached its target position, stop the motor
         if (yMotor.getTargetPosition() == -36000 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
+            xMotor.setPower(0.0);
         }
         else if(yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
+            xMotor.setPower(0.0);
         }
 
         if (xGamepad2().b.wasPressed()){
             autoLift();
         }
-        
+
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
             yMotor.setPower(1.0);
+            xMotor.setPower(1.0);
         }
         else if(xGamepad2().dpad_down.isDown()){
             yMotor.setPower(-1.0);
+            xMotor.setPower(-1.0);
         }
         else if(xGamepad2().dpad_down.wasReleased() || xGamepad2().dpad_up.wasReleased()){
             yMotor.setPower(0.0);
+            xMotor.setPower(0.0);
         }
 
         //Toggles the conveyor belt
@@ -92,5 +111,6 @@ public class LiftSystemXY extends XModule {
     }
     public void stop(){
         yMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        xMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 }
