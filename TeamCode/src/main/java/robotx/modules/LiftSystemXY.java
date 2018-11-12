@@ -15,7 +15,9 @@ import robotx.libraries.XModule;
 public class LiftSystemXY extends XModule {
 
     DcMotor yMotor;
+    DcMotor beltMotor;
     boolean up = false;
+    boolean beltOn = false;
 
 
     public LiftSystemXY(OpMode op) {
@@ -31,6 +33,7 @@ public class LiftSystemXY extends XModule {
         yMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         yMotor.getCurrentPosition();
         yMotor.setTargetPosition(0);
+        beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
         }
     public void autoLift(){
         //Toggle method that allows the motor to move back and forth between two positions
@@ -45,6 +48,16 @@ public class LiftSystemXY extends XModule {
             up = true;
         }
     }
+    public void toggleBelt(){
+        if (beltOn){
+            beltMotor.setPower(0.0);
+            beltOn = false;
+        }
+        else{
+            beltMotor.setPower(1.0);
+            beltOn = true;
+        }
+    }
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());
@@ -57,7 +70,10 @@ public class LiftSystemXY extends XModule {
             yMotor.setPower(0.0);
         }
 
-
+        if (xGamepad2().b.wasPressed()){
+            autoLift();
+        }
+        
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
             yMotor.setPower(1.0);
@@ -67,6 +83,11 @@ public class LiftSystemXY extends XModule {
         }
         else if(xGamepad2().dpad_down.wasReleased() || xGamepad2().dpad_up.wasReleased()){
             yMotor.setPower(0.0);
+        }
+
+        //Toggles the conveyor belt
+        if (xGamepad2().a.wasPressed()){
+            toggleBelt();
         }
     }
     public void stop(){
