@@ -73,7 +73,7 @@ public class LiftSystemXY extends XModule {
         if (xGamepad2().b.wasPressed()){
             autoLift();
         }
-        
+
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
             yMotor.setPower(1.0);
