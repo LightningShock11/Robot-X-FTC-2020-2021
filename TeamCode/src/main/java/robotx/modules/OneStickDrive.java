@@ -19,11 +19,11 @@ public class OneStickDrive extends XModule {
     }
 
     public void loop(){
-        leftMotor.setPower(xGamepad1().left_stick_y);
-        rightMotor.setPower(xGamepad1().left_stick_y);
+        leftMotor.setPower(xGamepad1().left_stick_y * 5);
+        rightMotor.setPower(xGamepad1().left_stick_y * 5);
 
-        leftMotor.setPower(-xGamepad1().right_stick_x);
-        rightMotor.setPower(xGamepad1().right_stick_x);
+        leftMotor.setPower(-xGamepad1().right_stick_x * 5);
+        rightMotor.setPower(xGamepad1().right_stick_x * 5);
     }
 
 }
