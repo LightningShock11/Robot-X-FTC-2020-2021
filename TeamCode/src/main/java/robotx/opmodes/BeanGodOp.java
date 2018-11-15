@@ -15,8 +15,8 @@ public class BeanGodOp extends XOpMode {
     //TwoMotorDrive twoMotorDrive;
     OneStickDrive oneStickDrive;
     SortingProtoArm sortingProtoArm;
-    //LiftSystemXY liftSystemXY;
-    //XSweeper xSweeper;
+    LiftSystemXY liftSystemXY;
+    XSweeper xSweeper;
 
     public void initModules(){
         super.initModules();
@@ -30,12 +30,12 @@ public class BeanGodOp extends XOpMode {
         sortingProtoArm = new SortingProtoArm(this);
         activeModules.add(sortingProtoArm);
 
-        /*liftSystemXY = new LiftSystemXY(this);
+        liftSystemXY = new LiftSystemXY(this);
         activeModules.add(liftSystemXY);
 
         xSweeper = new XSweeper(this);
         activeModules.add(xSweeper);
-        */
+
     }
     public void init(){super.init();}
 
