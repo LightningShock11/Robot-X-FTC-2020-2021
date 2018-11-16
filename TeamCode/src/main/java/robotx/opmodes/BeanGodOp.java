@@ -35,6 +35,7 @@ public class BeanGodOp extends XOpMode {
 
         xSweeper = new XSweeper(this);
         activeModules.add(xSweeper);
+
     }
     public void init(){super.init();}
 

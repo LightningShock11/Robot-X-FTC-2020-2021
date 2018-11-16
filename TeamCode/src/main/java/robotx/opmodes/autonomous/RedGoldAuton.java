@@ -1,6 +1,7 @@
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
@@ -50,18 +51,19 @@ public class RedGoldAuton extends XLinearOpMode {
         movement.start();
         sensors.start();
         twoMotorDrive.start();
+        twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
         /////////////////////Movement///////////////////////
 
         //movement test
         // movement.driveForward(3.0, 10.0);
-        goForward(1.0);
-        sleep(2000);
+        goForward(1.0, 2000);
         movement.pointTurnLeft(360);
         sleep(1000);
-        goBackward(1.0);
-        sleep(2000);
+        goBackward(1.0, 2000);
+        stopDriving();
         twoMotorDrive.stop();
         movement.stop();
 
@@ -73,15 +75,20 @@ public class RedGoldAuton extends XLinearOpMode {
 
     /////////////////////Controls///////////////////////
 
-    public void goForward(double power){
+    public void goForward(double power, int time){
 
         twoMotorDrive.leftMotor.setPower(power);
         twoMotorDrive.rightMotor.setPower(power);
+        sleep(time);
     }
-    public void goBackward(double power){
+    public void goBackward(double power, int time){
 
         twoMotorDrive.leftMotor.setPower(-power);
         twoMotorDrive.rightMotor.setPower(-power);
+<<<<<<< HEAD
+=======
+        sleep(time);
+>>>>>>> 96dc41014c2bb894532abcea384ed61516843612
     }
 
     public  void stopDriving (){

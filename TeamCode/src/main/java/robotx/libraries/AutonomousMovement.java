@@ -79,8 +79,13 @@ public class AutonomousMovement extends XModule {
 		sensors.resetNavigationSensors();
 		opMode.telemetry.addData("StartAngle", -sensors.getHeadingAngle() + "deg");
 		opMode.telemetry.update();
+<<<<<<< HEAD
 		drive.setRightPower(1.0);
 		drive.setLeftPower(-1.0);
+=======
+		drive.setRightPower(0.2);
+		drive.setLeftPower(-0.2);
+>>>>>>> 96dc41014c2bb894532abcea384ed61516843612
 		while ( (sensors.changeInHeadingAngle() < degrees) && !((XLinearOpMode) opMode).stopping() ) {
 			opMode.telemetry.addData("Progress", sensors.changeInHeadingAngle() + "deg / " + degrees + "deg");
 			opMode.telemetry.update();
@@ -90,8 +95,13 @@ public class AutonomousMovement extends XModule {
 	public void pointTurnRight(int degrees) {
 		sensors.resetNavigationSensors();
 		opMode.telemetry.addData("StartAngle", sensors.getHeadingAngle() + "deg");
+<<<<<<< HEAD
 		drive.setRightPower(-1.0);
 		drive.setLeftPower(1.0);
+=======
+		drive.setRightPower(-0.2);
+		drive.setLeftPower(0.2);
+>>>>>>> 96dc41014c2bb894532abcea384ed61516843612
 		while ( (-sensors.changeInHeadingAngle() < degrees) && !((XLinearOpMode) opMode).stopping() ) {
 			opMode.telemetry.addData("Progress", -sensors.changeInHeadingAngle() + "deg / " + degrees + "deg");
 			opMode.telemetry.update();
