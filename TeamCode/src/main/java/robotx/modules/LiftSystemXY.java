@@ -42,14 +42,12 @@ public class LiftSystemXY extends XModule {
         xMotor.getCurrentPosition();
         xMotor.setTargetPosition(0);
 
-
         beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
-
 
         }
     public void yMotor(double power){
         yMotor.setPower(power);
-    }
+        }
     public void autoLift(){
         //Toggle method that allows the motor to move back and forth between two positions
         if (up){
@@ -60,9 +58,9 @@ public class LiftSystemXY extends XModule {
             up = false;
         }
         else{
-            yMotor.setTargetPosition(-36000);
+            yMotor.setTargetPosition(1325);
             yMotor.setPower(1.0);
-            xMotor.setTargetPosition(-36000);
+            xMotor.setTargetPosition(1325);
             xMotor.setPower(1.0);
             up = true;
         }
@@ -82,11 +80,11 @@ public class LiftSystemXY extends XModule {
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());
 
         //If the motor has reached its target position, stop the motor
-        if (yMotor.getTargetPosition() == -36000 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
+        if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
             xMotor.setPower(0.0);
         }
-        else if(yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
+        else if(yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
             xMotor.setPower(0.0);
         }
