@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
+import robotx.modules.LiftSystemXY;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
 
@@ -18,6 +19,7 @@ public class RedGoldAuton extends XLinearOpMode {
     AutonomousMovement movement;
     TwoWheelAutonIMU sensors;
     TwoMotorDrive twoMotorDrive;
+    LiftSystemXY liftSystemXY;
 
 
     public void runOpMode() {
@@ -32,6 +34,9 @@ public class RedGoldAuton extends XLinearOpMode {
 
         sensors = new TwoWheelAutonIMU(this);
         sensors.init();
+
+        liftSystemXY = new LiftSystemXY(this);
+        liftSystemXY.init();
 
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
@@ -48,6 +53,7 @@ public class RedGoldAuton extends XLinearOpMode {
         telemetry.addLine().addData("Heading", sensors.getHeadingAngle());
         this.updateTelemetry(telemetry);
 
+        liftSystemXY.start();
         movement.start();
         sensors.start();
         twoMotorDrive.start();
@@ -59,6 +65,7 @@ public class RedGoldAuton extends XLinearOpMode {
 
         //movement test
         // movement.driveForward(3.0, 10.0);
+        
         goForward(1.0, 2000);
         movement.pointTurnLeft(360);
         sleep(1000);
@@ -85,10 +92,8 @@ public class RedGoldAuton extends XLinearOpMode {
 
         twoMotorDrive.leftMotor.setPower(-power);
         twoMotorDrive.rightMotor.setPower(-power);
-<<<<<<< HEAD
-=======
         sleep(time);
->>>>>>> 96dc41014c2bb894532abcea384ed61516843612
+
     }
 
     public  void stopDriving (){
