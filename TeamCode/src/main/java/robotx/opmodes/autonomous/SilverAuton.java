@@ -13,8 +13,8 @@ import robotx.modules.TwoWheelAutonIMU;
  * Created by Kush Dalal on 10/24/2018.
  */
 
-@Autonomous(name = "RedGoldAuton", group = "Autonomous")
-public class RedGoldAuton extends XLinearOpMode {
+@Autonomous(name = "SilverAuton", group = "Autonomous")
+public class SilverAuton extends XLinearOpMode {
 
     AutonomousMovement movement;
     TwoWheelAutonIMU sensors;
@@ -26,7 +26,7 @@ public class RedGoldAuton extends XLinearOpMode {
         //////////////////////init//////////////////////////
 
         //Initialize all systems on the robot. ALL SYSTEMS GO
-        telemetry.addData("Stage", "Init");
+        telemetry.addData("Stage", "Init: Silver Auton");
         this.updateTelemetry(telemetry);
 
         twoMotorDrive = new TwoMotorDrive(this);
@@ -65,11 +65,16 @@ public class RedGoldAuton extends XLinearOpMode {
 
         //movement test
         // movement.driveForward(3.0, 10.0);
-        
+        liftSystemXY.yMotor(1.0);
+        sleep(900);
+        liftSystemXY.yMotor(0.0);
+        sleep(150);
+        movement.pointTurnLeft(45);
+        sleep(150);
         goForward(1.0, 2000);
-        movement.pointTurnLeft(360);
-        sleep(1000);
-        goBackward(1.0, 2000);
+        movement.pointTurnRight(90);
+        sleep(500);
+        goForward(1.0, 2000);
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();
