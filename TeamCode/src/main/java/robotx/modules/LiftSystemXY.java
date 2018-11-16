@@ -27,7 +27,7 @@ public class LiftSystemXY extends XModule {
 
     public void init(){
         //initialize motor
-        yMotor = opMode.hardwareMap.dcMotor.get("YMotor");
+        yMotor = opMode.hardwareMap.dcMotor.get("yMotor");
         yMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         yMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         yMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -44,7 +44,12 @@ public class LiftSystemXY extends XModule {
 
 
         beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
+
+
         }
+    public void yMotor(double power){
+        yMotor.setPower(power);
+    }
     public void autoLift(){
         //Toggle method that allows the motor to move back and forth between two positions
         if (up){
