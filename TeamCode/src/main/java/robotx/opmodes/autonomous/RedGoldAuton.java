@@ -80,9 +80,10 @@ public class RedGoldAuton extends XLinearOpMode {
     }
     public void goBackward(double power){
 
-        twoMotorDrive.leftMotor.setPower(power);
-        twoMotorDrive.rightMotor.setPower(power);
+        twoMotorDrive.leftMotor.setPower(-power);
+        twoMotorDrive.rightMotor.setPower(-power);
     }
+
     public  void stopDriving (){
         twoMotorDrive.brakeAllMotors();
     }
