@@ -38,5 +38,4 @@ public class BeanGodOp extends XOpMode {
 
     }
     public void init(){super.init();}
-
 }
