@@ -66,7 +66,7 @@ public class SilverAuton extends XLinearOpMode {
         //movement test
         // movement.driveForward(3.0, 10.0);
         liftSystemXY.yMotor(1.0);
-        sleep(1100);
+        sleep(1150);
         liftSystemXY.yMotor(0.0);
         sleep(150);
         movement.pointTurnRight(35);
@@ -74,7 +74,7 @@ public class SilverAuton extends XLinearOpMode {
         goForward(1.0, 1000);
         movement.pointTurnLeft(90);
         sleep(500);
-        goForward(1.0, 4000);
+        goForward(1.0, 2500);
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();

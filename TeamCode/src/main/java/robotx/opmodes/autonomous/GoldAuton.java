@@ -66,17 +66,17 @@ public class GoldAuton extends XLinearOpMode {
         //movement test
         // movement.driveForward(3.0, 10.0);
         liftSystemXY.yMotor(1.0);
-        sleep(1100);
+        sleep(1150);
         liftSystemXY.yMotor(0.0);
         liftSystemXY.stop();
         sleep(150);
         movement.pointTurnRight(45);
         sleep(150);
-        goForward(1.0, 1000);
-        movement.pointTurnLeft(90);
+        goForward(1.0, 700);
+        movement.pointTurnLeft(70);
         sleep(500);
-        goForward(1.0, 4000);
-        goBackward(1.0,500);
+        goForward(1.0, 3000);
+        goBackward(1.0,300);
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();
