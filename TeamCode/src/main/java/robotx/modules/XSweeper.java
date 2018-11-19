@@ -41,7 +41,7 @@ public class XSweeper extends XModule {
         if (xGamepad2().x.wasPressed()){
             toggleSweeper();
         }
-        if (xGamepad2().y.wasPressed()){
+        if (xGamepad2().b.wasPressed()){
             switchDirection();
         }
     }
