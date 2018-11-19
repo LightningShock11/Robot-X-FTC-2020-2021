@@ -89,7 +89,7 @@ public class LiftSystemXY extends XModule {
             xMotor.setPower(0.0);
         }
 
-        if (xGamepad2().b.wasPressed()){
+        if (xGamepad2().y.wasPressed()){
             autoLift();
         }
 
