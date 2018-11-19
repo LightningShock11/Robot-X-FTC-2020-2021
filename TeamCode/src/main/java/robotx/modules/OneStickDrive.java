@@ -27,10 +27,10 @@ public class OneStickDrive extends XModule {
         yValue = xGamepad1().right_stick_y;
         xValue = xGamepad1().left_stick_x;
 
-        leftMotor.setPower(-yValue);
-        rightMotor.setPower(yValue);
+        leftMotor.setPower(yValue - xValue);
+        rightMotor.setPower(yValue - xValue);
 
-        leftMotor.setPower(xValue);
-        rightMotor.setPower(xValue);
+        leftMotor.setPower(-xValue - yValue);
+        rightMotor.setPower(xValue - yValue);
     }
 }
