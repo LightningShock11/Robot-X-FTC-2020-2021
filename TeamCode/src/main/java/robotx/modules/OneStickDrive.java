@@ -24,8 +24,8 @@ public class OneStickDrive extends XModule {
         opMode.telemetry.addData("yValue", yValue);
         opMode.telemetry.addData("xValue", xValue);
 
-        yValue = xGamepad1().right_stick_y;
-        xValue = xGamepad1().left_stick_x;
+        yValue = xGamepad1().left_stick_y;
+        xValue = xGamepad1().right_stick_x;
 
         leftMotor.setPower(yValue - xValue);
         rightMotor.setPower(yValue + xValue);
