@@ -25,12 +25,12 @@ public class RLdrive extends XModule {
 
 
         xValue = xGamepad1().left_stick_x;
-        power = xGamepad1().right_trigger;
-        brake = -xGamepad1().left_trigger;
+        power = -xGamepad1().right_trigger;
+        brake = xGamepad1().left_trigger;
 
 
-        leftMotor.setPower(power + brake + xValue);
-        rightMotor.setPower(power + brake - xValue);
+        leftMotor.setPower(power + brake - xValue);
+        rightMotor.setPower(power + brake + xValue);
 
         //rightMotor.setPower(-xValue);
         //leftMotor.setPower(xValue);
