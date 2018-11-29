@@ -1,6 +1,7 @@
 package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.sun.tools.javac.tree.DCTree;
@@ -8,32 +9,31 @@ import com.sun.tools.javac.tree.DCTree;
 import robotx.libraries.XModule;
 
 public class XSweeper extends XModule {
-    DcMotor sweeperMotor;
+    CRServo sweeperServo;
     boolean sweeperIsOn = false;
 
     public XSweeper(OpMode op){super(op);}
 
     public void init(){
-        sweeperMotor = opMode.hardwareMap.dcMotor.get("sweeperMotor");
-        sweeperMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        sweeperServo = opMode.hardwareMap.crservo.get("sweeperServo");
     }
 
     public void toggleSweeper(){
         if (sweeperIsOn){
-            sweeperMotor.setPower(0.0);
+            sweeperServo.setPower(0.0);
             sweeperIsOn = false;
         }
         else{
-            sweeperMotor.setPower(1.0);
+            sweeperServo.setPower(1.0);
             sweeperIsOn = true;
         }
     }
     public void switchDirection(){
-        if (sweeperMotor.getPower() == 1.0){
-            sweeperMotor.setPower(-1.0);
+        if (sweeperServo.getPower() == 1.0){
+            sweeperServo.setPower(-1.0);
         }
-        else if (sweeperMotor.getPower() == -1.0){
-            sweeperMotor.setPower(1.0);
+        else if (sweeperServo.getPower() == -1.0){
+            sweeperServo.setPower(1.0);
         }
     }
 
