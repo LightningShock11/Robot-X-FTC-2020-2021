@@ -43,6 +43,7 @@ public class LiftSystemXY extends XModule {
         xMotor.setTargetPosition(0);
 
         beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
+        beltMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         }
     public void yMotor(double power){
