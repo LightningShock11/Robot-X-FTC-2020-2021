@@ -29,14 +29,12 @@ public class LiftSystemXY extends XModule {
         //initialize motor
         yMotor = opMode.hardwareMap.dcMotor.get("yMotor");
         yMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        yMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         yMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         yMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         yMotor.getCurrentPosition();
         yMotor.setTargetPosition(0);
         xMotor = opMode.hardwareMap.dcMotor.get("xMotor");
         xMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        xMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         xMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         xMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         xMotor.getCurrentPosition();
@@ -49,6 +47,9 @@ public class LiftSystemXY extends XModule {
     public void yMotor(double power){
         yMotor.setPower(power);
         }
+    public void xMotor(double power){
+        xMotor.setPower(power);
+    }
     public void autoLift(){
         //Toggle method that allows the motor to move back and forth between two positions
         if (up){
@@ -83,10 +84,14 @@ public class LiftSystemXY extends XModule {
         //If the motor has reached its target position, stop the motor
         if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
-            xMotor.setPower(0.0);
         }
         else if(yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
+        }
+        if (xMotor.getTargetPosition() == 1345 && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()){
+            xMotor.setPower(0.0);
+        }
+        else if (xMotor.getTargetPosition() == 0 && xMotor.getCurrentPosition() <= xMotor.getTargetPosition()){
             xMotor.setPower(0.0);
         }
 
