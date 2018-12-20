@@ -31,12 +31,14 @@ public class LiftSystemXY extends XModule {
         yMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         yMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         yMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        yMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         yMotor.getCurrentPosition();
         yMotor.setTargetPosition(0);
         xMotor = opMode.hardwareMap.dcMotor.get("xMotor");
         xMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         xMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         xMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        xMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         xMotor.getCurrentPosition();
         xMotor.setTargetPosition(0);
 
