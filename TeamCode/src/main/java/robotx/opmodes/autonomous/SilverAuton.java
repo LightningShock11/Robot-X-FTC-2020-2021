@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.LiftSystemXY;
+import robotx.modules.MineralColor;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
 
@@ -20,6 +21,7 @@ public class SilverAuton extends XLinearOpMode {
     TwoWheelAutonIMU sensors;
     TwoMotorDrive twoMotorDrive;
     LiftSystemXY liftSystemXY;
+    MineralColor mineralColor;
 
 
     public void runOpMode() {
