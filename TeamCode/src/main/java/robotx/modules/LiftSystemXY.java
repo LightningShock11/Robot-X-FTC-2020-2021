@@ -16,10 +16,7 @@ public class LiftSystemXY extends XModule {
 
     DcMotor yMotor;
     DcMotor xMotor;
-    DcMotor beltMotor;
     boolean up = false;
-    boolean beltOn = false;
-
 
     public LiftSystemXY(OpMode op) {
         super(op);
@@ -41,10 +38,6 @@ public class LiftSystemXY extends XModule {
         xMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         xMotor.getCurrentPosition();
         xMotor.setTargetPosition(0);
-
-        beltMotor = opMode.hardwareMap.dcMotor.get("beltMotor");
-        beltMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
         }
     public void yMotor(double power){
         yMotor.setPower(power);
@@ -67,16 +60,6 @@ public class LiftSystemXY extends XModule {
             xMotor.setTargetPosition(1325);
             xMotor.setPower(1.0);
             up = true;
-        }
-    }
-    public void toggleBelt(){
-        if (beltOn){
-            beltMotor.setPower(0.0);
-            beltOn = false;
-        }
-        else{
-            beltMotor.setPower(1.0);
-            beltOn = true;
         }
     }
     public void loop(){
@@ -119,11 +102,6 @@ public class LiftSystemXY extends XModule {
         }
         if(xGamepad2().dpad_down.wasReleased() || xGamepad2().dpad_up.wasReleased()){
             yMotor.setPower(0.0);
-        }
-
-        //Toggles the conveyor belt
-        if (xGamepad2().a.wasPressed()){
-            toggleBelt();
         }
     }
     public void stop(){
