@@ -85,9 +85,9 @@ public class MineralColor extends XModule {
 
     public  void knockMineral(){
         if(position == 1){
-            //retract
+            liftSystemXY.retractX();
             movement.pointTurnLeft(40);
-            //extend again to knock off gold
+            liftSystemXY.extendX(1325);
             sleep(150);
             movement.pointTurnLeft(30);
 
@@ -96,7 +96,7 @@ public class MineralColor extends XModule {
         }else if (position == 3){
             movement.pointTurnRight(30);
             sleep(150);
-            //retract X lift
+            liftSystemXY.retractX();
             movement.pointTurnLeft(100);
         }else if(position == 0){
             opMode.telemetry.addData("Gold Not found ", position);
