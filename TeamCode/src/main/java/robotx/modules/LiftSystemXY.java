@@ -62,7 +62,6 @@ public class LiftSystemXY extends XModule {
             up = true;
         }
     }
-<<<<<<< HEAD
     public void toggleBelt(){
         if (beltOn){
             beltMotor.setPower(0.0);
@@ -74,8 +73,7 @@ public class LiftSystemXY extends XModule {
         }
     }
 
-=======
->>>>>>> edde9c18f4fb02a4abf81f2eb895eb33260a18d6
+
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());

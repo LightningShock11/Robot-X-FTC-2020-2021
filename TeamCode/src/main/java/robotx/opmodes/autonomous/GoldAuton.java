@@ -44,6 +44,11 @@ public class GoldAuton extends XLinearOpMode {
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
+        mineralColor = new MineralColor(this);
+        mineralColor.movement = movement;
+        mineralColor.liftSystemXY = liftSystemXY;
+        mineralColor.init();
+
         sensors.leftMotor = twoMotorDrive.leftMotor;
         sensors.rightMotor = twoMotorDrive.rightMotor;
 
@@ -97,13 +102,16 @@ public class GoldAuton extends XLinearOpMode {
         twoMotorDrive.leftMotor.setPower(-power);
         twoMotorDrive.rightMotor.setPower(-power);
         sleep(time);
+        twoMotorDrive.rightMotor.setPower(0);
+        twoMotorDrive.leftMotor.setPower(0);
     }
     public void goBackward(double power, int time){
 
         twoMotorDrive.leftMotor.setPower(power);
         twoMotorDrive.rightMotor.setPower(power);
         sleep(time);
-
+        twoMotorDrive.rightMotor.setPower(0);
+        twoMotorDrive.leftMotor.setPower(0);
     }
 
     public  void stopDriving (){
