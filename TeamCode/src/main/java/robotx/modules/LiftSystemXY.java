@@ -62,6 +62,7 @@ public class LiftSystemXY extends XModule {
             up = true;
         }
     }
+<<<<<<< HEAD
     public void toggleBelt(){
         if (beltOn){
             beltMotor.setPower(0.0);
@@ -70,10 +71,27 @@ public class LiftSystemXY extends XModule {
         else{
             beltMotor.setPower(1.0);
             beltOn = true;
+=======
+    public void extendX(int xPosition){
+        xMotor.setTargetPosition(xPosition);
+        xMotor.setPower(1.0);
+        if (xMotor.getTargetPosition() == 1345 && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()) {
+            xMotor.setPower(0.0);
+>>>>>>> 19001108348350c50243c6d928fd59e8072eb703
         }
     }
+    public void retractX(){
+        xMotor.setTargetPosition(0);
+        xMotor.setPower(-1.0);
+        if (xMotor.getTargetPosition() == 0 && xMotor.getCurrentPosition() <= xMotor.getTargetPosition()){
+            xMotor.setPower(0.0);
+        }
 
+<<<<<<< HEAD
 
+=======
+    }
+>>>>>>> 19001108348350c50243c6d928fd59e8072eb703
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());
