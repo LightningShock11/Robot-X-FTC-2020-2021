@@ -3,6 +3,8 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+import robotx.modules.ContinuousRotationServoTest;
+import robotx.modules.DumpingBucket;
 import robotx.modules.LiftSystemXY;
 import robotx.modules.OneStickDrive;
 import robotx.modules.RLdrive;
@@ -19,6 +21,7 @@ public class BeanGodOp extends XOpMode {
     SortingProtoArm sortingProtoArm;
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
+    DumpingBucket dumpingBucket;
 
     public void initModules(){
         super.initModules();
@@ -40,6 +43,9 @@ public class BeanGodOp extends XOpMode {
 
         xSweeper = new XSweeper(this);
         activeModules.add(xSweeper);
+
+        dumpingBucket = new DumpingBucket(this);
+        activeModules.add(dumpingBucket);
 
     }
     public void init(){super.init();}
