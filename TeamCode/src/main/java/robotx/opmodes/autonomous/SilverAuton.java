@@ -43,6 +43,11 @@ public class SilverAuton extends XLinearOpMode {
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
+        mineralColor = new MineralColor(this);
+        mineralColor.movement = movement;
+        mineralColor.liftSystemXY = liftSystemXY;
+        mineralColor.init();
+
         sensors.leftMotor = twoMotorDrive.leftMotor;
         sensors.rightMotor = twoMotorDrive.rightMotor;
 
@@ -71,16 +76,20 @@ public class SilverAuton extends XLinearOpMode {
         sleep(1150);
         liftSystemXY.yMotor(0.0);
         sleep(150);
-        movement.pointTurnRight(35);
-        sleep(150);
-        goForward(1.0, 1000);
-        movement.pointTurnLeft(90);
-        sleep(500);
-        goForward(1.0, 2500);
+        //extend X lift
+        mineralColor.DetectGold();
+        sleep(100);
+        mineralColor.knockMineral();
+        //retract X lift
+        goForward(1.0, 700);
+        movement.pointTurnRight(90);
+        goBackward(1.0, 900);
+        //dump/place marker
+        sleep(100);
+        goForward(1.0, 2000);
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();
-
 
 
         ////////////////////////////////////////////////////
@@ -95,13 +104,16 @@ public class SilverAuton extends XLinearOpMode {
         twoMotorDrive.rightMotor.setPower(-power);
         twoMotorDrive.leftMotor.setPower(-power);
         sleep(time);
+        twoMotorDrive.rightMotor.setPower(0);
+        twoMotorDrive.leftMotor.setPower(0);
     }
     public void goBackward(double power, int time){
 
         twoMotorDrive.leftMotor.setPower(power);
         twoMotorDrive.rightMotor.setPower(power);
         sleep(time);
-
+        twoMotorDrive.rightMotor.setPower(0);
+        twoMotorDrive.leftMotor.setPower(0);
     }
 
     public  void stopDriving (){

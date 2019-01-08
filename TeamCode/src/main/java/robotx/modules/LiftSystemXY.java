@@ -79,6 +79,7 @@ public class LiftSystemXY extends XModule {
             beltOn = true;
         }
     }
+
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());

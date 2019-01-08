@@ -17,11 +17,14 @@ import robotx.libraries.XModule;
 public class MineralColor extends XModule {
 
     public AutonomousMovement movement;
+    public LiftSystemXY liftSystemXY;
 
     ColorSensor rightSensor;
     ColorSensor leftSensor;
 
     public boolean isRightWhite;
+    public boolean isRightGold;
+    public boolean isLeftGold;
     public boolean isLeftWhite;
 
     public int position;
@@ -42,25 +45,62 @@ public class MineralColor extends XModule {
 
     }
 
+    private void sleep(long milliseconds) {
+        if (opMode instanceof LinearOpMode) {
+            ((LinearOpMode) opMode).sleep(milliseconds);
+        }
+    }
+
     public void DetectGold()
     {
         movement.pointTurnRight(20);
         if(rightSensor.red() > 240 && rightSensor.green() > 240 && rightSensor.blue() > 240) //check if the color is close enough to white
         {
             isRightWhite = true;
+        }else{
+            isRightGold = true;
         }
         movement.pointTurnLeft(20);
         if(leftSensor.red() > 240 && leftSensor.green() > 240 && leftSensor.blue() > 240 )
         {
             isLeftWhite = true;
         }
+        else {
+            isLeftGold = true;
+        }
+
+
         if(isRightWhite && isLeftWhite)
         {
             position = 1; //this is read left to right from the lander's POV
-        }else if (!isRightWhite && isLeftWhite){
-            
+        }else if (isRightGold && isLeftGold)
+        {
+            position = 2;
+        }else if (isRightGold && isLeftWhite)
+        {
+            position = 3;
         }
 
+    }
+
+    public  void knockMineral(){
+        if(position == 1){
+            //retract
+            movement.pointTurnLeft(40);
+            //extend again to knock off gold
+            sleep(150);
+            movement.pointTurnLeft(30);
+
+        }else if (position == 2){
+            movement.pointTurnLeft(70);
+        }else if (position == 3){
+            movement.pointTurnRight(30);
+            sleep(150);
+            //retract X lift
+            movement.pointTurnLeft(100);
+        }else if(position == 0){
+            opMode.telemetry.addData("Gold Not found ", position);
+        }
     }
 
 
