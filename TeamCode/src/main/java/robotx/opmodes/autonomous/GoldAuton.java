@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
+import robotx.modules.DumpingBucket;
 import robotx.modules.LiftSystemXY;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.MineralColor;
@@ -22,7 +23,7 @@ public class GoldAuton extends XLinearOpMode {
     TwoMotorDrive twoMotorDrive;
     LiftSystemXY liftSystemXY;
     MineralColor mineralColor;
-
+    DumpingBucket dumpingBucket;
 
 
     public void runOpMode() {
@@ -34,6 +35,9 @@ public class GoldAuton extends XLinearOpMode {
 
         twoMotorDrive = new TwoMotorDrive(this);
         twoMotorDrive.init();
+
+        dumpingBucket = new DumpingBucket(this);
+        dumpingBucket.init();
 
         sensors = new TwoWheelAutonIMU(this);
         sensors.init();
@@ -71,20 +75,30 @@ public class GoldAuton extends XLinearOpMode {
 
         /////////////////////Movement///////////////////////
 
-        //movement test
-        // movement.driveForward(3.0, 10.0);
         liftSystemXY.yMotor(1.0);
         sleep(1150);
         liftSystemXY.yMotor(0.0);
-        liftSystemXY.stop();
         sleep(150);
-        movement.pointTurnRight(45);
-        sleep(150);
+        movement.pointTurnRight(30);
+        sleep(100);
+        goForward(1.0, 750);
+        sleep(100);
+        movement.pointTurnLeft(30);
+        sleep(250);
+
+        //-----------Dehanging complete-----------\\
+
+        liftSystemXY.extendX(1325);
+        mineralColor.DetectGold();
+        sleep(100);
+        mineralColor.knockMineral();
+        liftSystemXY.retractX();
         goForward(1.0, 700);
-        movement.pointTurnLeft(70);
-        sleep(500);
-        goForward(1.0, 3000);
-        goBackward(1.0,300);
+        movement.pointTurnRight(90);
+        goBackward(1.0, 900);
+        dumpingBucket.autoDump();
+        sleep(100);
+        goForward(1.0, 2000);
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();
