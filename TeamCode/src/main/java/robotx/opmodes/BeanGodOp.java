@@ -32,19 +32,19 @@ public class BeanGodOp extends XOpMode {
         //oneStickDrive = new OneStickDrive(this);
         //activeModules.add(oneStickDrive);
 
-        rLdrive = new RLdrive(this);
+        rLdrive = new RLdrive(this); //Driving system
         activeModules.add(rLdrive);
 
-        sortingProtoArm = new SortingProtoArm(this);
+        sortingProtoArm = new SortingProtoArm(this); //sorting system
         activeModules.add(sortingProtoArm);
 
-        liftSystemXY = new LiftSystemXY(this);
+        liftSystemXY = new LiftSystemXY(this); //lift system
         activeModules.add(liftSystemXY);
 
-        xSweeper = new XSweeper(this);
+        xSweeper = new XSweeper(this); //sweeper
         activeModules.add(xSweeper);
 
-        dumpingBucket = new DumpingBucket(this);
+        dumpingBucket = new DumpingBucket(this); //dumping system
         activeModules.add(dumpingBucket);
 
     }
