@@ -34,7 +34,7 @@ public class MineralColor extends XModule {
     public MineralColor(OpMode Op) {super (Op);}
 
     public void init(){
-        //initialize color sensor
+        //----------initialize color sensors----------\\
         rightSensor = opMode.hardwareMap.colorSensor.get("rightSensor");
         rightSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         rightSensor.enableLed(false);
@@ -42,17 +42,20 @@ public class MineralColor extends XModule {
         leftSensor = opMode.hardwareMap.colorSensor.get("leftSensor");
         leftSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         leftSensor.enableLed(false);
+        //---------------------------------------------\\
+
 
     }
 
-    private void sleep(long milliseconds) {
+    private void sleep(long milliseconds) { //Sleep during auton method
         if (opMode instanceof LinearOpMode) {
             ((LinearOpMode) opMode).sleep(milliseconds);
         }
     }
 
-    public void DetectGold()
+    public void DetectGold() //Method to detect the side gold is on
     {
+        //---------Sensors measuring what is on the left and right side---------\\
         movement.pointTurnRight(20);
         if(rightSensor.red() > 240 && rightSensor.green() > 240 && rightSensor.blue() > 240) //check if the color is close enough to white
         {
@@ -68,8 +71,10 @@ public class MineralColor extends XModule {
         else {
             isLeftGold = true;
         }
+        //---------------------------------------------------------------------\\
 
 
+        //---------------Defining the position of the gold cube----------------\\
         if(isRightWhite && isLeftWhite)
         {
             position = 1; //this is read left to right from the lander's POV
@@ -80,26 +85,38 @@ public class MineralColor extends XModule {
         {
             position = 3;
         }
+        //---------------------------------------------------------------------\\
+
 
     }
 
-    public  void knockMineral(){
+    public  void knockMineral() //Run motions for knocking off minerals
+    {
+        //---------------if the gold is in pos 1----------------\\
         if(position == 1){
             liftSystemXY.retractX();
             movement.pointTurnLeft(40);
             liftSystemXY.extendX(1325);
             sleep(150);
             movement.pointTurnLeft(30);
-
-        }else if (position == 2){
+        }
+        //---------------if the gold is in pos 2----------------\\
+        else if (position == 2){
             movement.pointTurnLeft(70);
-        }else if (position == 3){
+        }
+        //---------------if the gold is in pos 3----------------\\
+        else if (position == 3){
             movement.pointTurnRight(30);
             sleep(150);
             liftSystemXY.retractX();
             movement.pointTurnLeft(100);
-        }else if(position == 0){
+        }
+        //---------------If colorsensor fails----------------\\
+        else if(position == 0){
             opMode.telemetry.addData("Gold Not found ", position);
+            liftSystemXY.retractX();
+            movement.pointTurnLeft(70);
+
         }
     }
 

@@ -96,7 +96,7 @@ public class GoldAuton extends XLinearOpMode {
         goForward(1.0, 700);
         movement.pointTurnRight(90);
         goBackward(1.0, 900);
-        dumpingBucket.autoDump();
+        dumpingBucket.();
         sleep(100);
         goForward(1.0, 2000);
         stopDriving();
