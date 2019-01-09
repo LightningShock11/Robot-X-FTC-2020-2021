@@ -28,7 +28,7 @@ public class XSweeper extends XModule {
             sweeperIsOn = false;
         }
         else{
-            sweeperServo.setPower(1.0);
+            sweeperServo.setPower(-1.0);
             sweeperIsOn = true;
         }
     }
