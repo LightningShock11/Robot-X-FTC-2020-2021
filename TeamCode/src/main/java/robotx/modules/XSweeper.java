@@ -20,6 +20,7 @@ public class XSweeper extends XModule {
     public void init(){
         sweeperServo = opMode.hardwareMap.crservo.get("sweeperServo");
         sweeperRotate = opMode.hardwareMap.servo.get("sweeperRotate");
+        sweeperRotate.setPosition(0.0);
     }
 
     public void toggleSweeper(){
@@ -28,7 +29,7 @@ public class XSweeper extends XModule {
             sweeperIsOn = false;
         }
         else{
-            sweeperServo.setPower(-1.0);
+            sweeperServo.setPower(1.0);
             sweeperIsOn = true;
         }
     }
@@ -47,7 +48,7 @@ public class XSweeper extends XModule {
             sweeperIsOut = false;
         }
         else{
-            //sweeperRotate.setPosition();
+            sweeperRotate.setPosition(0.4);
             sweeperIsOut = true;
         }
     }
