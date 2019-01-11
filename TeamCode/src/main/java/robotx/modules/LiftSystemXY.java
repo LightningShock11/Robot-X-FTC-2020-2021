@@ -62,7 +62,6 @@ public class LiftSystemXY extends XModule {
             up = true;
         }
     }
-
     public void extendX(int xPosition){
         xMotor.setTargetPosition(xPosition);
         xMotor.setPower(1.0);
@@ -76,8 +75,6 @@ public class LiftSystemXY extends XModule {
         if (xMotor.getTargetPosition() == 0 && xMotor.getCurrentPosition() <= xMotor.getTargetPosition()){
             xMotor.setPower(0.0);
         }
-
-
     }
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());

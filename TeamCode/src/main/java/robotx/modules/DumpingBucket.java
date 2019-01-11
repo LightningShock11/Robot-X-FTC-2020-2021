@@ -17,11 +17,13 @@ public class DumpingBucket extends XModule{
         dumpingServo = opMode.hardwareMap.servo.get("dumpingServo");
         dumpingServo.setPosition(0.0);
     }
+    //Sleep is used in autonomous
     private void sleep(long milliseconds) {
         if (opMode instanceof LinearOpMode) {
             ((LinearOpMode) opMode).sleep(milliseconds);
         }
     }
+    //Used in autonomous
     public void autoDump(){
         dumpingServo.setPosition(dumpPosition);
         sleep(1500);

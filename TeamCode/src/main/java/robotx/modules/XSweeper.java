@@ -22,7 +22,6 @@ public class XSweeper extends XModule {
         sweeperRotate = opMode.hardwareMap.servo.get("sweeperRotate");
         sweeperRotate.setPosition(0.0);
     }
-
     public void toggleSweeper(){
         if (sweeperIsOn){
             sweeperServo.setPower(0.0);
@@ -41,7 +40,6 @@ public class XSweeper extends XModule {
             sweeperServo.setPower(1.0);
         }
     }
-
     public void rotateSweeper(){
         if (sweeperIsOut){
             sweeperRotate.setPosition(0.0);
@@ -56,9 +54,8 @@ public class XSweeper extends XModule {
         sweeperRotate.setPosition(0.0);
     }
     public void rotateDown(){ //Used for autonomous
-        sweeperRotate.setPosition(0.0);
+        sweeperRotate.setPosition(0.375);
     }
-
     public void loop(){
         if (xGamepad2().x.wasPressed()){
             toggleSweeper();
