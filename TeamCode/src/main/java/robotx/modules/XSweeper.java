@@ -48,9 +48,15 @@ public class XSweeper extends XModule {
             sweeperIsOut = false;
         }
         else{
-            sweeperRotate.setPosition(0.4);
+            sweeperRotate.setPosition(0.375);
             sweeperIsOut = true;
         }
+    }
+    public void rotateUp(){ //Used for autonomous
+        sweeperRotate.setPosition(0.0);
+    }
+    public void rotateDown(){ //Used for autonomous
+        sweeperRotate.setPosition(0.0);
     }
 
     public void loop(){

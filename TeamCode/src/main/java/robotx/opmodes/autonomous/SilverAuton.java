@@ -10,6 +10,7 @@ import robotx.modules.LiftSystemXY;
 import robotx.modules.MineralColor;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
+import robotx.modules.XSweeper;
 
 /**
  * Created by Kush Dalal on 10/24/2018.
@@ -24,6 +25,8 @@ public class SilverAuton extends XLinearOpMode {
     LiftSystemXY liftSystemXY;
     MineralColor mineralColor;
     DumpingBucket dumpingBucket;
+    XSweeper xSweeper;
+
 
 
     public void runOpMode() {
@@ -52,6 +55,9 @@ public class SilverAuton extends XLinearOpMode {
         mineralColor.movement = movement;
         mineralColor.liftSystemXY = liftSystemXY;
         mineralColor.init();
+
+        xSweeper = new XSweeper(this);
+        xSweeper.init();
 
         sensors.leftMotor = twoMotorDrive.leftMotor;
         sensors.rightMotor = twoMotorDrive.rightMotor;
@@ -89,6 +95,7 @@ public class SilverAuton extends XLinearOpMode {
 
         //-----------Dehanging complete-----------\\
 
+        xSweeper.rotateDown();
         liftSystemXY.extendX(1325);
         mineralColor.DetectGold();
         sleep(100);
