@@ -66,5 +66,9 @@ public class XSweeper extends XModule {
         if (xGamepad2().dpad_right.wasPressed()){
             rotateSweeper();
         }
+        if (xGamepad2().dpad_left.wasPressed()){
+            sweeperRotate.setPosition(2.2);
+            //Set the sweeper to a horizontal position to clear crater without dumping contents
+        }
     }
 }
