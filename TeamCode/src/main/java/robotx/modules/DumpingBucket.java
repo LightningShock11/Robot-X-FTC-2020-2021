@@ -9,13 +9,13 @@ import robotx.libraries.XModule;
 public class DumpingBucket extends XModule{
 
     Servo dumpingServo;
-    int dumpPosition; //Add value here after testing servo positions
+    double dumpPosition = 0.2;
 
     public DumpingBucket(OpMode op){super(op);}
 
     public void init(){
         dumpingServo = opMode.hardwareMap.servo.get("dumpingServo");
-        dumpingServo.setPosition(0.0);
+        dumpingServo.setPosition(0.4);
     }
     //Sleep is used in autonomous
     private void sleep(long milliseconds) {
@@ -27,7 +27,7 @@ public class DumpingBucket extends XModule{
     public void autoDump(){
         dumpingServo.setPosition(dumpPosition);
         sleep(1500);
-        dumpingServo.setPosition(0.0);
+        dumpingServo.setPosition(0.4);
     }
 
     public void loop(){
@@ -35,7 +35,7 @@ public class DumpingBucket extends XModule{
             dumpingServo.setPosition(dumpPosition);
         }
         else{
-            dumpingServo.setPosition(0.0);
+            dumpingServo.setPosition(0.4);
         }
     }
 }
