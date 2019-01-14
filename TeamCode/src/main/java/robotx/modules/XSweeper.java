@@ -20,7 +20,7 @@ public class XSweeper extends XModule {
     public void init(){
         sweeperServo = opMode.hardwareMap.crservo.get("sweeperServo");
         sweeperRotate = opMode.hardwareMap.servo.get("sweeperRotate");
-        sweeperRotate.setPosition(0.0);
+        sweeperRotate.setPosition(0.05);
     }
     public void toggleSweeper(){
         if (sweeperIsOn){
@@ -42,19 +42,19 @@ public class XSweeper extends XModule {
     }
     public void rotateSweeper(){
         if (sweeperIsOut){
-            sweeperRotate.setPosition(0.0);
+            sweeperRotate.setPosition(0.05);
             sweeperIsOut = false;
         }
         else{
-            sweeperRotate.setPosition(0.385);
+            sweeperRotate.setPosition(0.87);
             sweeperIsOut = true;
         }
     }
     public void rotateUp(){ //Used for autonomous
-        sweeperRotate.setPosition(0.0);
+        sweeperRotate.setPosition(0.05);
     }
     public void rotateDown(){ //Used for autonomous
-        sweeperRotate.setPosition(0.385);
+        sweeperRotate.setPosition(0.87);
     }
     public void loop(){
         if (xGamepad2().x.wasPressed()){
@@ -67,7 +67,7 @@ public class XSweeper extends XModule {
             rotateSweeper();
         }
         if (xGamepad2().dpad_left.wasPressed()){
-            sweeperRotate.setPosition(.22);
+            sweeperRotate.setPosition(.6);
             //Set the sweeper to a horizontal position to clear crater without dumping contents
         }
     }
