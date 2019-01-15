@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import robotx.libraries.XOpMode;
 import robotx.modules.SortingProtoArm;
 
-@TeleOp(name = "SortingArmOp", group = "Testing")
+/*@TeleOp(name = "SortingArmOp", group = "Testing")
 public class SortingArmOp extends XOpMode {
     SortingProtoArm sortingProtoArm;
 
@@ -19,3 +19,4 @@ public class SortingArmOp extends XOpMode {
         super.init();
     }
 }
+*/

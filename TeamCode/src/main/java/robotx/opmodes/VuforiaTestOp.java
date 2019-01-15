@@ -8,7 +8,7 @@ import robotx.modules.*;
 /**
  * Created by Robot-X Team Member on 11/20/2017.
  */
-@TeleOp (name = "VuforiaTestOp", group = "Tests")
+/*@TeleOp (name = "VuforiaTestOp", group = "Tests")
 public class VuforiaTestOp extends XOpMode {
     VuMarkDetection vuMarkDetection;
 
@@ -34,3 +34,4 @@ public class VuforiaTestOp extends XOpMode {
         }
     }
 }
+*/

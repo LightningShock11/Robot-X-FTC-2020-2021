@@ -10,6 +10,7 @@ public class DumpingBucket extends XModule{
 
     Servo dumpingServo;
     double dumpPosition = 0.85;
+    boolean dumping;
 
     public DumpingBucket(OpMode op){super(op);}
 
@@ -29,12 +30,22 @@ public class DumpingBucket extends XModule{
         sleep(1500);
         dumpingServo.setPosition(0.47);
     }
-
-    public void loop(){
-        if (xGamepad2().a.isDown()){
-            dumpingServo.setPosition(dumpPosition);
+    public void toggleBucket(){
+        if (dumping){
+            dumpingServo.setPosition(0.65);
+            dumping = false;
         }
         else{
+            dumpingServo.setPosition(dumpPosition);
+            dumping = true;
+        }
+    }
+
+    public void loop(){
+        if (xGamepad2().a.wasPressed()){
+            toggleBucket();
+        }
+        if (xGamepad2().y.wasPressed()){
             dumpingServo.setPosition(0.47);
         }
     }

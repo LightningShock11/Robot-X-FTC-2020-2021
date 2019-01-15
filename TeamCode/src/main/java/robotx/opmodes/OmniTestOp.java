@@ -8,7 +8,7 @@ import robotx.modules.*;
 /**
  * Created by Robot-X Team Member on 11/09/2017.
  */
-@TeleOp (name = "OmniTestOp", group = "Tests")
+/*@TeleOp (name = "OmniTestOp", group = "Tests")
 @Disabled
 public class OmniTestOp extends XOpMode {
     OmniTest omniTest;
@@ -23,3 +23,4 @@ public class OmniTestOp extends XOpMode {
         super.init();
     }
 }
+*/
