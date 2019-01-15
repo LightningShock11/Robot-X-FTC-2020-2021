@@ -76,6 +76,20 @@ public class LiftSystemXY extends XModule {
             xMotor.setPower(0.0);
         }
     }
+    public void extendY(int xPosition){
+        yMotor.setTargetPosition(xPosition);
+        yMotor.setPower(1.0);
+        if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
+            yMotor.setPower(0.0);
+        }
+    }
+    public void retractY(){
+        yMotor.setTargetPosition(0);
+        yMotor.setPower(-1.0);
+        if (yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
+            yMotor.setPower(0.0);
+        }
+    }
     public void loop(){
         opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());
@@ -94,10 +108,10 @@ public class LiftSystemXY extends XModule {
             xMotor.setPower(0.0);
         }
 
-        if (xGamepad2().y.wasPressed()){
+        /*if (xGamepad2().y.wasPressed()){
             autoLift();
         }
-
+        */
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
             yMotor.setPower(1.0);

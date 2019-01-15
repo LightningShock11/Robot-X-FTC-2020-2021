@@ -11,6 +11,7 @@ import robotx.modules.*;
  * Created by Robot-X Team Member on 11/30/2017.
  */
 @Autonomous(name = "AutonTestingOp", group = "Testing")
+@Disabled
 public class AutonTestingOp extends XLinearOpMode {
 
     OmniAutonomousMovement movement;
