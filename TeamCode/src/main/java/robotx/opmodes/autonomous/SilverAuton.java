@@ -83,7 +83,7 @@ public class SilverAuton extends XLinearOpMode {
 
 
         liftSystemXY.yMotor(1.0);
-        sleep(1150);
+        sleep(1950);
         liftSystemXY.yMotor(0.0);
         sleep(150);
         movement.pointTurnRight(30);
