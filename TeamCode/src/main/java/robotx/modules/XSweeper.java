@@ -46,7 +46,7 @@ public class XSweeper extends XModule {
             sweeperIsOut = false;
         }
         else{
-            sweeperRotate.setPosition(0.86);
+            sweeperRotate.setPosition(0.88);
             sweeperIsOut = true;
         }
     }
@@ -54,7 +54,7 @@ public class XSweeper extends XModule {
         sweeperRotate.setPosition(0.05);
     }
     public void rotateDown(){ //Used for autonomous
-        sweeperRotate.setPosition(0.86);
+        sweeperRotate.setPosition(0.88);
     }
     public void loop(){
         if (xGamepad2().x.wasPressed()){
