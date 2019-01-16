@@ -82,23 +82,23 @@ public class SilverAuton extends XLinearOpMode {
         /////////////////////Movement///////////////////////
 
 
-        liftSystemXY.yMotor(1.0);
-        sleep(1950);
-        liftSystemXY.yMotor(0.0);
+        liftSystemXY.extendY(1300);
         sleep(150);
         movement.pointTurnRight(30);
-        sleep(100);
-        goForward(1.0, 750);
-        sleep(100);
+        sleep(1500);
+        goForward(1.0, 250);
+        sleep(1500);
         movement.pointTurnLeft(30);
-        sleep(250);
+        sleep(550);
+        stopDriving();
 
         //-----------Dehanging complete-----------\\
 
         xSweeper.rotateDown();
-        liftSystemXY.extendX(1325);
+        liftSystemXY.extendX(400);
+        sleep(1000);
         mineralColor.DetectGold();
-        sleep(100);
+        sleep(1000);
         mineralColor.knockMineral();
         liftSystemXY.retractX();
         goForward(1.0, 700);

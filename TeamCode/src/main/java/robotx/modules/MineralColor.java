@@ -56,14 +56,14 @@ public class MineralColor extends XModule {
     public void DetectGold() //Method to detect the side gold is on
     {
         //---------Sensors measuring what is on the left and right side---------\\
-        movement.pointTurnRight(20);
+        //movement.pointTurnRight(20);
         if(rightSensor.red() > 240 && rightSensor.green() > 240 && rightSensor.blue() > 240) //check if the color is close enough to white
         {
             isRightWhite = true;
         }else{
             isRightGold = true;
         }
-        movement.pointTurnLeft(20);
+       // movement.pointTurnLeft(20);
         if(leftSensor.red() > 240 && leftSensor.green() > 240 && leftSensor.blue() > 240 )
         {
             isLeftWhite = true;
@@ -71,6 +71,7 @@ public class MineralColor extends XModule {
         else {
             isLeftGold = true;
         }
+        opMode.telemetry.update();sleep(1000);
         //---------------------------------------------------------------------\\
 
 
@@ -94,6 +95,8 @@ public class MineralColor extends XModule {
     {
         //---------------if the gold is in pos 1----------------\\
         if(position == 1){
+            opMode.telemetry.addData("Gold is in pos: ", position);
+            opMode.telemetry.update();
             liftSystemXY.retractX();
             movement.pointTurnLeft(40);
             liftSystemXY.extendX(1325);
@@ -102,10 +105,14 @@ public class MineralColor extends XModule {
         }
         //---------------if the gold is in pos 2----------------\\
         else if (position == 2){
+            opMode.telemetry.addData("Gold is in pos: ", position);
+            opMode.telemetry.update();
             movement.pointTurnLeft(70);
         }
         //---------------if the gold is in pos 3----------------\\
         else if (position == 3){
+            opMode.telemetry.addData("Gold is in pos: ", position);
+            opMode.telemetry.update();
             movement.pointTurnRight(30);
             sleep(150);
             liftSystemXY.retractX();
@@ -114,6 +121,7 @@ public class MineralColor extends XModule {
         //---------------If colorsensor fails----------------\\
         else if(position == 0){
             opMode.telemetry.addData("Gold Not found ", position);
+            opMode.telemetry.update();
             liftSystemXY.retractX();
             movement.pointTurnLeft(70);
 
