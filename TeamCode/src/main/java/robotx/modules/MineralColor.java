@@ -71,7 +71,8 @@ public class MineralColor extends XModule {
         else {
             isLeftGold = true;
         }
-        opMode.telemetry.update();sleep(1000);
+        opMode.telemetry.update();
+        sleep(1000);
         //---------------------------------------------------------------------\\
 
 

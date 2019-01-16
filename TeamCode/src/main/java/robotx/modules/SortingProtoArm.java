@@ -18,33 +18,35 @@ public class SortingProtoArm extends XModule {
 
     public void init(){
         //initialize servo
-        protoServo = opMode.hardwareMap.servo.get("protoServo");
+      //  protoServo = opMode.hardwareMap.servo.get("protoServo");
 
         //initialize color sensor
-        sortingColor = opMode.hardwareMap.colorSensor.get("sortingColor");
+        sortingColor = opMode.hardwareMap.colorSensor.get("rightSensor");
         sortingColor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         sortingColor.enableLed(false);
 
-        protoServo.setPosition(0.85);
+     //   protoServo.setPosition(0.85);
         //Open servo during init
 
     }
 
     public void loop(){
-        opMode.telemetry.addData("Servo position:" , protoServo.getPosition());
+
 
         if (sortingColor.red() > 240 && sortingColor.green() > 240 && sortingColor.blue() > 240) {
             //check if the color is close enough to white
-
-            protoServo.setPosition(0.6); //set the servo the drop in white
+            opMode.telemetry.addLine();
+            opMode.telemetry.addData("is measured: True", sortingColor.argb());
+            //protoServo.setPosition(0.6); //set the servo the drop in white
 
         } else if (xGamepad1().b.isDown()) {
             //manual override for testing purposes
 
-            protoServo.setPosition(0.6);
+           // protoServo.setPosition(0.6);
         } else {
+            opMode.telemetry.addData("is measured: False", sortingColor.argb());
             //keep the servo open
-            protoServo.setPosition(0.85); //set the servo to open for gold cubes
+          //  protoServo.setPosition(0.85); //set the servo to open for gold cubes
         }
     }
 }
