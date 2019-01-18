@@ -91,7 +91,6 @@ public class GoldAuton extends XLinearOpMode {
 
         //-----------Dehanging complete-----------\\
 
-        xSweeper.rotateDown();
         liftSystemXY.extendX(1325);
         mineralColor.DetectGold();
         sleep(100);
