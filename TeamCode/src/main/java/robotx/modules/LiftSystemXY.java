@@ -17,6 +17,7 @@ public class LiftSystemXY extends XModule {
     DcMotor yMotor;
     DcMotor xMotor;
     boolean up = false;
+    boolean out;
 
     public LiftSystemXY(OpMode op) {
         super(op);
@@ -45,20 +46,28 @@ public class LiftSystemXY extends XModule {
     public void xMotor(double power){
         xMotor.setPower(power);
     }
-    public void autoLift(){
+    public void autoLiftX(){
         //Toggle method that allows the motor to move back and forth between two positions
-        if (up){
-            yMotor.setTargetPosition(0);
-            yMotor.setPower(-1.0);
+        if (out){
             xMotor.setTargetPosition(0);
             xMotor.setPower(-1.0);
-            up = false;
+            out = false;
         }
         else{
-            yMotor.setTargetPosition(1325);
-            yMotor.setPower(1.0);
             xMotor.setTargetPosition(1325);
             xMotor.setPower(1.0);
+            out = true;
+        }
+    }
+    public void autoLiftY(){
+        if (up) {
+            yMotor.setTargetPosition(0);
+            yMotor.setPower(-1.0);
+            out = false;
+        }
+        else {
+            yMotor.setTargetPosition(1325);
+            yMotor.setPower(1.0);
             up = true;
         }
     }
@@ -108,10 +117,12 @@ public class LiftSystemXY extends XModule {
             xMotor.setPower(0.0);
         }
 
-        /*if (xGamepad2().y.wasPressed()){
-            autoLift();
+        if (xGamepad2().y.wasPressed()){
+            autoLiftY();
         }
-        */
+        if (xGamepad2().a.wasPressed()){
+            autoLiftX();
+        }
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
             yMotor.setPower(1.0);
