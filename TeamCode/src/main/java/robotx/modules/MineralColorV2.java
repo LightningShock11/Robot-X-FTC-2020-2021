@@ -123,6 +123,7 @@ public class MineralColorV2 extends XModule {
             opMode.telemetry.addData("Gold Not found ", position);
             opMode.telemetry.update();
             liftSystemXY.retractX();
+            sleep(5000);
             movement.pointTurnLeft(70);
 
         }
