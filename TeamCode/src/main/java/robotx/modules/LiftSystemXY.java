@@ -16,7 +16,7 @@ public class LiftSystemXY extends XModule {
 
     DcMotor yMotor;
     DcMotor xMotor;
-    boolean up = false;
+    boolean up;
     boolean out;
 
     public LiftSystemXY(OpMode op) {
@@ -54,7 +54,7 @@ public class LiftSystemXY extends XModule {
             out = false;
         }
         else{
-            xMotor.setTargetPosition(1325);
+            xMotor.setTargetPosition(1345);
             xMotor.setPower(1.0);
             out = true;
         }
@@ -63,10 +63,10 @@ public class LiftSystemXY extends XModule {
         if (up) {
             yMotor.setTargetPosition(0);
             yMotor.setPower(-1.0);
-            out = false;
+            up = false;
         }
         else {
-            yMotor.setTargetPosition(1325);
+            yMotor.setTargetPosition(1345);
             yMotor.setPower(1.0);
             up = true;
         }
@@ -104,6 +104,7 @@ public class LiftSystemXY extends XModule {
         opMode.telemetry.addData("X Target Position:", xMotor.getTargetPosition());
         opMode.telemetry.addData("Y Motor Position:", yMotor.getCurrentPosition());
         opMode.telemetry.addData("Y Target Position:", yMotor.getTargetPosition());
+        opMode.telemetry.addData("Y power:", yMotor.getPower());
 
         //If the motor has reached its target position, stop the motor
         if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
