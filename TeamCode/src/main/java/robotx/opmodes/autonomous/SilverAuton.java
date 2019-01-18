@@ -98,7 +98,6 @@ public class SilverAuton extends XLinearOpMode {
         sleep(1000);
         mineralColor.DetectGold();
         sleep(1000);
-        mineralColor.knockMineral();
         liftSystemXY.retractX();
         goForward(1.0, 700);
         movement.pointTurnRight(90);

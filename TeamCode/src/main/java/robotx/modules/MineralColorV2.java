@@ -87,7 +87,7 @@ public class MineralColorV2 extends XModule {
             position = 3;
         }
         //---------------------------------------------------------------------\\
-
+        knockMineral();
 
     }
 
