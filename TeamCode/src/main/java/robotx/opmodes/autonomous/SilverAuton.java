@@ -94,8 +94,7 @@ public class SilverAuton extends XLinearOpMode {
 
         //-----------Dehanging complete-----------\\
 
-        xSweeper.rotateDown();
-        liftSystemXY.extendX(400);
+        liftSystemXY.extendX(1325);
         sleep(1000);
         mineralColor.DetectGold();
         sleep(1000);

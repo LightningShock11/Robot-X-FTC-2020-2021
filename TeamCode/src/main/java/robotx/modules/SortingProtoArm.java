@@ -36,7 +36,7 @@ public class SortingProtoArm extends XModule {
         if (sortingColor.red() > 240 && sortingColor.green() > 240 && sortingColor.blue() > 240) {
             //check if the color is close enough to white
             opMode.telemetry.addLine();
-            opMode.telemetry.addData("is measured: True", sortingColor.argb());
+            opMode.telemetry.addData("is measured: True", sortingColor.red() + " " + sortingColor.green() + " " + sortingColor.blue());
             //protoServo.setPosition(0.6); //set the servo the drop in white
 
         } else if (xGamepad1().b.isDown()) {
@@ -44,7 +44,7 @@ public class SortingProtoArm extends XModule {
 
            // protoServo.setPosition(0.6);
         } else {
-            opMode.telemetry.addData("is measured: False", sortingColor.argb());
+            opMode.telemetry.addData("is measured: False", sortingColor.red() + " " + sortingColor.green() + " " + sortingColor.blue());
             //keep the servo open
           //  protoServo.setPosition(0.85); //set the servo to open for gold cubes
         }
