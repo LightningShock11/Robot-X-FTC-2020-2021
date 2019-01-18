@@ -17,13 +17,13 @@ public class MineralColorV2 extends XModule {
     public AutonomousMovement movement;
     public LiftSystemXY liftSystemXY;
 
-    ColorSensor rightSensor;
-    ColorSensor leftSensor;
+    ColorSensor backSensor;
+    ColorSensor frontSensor;
 
-    public boolean isRightWhite;
-    public boolean isRightGold;
-    public boolean isLeftGold;
-    public boolean isLeftWhite;
+    public boolean isBackWhite;
+    public boolean isBackGold;
+    public boolean isFrontGold;
+    public boolean isFrontWhite;
 
     public int position;
 
@@ -33,13 +33,13 @@ public class MineralColorV2 extends XModule {
 
     public void init(){
         //----------initialize color sensors----------\\
-        rightSensor = opMode.hardwareMap.colorSensor.get("rightSensor");
-        rightSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
-        rightSensor.enableLed(false);
+        backSensor = opMode.hardwareMap.colorSensor.get("backSensor");
+        backSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
+        backSensor.enableLed(false);
 
-        leftSensor = opMode.hardwareMap.colorSensor.get("leftSensor");
-        leftSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
-        leftSensor.enableLed(false);
+        frontSensor = opMode.hardwareMap.colorSensor.get("frontSensor");
+        frontSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
+        frontSensor.enableLed(false);
         //---------------------------------------------\\
 
 
@@ -54,35 +54,35 @@ public class MineralColorV2 extends XModule {
     public void DetectGold() //Method to detect the side gold is on
     {
         //---------Sensors measuring what is on the left and right side---------\\
-        movement.pointTurnRight(20);
-        if(rightSensor.red() > 240 && rightSensor.green() > 240 && rightSensor.blue() > 240) //check if the color is close enough to white
+        if(backSensor.red() > 240 && backSensor.green() > 240 && backSensor.blue() > 240) //check if the color is close enough to white
         {
-            isRightWhite = true;
+            isBackWhite = true;
         }else{
-            isRightGold = true;
+            isBackGold = true;
         }
         sleep(1000);
-        movement.pointTurnLeft(40);
-        if(leftSensor.red() > 240 && leftSensor.green() > 240 && leftSensor.blue() > 240 )
+        liftSystemXY.extendX(400);
+        sleep(250);
+        if(frontSensor.red() > 240 && frontSensor.green() > 240 && frontSensor.blue() > 240 )
         {
-            isLeftWhite = true;
+            isFrontWhite = true;
         }
         else {
-            isLeftGold = true;
+            isFrontGold = true;
         }
+        sleep(250);
         opMode.telemetry.update();
-        sleep(1000);
+
         //---------------------------------------------------------------------\\
 
-
         //---------------Defining the position of the gold cube----------------\\
-        if(isRightWhite && isLeftWhite)
+        if(isBackWhite && isFrontWhite)
         {
             position = 1; //this is read left to right from the lander's POV
-        }else if (isRightGold && isLeftGold)
+        }else if (isBackGold && isFrontWhite)
         {
             position = 2;
-        }else if (isRightGold && isLeftWhite)
+        }else if (isBackGold && isFrontWhite)
         {
             position = 3;
         }
@@ -95,6 +95,7 @@ public class MineralColorV2 extends XModule {
     {
         //---------------if the gold is in pos 1----------------\\
         if(position == 1){
+            opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
             liftSystemXY.retractX();
@@ -105,12 +106,14 @@ public class MineralColorV2 extends XModule {
         }
         //---------------if the gold is in pos 2----------------\\
         else if (position == 2){
+            opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
             movement.pointTurnLeft(70);
         }
         //---------------if the gold is in pos 3----------------\\
         else if (position == 3){
+            opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
             movement.pointTurnRight(30);
@@ -120,6 +123,7 @@ public class MineralColorV2 extends XModule {
         }
         //---------------If colorsensor fails----------------\\
         else if(position == 0){
+            opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold Not found ", position);
             opMode.telemetry.update();
             liftSystemXY.retractX();

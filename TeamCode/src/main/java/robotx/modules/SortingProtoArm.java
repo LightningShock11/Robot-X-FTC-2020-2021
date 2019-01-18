@@ -21,7 +21,7 @@ public class SortingProtoArm extends XModule {
       //  protoServo = opMode.hardwareMap.servo.get("protoServo");
 
         //initialize color sensor
-        sortingColor = opMode.hardwareMap.colorSensor.get("rightSensor");
+        sortingColor = opMode.hardwareMap.colorSensor.get("backSensor");
         sortingColor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         sortingColor.enableLed(false);
 

@@ -95,9 +95,11 @@ public class SilverAuton extends XLinearOpMode {
 
         //-----------Dehanging complete-----------\\
 
-        liftSystemXY.extendX(1325);
+        goForward(1.0, 1000);
+        sleep(250);
+        movement.pointTurnRight(50);
         sleep(1000);
-        goForward(1.0, 500);
+        goBackward(1.0, 900);
         sleep(1000);
         mineralColorV2.DetectGold();
         sleep(1000);
