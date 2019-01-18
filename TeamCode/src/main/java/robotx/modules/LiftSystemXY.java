@@ -100,8 +100,10 @@ public class LiftSystemXY extends XModule {
         }
     }
     public void loop(){
-        opMode.telemetry.addData("Current Motor Position:", yMotor.getCurrentPosition());
-        opMode.telemetry.addData("Target Motor Position:", yMotor.getTargetPosition());
+        opMode.telemetry.addData("X Motor Position:", xMotor.getCurrentPosition());
+        opMode.telemetry.addData("X Target Position:", xMotor.getTargetPosition());
+        opMode.telemetry.addData("Y Motor Position:", yMotor.getCurrentPosition());
+        opMode.telemetry.addData("Y Target Position:", yMotor.getTargetPosition());
 
         //If the motor has reached its target position, stop the motor
         if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
