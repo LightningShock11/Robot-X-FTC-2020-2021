@@ -57,6 +57,7 @@ public class XSweeper extends XModule {
         sweeperRotate.setPosition(0.88);
     }
     public void loop(){
+        opMode.telemetry.addData("Rotate position:", sweeperRotate.getPosition());
         if (xGamepad2().x.wasPressed()){
             toggleSweeper();
         }
