@@ -78,7 +78,8 @@ public class SilverAuton extends XLinearOpMode {
         twoMotorDrive.start();
         twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+        telemetry.addLine().addData("Gold Pos", mineralColorV2.position);
+        this.updateTelemetry(telemetry);
 
         /////////////////////Movement///////////////////////
 
@@ -87,23 +88,18 @@ public class SilverAuton extends XLinearOpMode {
         sleep(150);
         movement.pointTurnRight(30);
         sleep(1500);
-        goForward(1.0, 250);
-        sleep(1500);
-        movement.pointTurnLeft(30);
-        sleep(550);
         stopDriving();
 
         //-----------Dehanging complete-----------\\
 
-        goForward(1.0, 1000);
+        goForward(1.0, 1150);
         sleep(250);
-        movement.pointTurnRight(40);
+        movement.pointTurnRight(23);
         sleep(1000);
         goBackward(1.0, 900);
         sleep(1000);
         mineralColorV2.DetectGold();
-        sleep(1000);
-        liftSystemXY.retractX();
+        sleep(10000);
         goBackward(1.0, 500);
         movement.pointTurnLeft(40);
         goBackward(1.0, 1900);

@@ -18,7 +18,7 @@ public class MineralColorV2 extends XModule {
     public LiftSystemXY liftSystemXY;
 
     ColorSensor backSensor;
-    ColorSensor frontSensor;
+
 
     public boolean isThirdWhite;
     public boolean isThirdGold;
@@ -37,9 +37,7 @@ public class MineralColorV2 extends XModule {
         backSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
         backSensor.enableLed(false);
 
-        frontSensor = opMode.hardwareMap.colorSensor.get("frontSensor");
-        frontSensor.setI2cAddress(I2cAddr.create7bit(0x39)); // All REV color sensors use this address
-        frontSensor.enableLed(false);
+
         //---------------------------------------------\\
 
 
@@ -51,6 +49,8 @@ public class MineralColorV2 extends XModule {
         }
     }
 
+
+
     public void DetectGold() //Method to detect the side gold is on
     {
         //---------Sensors measuring what is on the left and right side---------\\
@@ -61,7 +61,7 @@ public class MineralColorV2 extends XModule {
             isThirdGold = true;
         }
         sleep(1000);
-        movement.driveForward(1.0, 100);
+        movement.goBackward(1.0, 500);
         sleep(250);
         if(backSensor.red() > 240 && backSensor.green() > 240 && backSensor.blue() > 240)
         {
@@ -70,7 +70,7 @@ public class MineralColorV2 extends XModule {
         else {
             isSecondGold = true;
         }
-        sleep(250);
+        sleep(1050);
         opMode.telemetry.update();
 
         //---------------------------------------------------------------------\\
@@ -102,9 +102,8 @@ public class MineralColorV2 extends XModule {
             opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
-            liftSystemXY.retractX();
-            movement.pointTurnLeft(40);
-            liftSystemXY.extendX(1325);
+            movement.goBackward(1.0, 750);
+            movement.pointTurnRight(30);
             sleep(150);
             movement.pointTurnLeft(30);
         }
@@ -113,26 +112,30 @@ public class MineralColorV2 extends XModule {
             opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
-            movement.pointTurnLeft(70);
+            movement.pointTurnLeft(30);
+            sleep(500);
+            movement.pointTurnRight(30);
+            sleep(250);
+            movement.goBackward(1.0, 750);
         }
         //---------------if the gold is in pos 3----------------\\
         else if (position == 3){
             opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold is in pos: ", position);
             opMode.telemetry.update();
-            movement.pointTurnRight(30);
+            movement.goForward(1.0, 750);
+            movement.pointTurnLeft(30);
             sleep(150);
-            liftSystemXY.retractX();
-            movement.pointTurnLeft(100);
+            movement.pointTurnRight(30);
+            movement.goBackward(1.0, 1250);
         }
         //---------------If colorsensor fails----------------\\
         else if(position == 0){
             opMode.telemetry.addLine();
             opMode.telemetry.addData("Gold Not found ", position);
             opMode.telemetry.update();
-            liftSystemXY.retractX();
             sleep(5000);
-            movement.pointTurnLeft(70);
+            movement.goBackward(1.0, 750);
 
         }
     }

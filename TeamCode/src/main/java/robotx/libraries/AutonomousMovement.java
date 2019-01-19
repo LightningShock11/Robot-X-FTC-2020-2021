@@ -2,6 +2,8 @@ package robotx.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
+import robotx.modules.TwoMotorDrive;
+
 /**
  * Created by Robot-X Team 4969 on 12/6/2016.
  */
@@ -12,6 +14,7 @@ public class AutonomousMovement extends XModule {
 	AutonomousSystem sensors;
 	BasicDriveSystem drive;
 
+
 	public AutonomousMovement(OpMode op) {
 		super(op);
 	}
@@ -20,6 +23,33 @@ public class AutonomousMovement extends XModule {
 		sensors = s;
 		drive = d;
 	}
+
+    private void sleep(long milliseconds) { //Sleep during auton method
+        if (opMode instanceof LinearOpMode) {
+            ((LinearOpMode) opMode).sleep(milliseconds);
+        }
+    }
+
+    public void goForward(double power, int time){
+
+        drive.setLeftPower(-power);
+        drive.setRightPower(-power);
+        sleep(time);
+        drive.setLeftPower(0);
+        drive.setRightPower(0);
+    }
+    public void goBackward(double power, int time){
+
+        drive.setLeftPower(power);
+        drive.setRightPower(power);
+        sleep(time);
+        drive.setLeftPower(0);
+        drive.setRightPower(0);
+    }
+
+    public  void stopDriving (){
+        drive.brakeAllMotors();
+    }
 
 	public void driveForward(double power, double distance) {
 		sensors.resetNavigationSensors();
