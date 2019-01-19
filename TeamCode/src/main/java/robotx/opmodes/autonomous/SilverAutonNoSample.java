@@ -16,7 +16,7 @@ import robotx.modules.XSweeper;
  * Created by Kush Dalal on 10/24/2018.
  */
 
-@Autonomous(name = "SilverAuton", group = "Autonomous")
+@Autonomous(name = "SilverAutonNoSample", group = "Autonomous")
 public class SilverAutonNoSample extends XLinearOpMode {
 
     AutonomousMovement movement;
@@ -33,7 +33,7 @@ public class SilverAutonNoSample extends XLinearOpMode {
         //////////////////////init//////////////////////////
 
         //Initialize all systems on the robot. ALL SYSTEMS GO
-        telemetry.addData("Stage", "Init: Silver Auton");
+        telemetry.addData("Stage", "Init: Silver Auton No sampling");
         this.updateTelemetry(telemetry);
 
         twoMotorDrive = new TwoMotorDrive(this);
@@ -89,24 +89,29 @@ public class SilverAutonNoSample extends XLinearOpMode {
         sleep(1500);
         goForward(0.7, 250);
         sleep(150);
-        movement.pointTurnLeft(60);
+        movement.pointTurnLeft(96);
         stopDriving();
 
         //-----------Dehanging complete-----------\\
 
-        goForward(1.0, 1220);
+        goForward(1.0, 1800);
         sleep(250);
-        movement.pointTurnLeft(90);
-        goBackward(1.0, 1900);
+        movement.pointTurnRight(90);
+        goBackward(1.0, 1650);
+        xSweeper.rotateFlat();
+        sleep(550);
         liftSystemXY.retractY();
-        sleep(1000);
+        sleep(2500);
         dumpingBucket.autoDump();
         sleep(100);
-        goForward(1.0, 2000);
+        xSweeper.rotateUp();
+        sleep(200);
+        goForward(1.0, 2500);
+        sleep(250);
+        xSweeper.rotateDown();
         stopDriving();
         twoMotorDrive.stop();
         movement.stop();
-
 
         ////////////////////////////////////////////////////
     }
