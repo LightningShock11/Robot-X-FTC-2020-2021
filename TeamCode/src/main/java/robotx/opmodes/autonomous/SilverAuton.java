@@ -97,7 +97,7 @@ public class SilverAuton extends XLinearOpMode {
 
         goForward(1.0, 1000);
         sleep(250);
-        movement.pointTurnRight(50);
+        movement.pointTurnRight(40);
         sleep(1000);
         goBackward(1.0, 900);
         sleep(1000);

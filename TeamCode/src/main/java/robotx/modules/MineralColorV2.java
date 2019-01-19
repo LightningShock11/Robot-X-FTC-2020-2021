@@ -20,10 +20,10 @@ public class MineralColorV2 extends XModule {
     ColorSensor backSensor;
     ColorSensor frontSensor;
 
-    public boolean isBackWhite;
-    public boolean isBackGold;
-    public boolean isFrontGold;
-    public boolean isFrontWhite;
+    public boolean isThirdWhite;
+    public boolean isThirdGold;
+    public boolean isSecondGold;
+    public boolean isSecondWhite;
 
     public int position;
 
@@ -56,19 +56,19 @@ public class MineralColorV2 extends XModule {
         //---------Sensors measuring what is on the left and right side---------\\
         if(backSensor.red() > 240 && backSensor.green() > 240 && backSensor.blue() > 240) //check if the color is close enough to white
         {
-            isBackWhite = true;
+            isThirdWhite = true;
         }else{
-            isBackGold = true;
+            isThirdGold = true;
         }
         sleep(1000);
-        liftSystemXY.extendX(400);
+        movement.driveForward(1.0, 100);
         sleep(250);
-        if(frontSensor.red() > 240 && frontSensor.green() > 240 && frontSensor.blue() > 240 )
+        if(backSensor.red() > 240 && backSensor.green() > 240 && backSensor.blue() > 240)
         {
-            isFrontWhite = true;
+            isSecondWhite = true;
         }
         else {
-            isFrontGold = true;
+            isSecondGold = true;
         }
         sleep(250);
         opMode.telemetry.update();
@@ -76,17 +76,21 @@ public class MineralColorV2 extends XModule {
         //---------------------------------------------------------------------\\
 
         //---------------Defining the position of the gold cube----------------\\
-        if(isBackWhite && isFrontWhite)
+        if(isThirdWhite && isSecondWhite)
         {
             position = 1; //this is read left to right from the lander's POV
-        }else if (isBackGold && isFrontWhite)
+        }else if (isThirdWhite && isSecondGold)
         {
             position = 2;
-        }else if (isBackGold && isFrontWhite)
+        }else if (isThirdGold && isSecondWhite)
         {
             position = 3;
         }
+        else if(isThirdGold && isSecondGold){
+            position = 0;
+        }
         //---------------------------------------------------------------------\\
+        sleep(1000);
         knockMineral();
 
     }
