@@ -104,8 +104,8 @@ public class SilverAuton extends XLinearOpMode {
         mineralColorV2.DetectGold();
         sleep(1000);
         liftSystemXY.retractX();
-        goForward(1.0, 700);
-        movement.pointTurnRight(90);
+        goBackward(1.0, 500);
+        movement.pointTurnLeft(40);
         goBackward(1.0, 1900);
         dumpingBucket.autoDump();
         sleep(100);
