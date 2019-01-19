@@ -1,6 +1,7 @@
 package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
@@ -13,6 +14,7 @@ import robotx.modules.VuMarkDetection;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
+@Disabled
 @Autonomous(name = "BlueCloseNOTWorkingOp", group = "Autonomous")
 public class BlueCloseWorkingOp extends XLinearOpMode {
 

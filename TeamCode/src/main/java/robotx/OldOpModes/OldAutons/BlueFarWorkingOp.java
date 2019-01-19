@@ -1,6 +1,7 @@
 package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
@@ -14,6 +15,8 @@ import robotx.OldModules.LedAlwaysOn;
 /**
  * Created by Kush Dalal on 12/6/2017.
  */
+@Disabled
+
 @Autonomous(name = "BlueFarWorkingOp", group = "Autonomous")
 public class  BlueFarWorkingOp extends XLinearOpMode {
 

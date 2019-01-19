@@ -1,6 +1,7 @@
 package robotx.OldOpModes.OldAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import robotx.OldModules.GlyphClaw;
 import robotx.OldModules.JewelColor;
@@ -10,6 +11,8 @@ import robotx.modules.*;
 /**
  * Created by Robot-X Team Member on 12/9/2017.
  */
+@Disabled
+
 @Autonomous(name = "SafeZoneOp", group = "Autonomous")
 public class SafeZoneOp extends XLinearOpMode {
 

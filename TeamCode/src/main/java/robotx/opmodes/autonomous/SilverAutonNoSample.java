@@ -7,7 +7,6 @@ import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.DumpingBucket;
 import robotx.modules.LiftSystemXY;
-import robotx.modules.MineralColor;
 import robotx.modules.MineralColorV2;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
@@ -18,7 +17,7 @@ import robotx.modules.XSweeper;
  */
 
 @Autonomous(name = "SilverAuton", group = "Autonomous")
-public class SilverAuton extends XLinearOpMode {
+public class SilverAutonNoSample extends XLinearOpMode {
 
     AutonomousMovement movement;
     TwoWheelAutonIMU sensors;
@@ -88,22 +87,19 @@ public class SilverAuton extends XLinearOpMode {
         sleep(150);
         movement.pointTurnRight(30);
         sleep(1500);
+        goForward(0.7, 250);
+        sleep(150);
+        movement.pointTurnLeft(60);
         stopDriving();
 
         //-----------Dehanging complete-----------\\
 
         goForward(1.0, 1220);
         sleep(250);
-        movement.pointTurnRight(23);
-        sleep(1000);
-        goBackward(1.0, 700);
-        sleep(1000);
-        mineralColorV2.DetectGold();
-        sleep(20000);
-        goBackward(1.0, 500);
-        sleep(1000);
-        movement.pointTurnLeft(40);
+        movement.pointTurnLeft(90);
         goBackward(1.0, 1900);
+        liftSystemXY.retractY();
+        sleep(1000);
         dumpingBucket.autoDump();
         sleep(100);
         goForward(1.0, 2000);
