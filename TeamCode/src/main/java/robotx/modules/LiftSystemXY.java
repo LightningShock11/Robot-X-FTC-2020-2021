@@ -85,8 +85,8 @@ public class LiftSystemXY extends XModule {
             xMotor.setPower(0.0);
         }
     }
-    public void extendY(int xPosition){
-        yMotor.setTargetPosition(xPosition);
+    public void extendY(int yPosition){
+        yMotor.setTargetPosition(yPosition);
         yMotor.setPower(1.0);
         if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
             yMotor.setPower(0.0);
