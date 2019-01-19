@@ -18,6 +18,8 @@ public class LiftSystemXY extends XModule {
     DcMotor xMotor;
     boolean up;
     boolean out;
+    int xMax = 1345;
+    int yMax = 3100;
 
     public LiftSystemXY(OpMode op) {
         super(op);
@@ -54,7 +56,7 @@ public class LiftSystemXY extends XModule {
             out = false;
         }
         else{
-            xMotor.setTargetPosition(1345);
+            xMotor.setTargetPosition(xMax);
             xMotor.setPower(1.0);
             out = true;
         }
@@ -66,7 +68,7 @@ public class LiftSystemXY extends XModule {
             up = false;
         }
         else {
-            yMotor.setTargetPosition(1345);
+            yMotor.setTargetPosition(yMax);
             yMotor.setPower(1.0);
             up = true;
         }
@@ -74,7 +76,7 @@ public class LiftSystemXY extends XModule {
     public void extendX(int xPosition){
         xMotor.setTargetPosition(xPosition);
         xMotor.setPower(1.0);
-        if (xMotor.getTargetPosition() == 1345 && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()) {
+        if (xMotor.getTargetPosition() == xMax && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()) {
             xMotor.setPower(0.0);
         }
     }
@@ -88,7 +90,7 @@ public class LiftSystemXY extends XModule {
     public void extendY(int yPosition){
         yMotor.setTargetPosition(yPosition);
         yMotor.setPower(1.0);
-        if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
+        if (yMotor.getTargetPosition() == yMax && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
             yMotor.setPower(0.0);
         }
     }
@@ -107,13 +109,13 @@ public class LiftSystemXY extends XModule {
         opMode.telemetry.addData("Y power:", yMotor.getPower());
 
         //If the motor has reached its target position, stop the motor
-        if (yMotor.getTargetPosition() == 1345 && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
+        if (yMotor.getTargetPosition() == yMax && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
         }
         else if(yMotor.getTargetPosition() == 0 && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
             yMotor.setPower(0.0);
         }
-        if (xMotor.getTargetPosition() == 1345 && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()){
+        if (xMotor.getTargetPosition() == xMax && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()){
             xMotor.setPower(0.0);
         }
         else if (xMotor.getTargetPosition() == 0 && xMotor.getCurrentPosition() <= xMotor.getTargetPosition()){
