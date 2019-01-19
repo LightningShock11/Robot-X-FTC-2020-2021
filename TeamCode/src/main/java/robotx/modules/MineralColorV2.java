@@ -61,7 +61,7 @@ public class MineralColorV2 extends XModule {
             isThirdGold = true;
         }
         sleep(1000);
-        movement.goBackward(1.0, 500);
+        movement.goForward(1.0, 500);
         sleep(250);
         if(backSensor.red() > 240 && backSensor.green() > 240 && backSensor.blue() > 240)
         {

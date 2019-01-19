@@ -42,11 +42,11 @@ public class XSweeper extends XModule {
     }
     public void rotateSweeper(){
         if (sweeperIsOut){
-            sweeperRotate.setPosition(0.05);
+            sweeperRotate.setPosition(0.0);
             sweeperIsOut = false;
         }
         else{
-            sweeperRotate.setPosition(0.85);
+            sweeperRotate.setPosition(0.83);
             sweeperIsOut = true;
         }
     }
@@ -55,6 +55,9 @@ public class XSweeper extends XModule {
     }
     public void rotateDown(){ //Used for autonomous
         sweeperRotate.setPosition(0.88);
+    }
+    public void rotateFlat(){
+        sweeperRotate.setPosition(.5);
     }
     public void loop(){
         opMode.telemetry.addData("Rotate position:", sweeperRotate.getPosition());
