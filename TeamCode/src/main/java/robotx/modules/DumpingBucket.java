@@ -43,6 +43,7 @@ public class DumpingBucket extends XModule{
 
     public void loop(){
         opMode.telemetry.addData("Dump position:", dumpingServo.getPosition());
+        
         if (xGamepad1().a.wasPressed()){
             toggleBucket();
         }
