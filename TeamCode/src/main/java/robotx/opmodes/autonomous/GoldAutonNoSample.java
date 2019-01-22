@@ -16,8 +16,8 @@ import robotx.modules.XSweeper;
  * Created by Kush Dalal on 10/24/2018.
  */
 
-@Autonomous(name = "SilverAutonNoSample", group = "Autonomous")
-public class SilverAutonNoSample extends XLinearOpMode {
+@Autonomous(name = "GoldAutonNoSample", group = "Autonomous")
+public class GoldAutonNoSample extends XLinearOpMode {
 
     AutonomousMovement movement;
     TwoWheelAutonIMU sensors;
@@ -96,8 +96,8 @@ public class SilverAutonNoSample extends XLinearOpMode {
 
         goForward(1.0, 1800);
         sleep(250);
-        movement.pointTurnRight(90);
-        goBackward(1.0, 1650);
+        movement.pointTurnLeft(60);
+        goBackward(1.0, 1300);
         xSweeper.rotateFlat();
         sleep(550);
         liftSystemXY.retractY();
