@@ -106,7 +106,10 @@ public class SilverAutonNoSample extends XLinearOpMode {
         sleep(100);
         xSweeper.rotateUp();
         sleep(200);
-        goForward(1.0, 2500);
+        goForward(1.0, 750);
+        sleep(250);
+        movement.pointTurnLeft(3);
+        goForward(1.0, 750);
         sleep(250);
         xSweeper.rotateDown();
         sleep(1000);

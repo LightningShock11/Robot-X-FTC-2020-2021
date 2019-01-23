@@ -19,7 +19,7 @@ public class LiftSystemXY extends XModule {
     boolean up;
     boolean out;
     int xMax = 1345;
-    int yMax = 3100;
+    int yMax = 3000;
 
     public LiftSystemXY(OpMode op) {
         super(op);
