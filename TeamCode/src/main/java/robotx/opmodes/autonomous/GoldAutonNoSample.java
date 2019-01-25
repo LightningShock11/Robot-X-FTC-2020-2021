@@ -102,10 +102,14 @@ public class GoldAutonNoSample extends XLinearOpMode {
         sleep(550);
         liftSystemXY.retractY();
         sleep(2500);
+        movement.pointTurnLeft(10);
+        sleep(250);
         dumpingBucket.autoDump();
         sleep(100);
         xSweeper.rotateUp();
         sleep(200);
+        movement.pointTurnRight(10);
+        sleep(250);
         goForward(1.0, 2500);
         sleep(250);
         xSweeper.rotateDown();

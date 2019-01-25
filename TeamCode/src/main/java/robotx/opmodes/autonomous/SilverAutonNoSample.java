@@ -86,9 +86,21 @@ public class SilverAutonNoSample extends XLinearOpMode {
         liftSystemXY.extendY(1300);
         sleep(150);
         movement.pointTurnRight(30);
-        sleep(1500);
+        sleep(750);
         goForward(0.7, 250);
         sleep(150);
+        /*liftSystemXY.extendX(150);
+        sleep(1500);
+        xSweeper.rotateDown();
+        sleep(150);
+        movement.pointTurnLeft(30);
+        sleep(100);
+        movement.pointTurnRight(30);
+        sleep(300);
+        xSweeper.rotateUp();
+        sleep(300);
+        liftSystemXY.retractX();
+        sleep(1500);*/
         movement.pointTurnLeft(96);
         stopDriving();
 
@@ -96,7 +108,7 @@ public class SilverAutonNoSample extends XLinearOpMode {
 
         goForward(1.0, 1800);
         sleep(250);
-        movement.pointTurnRight(90);
+        movement.pointTurnRight(80);
         goBackward(1.0, 1650);
         xSweeper.rotateFlat();
         sleep(550);
@@ -106,7 +118,10 @@ public class SilverAutonNoSample extends XLinearOpMode {
         sleep(100);
         xSweeper.rotateUp();
         sleep(200);
-        goForward(1.0, 2500);
+        goForward(1.0, 1250);
+        sleep(250);
+        movement.pointTurnLeft(3);
+        goForward(1.0, 1250);
         sleep(250);
         xSweeper.rotateDown();
         sleep(1000);

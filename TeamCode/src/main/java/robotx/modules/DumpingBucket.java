@@ -32,7 +32,7 @@ public class DumpingBucket extends XModule{
     }
     public void toggleBucket(){
         if (dumping){
-            dumpingServo.setPosition(0.6);
+            dumpingServo.setPosition(0.57);
             dumping = false;
         }
         else{
