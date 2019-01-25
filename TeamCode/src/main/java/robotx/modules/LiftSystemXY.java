@@ -19,7 +19,7 @@ public class LiftSystemXY extends XModule {
     boolean up;
     boolean out;
     int xMax = 1345;
-    int yMax = 3000;
+    int yMax = 3100;
 
     public LiftSystemXY(OpMode op) {
         super(op);
@@ -76,7 +76,7 @@ public class LiftSystemXY extends XModule {
     public void extendX(int xPosition){
         xMotor.setTargetPosition(xPosition);
         xMotor.setPower(1.0);
-        if (xMotor.getTargetPosition() == xMax && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()) {
+        if (xMotor.getTargetPosition() == xPosition && xMotor.getCurrentPosition() >= xMotor.getTargetPosition()) {
             xMotor.setPower(0.0);
         }
     }
@@ -90,7 +90,7 @@ public class LiftSystemXY extends XModule {
     public void extendY(int yPosition){
         yMotor.setTargetPosition(yPosition);
         yMotor.setPower(1.0);
-        if (yMotor.getTargetPosition() == yMax && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
+        if (yMotor.getTargetPosition() == yPosition && yMotor.getCurrentPosition() >= yMotor.getTargetPosition()) {
             yMotor.setPower(0.0);
         }
     }

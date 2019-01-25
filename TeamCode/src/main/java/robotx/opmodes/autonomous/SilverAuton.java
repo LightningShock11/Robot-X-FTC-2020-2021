@@ -8,7 +8,7 @@ import robotx.libraries.XLinearOpMode;
 import robotx.modules.DumpingBucket;
 import robotx.modules.LiftSystemXY;
 import robotx.modules.MineralColor;
-import robotx.modules.MineralColorV2;
+import robotx.modules.MineralColorV3;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
 import robotx.modules.XSweeper;
@@ -24,7 +24,7 @@ public class SilverAuton extends XLinearOpMode {
     TwoWheelAutonIMU sensors;
     TwoMotorDrive twoMotorDrive;
     LiftSystemXY liftSystemXY;
-    MineralColorV2 mineralColorV2;
+    MineralColorV3 mineralColorV3;
     DumpingBucket dumpingBucket;
     XSweeper xSweeper;
 
@@ -52,10 +52,10 @@ public class SilverAuton extends XLinearOpMode {
         movement = new AutonomousMovement(this, sensors, twoMotorDrive);
         movement.init();
 
-        mineralColorV2 = new MineralColorV2(this);
-        mineralColorV2.movement = movement;
-        mineralColorV2.liftSystemXY = liftSystemXY;
-        mineralColorV2.init();
+        mineralColorV3 = new MineralColorV3(this);
+        mineralColorV3.movement = movement;
+        mineralColorV3.liftSystemXY = liftSystemXY;
+        mineralColorV3.init();
 
         xSweeper = new XSweeper(this);
         xSweeper.init();
@@ -78,28 +78,52 @@ public class SilverAuton extends XLinearOpMode {
         twoMotorDrive.start();
         twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        telemetry.addLine().addData("Gold Pos", mineralColorV2.position);
+        telemetry.addLine().addData("Gold Pos", mineralColorV3.position);
         this.updateTelemetry(telemetry);
 
         /////////////////////Movement///////////////////////
 
 
         liftSystemXY.extendY(1300);
-        sleep(150);
-        movement.pointTurnRight(30);
+        sleep(2000);
+        movement.pointTurnRight(50);
         sleep(1500);
+        liftSystemXY.retractY();
+        sleep(2000);
         stopDriving();
 
         //-----------Dehanging complete-----------\\
 
-        goForward(1.0, 1220);
+        goForward(0.4, 1880);
         sleep(250);
-        movement.pointTurnRight(23);
+        movement.pointTurnRight(26);
         sleep(1000);
-        goBackward(1.0, 700);
+        goBackward(0.6, 440);
         sleep(1000);
-        mineralColorV2.DetectGold();
-        sleep(20000);
+        mineralColorV3.DetectGold3();
+        sleep(1000);
+        if(mineralColorV3.isThirdWhite){
+            goBackward(0.6, 900);
+            sleep(500);
+            mineralColorV3.DetectGold2();
+            if(mineralColorV3.isSecondWhite){
+                goBackward(0.6, 900);
+                sleep(500);
+                movement.pointTurnRight(340);
+                sleep(250);
+            }
+            else if(mineralColorV3.isSecondGold){
+                movement.pointTurnRight(340);
+                sleep(500);
+                goBackward(1.0, 600);
+            }
+        }
+        else if(mineralColorV3.isThirdGold){
+            movement.pointTurnRight(340);
+            sleep(500);
+            goBackward(1.0, 1500);
+        }
+        sleep(10000);
         goBackward(1.0, 500);
         sleep(1000);
         movement.pointTurnLeft(40);
