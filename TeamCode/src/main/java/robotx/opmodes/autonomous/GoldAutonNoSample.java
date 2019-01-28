@@ -86,7 +86,7 @@ public class GoldAutonNoSample extends XLinearOpMode {
         liftSystemXY.extendY(1300);
         sleep(150);
         movement.pointTurnRight(30);
-        sleep(1500);
+        sleep(750);
         goForward(0.7, 250);
         sleep(150);
         movement.pointTurnLeft(96);
@@ -94,21 +94,17 @@ public class GoldAutonNoSample extends XLinearOpMode {
 
         //-----------Dehanging complete-----------\\
 
-        goForward(1.0, 1800);
+        goForward(1.0, 1600);
         sleep(250);
-        movement.pointTurnLeft(60);
+        movement.pointTurnLeft(73);
         goBackward(1.0, 1300);
         xSweeper.rotateFlat();
         sleep(550);
         liftSystemXY.retractY();
         sleep(2500);
-        movement.pointTurnLeft(10);
-        sleep(250);
         dumpingBucket.autoDump();
         sleep(100);
         xSweeper.rotateUp();
-        sleep(200);
-        movement.pointTurnRight(10);
         sleep(250);
         goForward(1.0, 2500);
         sleep(250);
