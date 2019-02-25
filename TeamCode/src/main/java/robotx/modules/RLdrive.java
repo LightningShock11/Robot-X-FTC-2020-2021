@@ -40,14 +40,14 @@ public class RLdrive extends XModule {
 
 
         if (!isSlowMode) {
-            xValue = xGamepad1().left_stick_x;
-            power = -xGamepad1().right_trigger;
-            brake = xGamepad1().left_trigger;
+            xValue = xGamepad2().left_stick_x;
+            power = -xGamepad2().right_trigger;
+            brake = xGamepad2().left_trigger;
         }
         else{
-            xValue = xGamepad1().left_stick_x/2;
-            power = -xGamepad1().right_trigger/2;
-            brake = xGamepad1().left_trigger/2;
+            xValue = xGamepad2().left_stick_x/2;
+            power = -xGamepad2().right_trigger/2;
+            brake = xGamepad2().left_trigger/2;
         }
 
 
