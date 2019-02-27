@@ -36,9 +36,6 @@ public class RLdrive extends XModule {
             toggleSlow();
         }
 
-
-
-
         if (!isSlowMode) {
             xValue = xGamepad2().left_stick_x;
             power = -xGamepad2().right_trigger;
