@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import robotx.libraries.XOpMode;
 import robotx.modules.ContinuousRotationServoTest;
 import robotx.modules.DumpingBucket;
+import robotx.modules.GondalaTest;
 import robotx.modules.LiftSystemXY;
 import robotx.modules.OneStickDrive;
 import robotx.modules.RLdrive;
@@ -22,6 +23,7 @@ public class BeanGodOp extends XOpMode {
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
     DumpingBucket dumpingBucket;
+    GondalaTest gondalaTest;
 
     public void initModules(){
         super.initModules();
@@ -47,6 +49,8 @@ public class BeanGodOp extends XOpMode {
         dumpingBucket = new DumpingBucket(this); //dumping system
         activeModules.add(dumpingBucket);
 
+        gondalaTest = new GondalaTest(this);
+        activeModules.add(gondalaTest);
     }
     public void init(){super.init();}
 }

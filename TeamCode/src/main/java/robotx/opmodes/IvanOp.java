@@ -12,7 +12,7 @@ import robotx.modules.RLdrive;
 import robotx.modules.SortingProtoArm;
 import robotx.modules.XSweeper;
 
-@TeleOp(name = "BeanGodOp", group = "Testing")
+@TeleOp(name = "IvanOp", group = "Testing")
 public class IvanOp extends XOpMode {
     //TwoMotorDrive twoMotorDrive;
     //OneStickDrive oneStickDrive;
@@ -21,7 +21,6 @@ public class IvanOp extends XOpMode {
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
     DumpingBucket dumpingBucket;
-    GondalaTest gondalaTest;
 
     public void initModules(){
         super.initModules();
@@ -31,9 +30,6 @@ public class IvanOp extends XOpMode {
 
         liftSystemXY = new LiftSystemXY(this); //lift system
         activeModules.add(liftSystemXY);
-
-        gondalaTest = new GondalaTest(this);
-        activeModules.add(gondalaTest);
 
     }
     public void init(){super.init();}
