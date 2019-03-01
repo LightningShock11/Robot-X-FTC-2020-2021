@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.*;
 
 import robotx.OldModules.ButtonPusher;
 import robotx.OldModules.LineFollower;
+import robotx.OldModules.TeleOpTimerDisplay;
 import robotx.OldModules.TwoWheelLauncher;
 import robotx.controls.BasicTankDriveControls;
 import robotx.libraries.*;
