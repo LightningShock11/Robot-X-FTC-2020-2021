@@ -3,7 +3,6 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.CraneController;
 import robotx.modules.DumpingBucket;
 import robotx.modules.GondalaTest;
 import robotx.modules.LiftSystemXY;
@@ -15,9 +14,13 @@ import robotx.modules.XSweeper;
 
 @TeleOp(name = "IvanOp", group = "Testing")
 public class IvanOp extends XOpMode {
-
+    //TwoMotorDrive twoMotorDrive;
+    //OneStickDrive oneStickDrive;
     MechanumDriveNoLag mechanumDriveNoLag;
-    CraneController craneController;
+    SortingProtoArm sortingProtoArm;
+    LiftSystemXY liftSystemXY;
+    XSweeper xSweeper;
+    DumpingBucket dumpingBucket;
 
     public void initModules(){
         super.initModules();
@@ -25,8 +28,8 @@ public class IvanOp extends XOpMode {
         mechanumDriveNoLag = new MechanumDriveNoLag(this); //Driving system
         activeModules.add(mechanumDriveNoLag);
 
-        craneController = new CraneController(this); //lift and crane systems
-        activeModules.add(craneController);
+        liftSystemXY = new LiftSystemXY(this); //lift system
+        activeModules.add(liftSystemXY);
 
     }
     public void init(){super.init();}

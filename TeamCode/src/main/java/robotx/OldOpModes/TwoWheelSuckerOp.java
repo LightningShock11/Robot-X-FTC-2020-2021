@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.OldModules.TwoWheelSucker;
+import robotx.modules.TwoWheelSucker;
 
 /**
  * Created by Robot-X Team Member on 11/09/2017.

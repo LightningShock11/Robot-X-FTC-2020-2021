@@ -7,7 +7,7 @@ import robotx.OldModules.GlyphClaw;
 import robotx.OldModules.JewelColor;
 import robotx.OldModules.LedAlwaysOn;
 import robotx.modules.MechanumDriveNoLag;
-import robotx.OldModules.TeleOpTimerDisplay;
+import robotx.modules.TeleOpTimerDisplay;
 
 /**
  * Created by Ben Sabo on 10/25/2017.
