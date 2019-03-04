@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6011bc5-4098-4125-8620-0ea1a91948ac" name="Default" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/IvanOp.java" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/IvanOp.java" />
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/TeamCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/TeamCode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/build.release.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/build.release.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/VuForiaObjectDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/VuForiaObjectDetection.java" afterDir="false" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,40 +35,137 @@
     <session id="-406355136">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="1" />
+          <entry key="gradle" value="2" />
+          <entry key="java" value="8" />
           <entry key="properties" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="Groovy" value="2" />
+          <entry key="JAVA" value="8" />
           <entry key="Properties" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="6" />
+          <entry key="gradle" value="1" />
+          <entry key="java" value="337" />
           <entry key="properties" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6" />
+          <entry key="Groovy" value="1" />
+          <entry key="JAVA" value="337" />
           <entry key="Properties" value="19" />
         </counts>
       </usages-collector>
     </session>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/modules/GondalaTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/IvanOp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/ConceptTensorFlowObjectDetection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/VuForiaObjectDetection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-697">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/build.release.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/autonomous/VuForiaTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/autonomous/GoldAuton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/BeanGodOp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -3049,6 +3154,11 @@
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/robotx/modules/CraneController.java" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/IvanOp.java" />
+        <option value="$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/VuforiaTestOp.java" />
+        <option value="$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/ConceptTensorFlowObjectDetection.java" />
+        <option value="$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/autonomous/VuForiaTest.java" />
+        <option value="$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/VuForiaObjectDetection.java" />
+        <option value="$PROJECT_DIR$/TeamCode/build.release.gradle" />
       </list>
     </option>
   </component>
@@ -3058,7 +3168,9 @@
     <option name="width" value="1400" />
     <option name="height" value="820" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="AndroidView" proportions="" version="1">
       <flattenPackages />
@@ -3074,7 +3186,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
+=======
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -3083,6 +3200,7 @@
               <item name="TeamCode" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="Robot-X Code 2018" type="1abcf292:AndroidViewProjectNode" />
               <item name="TeamCode" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
@@ -3092,14 +3210,22 @@
               <item name="TeamCode" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="robotx" type="cbb59c9e:AndroidPsiDirectoryNode" />
+=======
+              <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scratches" />
       <pane id="ProjectPane" />
       <pane id="Scope" />
+=======
+      <pane id="PackagesPane" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3117,6 +3243,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="robotx.libraries" />
       <recent name="robotx.modules" />
       <recent name="robotx.opmodes" />
     </key>
@@ -3291,6 +3418,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3320,6 +3448,39 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25449872" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info id="Captures" order="4" side_tool="true" weight="0.25" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4993573" weight="0.32884097" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50064266" side_tool="true" weight="0.32884097" />
+      <window_info anchor="bottom" id="Logcat" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32884097" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32894737" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Assistant" order="8" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3399,6 +3560,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/VuforiaTestOp.java" />
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/StopWatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/modules/GondalaTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -3408,6 +3577,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/IvanOp.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="221">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
         </state>
@@ -3417,6 +3587,64 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+=======
+        <state relative-caret-position="119">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FtcRobotController/src/main/java/org/firstinspires/ftc/robotcontroller/external/samples/ConceptTensorFlowObjectDetection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/autonomous/VuForiaTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/autonomous/GoldAuton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/opmodes/BeanGodOp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#2#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/build.release.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/VuForiaObjectDetection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-697">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+>>>>>>> 0c7b51f0b1566ef1f8f37814c7b9d8410f27c618
         </state>
       </provider>
     </entry>
