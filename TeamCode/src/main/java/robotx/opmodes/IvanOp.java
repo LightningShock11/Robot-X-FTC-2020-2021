@@ -2,6 +2,8 @@ package robotx.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.ConceptTensorFlowObjectDetection;
+
 import robotx.libraries.XOpMode;
 import robotx.modules.DumpingBucket;
 import robotx.modules.GondalaTest;
