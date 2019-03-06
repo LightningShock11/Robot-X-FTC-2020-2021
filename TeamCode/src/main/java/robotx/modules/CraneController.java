@@ -21,10 +21,7 @@ public class CraneController extends XModule {
     }
     public void loop(){
 
-        baseRightMotor.setPower(xGamepad2().right_trigger); //move the crane arm back and forth
-        baseLeftMotor.setPower(xGamepad2().right_trigger);
-
-        baseRightMotor.setPower(-xGamepad2().left_trigger);
-        baseLeftMotor.setPower(-xGamepad2().left_trigger);
+        baseRightMotor.setPower(xGamepad2().right_trigger - xGamepad2().left_trigger); //move the crane arm back and forth
+        baseLeftMotor.setPower(xGamepad2().right_trigger - xGamepad2().right_trigger);
     }
 }
