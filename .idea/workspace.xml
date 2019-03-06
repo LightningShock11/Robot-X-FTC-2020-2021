@@ -30,6 +30,18 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-406355136">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
@@ -63,8 +75,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/modules/CraneController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="357">
+              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -3080,31 +3092,31 @@
           <expand>
             <path>
               <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
-              <item name="TeamCode" type="e9137016:NonAndroidModuleNode" />
+              <item name="TeamCode" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
               <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
-              <item name="TeamCode" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="TeamCode" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
               <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
-              <item name="TeamCode" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="robotx" type="462c0819:PsiDirectoryNode" />
+              <item name="TeamCode" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="robotx" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
-              <item name="TeamCode" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="robotx" type="462c0819:PsiDirectoryNode" />
+              <item name="TeamCode" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="robotx" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RobotX-FTC-2018" type="1abcf292:AndroidViewProjectNode" />
-              <item name="TeamCode" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="robotx" type="462c0819:PsiDirectoryNode" />
+              <item name="TeamCode" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="robotx" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="opmodes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -3238,6 +3250,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" weight="0.25" />
       <window_info id="Captures" order="1" side_tool="true" weight="0.25" />
@@ -3279,6 +3292,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
           <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/libraries/XModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TeamCode/src/main/java/robotx/modules/CraneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
