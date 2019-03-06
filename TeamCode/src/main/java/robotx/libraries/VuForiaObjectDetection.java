@@ -83,11 +83,18 @@ public class VuForiaObjectDetection extends LinearOpMode {
      */
     private TFObjectDetector tfod;
 
+    public boolean isLeft = false;
+    public boolean isCenter = false;
+    public boolean isRight = false;
+
+
+
     @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
+
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
@@ -129,10 +136,13 @@ public class VuForiaObjectDetection extends LinearOpMode {
                         if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
                           if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
+                            isLeft = true;
                           } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Right");
+                            isRight = true;
                           } else {
                             telemetry.addData("Gold Mineral Position", "Center");
+                            isCenter = true;
                           }
                         }
                       }
