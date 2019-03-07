@@ -16,7 +16,7 @@ public class GondalaTest extends XModule {
         gMotorLow = opMode.hardwareMap.dcMotor.get("gMotorLow");
     }
     public void loop(){
-        if (xGamepad2().left_bumper.isDown()){
+        /*if (xGamepad2().left_bumper.isDown()){
             gMotorLow.setPower(-1.0);
             gMotorHigh.setPower(-1.0);
         }
@@ -27,6 +27,8 @@ public class GondalaTest extends XModule {
         else {
             gMotorLow.setPower(0.0);
             gMotorHigh.setPower(0.0);
-        }
+        }*/
+        gMotorHigh.setPower(xGamepad2().right_trigger - xGamepad2().left_trigger);
+        gMotorLow.setPower(xGamepad2().right_trigger - xGamepad2().left_trigger);
     }
 }
