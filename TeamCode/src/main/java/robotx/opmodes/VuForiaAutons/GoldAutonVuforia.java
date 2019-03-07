@@ -17,7 +17,7 @@ import robotx.modules.XSweeper;
  * Created by Kush Dalal on 10/24/2018.
  */
 
-@Autonomous(name = "GoldAuton", group = "Autonomous")
+@Autonomous(name = "GoldAutonVuforia", group = "Autonomous")
 public class GoldAutonVuforia extends XLinearOpMode {
 
     AutonomousMovement movement;
@@ -34,6 +34,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
         telemetry.addData("Stage", "Init: Gold Auton");
         this.updateTelemetry(telemetry);
 
+        scanner = new VuForiaObjectDetection();
         scanner.init();
 
         twoMotorDrive = new TwoMotorDrive(this);
