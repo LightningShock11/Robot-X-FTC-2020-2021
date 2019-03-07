@@ -16,7 +16,7 @@ import robotx.modules.XSweeper;
  * Created by Kush Dalal on 10/24/2018.
  */
 
-@Autonomous(name = "GoldAuton", group = "Autonomous")
+@Autonomous(name = "GoldAutonVuforia", group = "Autonomous")
 public class GoldAutonVuforia extends XLinearOpMode {
 
     AutonomousMovement movement;

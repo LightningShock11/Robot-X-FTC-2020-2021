@@ -18,11 +18,11 @@ public class GondalaTest extends XModule {
     public void loop(){
         if (xGamepad2().left_bumper.isDown()){
             gMotorLow.setPower(-1.0);
-            gMotorHigh.setPower(-1.0);
+            gMotorHigh.setPower(1.0);
         }
         else if (xGamepad2().right_bumper.isDown()){
-            gMotorHigh.setPower(1.0);
             gMotorLow.setPower(1.0);
+            gMotorHigh.setPower(-1.0);
         }
         else {
             gMotorLow.setPower(0.0);
