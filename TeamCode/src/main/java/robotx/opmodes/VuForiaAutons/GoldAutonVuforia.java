@@ -36,6 +36,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
 
         scanner = new VuForiaObjectDetection();
         scanner.init();
+        scanner.internalPreInit();
 
         twoMotorDrive = new TwoMotorDrive(this);
         twoMotorDrive.init();
