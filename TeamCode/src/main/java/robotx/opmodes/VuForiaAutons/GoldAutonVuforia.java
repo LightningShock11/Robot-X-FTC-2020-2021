@@ -127,15 +127,17 @@ public class GoldAutonVuforia extends LinearOpMode {
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
-        sleep(1000);
-        movement.driveForward(1.0, 50);
-        sleep(100);
+
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
                 tfod.activate();
             }
+
+            sleep(1000);
+            movement.driveForward(1.0, 50);
+            sleep(100);
 
             while (opModeIsActive()) {
                 if (tfod != null) {
