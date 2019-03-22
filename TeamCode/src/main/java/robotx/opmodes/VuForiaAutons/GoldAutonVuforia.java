@@ -126,8 +126,15 @@ public class GoldAutonVuforia extends LinearOpMode {
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
+
         waitForStart();
 
+        //////////start all systems//////////
+        movement.start();
+        sensors.start();
+        mechanumDriveNoLag.start();
+        craneController.start();
+        /////////////////////////////////////
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
