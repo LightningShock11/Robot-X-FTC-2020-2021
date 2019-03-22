@@ -135,9 +135,7 @@ public class GoldAutonVuforia extends LinearOpMode {
                 tfod.activate();
             }
 
-            sleep(1000);
-            movement.driveForward(1.0, 50);
-            sleep(100);
+
 
             while (opModeIsActive()) {
                 if (tfod != null) {
@@ -163,15 +161,13 @@ public class GoldAutonVuforia extends LinearOpMode {
                           if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
                             isLeft = true;
-                            movement.pointTurnLeft(90);
                           } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Right");
                             isRight = true;
-                            movement.pointTurnRight(90);
                           } else {
                             telemetry.addData("Gold Mineral Position", "Center");
                             isCenter = true;
-                            movement.driveForward(1.0, 50);
+
                           }
                         }
                       }
@@ -179,6 +175,17 @@ public class GoldAutonVuforia extends LinearOpMode {
                     }
                 }
             }
+        }
+        sleep(2000);
+        movement.driveForward(1.0, 25);
+        sleep(1000);
+
+        if(isLeft){
+            movement.pointTurnLeft(90);
+        }else if(isRight){
+            movement.pointTurnRight(90);
+        }else if(isCenter){
+            movement.driveForward(1.0, 50);
         }
 
         if (tfod != null) {
