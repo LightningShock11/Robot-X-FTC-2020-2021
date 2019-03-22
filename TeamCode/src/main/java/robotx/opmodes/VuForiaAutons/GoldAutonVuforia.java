@@ -40,6 +40,11 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
+import robotx.libraries.OmniAutonomousMovement;
+import robotx.modules.CraneController;
+import robotx.modules.MechanumAuton;
+import robotx.modules.MechanumDriveNoLag;
+
 /**
  * This 2018-2019 OpMode illustrates the basics of using the TensorFlow Object Detection API to
  * determine the position of the gold and silver minerals.
@@ -87,12 +92,29 @@ public class GoldAutonVuforia extends LinearOpMode {
     public boolean isRight = false;
 
 
+    OmniAutonomousMovement movement;
+    MechanumAuton sensors;
+    MechanumDriveNoLag mechanumDriveNoLag;
+    CraneController craneController;
+
 
     @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
+
+        movement = new OmniAutonomousMovement(this);
+        movement.init();
+
+        sensors = new MechanumAuton(this);
+        sensors.init();
+
+        mechanumDriveNoLag = new MechanumDriveNoLag(this);
+        mechanumDriveNoLag.init();
+
+        craneController = new CraneController(this);
+        craneController.init();
 
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
