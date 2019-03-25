@@ -189,17 +189,21 @@ public class GoldAutonVuforia extends LinearOpMode {
 
         if(isLeft){
             movement.pointTurnLeft(90);
+            telemetry.addData("Gold:", "Left");
         }else if(isRight){
             movement.pointTurnRight(90);
+            telemetry.addData("Gold:", "Right");
         }else if(isCenter){
             movement.driveForward(1.0, 50);
+            telemetry.addData("Gold:", "Center");
         }
-
+        else{
+            telemetry.addData("Gold:", "Not detected");
+        }
         if (tfod != null) {
             tfod.shutdown();
         }
     }
-
     /**
      * Initialize the Vuforia localization engine.
      */
