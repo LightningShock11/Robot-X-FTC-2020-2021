@@ -39,23 +39,10 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-import robotx.libraries.AutonomousMovement;
-=======
->>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.modules.CraneController;
-import robotx.modules.MechanumAuton;
 import robotx.modules.MechanumDriveNoLag;
-<<<<<<< HEAD
 import robotx.modules.TwoWheelAutonIMU;
-=======
->>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
-
-=======
->>>>>>> parent of 04f13a6... hey
 /**
  * This 2018-2019 OpMode illustrates the basics of using the TensorFlow Object Detection API to
  * determine the position of the gold and silver minerals.
@@ -102,23 +89,10 @@ public class GoldAutonVuforia extends LinearOpMode {
     public boolean isCenter = false;
     public boolean isRight = false;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     MechanumDriveNoLag mechanumDriveNoLag;
     OmniAutonomousMovement movement;
     TwoWheelAutonIMU sensors;
     CraneController craneController;
-=======
-
-    OmniAutonomousMovement movement;
-    MechanumAuton sensors;
-    MechanumDriveNoLag mechanumDriveNoLag;
-    CraneController craneController;
-
->>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
-=======
-
->>>>>>> parent of 04f13a6... hey
 
     @Override
     public void runOpMode() {
@@ -129,7 +103,7 @@ public class GoldAutonVuforia extends LinearOpMode {
         movement = new OmniAutonomousMovement(this);
         movement.init();
 
-        sensors = new MechanumAuton(this);
+        sensors = new TwoWheelAutonIMU(this);
         sensors.init();
 
         mechanumDriveNoLag = new MechanumDriveNoLag(this);
@@ -151,24 +125,11 @@ public class GoldAutonVuforia extends LinearOpMode {
 
         waitForStart();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         mechanumDriveNoLag.start();
         movement.start();
         sensors.start();
         craneController.start();
 
-=======
-        //////////start all systems//////////
-        movement.start();
-        sensors.start();
-        mechanumDriveNoLag.start();
-        craneController.start();
-        /////////////////////////////////////
->>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
-
-=======
->>>>>>> parent of 04f13a6... hey
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
