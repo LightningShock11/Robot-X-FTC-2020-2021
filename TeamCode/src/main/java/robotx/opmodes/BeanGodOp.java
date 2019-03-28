@@ -14,7 +14,7 @@ import robotx.modules.SweeperSystem;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.XSweeper;
 
-@TeleOp(name = "BeanGodOp", group = "Testing")
+@TeleOp(name = "BeanGodOp", group = "Worlds")
 public class BeanGodOp extends XOpMode {
     //TwoMotorDrive twoMotorDrive;
     //OneStickDrive oneStickDrive;
