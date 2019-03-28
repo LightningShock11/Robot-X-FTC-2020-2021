@@ -41,6 +41,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.util.List;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import robotx.libraries.AutonomousMovement;
 =======
 >>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
@@ -53,6 +54,8 @@ import robotx.modules.TwoWheelAutonIMU;
 =======
 >>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
 
+=======
+>>>>>>> parent of 04f13a6... hey
 /**
  * This 2018-2019 OpMode illustrates the basics of using the TensorFlow Object Detection API to
  * determine the position of the gold and silver minerals.
@@ -63,7 +66,7 @@ import robotx.modules.TwoWheelAutonIMU;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "GoldAutonVuforia", group = "Sensors")
+@Autonomous(name = "VuForiaObjectDetection", group = "Sensors")
 public class GoldAutonVuforia extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -100,6 +103,7 @@ public class GoldAutonVuforia extends LinearOpMode {
     public boolean isRight = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     MechanumDriveNoLag mechanumDriveNoLag;
     OmniAutonomousMovement movement;
     TwoWheelAutonIMU sensors;
@@ -112,23 +116,12 @@ public class GoldAutonVuforia extends LinearOpMode {
     CraneController craneController;
 
 >>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
+=======
+
+>>>>>>> parent of 04f13a6... hey
 
     @Override
     public void runOpMode() {
-        this.updateTelemetry(telemetry);
-
-        mechanumDriveNoLag = new MechanumDriveNoLag(this);
-        mechanumDriveNoLag.init();
-
-        movement = new OmniAutonomousMovement(this);
-        movement.init();
-
-        sensors = new TwoWheelAutonIMU(this);
-        sensors.init();
-
-        craneController = new CraneController(this);
-        craneController.init();
-
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
@@ -159,6 +152,7 @@ public class GoldAutonVuforia extends LinearOpMode {
         waitForStart();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         mechanumDriveNoLag.start();
         movement.start();
         sensors.start();
@@ -173,6 +167,8 @@ public class GoldAutonVuforia extends LinearOpMode {
         /////////////////////////////////////
 >>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
 
+=======
+>>>>>>> parent of 04f13a6... hey
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
@@ -240,33 +236,6 @@ public class GoldAutonVuforia extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
-
-        this.updateTelemetry(telemetry);
-        sleep(3000);
-        if (isRight){
-            telemetry.addData("Gold position:", "Right");
-        }
-        else if (isCenter){
-            telemetry.addData("Gold position", "Center");
-        }
-        else if (isLeft){
-            telemetry.addData("Gold position", "Left");
-        }
-
-        sleep(2000);
-
-        if (isRight){
-            movement.driveForward(1.0, 100);
-        }
-        else if (isCenter){
-            movement.driveRight(1.0, 100);
-        }
-        else if (isLeft){
-            movement.driveBackward(1.0, 100);
-        }
-        else {
-            movement.pointTurnLeft(180);
-        }
     }
     /**
      * Initialize the Vuforia localization engine.
@@ -296,9 +265,4 @@ public class GoldAutonVuforia extends LinearOpMode {
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
-
-    //Begin regular auton program
-
-
-
 }

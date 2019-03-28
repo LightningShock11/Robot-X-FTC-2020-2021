@@ -136,10 +136,13 @@
     <orderEntry type="library" name="Gradle: :WirelessP2p-release:@aar" level="project" />
     <orderEntry type="library" name="Gradle: :FtcCommon-release:@aar" level="project" />
     <orderEntry type="module" module-name="FtcRobotController" />
+<<<<<<< HEAD
     <orderEntry type="module" module-name="FtcRobotController" />
 <<<<<<< HEAD
 =======
     <orderEntry type="module" module-name="FtcRobotController" />
 >>>>>>> 84df84d6055481439adc6b234880beecd6c78c58
+=======
+>>>>>>> parent of 04f13a6... hey
   </component>
 </module>

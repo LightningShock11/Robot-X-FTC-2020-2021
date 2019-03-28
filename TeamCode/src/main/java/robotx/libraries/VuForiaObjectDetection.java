@@ -30,7 +30,6 @@
 package robotx.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -52,7 +51,6 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Disabled
 @Autonomous(name = "VuForiaObjectDetection", group = "Sensors")
 @Disabled
 public class VuForiaObjectDetection extends LinearOpMode {

@@ -1,7 +1,6 @@
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotx.libraries.AutonomousMovement;
@@ -27,7 +26,6 @@ public class GoldAuton extends XLinearOpMode {
     MineralColor mineralColor;
     DumpingBucket dumpingBucket;
     XSweeper xSweeper;
-
 
 
     public void runOpMode() {
