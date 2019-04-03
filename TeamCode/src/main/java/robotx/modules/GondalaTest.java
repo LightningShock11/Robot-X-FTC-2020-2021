@@ -2,6 +2,7 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import robotx.libraries.XModule;
 
@@ -16,6 +17,7 @@ public class GondalaTest extends XModule {
         gMotorLow = opMode.hardwareMap.dcMotor.get("gMotorLow");
         gMotorLow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         gMotorHigh.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        gMotorHigh.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void loop(){
         /*if (xGamepad2().left_bumper.isDown()){
