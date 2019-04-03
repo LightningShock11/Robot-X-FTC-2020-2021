@@ -92,7 +92,6 @@ public class GoldAutonVuforia extends LinearOpMode {
     MechanumDriveNoLag mechanumDriveNoLag;
     OmniAutonomousMovement movement;
     TwoWheelAutonIMU sensors;
-    CraneController craneController;
 
     @Override
     public void runOpMode() {
@@ -108,9 +107,6 @@ public class GoldAutonVuforia extends LinearOpMode {
 
         mechanumDriveNoLag = new MechanumDriveNoLag(this);
         mechanumDriveNoLag.init();
-
-        craneController = new CraneController(this);
-        craneController.init();
 
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -128,7 +124,6 @@ public class GoldAutonVuforia extends LinearOpMode {
         mechanumDriveNoLag.start();
         movement.start();
         sensors.start();
-        craneController.start();
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */

@@ -19,7 +19,6 @@ public class BeanGodOp extends XOpMode {
     //TwoMotorDrive twoMotorDrive;
     //OneStickDrive oneStickDrive;
     RLdrive rLdrive;
-    SortingProtoArm sortingProtoArm;
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
     DumpingBucket dumpingBucket;
@@ -36,9 +35,6 @@ public class BeanGodOp extends XOpMode {
 
         rLdrive = new RLdrive(this); //Driving system
         activeModules.add(rLdrive);
-
-        sortingProtoArm = new SortingProtoArm(this); //sorting system
-        activeModules.add(sortingProtoArm);
 
         liftSystemXY = new LiftSystemXY(this); //lift system
         activeModules.add(liftSystemXY);
