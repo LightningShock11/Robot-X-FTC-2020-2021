@@ -31,6 +31,7 @@ package robotx.opmodes.VuForiaAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -42,6 +43,7 @@ import java.util.List;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.OmniAutonomousMovement;
+import robotx.libraries.XLinearOpMode;
 import robotx.modules.CraneController;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
@@ -56,7 +58,7 @@ import robotx.modules.TwoWheelAutonIMU;
  * is explained below.
  */
 @Autonomous(name = "GoldAutonVuforia", group = "Sensors")
-public class GoldAutonVuforia extends LinearOpMode {
+public class GoldAutonVuforia extends XLinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -94,7 +96,6 @@ public class GoldAutonVuforia extends LinearOpMode {
     AutonomousMovement movement;
     TwoMotorDrive twoMotorDrive;
     TwoWheelAutonIMU sensors;
-    CraneController craneController;
 
     @Override
     public void runOpMode() {
@@ -102,17 +103,6 @@ public class GoldAutonVuforia extends LinearOpMode {
         // first.
         initVuforia();
 
-        movement = new AutonomousMovement(this);
-        movement.init();
-
-        sensors = new TwoWheelAutonIMU(this);
-        sensors.init();
-
-        twoMotorDrive = new TwoMotorDrive(this);
-        twoMotorDrive.init();
-
-        craneController = new CraneController(this);
-        craneController.init();
 
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -121,16 +111,17 @@ public class GoldAutonVuforia extends LinearOpMode {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
+
+
+
         /** Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
 
         waitForStart();
 
-        movement.start();
-        twoMotorDrive.start();
-        sensors.start();
-        craneController.start();
+
+
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
@@ -163,41 +154,78 @@ public class GoldAutonVuforia extends LinearOpMode {
                         if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
                           if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
+                              telemetry.update();
                             isLeft = true;
+                            break;
                           } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Right");
+                              telemetry.update();
                             isRight = true;
+                            break;
                           } else {
                             telemetry.addData("Gold Mineral Position", "Center");
+                              telemetry.update();
                             isCenter = true;
+                            break;
 
                           }
                         }
                       }
                       telemetry.update();
                     }
+
+
                 }
+
             }
+
         }
+        if (tfod != null) {
+            tfod.shutdown();
+        }
+
+        sensors = new TwoWheelAutonIMU(this);
+        sensors.init();
+
+        twoMotorDrive = new TwoMotorDrive(this);
+        twoMotorDrive.init();
+
+        movement = new AutonomousMovement(this, sensors, twoMotorDrive);
+        movement.init();
+
+        sensors.leftMotor = twoMotorDrive.leftMotor;
+        sensors.rightMotor = twoMotorDrive.rightMotor;
+
+        movement.start();
+        twoMotorDrive.start();
+        sensors.start();
+        twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        sleep(5000);
+        goForward(0.5, 500);
         sleep(2000);
-        goForward(1.0, 2000);
-        sleep(1000);
 
         if(isLeft){
             movement.pointTurnLeft(90);
             telemetry.addData("Gold:", "Left");
+            telemetry.update();
+            sleep(5000);
         }else if(isRight){
             movement.pointTurnRight(90);
             telemetry.addData("Gold:", "Right");
+            telemetry.update();
+            sleep(5000);
         }else if(isCenter){
             goForward(1.0, 1000);
             telemetry.addData("Gold:", "Center");
+            telemetry.update();
+            sleep(5000);
         }
         else{
             telemetry.addData("Gold:", "Not detected");
-        }
-        if (tfod != null) {
-            tfod.shutdown();
+            telemetry.update();
+            sleep(5000);
         }
     }
     /**

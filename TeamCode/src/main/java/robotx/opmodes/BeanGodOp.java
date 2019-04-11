@@ -19,11 +19,9 @@ public class BeanGodOp extends XOpMode {
     //TwoMotorDrive twoMotorDrive;
     //OneStickDrive oneStickDrive;
     RLdrive rLdrive;
-    SortingProtoArm sortingProtoArm;
     LiftSystemXY liftSystemXY;
     XSweeper xSweeper;
     DumpingBucket dumpingBucket;
-    GondalaTest gondalaTest;
 
     public void initModules(){
         super.initModules();
@@ -37,9 +35,6 @@ public class BeanGodOp extends XOpMode {
         rLdrive = new RLdrive(this); //Driving system
         activeModules.add(rLdrive);
 
-        sortingProtoArm = new SortingProtoArm(this); //sorting system
-        activeModules.add(sortingProtoArm);
-
         liftSystemXY = new LiftSystemXY(this); //lift system
         activeModules.add(liftSystemXY);
 
@@ -48,9 +43,6 @@ public class BeanGodOp extends XOpMode {
 
         dumpingBucket = new DumpingBucket(this); //dumping system
         activeModules.add(dumpingBucket);
-
-        gondalaTest = new GondalaTest(this);
-        activeModules.add(gondalaTest);
     }
     public void init(){super.init();}
 }

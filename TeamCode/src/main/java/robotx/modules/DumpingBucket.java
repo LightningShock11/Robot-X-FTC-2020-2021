@@ -9,14 +9,15 @@ import robotx.libraries.XModule;
 public class DumpingBucket extends XModule{
 
     Servo dumpingServo;
-    double dumpPosition = 0.9;
+    double dumpPosition = 0.93;
+    double startPosition = 0.4;
     boolean dumping = true;
 
     public DumpingBucket(OpMode op){super(op);}
 
     public void init(){
         dumpingServo = opMode.hardwareMap.servo.get("dumpingServo");
-        dumpingServo.setPosition(0.35);
+        dumpingServo.setPosition(startPosition);
     }
     //Sleep is used in autonomous
     private void sleep(long milliseconds) {
@@ -28,11 +29,11 @@ public class DumpingBucket extends XModule{
     public void autoDump(){
         dumpingServo.setPosition(dumpPosition);
         sleep(1500);
-        dumpingServo.setPosition(0.45);
+        dumpingServo.setPosition(startPosition);
     }
     public void toggleBucket(){
         if (dumping){
-            dumpingServo.setPosition(0.57);
+            dumpingServo.setPosition(startPosition);
             dumping = false;
         }
         else{
@@ -47,8 +48,6 @@ public class DumpingBucket extends XModule{
         if (xGamepad1().a.wasPressed()){
             toggleBucket();
         }
-        if (xGamepad1().y.wasPressed()){
-            dumpingServo.setPosition(0.35);
-        }
+
     }
 }

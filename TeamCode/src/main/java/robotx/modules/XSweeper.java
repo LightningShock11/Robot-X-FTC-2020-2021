@@ -42,22 +42,22 @@ public class XSweeper extends XModule {
     }
     public void rotateSweeper(){
         if (sweeperIsOut){
-            sweeperRotate.setPosition(0.05);
+            sweeperRotate.setPosition(0.0);
             sweeperIsOut = false;
         }
         else{
-            sweeperRotate.setPosition(0.83);
+            sweeperRotate.setPosition(0.8);
             sweeperIsOut = true;
         }
     }
     public void rotateUp(){ //Used for autonomous
-        sweeperRotate.setPosition(0.05);
+        sweeperRotate.setPosition(0.0);
     }
     public void rotateDown(){ //Used for autonomous
-        sweeperRotate.setPosition(0.83);
+        sweeperRotate.setPosition(0.8);
     }
     public void rotateFlat(){
-        sweeperRotate.setPosition(.5);
+        sweeperRotate.setPosition(.4);
     }
     public void loop(){
         opMode.telemetry.addData("Rotate position:", sweeperRotate.getPosition());
@@ -71,7 +71,7 @@ public class XSweeper extends XModule {
             rotateSweeper();
         }
         if (xGamepad2().dpad_left.wasPressed()){
-            sweeperRotate.setPosition(.5);
+            sweeperRotate.setPosition(.4);
             //Set the sweeper to a horizontal position to clear crater without dumping contents
         }
     }
