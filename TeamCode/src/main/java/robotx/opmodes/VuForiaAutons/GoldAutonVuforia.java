@@ -58,7 +58,11 @@ import robotx.modules.TwoWheelAutonIMU;
  * is explained below.
  */
 @Autonomous(name = "GoldAutonVuforia", group = "Sensors")
+<<<<<<< HEAD
 public class GoldAutonVuforia extends XLinearOpMode {
+=======
+public class GoldAutonVuforia extends LinearOpMode {
+>>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -103,6 +107,17 @@ public class GoldAutonVuforia extends XLinearOpMode {
         // first.
         initVuforia();
 
+<<<<<<< HEAD
+=======
+        movement = new OmniAutonomousMovement(this);
+        movement.init();
+
+        sensors = new TwoWheelAutonIMU(this);
+        sensors.init();
+
+        mechanumDriveNoLag = new MechanumDriveNoLag(this);
+        mechanumDriveNoLag.init();
+>>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
 
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -120,8 +135,14 @@ public class GoldAutonVuforia extends XLinearOpMode {
 
         waitForStart();
 
+<<<<<<< HEAD
 
 
+=======
+        mechanumDriveNoLag.start();
+        movement.start();
+        sensors.start();
+>>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
