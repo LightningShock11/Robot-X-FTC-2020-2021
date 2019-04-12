@@ -45,8 +45,12 @@ import robotx.libraries.AutonomousMovement;
 import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
 import robotx.modules.CraneController;
+import robotx.modules.DumpingBucket;
+import robotx.modules.LiftSystemXY;
 import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
+import robotx.modules.XSweeper;
+
 /**
  * This 2018-2019 OpMode illustrates the basics of using the TensorFlow Object Detection API to
  * determine the position of the gold and silver minerals.
@@ -58,11 +62,7 @@ import robotx.modules.TwoWheelAutonIMU;
  * is explained below.
  */
 @Autonomous(name = "GoldAutonVuforia", group = "Sensors")
-<<<<<<< HEAD
 public class GoldAutonVuforia extends XLinearOpMode {
-=======
-public class GoldAutonVuforia extends LinearOpMode {
->>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -100,24 +100,16 @@ public class GoldAutonVuforia extends LinearOpMode {
     AutonomousMovement movement;
     TwoMotorDrive twoMotorDrive;
     TwoWheelAutonIMU sensors;
+    LiftSystemXY liftSystemXY;
+    DumpingBucket dumpingBucket;
+    XSweeper xSweeper;
+
 
     @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
-
-<<<<<<< HEAD
-=======
-        movement = new OmniAutonomousMovement(this);
-        movement.init();
-
-        sensors = new TwoWheelAutonIMU(this);
-        sensors.init();
-
-        mechanumDriveNoLag = new MechanumDriveNoLag(this);
-        mechanumDriveNoLag.init();
->>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
 
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -135,14 +127,7 @@ public class GoldAutonVuforia extends LinearOpMode {
 
         waitForStart();
 
-<<<<<<< HEAD
 
-
-=======
-        mechanumDriveNoLag.start();
-        movement.start();
-        sensors.start();
->>>>>>> c705a1c95d219e12396b0ef9239ea40128131d1a
 
         if (opModeIsActive()) {
             /** Activate Tensor Flow Object Detection. */
@@ -217,28 +202,53 @@ public class GoldAutonVuforia extends LinearOpMode {
         sensors.leftMotor = twoMotorDrive.leftMotor;
         sensors.rightMotor = twoMotorDrive.rightMotor;
 
+        dumpingBucket = new DumpingBucket(this);
+        dumpingBucket.init();
+
+        liftSystemXY = new LiftSystemXY(this);
+        liftSystemXY.init();
+
+        xSweeper = new XSweeper(this);
+        xSweeper.init();
+
+        ////////////////////////////////////////////////////////
+
         movement.start();
         twoMotorDrive.start();
         sensors.start();
+        liftSystemXY.start();
+        xSweeper.start();
+        dumpingBucket.start();
         twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        sleep(5000);
-        goForward(0.5, 500);
         sleep(2000);
+        xSweeper.rotateFlat();
+        sleep(1000);
+        liftSystemXY.extendY(1300);
+        sleep(2050);
+        movement.pointTurnRight(30);
+        sleep(750);
+        goForward(0.5, 250);
+        sleep(150);
+        movement.pointTurnLeft(15);
+        stopDriving();
+        sleep(2050);
 
         if(isLeft){
-            movement.pointTurnLeft(90);
+            movement.pointTurnLeft(45);
             telemetry.addData("Gold:", "Left");
             telemetry.update();
+            goForward(0.6, 1000);
             sleep(5000);
         }else if(isRight){
-            movement.pointTurnRight(90);
+            movement.pointTurnRight(45);
             telemetry.addData("Gold:", "Right");
             telemetry.update();
+            goForward(0.6, 1000);
             sleep(5000);
         }else if(isCenter){
-            goForward(1.0, 1000);
+            goForward(0.6, 1000);
             telemetry.addData("Gold:", "Center");
             telemetry.update();
             sleep(5000);
@@ -248,6 +258,10 @@ public class GoldAutonVuforia extends LinearOpMode {
             telemetry.update();
             sleep(5000);
         }
+
+
+
+
     }
     /**
      * Initialize the Vuforia localization engine.
