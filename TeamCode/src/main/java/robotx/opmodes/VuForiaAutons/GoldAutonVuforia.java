@@ -211,7 +211,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
         xSweeper = new XSweeper(this);
         xSweeper.init();
 
-        ////////////////////////////////////////////////////////
+
 
         movement.start();
         twoMotorDrive.start();
@@ -221,6 +221,8 @@ public class GoldAutonVuforia extends XLinearOpMode {
         dumpingBucket.start();
         twoMotorDrive.rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         twoMotorDrive.leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        /////////////////////Movement///////////////////////
 
         sleep(2000);
         xSweeper.rotateFlat();
@@ -234,6 +236,9 @@ public class GoldAutonVuforia extends XLinearOpMode {
         movement.pointTurnLeft(15);
         stopDriving();
         sleep(2050);
+
+        //-----------Dehanging complete-----------\\
+
 
         if(isLeft){
             movement.pointTurnLeft(45);
@@ -251,7 +256,27 @@ public class GoldAutonVuforia extends XLinearOpMode {
             goForward(0.6, 1000);
             telemetry.addData("Gold:", "Center");
             telemetry.update();
-            sleep(5000);
+            xSweeper.rotateUp();
+            sleep(500);
+            goForward(0.6, 2000);
+            sleep(500);
+            //goBackward(0.6, 350);
+            //sleep(500);
+            movement.pointTurnLeft(120);
+            sleep(500);
+            goForward(0.5, 550);
+            liftSystemXY.retractY();
+            sleep(1500);
+            xSweeper.rotateFlat();
+            sleep(1000);
+            dumpingBucket.autoDump();
+            sleep(500);
+            xSweeper.rotateUp();
+            sleep(500);
+            goForward(0.6, 3000);
+            sleep(2000);
+            xSweeper.rotateDown();
+            stopDriving();
         }
         else{
             telemetry.addData("Gold:", "Not detected");
@@ -260,7 +285,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
         }
 
 
-
+        ////////////////////////////////////////////////////
 
     }
     /**
