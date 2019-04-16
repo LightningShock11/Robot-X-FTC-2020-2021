@@ -10,6 +10,7 @@ public class RLdrive extends XModule {
     DcMotor leftMotor;
     DcMotor rightMotor;
     boolean isSlowMode;
+    String DriveMode;
 
     float xValue, power, brake;
 
@@ -18,8 +19,10 @@ public class RLdrive extends XModule {
     public void toggleSlow(){
        if(isSlowMode){
            isSlowMode = false;
+           DriveMode = "Max Speed";
        }else{
            isSlowMode = true;
+           DriveMode = "Half Speed";
        }
     }
 
@@ -30,7 +33,7 @@ public class RLdrive extends XModule {
     }
     public void loop(){
         opMode.telemetry.addData("Power", power);
-        opMode.telemetry.addData("xValue", xValue);
+        opMode.telemetry.addData("Driving Mode: ", DriveMode);
 
         if(xGamepad1().x.wasPressed()){
             toggleSlow();
