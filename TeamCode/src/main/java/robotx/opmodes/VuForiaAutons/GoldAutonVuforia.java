@@ -244,14 +244,56 @@ public class GoldAutonVuforia extends XLinearOpMode {
             movement.pointTurnLeft(45);
             telemetry.addData("Gold:", "Left");
             telemetry.update();
-            goForward(0.6, 1000);
-            sleep(5000);
+            xSweeper.rotateUp();
+            sleep(500);
+            goForward(0.6, 2000);
+            sleep(1000);
+            movement.pointTurnLeft(90);
+            sleep(500);
+            goBackward(0.5, 550);
+            sleep(500);
+            liftSystemXY.retractY();
+            sleep(1700);
+            xSweeper.rotateFlat();
+            sleep(1000);
+            dumpingBucket.autoDump();
+            sleep(500);
+            xSweeper.rotateUp();
+            sleep(500);
+            goForward(0.6, 3000);
+            sleep(2000);
+            xSweeper.rotateDown();
+            stopDriving();
         }else if(isRight){
             movement.pointTurnRight(45);
             telemetry.addData("Gold:", "Right");
             telemetry.update();
-            goForward(0.6, 1000);
-            sleep(5000);
+            sleep(1000);
+            liftSystemXY.extendX(1300);
+            sleep(2000);
+            liftSystemXY.retractX();
+            sleep(1000);
+            movement.pointTurnLeft(100);
+            sleep(1000);
+            goForward(0.6, 2000);
+            sleep(500);
+            movement.pointTurnLeft(40);
+            sleep(500);
+            goBackward(0.5, 550);
+            sleep(500);
+            liftSystemXY.retractY();
+            sleep(1700);
+            xSweeper.rotateFlat();
+            sleep(1000);
+            dumpingBucket.autoDump();
+            sleep(500);
+            xSweeper.rotateUp();
+            sleep(500);
+            goForward(0.6, 3000);
+            sleep(2000);
+            xSweeper.rotateDown();
+            stopDriving();
+
         }else if(isCenter){
             goForward(0.6, 1000);
             telemetry.addData("Gold:", "Center");
@@ -281,7 +323,26 @@ public class GoldAutonVuforia extends XLinearOpMode {
         else{
             telemetry.addData("Gold:", "Not detected");
             telemetry.update();
-            sleep(5000);
+            movement.pointTurnLeft(90);
+            goForward(0.6, 2000);
+            sleep(250);
+            movement.pointTurnLeft(90);
+            goBackward(1.0, 1300);
+            xSweeper.rotateFlat();
+            sleep(550);
+            liftSystemXY.retractY();
+            sleep(2500);
+            dumpingBucket.autoDump();
+            sleep(100);
+            xSweeper.rotateUp();
+            sleep(250);
+            goForward(1.0, 2500);
+            sleep(250);
+            xSweeper.rotateDown();
+            sleep(1000);
+            stopDriving();
+            twoMotorDrive.stop();
+            movement.stop();
         }
 
 
