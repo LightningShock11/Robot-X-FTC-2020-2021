@@ -22,6 +22,13 @@ public class XSweeper extends XModule {
         sweeperRotate = opMode.hardwareMap.servo.get("sweeperRotate");
         sweeperRotate.setPosition(0.05);
     }
+    public final void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public void toggleSweeper(){
         if (sweeperIsOn){
             sweeperServo.setPower(0.0);
@@ -31,6 +38,11 @@ public class XSweeper extends XModule {
             sweeperServo.setPower(1.0);
             sweeperIsOn = true;
         }
+    }
+    public void sweep(double power, int time){
+        sweeperServo.setPower(power);
+        sleep(time);
+        sweeperServo.setPower(0.0);
     }
     public void switchDirection(){
         if (sweeperServo.getPower() == 1.0){
@@ -71,7 +83,7 @@ public class XSweeper extends XModule {
             rotateSweeper();
         }
         if (xGamepad2().dpad_left.wasPressed()){
-            sweeperRotate.setPosition(.4);
+            rotateFlat();
             //Set the sweeper to a horizontal position to clear crater without dumping contents
         }
     }

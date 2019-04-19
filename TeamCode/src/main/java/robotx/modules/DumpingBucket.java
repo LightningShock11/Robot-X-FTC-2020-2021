@@ -9,8 +9,8 @@ import robotx.libraries.XModule;
 public class DumpingBucket extends XModule{
 
     Servo dumpingServo;
-    double dumpPosition = 0.85;
-    double startPosition = 0.25;
+    double dumpPosition = 0.80;
+    double startPosition = 0.20;
     boolean dumping = true;
 
     public DumpingBucket(OpMode op){super(op);}

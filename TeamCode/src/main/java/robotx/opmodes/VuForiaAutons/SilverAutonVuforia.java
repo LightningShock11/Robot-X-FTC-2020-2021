@@ -30,7 +30,6 @@
 package robotx.opmodes.VuForiaAutons;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -42,9 +41,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.util.List;
 
 import robotx.libraries.AutonomousMovement;
-import robotx.libraries.OmniAutonomousMovement;
 import robotx.libraries.XLinearOpMode;
-import robotx.modules.CraneController;
 import robotx.modules.DumpingBucket;
 import robotx.modules.LiftSystemXY;
 import robotx.modules.TwoMotorDrive;
@@ -61,8 +58,8 @@ import robotx.modules.XSweeper;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "GoldAutonVuforia", group = "Sensors")
-public class GoldAutonVuforia extends XLinearOpMode {
+@Autonomous(name = "SilverAutonVuforia", group = "Sensors")
+public class SilverAutonVuforia extends XLinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
