@@ -94,6 +94,13 @@ public class LiftSystemXY extends XModule {
             yMotor.setPower(0.0);
         }
     }
+    public void retractYPos(int yPositionDown){
+        yMotor.setTargetPosition(yPositionDown);
+        yMotor.setPower(-1.0);
+        if (yMotor.getTargetPosition() == yPositionDown && yMotor.getCurrentPosition() <= yMotor.getTargetPosition()){
+            yMotor.setPower(0.0);
+        }
+    }
     public void retractY(){
         yMotor.setTargetPosition(0);
         yMotor.setPower(-1.0);

@@ -225,7 +225,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
         /////////////////////Movement///////////////////////
 
         xSweeper.rotateFlat();
-        sleep(250);
+        sleep(500);
         liftSystemXY.extendY(1300);
         sleep(2050);
         movement.pointTurnRight(30);
@@ -244,12 +244,13 @@ public class GoldAutonVuforia extends XLinearOpMode {
             telemetry.update();
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 1750);
+            goForward(0.6, 2000);
             sleep(1000);
             movement.pointTurnLeft(77);
             sleep(500);
             goBackward(0.5, 850);
             sleep(500);
+            movement.pointTurnLeft(5);
             liftSystemXY.retractY();
             sleep(1700);
             xSweeper.rotateFlat();
@@ -258,12 +259,14 @@ public class GoldAutonVuforia extends XLinearOpMode {
             sleep(500);
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 3000);
-            sleep(2000);
+            goForward(0.6, 1500);
+            movement.pointTurnRight(7);
+            goForward(0.6,1500);
+            sleep(500);
             xSweeper.rotateDown();
             stopDriving();
         }else if(isRight){
-            movement.pointTurnRight(32);
+            movement.pointTurnRight(31);
             telemetry.addData("Gold:", "Right");
             telemetry.update();
             sleep(500);
@@ -287,7 +290,10 @@ public class GoldAutonVuforia extends XLinearOpMode {
             sleep(250);
             xSweeper.rotateUp();
             sleep(250);
-            goForward(0.6, 3000);
+            goForward(0.6, 1500);
+            stopDriving();
+            sleep(250);
+            goForward(1.0,1700);
             xSweeper.rotateDown();
             stopDriving();
 

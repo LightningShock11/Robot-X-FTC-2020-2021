@@ -229,7 +229,7 @@ public class SilverAutonVuforia extends XLinearOpMode {
         sleep(750);
         goForward(0.5, 250);
         sleep(150);
-        movement.pointTurnLeft(30);
+        movement.pointTurnLeft(23);
         stopDriving();
 
         //-----------Dehanging complete-----------\\
@@ -241,12 +241,13 @@ public class SilverAutonVuforia extends XLinearOpMode {
             telemetry.update();
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 1750);
+            goForward(0.6, 2000);
             sleep(1000);
-            movement.pointTurnLeft(77);
+            movement.pointTurnRight(60);
             sleep(500);
-            goBackward(0.5, 850);
-            sleep(500);
+            goBackward(0.5, 2000);
+            movement.pointTurnLeft(5);
+            goBackward(0.5, 1000);
             liftSystemXY.retractY();
             sleep(1700);
             xSweeper.rotateFlat();
@@ -255,10 +256,11 @@ public class SilverAutonVuforia extends XLinearOpMode {
             sleep(500);
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 3000);
-            sleep(2000);
+            goForward(0.6, 1500);
+            movement.pointTurnRight(7);
+            goForward(0.6,1500);
+            sleep(500);
             xSweeper.rotateDown();
-            stopDriving();
         }else if(isRight){
             movement.pointTurnRight(32);
             telemetry.addData("Gold:", "Right");
@@ -274,8 +276,8 @@ public class SilverAutonVuforia extends XLinearOpMode {
             sleep(500);
             movement.pointTurnLeft(90);
             sleep(250);
-            goForward(0.6, 3000);
-            movement.pointTurnLeft(50);
+            goForward(0.6, 1500);
+            movement.pointTurnRight(50);
             sleep(250);
             goBackward(0.5, 2500);
             liftSystemXY.retractY();
@@ -292,30 +294,34 @@ public class SilverAutonVuforia extends XLinearOpMode {
             telemetry.update();
             xSweeper.rotateUp();
             sleep(500);
-            liftSystemXY.extendX(100);
+            liftSystemXY.extendX(150);
             xSweeper.rotateDown();
-            xSweeper.sweep(1.0,1250);
+            xSweeper.sweep(1.0,1350);
             xSweeper.rotateFlat();
             liftSystemXY.retractX();
             sleep(500);
             movement.pointTurnRight(100);
             sleep(500);
-            goBackward(0.5, 2500);
+            goBackward(0.5, 3000);
             sleep(250);
             movement.pointTurnLeft(58);
             sleep(250);
             goBackward(0.6, 2300);
-            liftSystemXY.retractY();
+            movement.pointTurnRight(5);
+            sleep(250);
+            liftSystemXY.retractYPos(500);
             sleep(1500);
             xSweeper.rotateFlat();
             sleep(1000);
             dumpingBucket.autoDump();
             sleep(500);
             xSweeper.rotateUp();
+            movement.pointTurnLeft(3);
             sleep(500);
             goForward(0.6, 3000);
             sleep(500);
             xSweeper.rotateDown();
+            liftSystemXY.retractY();
             stopDriving();
         }
         else{
