@@ -261,12 +261,13 @@ public class GoldAutonVuforia extends XLinearOpMode {
             sleep(500);
             goForward(0.6, 1500);
             movement.pointTurnRight(7);
-            goForward(0.6,1500);
+            goForward(0.6,2000);
             sleep(500);
             xSweeper.rotateDown();
             stopDriving();
+            xSweeper.sweep(1.0, 2000);
         }else if(isRight){
-            movement.pointTurnRight(31);
+            movement.pointTurnRight(24);
             telemetry.addData("Gold:", "Right");
             telemetry.update();
             sleep(500);
@@ -278,7 +279,7 @@ public class GoldAutonVuforia extends XLinearOpMode {
             xSweeper.rotateFlat();
             liftSystemXY.retractX();
             sleep(500);
-            movement.pointTurnLeft(90);
+            movement.pointTurnLeft(85);
             sleep(250);
             goForward(0.6, 3000);
             movement.pointTurnLeft(50);
@@ -290,24 +291,17 @@ public class GoldAutonVuforia extends XLinearOpMode {
             sleep(250);
             xSweeper.rotateUp();
             sleep(250);
-            goForward(0.6, 1500);
-            stopDriving();
-            sleep(250);
-            goForward(1.0,1700);
+            goForward(0.6, 3500);
             xSweeper.rotateDown();
             stopDriving();
-
+            xSweeper.sweep(1.0, 2000);
         }else if(isCenter){
-            goForward(0.6, 1000);
             telemetry.addData("Gold:", "Center");
             telemetry.update();
             xSweeper.rotateUp();
-            sleep(500);
-            goForward(0.6, 2000);
-            sleep(500);
-            //goBackward(0.6, 350);
-            //sleep(500);
-            movement.pointTurnLeft(100);
+            goForward(0.6, 2600);
+            goBackward(0.6, 300);
+            movement.pointTurnLeft(105);
             sleep(500);
             goForward(0.5, 550);
             liftSystemXY.retractY();
@@ -318,10 +312,10 @@ public class GoldAutonVuforia extends XLinearOpMode {
             sleep(500);
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 3000);
-            sleep(2000);
+            goForward(0.6, 3500);
             xSweeper.rotateDown();
             stopDriving();
+            xSweeper.sweep(1.0, 2000);
         }
         else{
             telemetry.addData("Gold:", "Not detected");

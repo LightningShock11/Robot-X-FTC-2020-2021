@@ -137,16 +137,16 @@ public class LiftSystemXY extends XModule {
         }
         //Allows for motor to be manually controlled with the dpad
         if (xGamepad2().dpad_up.isDown()){
-            yMotor.setPower(1.0);
+            yMotor.setPower(2.0);
         }
         else if(xGamepad2().dpad_down.isDown()){
-            yMotor.setPower(-1.0);
+            yMotor.setPower(-2.0);
         }
         if (xGamepad2().right_bumper.isDown()){
-            xMotor.setPower(1.0);
+            xMotor.setPower(2.0);
         }
         else if (xGamepad2().left_bumper.isDown()){
-            xMotor.setPower(-1.0);
+            xMotor.setPower(-2.0);
         }
         if (xGamepad2().left_bumper.wasReleased() || xGamepad2().right_bumper.wasReleased()){
             xMotor.setPower(0.0);

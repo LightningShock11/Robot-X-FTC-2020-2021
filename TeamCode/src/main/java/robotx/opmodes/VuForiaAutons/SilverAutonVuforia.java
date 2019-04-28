@@ -236,17 +236,17 @@ public class SilverAutonVuforia extends XLinearOpMode {
 
 
         if(isLeft){
-            movement.pointTurnLeft(20);
+            movement.pointTurnLeft(29);
             telemetry.addData("Gold:", "Left");
             telemetry.update();
             xSweeper.rotateUp();
             sleep(500);
-            goForward(0.6, 2000);
+            goForward(0.6, 1250);
             sleep(1000);
-            movement.pointTurnRight(60);
+            movement.pointTurnRight(95);
             sleep(500);
-            goBackward(0.5, 2000);
-            movement.pointTurnLeft(5);
+            goBackward(0.5, 2500);
+            movement.pointTurnLeft(15);
             goBackward(0.5, 1000);
             liftSystemXY.retractY();
             sleep(1700);
@@ -257,12 +257,13 @@ public class SilverAutonVuforia extends XLinearOpMode {
             xSweeper.rotateUp();
             sleep(500);
             goForward(0.6, 1500);
-            movement.pointTurnRight(7);
-            goForward(0.6,1500);
+            movement.pointTurnLeft(9);
+            goForward(0.6,2000);
             sleep(500);
             xSweeper.rotateDown();
+            xSweeper.sweep(1.0, 2000);
         }else if(isRight){
-            movement.pointTurnRight(32);
+            movement.pointTurnRight(16);
             telemetry.addData("Gold:", "Right");
             telemetry.update();
             sleep(500);
@@ -276,8 +277,8 @@ public class SilverAutonVuforia extends XLinearOpMode {
             sleep(500);
             movement.pointTurnLeft(90);
             sleep(250);
-            goForward(0.6, 1500);
-            movement.pointTurnRight(50);
+            goForward(0.6, 2000);
+            movement.pointTurnRight(100);
             sleep(250);
             goBackward(0.5, 2500);
             liftSystemXY.retractY();
@@ -286,9 +287,12 @@ public class SilverAutonVuforia extends XLinearOpMode {
             sleep(250);
             xSweeper.rotateUp();
             sleep(250);
-            goForward(0.6, 3000);
+            goForward(0.6, 2500);
+            movement.pointTurnLeft(6);
+            goForward(0.6, 1000);
             xSweeper.rotateDown();
             stopDriving();
+            xSweeper.sweep(1.0, 3000);
         }else if(isCenter){
             telemetry.addData("Gold:", "Center");
             telemetry.update();
@@ -304,7 +308,7 @@ public class SilverAutonVuforia extends XLinearOpMode {
             sleep(500);
             goBackward(0.5, 3000);
             sleep(250);
-            movement.pointTurnLeft(58);
+            movement.pointTurnLeft(70);
             sleep(250);
             goBackward(0.6, 2300);
             movement.pointTurnRight(5);
@@ -318,11 +322,12 @@ public class SilverAutonVuforia extends XLinearOpMode {
             xSweeper.rotateUp();
             movement.pointTurnLeft(3);
             sleep(500);
-            goForward(0.6, 3000);
+            goForward(0.6, 3500);
             sleep(500);
             xSweeper.rotateDown();
             liftSystemXY.retractY();
             stopDriving();
+            xSweeper.sweep(1.0, 2000);
         }
         else{
             telemetry.addData("Gold:", "Not detected");

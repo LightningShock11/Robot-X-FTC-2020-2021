@@ -82,7 +82,8 @@ public class GoldAutonNoSample extends XLinearOpMode {
 
         /////////////////////Movement///////////////////////
 
-
+        xSweeper.rotateFlat();
+        sleep(250);
         liftSystemXY.extendY(1300);
         sleep(150);
         movement.pointTurnRight(30);
