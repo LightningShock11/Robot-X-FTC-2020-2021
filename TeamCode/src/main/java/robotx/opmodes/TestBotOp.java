@@ -3,21 +3,23 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+import robotx.modules.MecanumDriveGyroBased;
 import robotx.modules.MechanumDriveNoLag;
-import robotx.modules.PlanetArm;
+import robotx.modules.TwoWheelAutonIMU;
 
 @TeleOp(name = "TestBotOp", group = "Tests")
 public class TestBotOp extends XOpMode {
-    PlanetArm planetArm;
-    //MechanumDriveNoLag mechanumDriveNoLag;
+
+    MecanumDriveGyroBased mecanumDriveGyroBased;
+    TwoWheelAutonIMU twoWheelAutonIMU;
 
     public void initModules(){
         super.initModules();
 
-        planetArm = new PlanetArm(this);
-        activeModules.add(planetArm);
+        mecanumDriveGyroBased = new MecanumDriveGyroBased(this);
+        activeModules.add(mecanumDriveGyroBased);
 
-        //mechanumDriveNoLag = new MechanumDriveNoLag(this);
-        //activeModules.add(mechanumDriveNoLag);
+        twoWheelAutonIMU = new TwoWheelAutonIMU(this);
+        activeModules.add(twoWheelAutonIMU);
     }
 }
