@@ -24,6 +24,7 @@ public class MechanumDriveNoLag extends XModule {
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
