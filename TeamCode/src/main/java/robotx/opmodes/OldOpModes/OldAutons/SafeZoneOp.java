@@ -7,6 +7,8 @@ import robotx.modules.OldModules.GlyphClaw;
 import robotx.modules.OldModules.JewelColor;
 import robotx.libraries.*;
 import robotx.modules.*;
+import robotx.modules.OldModules.MechanumAuton;
+import robotx.modules.OldModules.MechanumDrive;
 
 /**
  * Created by Robot-X Team Member on 12/9/2017.

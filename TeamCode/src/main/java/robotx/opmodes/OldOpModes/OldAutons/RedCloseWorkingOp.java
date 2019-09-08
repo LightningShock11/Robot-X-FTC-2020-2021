@@ -8,8 +8,8 @@ import robotx.libraries.XLinearOpMode;
 import robotx.modules.OldModules.GlyphClaw;
 import robotx.modules.OldModules.JewelColor;
 import robotx.modules.OldModules.LedAlwaysOn;
-import robotx.modules.MechanumAuton;
-import robotx.modules.MechanumDrive;
+import robotx.modules.OldModules.MechanumAuton;
+import robotx.modules.OldModules.MechanumDrive;
 import robotx.modules.VuMarkDetection;
 
 /**
