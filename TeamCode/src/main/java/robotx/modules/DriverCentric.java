@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
@@ -26,6 +27,7 @@ public class DriverCentric extends XModule {
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -64,53 +66,69 @@ public class DriverCentric extends XModule {
         return finalAngle;
 
     }
-    public void loop(){
-        double frPower = -Math.sin(globalAngle) + Math.cos(globalAngle);
-        double flPower = Math.sin(globalAngle) + Math.cos(globalAngle);
-        double brPower = Math.sin(globalAngle) + Math.cos(globalAngle);
-        double blPower = -Math.sin(globalAngle) + Math.cos(globalAngle);
 
-        if (xGamepad1().dpad_up.isDown()){
-            frontRight.setPower(frPower);
-            frontLeft.setPower(flPower);
-            backRight.setPower(brPower);
-            backLeft.setPower(blPower);
+    public void loop(){
+        getHeadingAngle();
+        opMode.telemetry.addData("heading: ", getHeadingAngle());
+        opMode.telemetry.update();
+
+        if (xGamepad1().left_stick_x > 0 && xGamepad1().left_stick_y < 0.3 && xGamepad1().left_stick_y > -0.3){
+            frontLeft.setPower(xGamepad1().left_stick_x);
+            frontRight.setPower(-xGamepad1().left_stick_x);
+            backRight.setPower(xGamepad1().left_stick_x);
+            backLeft.setPower(-xGamepad1().left_stick_x);
         }
-        else if (xGamepad1().dpad_down.isDown()){
-            frontRight.setPower(-frPower);
-            frontLeft.setPower(-flPower);
-            backRight.setPower(-brPower);
-            backLeft.setPower(-blPower);
+        else if (xGamepad1().left_stick_x < 0 && xGamepad1().left_stick_y > -0.3 && xGamepad1().left_stick_y < 0.3){
+            frontLeft.setPower(xGamepad1().left_stick_x);
+            frontRight.setPower(-xGamepad1().left_stick_x);
+            backRight.setPower(xGamepad1().left_stick_x);
+            backLeft.setPower(-xGamepad1().left_stick_x);
         }
-        else if (xGamepad1().dpad_right.isDown()){
-            frontRight.setPower(-frPower);
-            frontLeft.setPower(flPower);
-            backRight.setPower(brPower);
-            backLeft.setPower(-blPower);
+        else if (xGamepad1().left_stick_x > -0.3 && xGamepad1().left_stick_x < 0.3 && xGamepad1().left_stick_y > 0){
+            frontRight.setPower(xGamepad1().left_stick_y);
+            frontLeft.setPower(xGamepad1().left_stick_y);
+            backLeft.setPower(xGamepad1().left_stick_y);
+            backRight.setPower(xGamepad1().left_stick_y);
         }
-        else if (xGamepad1().dpad_left.isDown()){
-            frontRight.setPower(frPower);
-            frontLeft.setPower(-flPower);
-            backRight.setPower(-brPower);
-            backLeft.setPower(blPower);
+        else if (xGamepad1().left_stick_y < 0 && xGamepad1().left_stick_x > -0.3 && xGamepad1().left_stick_x < 0.3){
+            frontLeft.setPower(xGamepad1().left_stick_y);
+            frontRight.setPower(xGamepad1().left_stick_y);
+            backRight.setPower(xGamepad1().left_stick_y);
+            backLeft.setPower(xGamepad1().left_stick_y);
         }
-        else if (xGamepad1().right_bumper.isDown()){
-            frontRight.setPower(-frPower);
-            frontLeft.setPower(flPower);
-            backRight.setPower(-brPower);
-            backLeft.setPower(blPower);
+        else if (xGamepad1().left_stick_x > 0.3 && xGamepad1().left_stick_y > 0.3){
+            frontRight.setPower(-xGamepad1().left_stick_y);
+            backLeft.setPower(-xGamepad1().left_stick_y);
         }
-        else if (xGamepad1().left_bumper.isDown()){
-            frontRight.setPower(frPower);
-            frontLeft.setPower(-flPower);
-            backRight.setPower(brPower);
-            backLeft.setPower(-blPower);
+        else if (xGamepad1().left_stick_y < -0.3 && xGamepad1().left_stick_x > 0.3){
+            frontLeft.setPower(-xGamepad1().left_stick_y);
+            backRight.setPower(-xGamepad1().left_stick_y);
         }
-        else{
+        else if (xGamepad1().left_stick_y < -0.3 && xGamepad1().left_stick_x < -0.3){
+            frontRight.setPower(-xGamepad1().left_stick_y);
+            backLeft.setPower(-xGamepad1().left_stick_y);
+        }
+        else if (xGamepad1().left_stick_x < -0.3 && xGamepad1().left_stick_y > 0.3){
+            frontLeft.setPower(-xGamepad1().left_stick_y);
+            backRight.setPower(-xGamepad1().left_stick_y);
+        }
+        else if (xGamepad1().right_stick_x > 0){
+            frontLeft.setPower(xGamepad1().right_stick_x);
+            backLeft.setPower(xGamepad1().right_stick_x);
+            frontRight.setPower(-xGamepad1().right_stick_x);
+            backRight.setPower(-xGamepad1().right_stick_x);
+        }
+        else if (xGamepad1().right_stick_x < 0){
+            frontRight.setPower(-xGamepad1().right_stick_x);
+            backRight.setPower(-xGamepad1().right_stick_x);
+            frontLeft.setPower(xGamepad1().right_stick_x);
+            backLeft.setPower(xGamepad1().right_stick_x);
+        }
+        else {
             frontRight.setPower(0);
             frontLeft.setPower(0);
-            backRight.setPower(0);
             backLeft.setPower(0);
+            backRight.setPower(0);
         }
     }
 }
