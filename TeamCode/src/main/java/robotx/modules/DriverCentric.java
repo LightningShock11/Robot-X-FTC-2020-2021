@@ -21,6 +21,8 @@ public class DriverCentric extends XModule {
     BNO055IMU gyroSensor;
     Orientation lastAngles = new Orientation();
     double globalAngle;
+    double range = 0.1;
+    double powerBoost = 1.4;
 
     public DriverCentric(OpMode op){super(op);}
 
@@ -66,69 +68,96 @@ public class DriverCentric extends XModule {
         return finalAngle;
 
     }
+    public void forwardBack(){
+        frontLeft.setPower(xGamepad1().left_stick_y);
+        frontRight.setPower(xGamepad1().left_stick_y);
+        backRight.setPower(xGamepad1().left_stick_y);
+        backLeft.setPower(xGamepad1().left_stick_y);
+    }
+    public void driveLeft(){
+        frontLeft.setPower(-xGamepad1().left_stick_x);
+        frontRight.setPower(xGamepad1().left_stick_x);
+        backRight.setPower(-xGamepad1().left_stick_x);
+        backLeft.setPower(xGamepad1().left_stick_x);
+    }
+    public void driveRight(){
+        frontLeft.setPower(-xGamepad1().left_stick_x);
+        frontRight.setPower(xGamepad1().left_stick_x);
+        backRight.setPower(-xGamepad1().left_stick_x);
+        backLeft.setPower(xGamepad1().left_stick_x);
+    }
+    public void forRightDiag(){
+        frontRight.setPower(xGamepad1().left_stick_y * powerBoost);
+        backLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+    }
+    public void backLeftDiag(){
+        frontRight.setPower(xGamepad1().left_stick_y * powerBoost);
+        backLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+    }
+    public void backRightDiag(){
+        frontLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+        backRight.setPower(xGamepad1().left_stick_y * powerBoost);
+    }
+    public void forLeftDiag(){
+        frontLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+        backRight.setPower(xGamepad1().left_stick_y * powerBoost);
+    }
+    public void spinRight(){
+        frontLeft.setPower(-xGamepad1().right_stick_x);
+        backLeft.setPower(-xGamepad1().right_stick_x);
+        frontRight.setPower(xGamepad1().right_stick_x);
+        backRight.setPower(xGamepad1().right_stick_x);
+    }
+    public void spinLeft(){
+        frontRight.setPower(xGamepad1().right_stick_x);
+        backRight.setPower(xGamepad1().right_stick_x);
+        frontLeft.setPower(-xGamepad1().right_stick_x);
+        backLeft.setPower(-xGamepad1().right_stick_x);
+    }
+    public void brake(){
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
 
     public void loop(){
         getHeadingAngle();
         opMode.telemetry.addData("heading: ", getHeadingAngle());
         opMode.telemetry.update();
 
-        if (xGamepad1().left_stick_x > 0 && xGamepad1().left_stick_y < 0.3 && xGamepad1().left_stick_y > -0.3){
-            frontLeft.setPower(xGamepad1().left_stick_x);
-            frontRight.setPower(-xGamepad1().left_stick_x);
-            backRight.setPower(xGamepad1().left_stick_x);
-            backLeft.setPower(-xGamepad1().left_stick_x);
+        if (xGamepad1().left_stick_x > 0 && xGamepad1().left_stick_y < range && xGamepad1().left_stick_y > -range){
+            driveRight();
         }
-        else if (xGamepad1().left_stick_x < 0 && xGamepad1().left_stick_y > -0.3 && xGamepad1().left_stick_y < 0.3){
-            frontLeft.setPower(xGamepad1().left_stick_x);
-            frontRight.setPower(-xGamepad1().left_stick_x);
-            backRight.setPower(xGamepad1().left_stick_x);
-            backLeft.setPower(-xGamepad1().left_stick_x);
+        else if (xGamepad1().left_stick_x < 0 && xGamepad1().left_stick_y > -range && xGamepad1().left_stick_y < range){
+            driveLeft();
         }
-        else if (xGamepad1().left_stick_x > -0.3 && xGamepad1().left_stick_x < 0.3 && xGamepad1().left_stick_y > 0){
-            frontRight.setPower(xGamepad1().left_stick_y);
-            frontLeft.setPower(xGamepad1().left_stick_y);
-            backLeft.setPower(xGamepad1().left_stick_y);
-            backRight.setPower(xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_x > -range && xGamepad1().left_stick_x < range && xGamepad1().left_stick_y > 0){
+            forwardBack();
         }
-        else if (xGamepad1().left_stick_y < 0 && xGamepad1().left_stick_x > -0.3 && xGamepad1().left_stick_x < 0.3){
-            frontLeft.setPower(xGamepad1().left_stick_y);
-            frontRight.setPower(xGamepad1().left_stick_y);
-            backRight.setPower(xGamepad1().left_stick_y);
-            backLeft.setPower(xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_y < 0 && xGamepad1().left_stick_x > -range && xGamepad1().left_stick_x < range){
+            forwardBack();
         }
-        else if (xGamepad1().left_stick_x > 0.3 && xGamepad1().left_stick_y > 0.3){
-            frontRight.setPower(-xGamepad1().left_stick_y);
-            backLeft.setPower(-xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_x > range && xGamepad1().left_stick_y > range){
+            forRightDiag();
         }
-        else if (xGamepad1().left_stick_y < -0.3 && xGamepad1().left_stick_x > 0.3){
-            frontLeft.setPower(-xGamepad1().left_stick_y);
-            backRight.setPower(-xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_y < -range && xGamepad1().left_stick_x > range){
+            backRightDiag();
         }
-        else if (xGamepad1().left_stick_y < -0.3 && xGamepad1().left_stick_x < -0.3){
-            frontRight.setPower(-xGamepad1().left_stick_y);
-            backLeft.setPower(-xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_y < -range && xGamepad1().left_stick_x < -range){
+            backLeftDiag();
         }
-        else if (xGamepad1().left_stick_x < -0.3 && xGamepad1().left_stick_y > 0.3){
-            frontLeft.setPower(-xGamepad1().left_stick_y);
-            backRight.setPower(-xGamepad1().left_stick_y);
+        else if (xGamepad1().left_stick_x < -range && xGamepad1().left_stick_y > range){
+            forLeftDiag();
         }
         else if (xGamepad1().right_stick_x > 0){
-            frontLeft.setPower(xGamepad1().right_stick_x);
-            backLeft.setPower(xGamepad1().right_stick_x);
-            frontRight.setPower(-xGamepad1().right_stick_x);
-            backRight.setPower(-xGamepad1().right_stick_x);
+            spinRight();
         }
         else if (xGamepad1().right_stick_x < 0){
-            frontRight.setPower(-xGamepad1().right_stick_x);
-            backRight.setPower(-xGamepad1().right_stick_x);
-            frontLeft.setPower(xGamepad1().right_stick_x);
-            backLeft.setPower(xGamepad1().right_stick_x);
+            spinLeft();
         }
         else {
-            frontRight.setPower(0);
-            frontLeft.setPower(0);
-            backLeft.setPower(0);
-            backRight.setPower(0);
+            brake();
         }
     }
 }

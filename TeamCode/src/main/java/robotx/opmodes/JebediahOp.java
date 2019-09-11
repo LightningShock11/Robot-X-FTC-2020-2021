@@ -34,7 +34,7 @@ public class JebediahOp extends XOpMode {
         clawLift = new ClawLift(this);
         activeModules.add(clawLift);
 
-        rgbSignals = new RgbSignals(this);
-        activeModules.add(rgbSignals);
+        //rgbSignals = new RgbSignals(this);
+        //activeModules.add(rgbSignals);
     }
 }
