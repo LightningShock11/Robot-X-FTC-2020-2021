@@ -7,6 +7,7 @@ import robotx.modules.ClawLift;
 import robotx.modules.DriverCentric;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.MechanumDriveNoLag;
+import robotx.modules.RgbSignals;
 
 @TeleOp(name = "JebediahOp", group = "Tests")
 public class JebediahOp extends XOpMode {
@@ -15,6 +16,7 @@ public class JebediahOp extends XOpMode {
     FlywheelIntake flywheelIntake;
     ClawLift clawLift;
     DriverCentric driverCentric;
+    RgbSignals rgbSignals;
 
 
     public void initModules(){
@@ -31,5 +33,8 @@ public class JebediahOp extends XOpMode {
 
         clawLift = new ClawLift(this);
         activeModules.add(clawLift);
+
+        rgbSignals = new RgbSignals(this);
+        activeModules.add(rgbSignals);
     }
 }
