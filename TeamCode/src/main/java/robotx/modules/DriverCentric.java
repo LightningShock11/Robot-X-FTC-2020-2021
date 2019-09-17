@@ -24,6 +24,10 @@ public class DriverCentric extends XModule {
     double range = 0.1;
     double powerBoost = 1.4;
 
+    double xPower;
+    double yPower;
+    double fakeAngle;
+
     public DriverCentric(OpMode op){super(op);}
 
     public void init(){
@@ -66,41 +70,46 @@ public class DriverCentric extends XModule {
         lastAngles = angles;
 
         return finalAngle;
-
     }
-    public void forwardBack(){
-        frontLeft.setPower(xGamepad1().left_stick_y);
-        frontRight.setPower(xGamepad1().left_stick_y);
-        backRight.setPower(xGamepad1().left_stick_y);
-        backLeft.setPower(xGamepad1().left_stick_y);
+    public void back(){
+        frontLeft.setPower(-yPower);
+        frontRight.setPower(-yPower);
+        backRight.setPower(-yPower);
+        backLeft.setPower(-yPower);
+    }
+    public void forward(){
+        frontLeft.setPower(yPower);
+        frontRight.setPower(yPower);
+        backRight.setPower(yPower);
+        backLeft.setPower(yPower);
     }
     public void driveLeft(){
-        frontLeft.setPower(-xGamepad1().left_stick_x);
-        frontRight.setPower(xGamepad1().left_stick_x);
-        backRight.setPower(-xGamepad1().left_stick_x);
-        backLeft.setPower(xGamepad1().left_stick_x);
+        frontLeft.setPower(-xPower);
+        frontRight.setPower(xPower);
+        backRight.setPower(-xPower);
+        backLeft.setPower(xPower);
     }
     public void driveRight(){
-        frontLeft.setPower(-xGamepad1().left_stick_x);
-        frontRight.setPower(xGamepad1().left_stick_x);
-        backRight.setPower(-xGamepad1().left_stick_x);
-        backLeft.setPower(xGamepad1().left_stick_x);
+        frontLeft.setPower(-xPower);
+        frontRight.setPower(xPower);
+        backRight.setPower(-xPower);
+        backLeft.setPower(xPower);
     }
     public void forRightDiag(){
-        frontRight.setPower(xGamepad1().left_stick_y * powerBoost);
-        backLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+        frontRight.setPower(yPower * powerBoost);
+        backLeft.setPower(yPower * powerBoost);
     }
     public void backLeftDiag(){
-        frontRight.setPower(xGamepad1().left_stick_y * powerBoost);
-        backLeft.setPower(xGamepad1().left_stick_y * powerBoost);
+        frontRight.setPower(yPower * powerBoost);
+        backLeft.setPower(yPower * powerBoost);
     }
     public void backRightDiag(){
-        frontLeft.setPower(xGamepad1().left_stick_y * powerBoost);
-        backRight.setPower(xGamepad1().left_stick_y * powerBoost);
+        frontLeft.setPower(yPower * powerBoost);
+        backRight.setPower(yPower * powerBoost);
     }
     public void forLeftDiag(){
-        frontLeft.setPower(xGamepad1().left_stick_y * powerBoost);
-        backRight.setPower(xGamepad1().left_stick_y * powerBoost);
+        frontLeft.setPower(yPower * powerBoost);
+        backRight.setPower(yPower * powerBoost);
     }
     public void spinRight(){
         frontLeft.setPower(-xGamepad1().right_stick_x);
@@ -123,8 +132,12 @@ public class DriverCentric extends XModule {
 
     public void loop(){
         getHeadingAngle();
-        opMode.telemetry.addData("heading: ", getHeadingAngle());
+        opMode.telemetry.addData("Heading: ", getHeadingAngle());
         opMode.telemetry.update();
+
+        fakeAngle = Math.toRadians(globalAngle + 90);
+        xPower = (Math.sqrt((Math.pow(xGamepad1().left_stick_x, 2))+Math.pow(xGamepad1().left_stick_y, 2)))* Math.cos(fakeAngle);
+        yPower = (Math.sqrt((Math.pow(xGamepad1().left_stick_x, 2))+Math.pow(xGamepad1().left_stick_y, 2)))* Math.sin(fakeAngle);
 
         if (xGamepad1().left_stick_x > 0 && xGamepad1().left_stick_y < range && xGamepad1().left_stick_y > -range){
             driveRight();
@@ -133,10 +146,10 @@ public class DriverCentric extends XModule {
             driveLeft();
         }
         else if (xGamepad1().left_stick_x > -range && xGamepad1().left_stick_x < range && xGamepad1().left_stick_y > 0){
-            forwardBack();
+            forward();
         }
         else if (xGamepad1().left_stick_y < 0 && xGamepad1().left_stick_x > -range && xGamepad1().left_stick_x < range){
-            forwardBack();
+            back();
         }
         else if (xGamepad1().left_stick_x > range && xGamepad1().left_stick_y > range){
             forRightDiag();
