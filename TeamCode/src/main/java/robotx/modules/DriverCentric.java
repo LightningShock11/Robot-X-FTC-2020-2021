@@ -135,6 +135,10 @@ public class DriverCentric extends XModule {
         opMode.telemetry.addData("Heading: ", getHeadingAngle());
         opMode.telemetry.update();
 
+        if (xGamepad1().y.wasPressed()){
+            lastAngles.firstAngle = 0;
+        }
+
         fakeAngle = Math.toRadians(globalAngle + 90);
         xPower = (Math.sqrt((Math.pow(xGamepad1().left_stick_x, 2))+Math.pow(xGamepad1().left_stick_y, 2)))* Math.cos(fakeAngle);
         yPower = (Math.sqrt((Math.pow(xGamepad1().left_stick_x, 2))+Math.pow(xGamepad1().left_stick_y, 2)))* Math.sin(fakeAngle);

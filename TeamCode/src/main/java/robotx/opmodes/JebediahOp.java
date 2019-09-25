@@ -8,6 +8,7 @@ import robotx.modules.DriverCentric;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.MechanumDriveNoLag;
 import robotx.modules.RgbSignals;
+import robotx.modules.StoneClaw;
 
 @TeleOp(name = "JebediahOp", group = "Tests")
 public class JebediahOp extends XOpMode {
@@ -17,6 +18,7 @@ public class JebediahOp extends XOpMode {
     ClawLift clawLift;
     DriverCentric driverCentric;
     RgbSignals rgbSignals;
+    StoneClaw stoneClaw;
 
 
     public void initModules(){
@@ -33,6 +35,9 @@ public class JebediahOp extends XOpMode {
 
         clawLift = new ClawLift(this);
         activeModules.add(clawLift);
+
+        stoneClaw = new StoneClaw(this);
+        activeModules.add(stoneClaw);
 
         //rgbSignals = new RgbSignals(this);
         //activeModules.add(rgbSignals);
