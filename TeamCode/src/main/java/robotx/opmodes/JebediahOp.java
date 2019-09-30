@@ -35,8 +35,8 @@ public class JebediahOp extends XOpMode {
         flywheelIntake = new FlywheelIntake(this);
         activeModules.add(flywheelIntake);
 
-        clawLift = new ClawLift(this);
-        activeModules.add(clawLift);
+        //clawLift = new ClawLift(this);
+        //activeModules.add(clawLift);
 
         stoneClaw = new StoneClaw(this);
         activeModules.add(stoneClaw);
