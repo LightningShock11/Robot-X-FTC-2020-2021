@@ -15,11 +15,11 @@ import robotx.modules.StoneClaw;
 public class JebediahOp extends XOpMode {
 
     //MechanumDriveNoLag mechanumDriveNoLag;
-    FlywheelIntake flywheelIntake;
-    ClawLift clawLift;
+    //FlywheelIntake flywheelIntake;
+    //ClawLift clawLift;
     //DriverCentric driverCentric;
-    RgbSignals rgbSignals;
-    StoneClaw stoneClaw;
+    //RgbSignals rgbSignals;
+    //StoneClaw stoneClaw;
     CharlesDrive charlesDrive;
 
 
@@ -32,14 +32,14 @@ public class JebediahOp extends XOpMode {
         //driverCentric = new DriverCentric(this);
         //activeModules.add(driverCentric);
 
-        flywheelIntake = new FlywheelIntake(this);
-        activeModules.add(flywheelIntake);
+        //flywheelIntake = new FlywheelIntake(this);
+       // activeModules.add(flywheelIntake);
 
-        clawLift = new ClawLift(this);
-        activeModules.add(clawLift);
+        //clawLift = new ClawLift(this);
+        //activeModules.add(clawLift);
 
-        stoneClaw = new StoneClaw(this);
-        activeModules.add(stoneClaw);
+        //stoneClaw = new StoneClaw(this);
+        //activeModules.add(stoneClaw);
 
         charlesDrive = new CharlesDrive(this);
         activeModules.add(charlesDrive);
