@@ -6,38 +6,20 @@ import com.qualcomm.robotcore.hardware.Servo;
 import robotx.libraries.XModule;
 
 public class StoneClaw extends XModule {
-
     Servo clawServo;
-    boolean closed = true;
-
     public StoneClaw(OpMode op){super(op);}
-
-    public void init(){
+    public void init () {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
-        clawServo.setPosition(0.0);
     }
-    public void toggleClaw(){
-        if (closed){
-            clawServo.setPosition(1.0);
-            closed = false;
+    public void loop () {
+        if(xGamepad2().dpad_left.wasPressed()){
+            clawServo.setPosition(0.5);
         }
-        else{
-            clawServo.setPosition(0.0);
-            closed = true;
+        if(xGamepad2().dpad_right.wasPressed()) {
+            clawServo.setPosition(0);
         }
-    }
-    public void loop(){
-        opMode.telemetry.addData("Servo position", clawServo.getPosition());
+        opMode.telemetry.addData("Claw Position: ", clawServo.getPosition());
         opMode.telemetry.update();
-
-        if (xGamepad2().a.wasPressed()){
-            toggleClaw();
-        }
-        if (xGamepad2().dpad_right.isDown()) {
-            clawServo.setPosition(clawServo.getPosition() + .05);
-        }
-        else if (xGamepad2().dpad_left.isDown()){
-            clawServo.setPosition(clawServo.getPosition() - .05);
-        }
     }
 }
+

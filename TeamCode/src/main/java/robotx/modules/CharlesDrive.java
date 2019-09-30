@@ -24,7 +24,7 @@ public class CharlesDrive extends XModule {
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         //backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft = opMode.hardwareMap.dcMotor.get("backleft");
+        backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
         //backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
