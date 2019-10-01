@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import robotx.libraries.XOpMode;
 import robotx.modules.CharlesDrive;
 import robotx.modules.ClawLift;
+import robotx.modules.CoachDDrive;
 import robotx.modules.DriverCentric;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.MechanumDriveNoLag;
@@ -20,7 +21,8 @@ public class JebediahOp extends XOpMode {
     //DriverCentric driverCentric;
     //RgbSignals rgbSignals;
     //StoneClaw stoneClaw;
-    CharlesDrive charlesDrive;
+    //CharlesDrive charlesDrive;
+    CoachDDrive coachDDrive;
 
 
     public void initModules(){
@@ -41,10 +43,13 @@ public class JebediahOp extends XOpMode {
         //stoneClaw = new StoneClaw(this);
         //activeModules.add(stoneClaw);
 
-        charlesDrive = new CharlesDrive(this);
-        activeModules.add(charlesDrive);
+        //charlesDrive = new CharlesDrive(this);
+        //activeModules.add(charlesDrive);
 
         //rgbSignals = new RgbSignals(this);
         //activeModules.add(rgbSignals);
+
+        coachDDrive = new CoachDDrive(this);
+        activeModules.add(coachDDrive);
     }
 }
