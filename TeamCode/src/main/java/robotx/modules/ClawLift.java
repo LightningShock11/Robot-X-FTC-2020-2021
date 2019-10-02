@@ -18,6 +18,6 @@ public class ClawLift extends XModule {
     }
 
     public void loop(){
-        liftMotor.setPower((xGamepad2().right_trigger/2) - (xGamepad2().left_trigger/2));
+        liftMotor.setPower((xGamepad2().right_trigger) - (xGamepad2().left_trigger));
     }
 }
