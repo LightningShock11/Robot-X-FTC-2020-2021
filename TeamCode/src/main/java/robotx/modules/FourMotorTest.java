@@ -26,7 +26,6 @@ public class FourMotorTest extends XModule {
         opMode.telemetry.addData("FR Power:", frontRight.getPower());
         opMode.telemetry.addData("BR Power:", backRight.getPower());
         opMode.telemetry.addData("BL Power", backLeft.getPower());
-        opMode.telemetry.update();
 
         if (xGamepad1().dpad_up.isDown()){
             frontLeft.setPower(1.0);
