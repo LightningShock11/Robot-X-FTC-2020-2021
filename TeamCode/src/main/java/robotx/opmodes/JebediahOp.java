@@ -22,7 +22,7 @@ public class JebediahOp extends XOpMode {
     //RgbSignals rgbSignals;
     //StoneClaw stoneClaw;
     CoachDDrive coachDDrive;
-    FourMotorTest fourMotorTest;
+    //FourMotorTest fourMotorTest;
 
 
     public void initModules(){
@@ -46,7 +46,7 @@ public class JebediahOp extends XOpMode {
         coachDDrive = new CoachDDrive(this);
         activeModules.add(coachDDrive);
 
-        fourMotorTest = new FourMotorTest(this);
-        activeModules.add(fourMotorTest);
+        //fourMotorTest = new FourMotorTest(this);
+        //activeModules.add(fourMotorTest);
     }
 }
