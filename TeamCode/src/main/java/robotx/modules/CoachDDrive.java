@@ -35,10 +35,10 @@ public class CoachDDrive extends XModule {
         r = xGamepad1().right_stick_x;
         s = ((Math.max(Math.abs(x), Math.max(Math.abs(y), Math.abs(r))))*(Math.max(Math.abs(x), Math.max(Math.abs(y), Math.abs(r)))))/((x*x)+(y*y)+(r*r));
 
-        frontLeft.setPower((y-x+r)*(s));
-        backRight.setPower((y-x-r)*(s));
+        frontLeft.setPower((y-x-r)*(s));
+        backRight.setPower((y-x+r)*(s));
 
-        frontRight.setPower((y+x-r)*(s));
-        backLeft.setPower((y+x+r)*(s));
+        frontRight.setPower((y+x+r)*(s));
+        backLeft.setPower((y+x-r)*(s));
     }
 }

@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotx.libraries.AutonomousMovement;
 import robotx.libraries.XLinearOpMode;
+import robotx.modules.TwoMotorDrive;
 import robotx.modules.TwoWheelAutonIMU;
 
 
@@ -12,11 +13,16 @@ import robotx.modules.TwoWheelAutonIMU;
  * Created by Kush Dalal on 10/24/2018.
  */
 
+/*
 @Autonomous(name = "RAPS", group = "Autonomous")
 public class RAPS extends XLinearOpMode {
 
+     There are modules in here that dont exist anymore. Its causing issues building the code so I commented out the whole program.
+
     AutonomousMovement movement;
     TwoWheelAutonIMU sensors;
+    TwoMotorDrive twoMotorDrive;
+
 
 
 
@@ -110,5 +116,6 @@ public class RAPS extends XLinearOpMode {
     public  void stopDriving (){
         twoMotorDrive.brakeAllMotors();
     }
-
 }
+
+ */
