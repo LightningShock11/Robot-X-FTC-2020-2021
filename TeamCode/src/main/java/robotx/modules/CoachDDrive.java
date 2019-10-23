@@ -40,5 +40,6 @@ public class CoachDDrive extends XModule {
 
         frontRight.setPower((y+x+r)*(s));
         backLeft.setPower((y+x-r)*(s));
+
     }
 }
