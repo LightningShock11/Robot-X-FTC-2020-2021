@@ -18,15 +18,19 @@ import robotx.modules.StoneClaw;
 public class JebediahOp extends XOpMode {
 
     //RgbSignals rgbSignals;
-    //StoneClaw stoneClaw;
+    StoneClaw stoneClaw;
+    FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
     OrientationDrive orientationDrive;
 
 
     public void initModules(){
         super.initModules();
-        //stoneClaw = new StoneClaw(this);
-        //activeModules.add(stoneClaw);
+        stoneClaw = new StoneClaw(this);
+        activeModules.add(stoneClaw);
+
+        flywheelIntake = new FlywheelIntake(this);
+        activeModules.add(flywheelIntake);
 
         //rgbSignals = new RgbSignals(this);
         //activeModules.add(rgbSignals);
