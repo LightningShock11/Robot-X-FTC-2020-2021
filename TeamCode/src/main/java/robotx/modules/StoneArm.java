@@ -12,14 +12,11 @@ import robotx.libraries.XModule;
 /**
  * Created by John David Sniegocki and Sam McDowell on 10.28.2019
  */
-public class StoneArm extends XModule {
+public class
+StoneArm extends XModule {
 
-    DcMotor yMotor;
-    DcMotor xMotor;
-    boolean up;
-    boolean out;
-    int xMax = 1345;
-    int yMax = 3100;
+    DcMotor stoneArm;
+
 
     public StoneArm(OpMode op) {
         super(op);
@@ -27,12 +24,34 @@ public class StoneArm extends XModule {
 
     public void init() {
         //initialize motor
-        yMotor = opMode.hardwareMap.dcMotor.get("yMotor");
-        yMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        yMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        yMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        yMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        yMotor.getCurrentPosition();
-        yMotor.setTargetPosition(0);
+        stoneArm = opMode.hardwareMap.dcMotor.get("stoneArm");
+        stoneArm.setDirection(DcMotorSimple.Direction.REVERSE);
+        stoneArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        stoneArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        stoneArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        stoneArm.getCurrentPosition();
+        stoneArm.setTargetPosition(0);
     }
-}
+
+    public void loop () {
+
+        if(xGamepad2().a.wasPressed()) {
+            if(stoneArm.getCurrentPosition() <= -10 || stoneArm.getCurrentPosition() >= 10) {
+                stoneArm.setTargetPosition(0);
+                stoneArm.setPower(-0.5);
+                if(stoneArm.getCurrentPosition() <= 10 && stoneArm.getCurrentPosition() >= -10){
+                    stoneArm.setPower(0);
+                }
+            } else if(stoneArm.getCurrentPosition() <= 10 && stoneArm.getCurrentPosition() >= -10) {
+                stoneArm.setTargetPosition(180);
+                stoneArm.setPower(0.5);
+                if(stoneArm.getCurrentPosition() <= 190 && stoneArm.getCurrentPosition() >= 170) {
+                    stoneArm.setPower(0);
+                }
+
+            }
+        }
+
+
+        }
+    }
