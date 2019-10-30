@@ -12,9 +12,10 @@ import robotx.modules.FourMotorTest;
 import robotx.modules.MechanumDriveNoLag;
 import robotx.modules.OrientationDrive;
 import robotx.modules.RgbSignals;
+import robotx.modules.StoneArm;
 import robotx.modules.StoneClaw;
 
-@TeleOp(name = "JebediahOp", group = "Tests")
+@TeleOp(name = "JebediahOp", group = "Competition")
 public class JebediahOp extends XOpMode {
 
     //RgbSignals rgbSignals;
@@ -22,6 +23,7 @@ public class JebediahOp extends XOpMode {
     FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
     OrientationDrive orientationDrive;
+    StoneArm stoneArm;
 
 
     public void initModules(){
@@ -31,6 +33,9 @@ public class JebediahOp extends XOpMode {
 
         flywheelIntake = new FlywheelIntake(this);
         activeModules.add(flywheelIntake);
+
+        stoneArm = new StoneArm(this);
+        activeModules.add(stoneArm);
 
         //rgbSignals = new RgbSignals(this);
         //activeModules.add(rgbSignals);
