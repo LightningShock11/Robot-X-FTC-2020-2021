@@ -13,11 +13,12 @@ public class StoneClaw extends XModule {
 
     public void init () {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
+        clawServo.setPosition(0);
     }
 
     public void loop () {
         if(xGamepad2().dpad_left.wasPressed()){
-            clawServo.setPosition(0.5);
+            clawServo.setPosition(0.75);
         }
         if(xGamepad2().dpad_right.wasPressed()) {
             clawServo.setPosition(0);
