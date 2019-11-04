@@ -1,8 +1,9 @@
 package robotx.modules;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
-
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import java.text.DecimalFormat;
 
 import robotx.libraries.StopWatch;
@@ -12,8 +13,8 @@ public class RgbSignals extends XModule {
     Servo rgbLights;
     StopWatch stopWatch;
 
-    public boolean displayTimeTilEndGame = true;
-    public boolean displayElapsedTime = false;
+    public boolean displayTimeTilEndGame = false;
+    public boolean displayElapsedTime = true;
     public boolean displayGamePeriod = true; // i.e. "TeleOp" or "End Game"
     public boolean displayTimeUntilEnd = false;
 
