@@ -12,19 +12,19 @@ public class FoundationPins extends XModule {
     Servo leftPin;
     //Relative to the front of the robot
     boolean pinsOut = false;
-    double rightPos;
-    double leftPos;
+    double rightPos = .15;
+    double leftPos = .3;
 
     public void init(){
         rightPin = opMode.hardwareMap.servo.get("rightPin");
         leftPin = opMode.hardwareMap.servo.get("leftPin");
-        rightPin.setPosition(0);
-        leftPin.setPosition(0);
+        rightPin.setPosition(0.5);
+        leftPin.setPosition(0.1);
     }
     public void deployPins(){
         if (pinsOut){
-            rightPin.setPosition(0);
-            leftPin.setPosition(0);
+            rightPin.setPosition(0.5);
+            leftPin.setPosition(0.1);
             pinsOut = false;
         }
         else{
