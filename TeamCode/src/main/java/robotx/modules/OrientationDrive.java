@@ -16,12 +16,12 @@ import robotx.libraries.XModule;
 public class OrientationDrive extends XModule {
     public OrientationDrive(OpMode op){super(op);}
 
-    DcMotor frontLeft;
-    DcMotor frontRight;
-    DcMotor backRight;
-    DcMotor backLeft;
-    BNO055IMU gyroSensor;
-    Orientation lastAngles = new Orientation();
+    public DcMotor frontLeft;
+    public DcMotor frontRight;
+    public DcMotor backRight;
+    public DcMotor backLeft;
+    public BNO055IMU gyroSensor;
+    public Orientation lastAngles = new Orientation();
     double globalAngle;
     double robotAngle;
     double joystickAngle;
