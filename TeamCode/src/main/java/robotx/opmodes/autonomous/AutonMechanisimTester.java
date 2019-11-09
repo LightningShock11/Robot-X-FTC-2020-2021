@@ -58,7 +58,7 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
+@TeleOp(name = "AutonMechanismTester", group = "Concept")
 public class AutonMechanisimTester extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
@@ -90,6 +90,7 @@ public class AutonMechanisimTester extends LinearOpMode {
      */
     private TFObjectDetector tfod;
     public String objective;
+    public int skystonePos;
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -103,6 +104,7 @@ public class AutonMechanisimTester extends LinearOpMode {
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
+        /**
         initVuforia();
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -115,11 +117,12 @@ public class AutonMechanisimTester extends LinearOpMode {
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
          **/
+        /**
         if (tfod != null) {
             tfod.activate();
         }
 
-        /** Wait for the game to begin */
+        /** Wait for the game to begin
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -131,115 +134,116 @@ public class AutonMechanisimTester extends LinearOpMode {
                     // the last time that call was made.
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
-                      telemetry.addData("# Object Detected", updatedRecognitions.size());
+                        telemetry.addData("# Object Detected", updatedRecognitions.size());
 
-                      // step through the list of recognitions and display boundary info.
-                      int i = 0;
-                      for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                          recognition.getLeft(), recognition.getTop());
-                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                recognition.getRight(), recognition.getBottom());
-                      }
-                      telemetry.update();
+                        // step through the list of recognitions and display boundary info.
+                        int i = 0;
+                        for (Recognition recognition : updatedRecognitions) {
+                            telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                            telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                                    recognition.getLeft(), recognition.getTop());
+                            telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                                    recognition.getRight(), recognition.getBottom());
+                        }
+                        telemetry.update();
                     }
                 }
             }
         }
-
-       if (tfod != null) {
+        if (tfod != null) {
             tfod.shutdown();
         }
-
-        movement = new OrientationDrive(this);
-        movement.init();
-
-        flywheelIntake = new FlywheelIntake(this);
-        flywheelIntake.init();
-
-        stoneClaw = new StoneClaw(this);
-        stoneClaw.init();
-
-        stoneArm = new StoneArm(this);
-        stoneArm.init();
-
-        pins = new FoundationPins(this);
-        pins.init();
-
-        stoneLift = new StoneLift(this);
-        stoneLift.init();
+        **/
 
 
 
+            movement = new OrientationDrive(this);
+            movement.init();
 
-        movement.start();
-        stoneClaw.start();
-        flywheelIntake.start();
-        stoneArm.start();
-        stoneClaw.start();
-        pins.start();
+            flywheelIntake = new FlywheelIntake(this);
+            flywheelIntake.init();
 
-        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
-        telemetry.addData("Current Objective: ",objective);
-        telemetry.update();
+            stoneClaw = new StoneClaw(this);
+            stoneClaw.init();
 
-        movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        movement.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            stoneArm = new StoneArm(this);
+            stoneArm.init();
 
-        /////////////////////Movement///////////////////////
+            pins = new FoundationPins(this);
+            pins.init();
 
-        flywheelIntake.toggleFlyReverse();
-        sleep(1000);
-        flywheelIntake.toggleFlyReverse();
-        objective = "Opening and closing claw";
-        stoneClaw.clawServo.setPosition(0.75);
-        sleep(750);
-        stoneClaw.clawServo.setPosition(0);
-
-        objective = "Moving arm";
-        sleep(2000);
-        stoneArm.stoneArm.setPower(0.5);
-        sleep(500);
-        stoneArm.stoneArm.setPower(0);
-        sleep(500);
-        stoneArm.stoneArm.setPower(-0.5);
-        sleep(500);
-        stoneArm.stoneArm.setPower(0);
-
-        objective = "moving pins";
-        sleep(2000);
-        pins.deployPins();
-        sleep(1000);
-        pins.deployPins();
-
-        objective = "Going forward";
-        sleep(2000);
-        goForward(1.0,1000);
-        objective = "Going backward";
-        sleep(2000);
-        goBackward(1.0,1000);
-        objective = "Going left";
-        sleep(2000);
-        strafeLeft(1.0,1000);
-        objective = "Going right";
-        sleep(2000);
-        strafeRight(1.0,1000);
-        objective = "turning right";
-        sleep(2000);
-        turnRight(1.0,90);
-        objective = "turning left";
-        sleep(2000);
-        turnLeft(1.0,90);
-        objective = "Stopping";
-        sleep(100);
-        stopDriving();
+            stoneLift = new StoneLift(this);
+            stoneLift.init();
 
 
+            movement.start();
+            stoneClaw.start();
+            flywheelIntake.start();
+            stoneArm.start();
+            stoneClaw.start();
+            pins.start();
+
+            telemetry.addData("Current Angle: ", movement.getHeadingAngle());
+            telemetry.addData("Current Objective: ", objective);
+            telemetry.update();
+
+            movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            movement.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        if (opModeIsActive()) {
+
+            /////////////////////Movement///////////////////////
+
+            flywheelIntake.toggleFlyReverse();
+            sleep(1000);
+            flywheelIntake.toggleFlyReverse();
+            objective = "Opening and closing claw";
+            stoneClaw.clawServo.setPosition(0.75);
+            sleep(750);
+            stoneClaw.clawServo.setPosition(0);
+
+            objective = "Moving arm";
+            sleep(2000);
+            stoneArm.stoneArm.setPower(0.5);
+            sleep(500);
+            stoneArm.stoneArm.setPower(0);
+            sleep(500);
+            stoneArm.stoneArm.setPower(-0.5);
+            sleep(500);
+            stoneArm.stoneArm.setPower(0);
+
+            objective = "moving pins";
+            sleep(2000);
+            pins.deployPins();
+            sleep(1000);
+            pins.deployPins();
+
+            objective = "Going forward";
+            sleep(2000);
+            goForward(1.0, 1000);
+            objective = "Going backward";
+            sleep(2000);
+            goBackward(1.0, 1000);
+            objective = "Going left";
+            sleep(2000);
+            strafeLeft(1.0, 1000);
+            objective = "Going right";
+            sleep(2000);
+            strafeRight(1.0, 1000);
+            objective = "turning right";
+            sleep(2000);
+            turnRight(1.0, 90);
+            objective = "turning left";
+            sleep(2000);
+            turnLeft(1.0, 90);
+            objective = "Stopping";
+            sleep(100);
+            stopDriving();
+        }
 
     }
+
 
     /**
      * Initialize the Vuforia localization engine.
@@ -275,9 +279,9 @@ public class AutonMechanisimTester extends LinearOpMode {
     /////////////////////Controls///////////////////////
 
     public void goForward(double power, int time){
-        movement.frontLeft.setPower(-power);
+        movement.frontLeft.setPower(power);
         movement.frontRight.setPower(power);
-        movement.backLeft.setPower(-power);
+        movement.backLeft.setPower(power);
         movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
@@ -287,9 +291,9 @@ public class AutonMechanisimTester extends LinearOpMode {
     }
     public void goBackward(double power, int time){
 
-        movement.frontLeft.setPower(power);
+        movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(power);
+        movement.backLeft.setPower(-power);
         movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
