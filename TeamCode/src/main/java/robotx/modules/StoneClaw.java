@@ -7,7 +7,7 @@ import robotx.libraries.XModule;
 
 public class StoneClaw extends XModule {
 
-    Servo clawServo;
+    public Servo clawServo;
 
     public StoneClaw(OpMode op){super(op);}
 

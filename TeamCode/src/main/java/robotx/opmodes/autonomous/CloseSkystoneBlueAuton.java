@@ -43,7 +43,11 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import java.util.List;
 
 import robotx.modules.FlywheelIntake;
+import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
+import robotx.modules.StoneArm;
+import robotx.modules.StoneClaw;
+import robotx.modules.StoneLift;
 
 /**
  * This 2019-2020 OpMode illustrates the basics of using the TensorFlow Object Detection API to
@@ -90,6 +94,10 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
+    StoneArm stoneArm;
+    StoneClaw stoneClaw;
+    StoneLift stoneLift;
+    FoundationPins pins;
 
 
     @Override
@@ -141,7 +149,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
             }
         }
 
-        if (tfod != null) {
+       if (tfod != null) {
             tfod.shutdown();
         }
 
@@ -151,8 +159,27 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         flywheelIntake = new FlywheelIntake(this);
         flywheelIntake.init();
 
+        stoneClaw = new StoneClaw(this);
+        stoneClaw.init();
+
+        stoneArm = new StoneArm(this);
+        stoneArm.init();
+
+        pins = new FoundationPins(this);
+        pins.init();
+
+        stoneLift = new StoneLift(this);
+        stoneLift.init();
+
+
+
+
         movement.start();
+        stoneClaw.start();
         flywheelIntake.start();
+        stoneArm.start();
+        stoneClaw.start();
+        pins.start();
 
         telemetry.addData("Current Angle: ", movement.getHeadingAngle());
         telemetry.addData("Current Objective: ",objective);
@@ -168,6 +195,16 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         flywheelIntake.toggleFlyReverse();
         sleep(1000);
         flywheelIntake.toggleFlyReverse();
+        objective = "Opening and closing claw";
+        stoneClaw.clawServo.setPosition(0.75);
+        sleep(750);
+        stoneClaw.clawServo.setPosition(0);
+        objective = "Moving arm";
+        sleep(2000);
+        stoneArm.
+
+
+
 
         objective = "Going forward";
         sleep(2000);
