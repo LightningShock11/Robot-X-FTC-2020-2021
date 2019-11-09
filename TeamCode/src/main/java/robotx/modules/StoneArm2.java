@@ -9,11 +9,11 @@ import robotx.libraries.XModule;
 /**
  * Created by John David Sniegocki and Sam McDowell on 10.28.2019
  */
-public class
-StoneArm2 extends XModule {
+public class StoneArm2 extends XModule {
 
     DcMotor stoneArm;
     double armPower;
+    boolean armOut = false;
 
 
     public StoneArm2(OpMode op) {
@@ -26,25 +26,40 @@ StoneArm2 extends XModule {
         stoneArm.setDirection(DcMotorSimple.Direction.REVERSE);
         stoneArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+    public void moveArm(){
+        if (armOut) {
+            stoneArm.setTargetPosition(0);
+            armOut = false;
+        }
+        else{
+            stoneArm.setTargetPosition(1000);
+            armOut = true;
+        }
+    }
 
     public void loop () {
         opMode.telemetry.addData("Current position:", stoneArm.getCurrentPosition());
         opMode.telemetry.addData("Arm power", armPower);
-        double arm = stoneArm.getCurrentPosition() - 700;
-        double armPower = -arm * .001;
+        double arm = stoneArm.getCurrentPosition();
+
+        if (stoneArm.getTargetPosition() == 0){
+            armPower = -(arm-600) * .001;
+        }
+        else if (stoneArm.getTargetPosition() == 1000){
+            armPower = -(arm-600) * .001;
+        }
+
+        stoneArm.setPower(armPower);
+
         if(xGamepad2().a.wasPressed()) {
-            if (stoneArm.getCurrentPosition() <= 50 && stoneArm.getCurrentPosition() >= -50) {
-                stoneArm.setTargetPosition(1000);
-                stoneArm.setPower(armPower);
-            } else {
-                stoneArm.setTargetPosition(0);
-                stoneArm.setPower(0.8)
-            }
-
-        }
-        if(stoneArm.getCurrentPosition() >= 475 && stoneArm.getCurrentPosition() <= 525) {
-            stoneArm.setPower(-0.1);
+            moveArm();
         }
 
+        if (stoneArm.getTargetPosition() == 1000 && stoneArm.getCurrentPosition() >= 800){
+            stoneArm.setPower(0.0);
+        }
+        if (stoneArm.getTargetPosition() == 0 && stoneArm.getCurrentPosition() <= 200){
+            stoneArm.setPower(0.0);
         }
     }
+}

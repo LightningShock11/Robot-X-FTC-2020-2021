@@ -35,6 +35,8 @@ public class OrientationDrive extends XModule {
     double yPrime;
 
     boolean orientationMode = true;
+    int slowMode = 0;
+    double multiplier = 1;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
@@ -105,6 +107,7 @@ public class OrientationDrive extends XModule {
         if (xGamepad1().y.wasPressed()) {
             switchMode();
         }
+        opMode.telemetry.addData("Orientation mode:", orientationMode);
 
 
         x = xGamepad1().left_stick_x;
@@ -129,12 +132,40 @@ public class OrientationDrive extends XModule {
         xPrime = (Math.sqrt((x*x) + (y*y))) * (Math.cos(robotAngle + joystickAngle));
         yPrime = (Math.sqrt((x*x + y*y))) * (Math.sin(robotAngle + joystickAngle));
 
+        if (xGamepad1().right_bumper.isDown() || xGamepad1().left_bumper.isDown()){
+            slowMode = 1;
+            multiplier = .5;
+        }
+        else if (xGamepad1().left_bumper.isDown() && xGamepad1().right_bumper.isDown()){
+            slowMode = 2;
+            multiplier = .25;
+        }
+        else {
+            slowMode = 0;
+            multiplier = 1;
+        }
 
-        frontLeft.setPower((yPrime-xPrime-r)*(s));
-        backRight.setPower((yPrime-xPrime+r)*(s));
+        if (slowMode == 1){
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .5);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .5);
 
-        frontRight.setPower((yPrime+xPrime+r)*(s));
-        backLeft.setPower((yPrime+xPrime-r)*(s));
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .5);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .5);
+        }
+        else if (slowMode == 2){
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .25);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .25);
 
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .25);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .25);
+        }
+        else {
+            frontLeft.setPower((yPrime-xPrime-r)*(s));
+            backRight.setPower((yPrime-xPrime+r)*(s));
+
+            frontRight.setPower((yPrime+xPrime+r)*(s));
+            backLeft.setPower((yPrime+xPrime-r)*(s));
+        }
+        opMode.telemetry.addData("Speed multiplier:", multiplier);
     }
 }
