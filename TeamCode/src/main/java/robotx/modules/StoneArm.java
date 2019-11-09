@@ -15,7 +15,7 @@ import robotx.libraries.XModule;
 public class
 StoneArm extends XModule {
 
-    DcMotor stoneArm;
+    public DcMotor stoneArm;
     double armPower;
 
 

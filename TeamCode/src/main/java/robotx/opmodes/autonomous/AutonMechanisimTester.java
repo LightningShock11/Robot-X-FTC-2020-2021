@@ -29,7 +29,6 @@
 
 package robotx.opmodes.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -60,7 +59,7 @@ import robotx.modules.StoneLift;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
-public class CloseSkystoneBlueAuton extends LinearOpMode {
+public class AutonMechanisimTester extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -195,9 +194,47 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         flywheelIntake.toggleFlyReverse();
         sleep(1000);
         flywheelIntake.toggleFlyReverse();
+        objective = "Opening and closing claw";
+        stoneClaw.clawServo.setPosition(0.75);
+        sleep(750);
+        stoneClaw.clawServo.setPosition(0);
 
-        
+        objective = "Moving arm";
+        sleep(2000);
+        stoneArm.stoneArm.setPower(0.5);
+        sleep(500);
+        stoneArm.stoneArm.setPower(0);
+        sleep(500);
+        stoneArm.stoneArm.setPower(-0.5);
+        sleep(500);
+        stoneArm.stoneArm.setPower(0);
 
+        objective = "moving pins";
+        sleep(2000);
+        pins.deployPins();
+        sleep(1000);
+        pins.deployPins();
+
+        objective = "Going forward";
+        sleep(2000);
+        goForward(1.0,1000);
+        objective = "Going backward";
+        sleep(2000);
+        goBackward(1.0,1000);
+        objective = "Going left";
+        sleep(2000);
+        strafeLeft(1.0,1000);
+        objective = "Going right";
+        sleep(2000);
+        strafeRight(1.0,1000);
+        objective = "turning right";
+        sleep(2000);
+        turnRight(1.0,90);
+        objective = "turning left";
+        sleep(2000);
+        turnLeft(1.0,90);
+        objective = "Stopping";
+        sleep(100);
         stopDriving();
 
 
