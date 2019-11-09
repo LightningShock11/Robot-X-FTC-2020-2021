@@ -187,6 +187,9 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         objective = "turning left";
         sleep(2000);
         turnLeft(1.0,90);
+        objective = "Stopping";
+        sleep(100);
+        stopDriving();
 
 
 
