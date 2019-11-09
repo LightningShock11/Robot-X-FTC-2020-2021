@@ -88,14 +88,12 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
     private TFObjectDetector tfod;
     public String objective;
 
-    FlywheelIntake flywheelIntake;
-    OrientationDrive movement;
+    public FlywheelIntake flywheelIntake;
+    public OrientationDrive movement;
 
 
     @Override
     public void runOpMode() {
-        // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
-        // first.
         initVuforia();
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {

@@ -23,13 +23,13 @@ import robotx.modules.StoneLift;
 public class JebediahOp extends XOpMode {
 
     //RgbSignals rgbSignals;
-    StoneClaw stoneClaw;
-    FlywheelIntake flywheelIntake;
+    public StoneClaw stoneClaw;
+    public FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
-    OrientationDrive orientationDrive;
-    StoneArm stoneArm;
-    StoneLift stoneLift;
-    FoundationPins foundationPins;
+    public OrientationDrive orientationDrive;
+    public StoneArm stoneArm;
+    public StoneLift stoneLift;
+    public FoundationPins foundationPins;
 
 
     public void initModules(){
