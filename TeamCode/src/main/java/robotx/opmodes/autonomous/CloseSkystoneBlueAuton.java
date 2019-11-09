@@ -191,21 +191,25 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         /////////////////////Movement///////////////////////
-
+        goBackward(0.6, 500);
         flywheelIntake.toggleFlyReverse();
         sleep(1000);
         flywheelIntake.toggleFlyReverse();
 
-        
-
+        strafeRight(1.0, 1000);
+        goBackward(0.2,500);
+        pins.deployPins();
+        sleep(1000);
+        goForward(0.7,750);
+        sleep(200);
+        pins.deployPins();
+        strafeLeft(1.0,1000);
         stopDriving();
-
-
 
     }
 
     /**
-     * Initialize the Vuforia localization engine.
+     * Initialize the Vuforia localiszation engine.
      */
     private void initVuforia() {
         /*
