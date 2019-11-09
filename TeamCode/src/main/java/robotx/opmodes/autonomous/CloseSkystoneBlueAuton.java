@@ -32,6 +32,7 @@ package robotx.opmodes.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -85,6 +86,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
      * Detection engine.
      */
     private TFObjectDetector tfod;
+    public String objective;
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -142,6 +144,52 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
+
+        movement = new OrientationDrive(this);
+        movement.init();
+
+        flywheelIntake = new FlywheelIntake(this);
+        flywheelIntake.init();
+
+        movement.start();
+        flywheelIntake.start();
+
+        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
+        telemetry.addData("Current Objective: ",objective);
+        telemetry.update();
+
+        movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        movement.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        /////////////////////Movement///////////////////////
+
+        flywheelIntake.toggleFlyReverse();
+        sleep(1000);
+        flywheelIntake.toggleFlyReverse();
+
+        objective = "Going forward";
+        sleep(2000);
+        goForward(1.0,1000);
+        objective = "Going backward";
+        sleep(2000);
+        goBackward(1.0,1000);
+        objective = "Going left";
+        sleep(2000);
+        strafeLeft(1.0,1000);
+        objective = "Going right";
+        sleep(2000);
+        strafeRight(1.0,1000);
+        objective = "turning right";
+        sleep(2000);
+        turnRight(1.0,90);
+        objective = "turning left";
+        sleep(2000);
+        turnLeft(1.0,90);
+
+
+
     }
 
     /**
@@ -178,12 +226,15 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
     /////////////////////Controls///////////////////////
 
     public void goForward(double power, int time){
-
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(power);
         movement.backLeft.setPower(-power);
         movement.backRight.setPower(power);
         sleep(time);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
     public void goBackward(double power, int time){
 
@@ -192,9 +243,58 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.backLeft.setPower(power);
         movement.backRight.setPower(-power);
         sleep(time);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
-
-    public  void stopDriving (){
+    public void strafeRight(double power, int time){
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(power);
+        sleep(time);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
+    }
+    public void strafeLeft(double power, int time){
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(-power);
+        sleep(time);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
+    }
+    public void turnRight(double power, int angle){
+        movement.frontLeft.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backRight.setPower(-power);
+        if(movement.getHeadingAngle() == angle){
+            movement.frontLeft.setPower(0);
+            movement.frontRight.setPower(0);
+            movement.backLeft.setPower(0);
+            movement.backRight.setPower(0);
+        }
+    }
+    public void turnLeft(double power, int angle){
+        movement.frontLeft.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backRight.setPower(power);
+        if(movement.getHeadingAngle() == angle){
+            movement.frontLeft.setPower(0);
+            movement.frontRight.setPower(0);
+            movement.backLeft.setPower(0);
+            movement.backRight.setPower(0);
+        }
+    }
+    public void stopDriving (){
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
