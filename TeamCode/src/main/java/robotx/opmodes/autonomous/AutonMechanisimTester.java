@@ -221,16 +221,16 @@ public class AutonMechanisimTester extends LinearOpMode {
 
             objective = "Going forward";
             sleep(2000);
-            goForward(1.0, 1000);
+            goForward(1.0, 250);
             objective = "Going backward";
             sleep(2000);
-            goBackward(1.0, 1000);
+            goBackward(1.0, 250);
             objective = "Going left";
             sleep(2000);
-            strafeLeft(1.0, 1000);
+            strafeLeft(1.0, 250);
             objective = "Going right";
             sleep(2000);
-            strafeRight(1.0, 1000);
+            strafeRight(1.0, 250);
             objective = "turning right";
             sleep(2000);
             turnRight(1.0, 90);
@@ -279,10 +279,10 @@ public class AutonMechanisimTester extends LinearOpMode {
     /////////////////////Controls///////////////////////
 
     public void goForward(double power, int time){
-        movement.frontLeft.setPower(power);
-        movement.frontRight.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.backRight.setPower(power);
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -291,10 +291,10 @@ public class AutonMechanisimTester extends LinearOpMode {
     }
     public void goBackward(double power, int time){
 
-        movement.frontLeft.setPower(-power);
-        movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.backRight.setPower(-power);
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);

@@ -104,6 +104,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
+        /**
         initVuforia();
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -115,12 +116,12 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
-         **/
+
         if (tfod != null) {
             tfod.activate();
         }
 
-        /** Wait for the game to begin */
+        /** Wait for the game to begin
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -152,7 +153,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
        if (tfod != null) {
             tfod.shutdown();
         }
-
+        **/
         movement = new OrientationDrive(this);
         movement.init();
 
@@ -190,22 +191,23 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        /////////////////////Movement///////////////////////
-        goBackward(0.6, 500);
-        flywheelIntake.toggleFlyReverse();
-        sleep(1000);
-        flywheelIntake.toggleFlyReverse();
+        if (opModeIsActive()) {
+            /////////////////////Movement///////////////////////
+            goBackward(0.6, 500);
+            flywheelIntake.toggleFlyReverse();
+            sleep(1000);
+            flywheelIntake.toggleFlyReverse();
 
-        strafeRight(1.0, 1000);
-        goBackward(0.2,500);
-        pins.deployPins();
-        sleep(1000);
-        goForward(0.7,750);
-        sleep(200);
-        pins.deployPins();
-        strafeLeft(1.0,1000);
-        stopDriving();
-
+            strafeRight(1.0, 1000);
+            goBackward(0.2, 500);
+            pins.deployPins();
+            sleep(1000);
+            goForward(0.7, 750);
+            sleep(200);
+            pins.deployPins();
+            strafeLeft(1.0, 1000);
+            stopDriving();
+        }
     }
 
     /**
