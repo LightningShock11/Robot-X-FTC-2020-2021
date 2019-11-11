@@ -30,7 +30,6 @@
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -38,10 +37,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-
-import java.util.List;
 
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
@@ -60,8 +56,8 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "CloseSkystoneBlueAuton", group = "Autonomous")
-public class CloseSkystoneBlueAuton extends LinearOpMode {
+@Autonomous(name = "FarSkystoneRedAuton", group = "Autonomous")
+public class FarSkystoneRedAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -194,22 +190,15 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
+            strafeRight(1.0,100); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
             flywheelIntake.toggleFlyReverse();
             sleep(1000);
             flywheelIntake.toggleFlyReverse();
             stoneArm.stoneArm.setPower(-0.7);
-            sleep(1000);
-            strafeRight(1.0,350);
 
-            /**strafeLeft(1.0, 850); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!
-            goBackward(0.2, 500);
-            pins.deployPins();
+            strafeRight(1.0,450);
             sleep(1000);
-            goForward(0.7, 750);
-            sleep(200);
-            pins.deployPins();
-            strafeRight(1.0, 700);
-            stopDriving();**/
+            goBackward(1.0,400);
         }
     }
 

@@ -34,6 +34,11 @@ StoneArm extends XModule {
         opMode.telemetry.addData("Current position:", stoneArm.getCurrentPosition());
         opMode.telemetry.addData("Arm power", armPower);
 
-        stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/2);
+        if (xGamepad2().right_trigger > 0 || xGamepad2().left_trigger > 0){
+            stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/2);
+        }
+        else {
+            stoneArm.setPower(-0.6);
+        }
         }
     }

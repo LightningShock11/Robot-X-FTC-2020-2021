@@ -52,8 +52,8 @@ public class JebediahOp extends XOpMode {
         orientationDrive = new OrientationDrive(this);
         activeModules.add(orientationDrive);
 
-        stoneLift = new StoneLift(this);
-        activeModules.add(stoneLift);
+        //stoneLift = new StoneLift(this);
+        //activeModules.add(stoneLift);
 
         foundationPins = new FoundationPins(this);
         activeModules.add(foundationPins);

@@ -9,7 +9,7 @@ import robotx.libraries.VuForiaObjectDetection;
 import robotx.libraries.XLinearOpMode;
 
 @Disabled
-@Autonomous(name = "VuForiaTest", group = "Autonomous")
+@Autonomous(name = "VuForiaTest", group = "Concept")
 public class VuForiaTest extends XLinearOpMode {
     VuForiaObjectDetection vuForiaObjectDetection;
 
