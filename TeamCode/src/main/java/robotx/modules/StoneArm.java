@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import robotx.libraries.XModule;
@@ -22,6 +23,7 @@ public class StoneArm extends XModule {
     long setTime;
     boolean deploy = false;
     ElapsedTime timer = new ElapsedTime();
+    TouchSensor touchSensor;
 
 
     public StoneArm(OpMode op) {
@@ -36,6 +38,7 @@ public class StoneArm extends XModule {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         clawServo.setPosition(0.3);
         setTime = System.currentTimeMillis();
+        touchSensor = opMode.hardwareMap.touchSensor.get("touchSensor");
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){
@@ -50,11 +53,11 @@ public class StoneArm extends XModule {
     }
     public void deploy(){
         if (deployed){
-            stoneArm.setPower(-0.4);
+            stoneArm.setPower(-0.3);
             deployed = false;
         }
         else {
-            stoneArm.setPower(0.4);
+            stoneArm.setPower(0.3);
             deployed = true;
         }
     }
@@ -68,7 +71,7 @@ public class StoneArm extends XModule {
             stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/1.5);
         }
 
-        if (xGamepad2().a.wasPressed()){
+        if (xGamepad2().a.wasPressed() || touchSensor.isPressed()){
             grab();
         }
         if (deploy && timer.seconds() > .5){
