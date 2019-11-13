@@ -31,7 +31,6 @@ package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -56,8 +55,8 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "CloseSkystoneRedAuton", group = "Autonomous")
-public class CloseSkystoneRedAuton extends LinearOpMode {
+@Autonomous(name = "RedPush", group = "Autonomous")
+public class RedPush extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -190,22 +189,17 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
+            strafeRight(1.0,100); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
             flywheelIntake.toggleFlyReverse();
             sleep(1000);
             flywheelIntake.toggleFlyReverse();
             stoneArm.stoneArm.setPower(-0.5);
+            goBackward(1.0,750);
+            sleep(100);
+            goForward(1.0,100);
+            strafeRight(1.0,500);
             sleep(1000);
-            strafeRight(1.0,100);
-
-           /** strafeRight(1.0, 850); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!
-            goBackward(1.0, 750);
-            sleep(250);
-            strafeRight(1.0, 250);
-            sleep(1000);
-            goForward(0.7, 750);
-            sleep(200);
-            strafeLeft(1.0, 700);
-            stopDriving();**/
+            goBackward(1.0,450);
         }
     }
 

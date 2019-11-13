@@ -194,7 +194,7 @@ public class FarSkystoneBlueAuton extends LinearOpMode {
             flywheelIntake.toggleFlyReverse();
             sleep(1000);
             flywheelIntake.toggleFlyReverse();
-            stoneArm.stoneArm.setPower(-0.7);
+            stoneArm.stoneArm.setPower(-0.5);
 
             strafeRight(1.0,450);
             sleep(1000);
