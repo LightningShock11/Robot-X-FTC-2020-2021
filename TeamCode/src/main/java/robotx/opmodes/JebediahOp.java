@@ -23,7 +23,7 @@ import robotx.modules.StoneLift;
 public class JebediahOp extends XOpMode {
 
     //RgbSignals rgbSignals;
-    public StoneClaw stoneClaw;
+    //public StoneClaw stoneClaw;
     public FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
     public OrientationDrive orientationDrive;
@@ -34,8 +34,8 @@ public class JebediahOp extends XOpMode {
 
     public void initModules(){
         super.initModules();
-        stoneClaw = new StoneClaw(this);
-        activeModules.add(stoneClaw);
+        //stoneClaw = new StoneClaw(this);
+        //activeModules.add(stoneClaw);
 
         flywheelIntake = new FlywheelIntake(this);
         activeModules.add(flywheelIntake);
@@ -52,8 +52,8 @@ public class JebediahOp extends XOpMode {
         orientationDrive = new OrientationDrive(this);
         activeModules.add(orientationDrive);
 
-        //stoneLift = new StoneLift(this);
-        //activeModules.add(stoneLift);
+        stoneLift = new StoneLift(this);
+        activeModules.add(stoneLift);
 
         foundationPins = new FoundationPins(this);
         activeModules.add(foundationPins);
