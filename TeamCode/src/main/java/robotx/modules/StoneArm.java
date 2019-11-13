@@ -23,8 +23,6 @@ public class StoneArm extends XModule {
     long setTime;
     boolean deploy = false;
     ElapsedTime timer = new ElapsedTime();
-    TouchSensor touchSensor;
-
 
     public StoneArm(OpMode op) {
         super(op);
@@ -38,7 +36,6 @@ public class StoneArm extends XModule {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         clawServo.setPosition(0.3);
         setTime = System.currentTimeMillis();
-        touchSensor = opMode.hardwareMap.touchSensor.get("touchSensor");
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){
@@ -53,25 +50,22 @@ public class StoneArm extends XModule {
     }
     public void deploy(){
         if (deployed){
-            stoneArm.setPower(-0.3);
+            stoneArm.setPower(-0.35);
             deployed = false;
         }
         else {
-            stoneArm.setPower(0.3);
+            stoneArm.setPower(0.35);
             deployed = true;
         }
     }
 
 
     public void loop () {
-        opMode.telemetry.addData("Current position:", stoneArm.getCurrentPosition());
-        opMode.telemetry.addData("Arm power", armPower);
-
         if (xGamepad2().right_trigger > 0 || xGamepad2().left_trigger > 0){
             stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/1.5);
         }
 
-        if (xGamepad2().a.wasPressed() || touchSensor.isPressed()){
+        if (xGamepad2().a.wasPressed()){
             grab();
         }
         if (deploy && timer.seconds() > .5){
@@ -85,7 +79,5 @@ public class StoneArm extends XModule {
         if(xGamepad2().dpad_right.wasPressed()) {
             clawServo.setPosition(0.3);
         }
-        opMode.telemetry.addData("Claw Position: ", clawServo.getPosition());
-        opMode.telemetry.update();
     }
 }

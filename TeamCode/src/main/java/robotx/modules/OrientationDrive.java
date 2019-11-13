@@ -22,21 +22,21 @@ public class OrientationDrive extends XModule {
     public DcMotor backLeft;
     public BNO055IMU gyroSensor;
     public Orientation lastAngles = new Orientation();
-    double globalAngle;
-    double robotAngle;
-    double joystickAngle;
+    public double globalAngle;
+    public double robotAngle;
+    public double joystickAngle;
 
-    double x;
-    double y;
-    double s;
-    double r;
+    public double x;
+    public double y;
+    public double s;
+    public double r;
 
-    double xPrime;
-    double yPrime;
+    public double xPrime;
+    public double yPrime;
 
-    boolean orientationMode = true;
-    boolean slowMode = false;
-    double multiplier = 1;
+    public boolean orientationMode = true;
+    public boolean slowMode = false;
+    public double multiplier = 1;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
@@ -61,9 +61,6 @@ public class OrientationDrive extends XModule {
         // and named "imu".
         gyroSensor = opMode.hardwareMap.get(BNO055IMU.class, "gyroSensor");
         gyroSensor.initialize(parameters);
-
-        opMode.telemetry.addData("heading: ", getHeadingAngle());
-        opMode.telemetry.update();
     }
     public int getHeadingAngle() {
 
@@ -131,7 +128,6 @@ public class OrientationDrive extends XModule {
         else if (x == 0 && y<0){
             joystickAngle = Math.toRadians(270);
         }
-        opMode.telemetry.addData("Joystick Angle:", Math.toDegrees(joystickAngle));
 
         xPrime = (Math.sqrt((x*x) + (y*y))) * (Math.cos(robotAngle + joystickAngle));
         yPrime = (Math.sqrt((x*x + y*y))) * (Math.sin(robotAngle + joystickAngle));
