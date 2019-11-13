@@ -100,10 +100,7 @@ public class OrientationDrive extends XModule {
         }
     }
     public void loop(){
-
         getHeadingAngle();
-        opMode.telemetry.addData("Heading: ", getHeadingAngle());
-        opMode.telemetry.update();
 
         if(orientationMode){
             robotAngle = Math.toRadians(globalAngle);
@@ -156,6 +153,5 @@ public class OrientationDrive extends XModule {
             frontRight.setPower((yPrime+xPrime+r)*(s));
             backLeft.setPower((yPrime+xPrime-r)*(s));
         }
-        opMode.telemetry.addData("Speed multiplier:", multiplier);
     }
 }
