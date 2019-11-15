@@ -29,6 +29,7 @@
 
 package robotx.opmodes.autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -58,7 +59,7 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@TeleOp(name = "AutonMechanismTester", group = "Concept")
+@Autonomous(name = "AutonMechanismTester", group = "Concept")
 public class AutonMechanisimTester extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
@@ -104,7 +105,7 @@ public class AutonMechanisimTester extends LinearOpMode {
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
-        /**
+
         initVuforia();
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -117,12 +118,12 @@ public class AutonMechanisimTester extends LinearOpMode {
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
          **/
-        /**
+
         if (tfod != null) {
             tfod.activate();
         }
 
-        /** Wait for the game to begin
+        // Wait for the game to begin
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -144,8 +145,14 @@ public class AutonMechanisimTester extends LinearOpMode {
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                     recognition.getRight(), recognition.getBottom());
+                            if(recognition.getLabel() == LABEL_SECOND_ELEMENT){
+                                telemetry.addLine("Object found, moving on");
+                                break;
+                            }
+                            break;
                         }
                         telemetry.update();
+                        break;
                     }
                 }
             }
@@ -153,7 +160,7 @@ public class AutonMechanisimTester extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
-        **/
+
 
 
 
