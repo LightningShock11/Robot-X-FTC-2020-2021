@@ -27,6 +27,7 @@ public class RAPSOpMode extends OpMode {
 
 	@Override
 	public void loop() {
+		RAPSMovement.goToPos(50, 50, 0.3);
 
 	}
 
