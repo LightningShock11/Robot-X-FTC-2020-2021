@@ -36,7 +36,7 @@ public class OrientationDrive extends XModule {
 
     public boolean orientationMode = true;
     public boolean slowMode = false;
-    public double multiplier = 1;
+    public double offset;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
