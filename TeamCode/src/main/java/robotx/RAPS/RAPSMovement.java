@@ -1,9 +1,11 @@
 package robotx.RAPS;
+import com.qualcomm.robotcore.util.Range;
+
 import static robotx.RAPS.MathFunctions.*;
 
 
 public class RAPSMovement {
-    public static void goToPos(double x, double y, double moveSpeed){
+    public static void goToPos(double x, double y, double moveSpeed, double preferredAngle, double turnSpeed){
         //////Placeholder Variables//////
             double worldXpos = 0;
             double worldYpos = 0;
@@ -22,7 +24,10 @@ public class RAPSMovement {
         double movementXPower = relativeXToPoint / (Math.abs(relativeXToPoint) + Math.abs(relativeYtoPoint));
         double movementYPower = relativeYtoPoint / (Math.abs(relativeXToPoint) + Math.abs(relativeYtoPoint));
 
-        //put x motor power variable here = movementXPower;
-        //put y motor power variable here = movementYPower;
+        //put x motor power variable here = movementXPower * moveSpeed;
+        //put y motor power variable here = movementYPower * moveSpeed;
+
+        double relativeTurnAngle = relativeAngleToTarget - Math.toRadians(180) + preferredAngle;
+        // put movement turning variable here = Range.clip(relativeTurnAngle/Math.toRadians(30),-1, 1) * turnSpeed;
     }
 }
