@@ -18,7 +18,7 @@ public class StoneArm extends XModule {
 
     public DcMotor stoneArm;
     double armPower;
-    boolean deployed = true;
+    boolean deployed = false;
     public Servo clawServo;
     long setTime;
     boolean deploy = false;
@@ -32,10 +32,11 @@ public class StoneArm extends XModule {
         //initialize motor
         stoneArm = opMode.hardwareMap.dcMotor.get("stoneArm");
         stoneArm.setDirection(DcMotorSimple.Direction.REVERSE);
-        stoneArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //stoneArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         clawServo.setPosition(0.3);
         setTime = System.currentTimeMillis();
+        stoneArm.setPower(-0.35);
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){

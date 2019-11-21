@@ -92,6 +92,10 @@ public class AutonMechanisimTester extends LinearOpMode {
     private TFObjectDetector tfod;
     public String objective;
     public int skystonePos;
+    public boolean isRight;
+    public boolean isCenter;
+    public boolean isLeft;
+
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -136,23 +140,49 @@ public class AutonMechanisimTester extends LinearOpMode {
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
+                        if(updatedRecognitions.size() == 3) {
+                            // step through the list of recognitions and display boundary info.
+                            int i = 0;
+                            int skystonePos = -1;
+                            int stone1Pos = -1;
+                            int stone2Pos = -1;
+                            for (Recognition recognition : updatedRecognitions) {
+                                if(recognition.getLabel().equals(LABEL_SECOND_ELEMENT)) {
+                                    skystonePos = (int) recognition.getLeft();
+                                }else if (stone1Pos == -1) {
+                                    stone1Pos = (int) recognition.getLeft();
+                                } else {
+                                    stone2Pos = (int) recognition.getLeft();
+                                }
 
-                        // step through the list of recognitions and display boundary info.
-                        int i = 0;
-                        for (Recognition recognition : updatedRecognitions) {
-                            telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                            telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                    recognition.getLeft(), recognition.getTop());
-                            telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                    recognition.getRight(), recognition.getBottom());
-                            if(recognition.getLabel() == LABEL_SECOND_ELEMENT){
-                                telemetry.addLine("Object found, moving on");
-                                break;
+                                /**telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                                telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                                        recognition.getLeft(), recognition.getTop());
+                                telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                                        recognition.getRight(), recognition.getBottom());
+                                 **/
                             }
-                            break;
+                            if (skystonePos != -1 && stone1Pos != -1 && stone2Pos != -1) {
+                                if (skystonePos < stone1Pos && skystonePos < stone2Pos) {
+                                    telemetry.addData("Skystone Position: ", "Left");
+                                    telemetry.update();
+                                    isLeft = true;
+                                    break;
+                                } else if (skystonePos > stone1Pos && skystonePos > stone2Pos) {
+                                    telemetry.addData("Skystone Position: ", "Right");
+                                    telemetry.update();
+                                    isRight = true;
+                                    break;
+                                } else {
+                                    telemetry.addData("Skystone Position: ", "Center");
+                                    telemetry.update();
+                                    isCenter = true;
+                                    break;
+                                }
+                            }
                         }
                         telemetry.update();
-                        break;
+
                     }
                 }
             }
