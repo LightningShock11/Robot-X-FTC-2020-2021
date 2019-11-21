@@ -91,11 +91,10 @@ public class AutonMechanisimTester extends LinearOpMode {
      */
     private TFObjectDetector tfod;
     public String objective;
-    public int skystonePos;
     public boolean isRight;
     public boolean isCenter;
     public boolean isLeft;
-
+    public boolean isTurning;
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -105,7 +104,6 @@ public class AutonMechanisimTester extends LinearOpMode {
     FoundationPins pins;
 
 
-    @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
@@ -190,8 +188,6 @@ public class AutonMechanisimTester extends LinearOpMode {
         if (tfod != null) {
             tfod.shutdown();
         }
-
-
 
 
             movement = new OrientationDrive(this);
@@ -315,6 +311,7 @@ public class AutonMechanisimTester extends LinearOpMode {
 
     /////////////////////Controls///////////////////////
 
+
     public void goForward(double power, int time){
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(-power);
@@ -361,6 +358,11 @@ public class AutonMechanisimTester extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void turnRight(double power, int angle){
+        isTurning = true;
+        while (isTurning)
+        {
+            movement.getHeadingAngle();
+        }
         movement.frontLeft.setPower(power);
         movement.backLeft.setPower(power);
         movement.frontRight.setPower(-power);
@@ -371,6 +373,7 @@ public class AutonMechanisimTester extends LinearOpMode {
             movement.backLeft.setPower(0);
             movement.backRight.setPower(0);
         }
+        isTurning = false;
     }
     public void turnLeft(double power, int angle){
         movement.frontLeft.setPower(-power);
