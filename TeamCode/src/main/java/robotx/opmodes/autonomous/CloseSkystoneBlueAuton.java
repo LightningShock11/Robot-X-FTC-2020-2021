@@ -48,6 +48,7 @@ import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
 import robotx.modules.StoneArm;
 import robotx.modules.StoneClaw;
+import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
 /**
@@ -65,6 +66,10 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
+    public boolean isLeft;
+    public boolean isCenter;
+    public boolean isRight;
+
 
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
@@ -92,6 +97,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
      */
     private TFObjectDetector tfod;
     public String objective;
+    public boolean isTurning;
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -99,6 +105,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
+    StoneDetectionColor detection;
 
 
     @Override
@@ -173,6 +180,9 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         stoneLift = new StoneLift(this);
         stoneLift.init();
 
+        detection = new StoneDetectionColor(this);
+        detection.init();
+
 
 
 
@@ -182,6 +192,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         stoneArm.start();
         stoneClaw.start();
         pins.start();
+        detection.start();
 
         telemetry.addData("Current Angle: ", movement.getHeadingAngle());
         telemetry.addData("Current Objective: ",objective);
@@ -192,24 +203,64 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
-            flywheelIntake.toggleFlyReverse();
-            sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
+            sleep(800);
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeRight(1.0,350);
-
-            /**strafeLeft(1.0, 850); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!
-            goBackward(0.2, 500);
-            pins.deployPins();
+            strafeLeft(1.0,555);
             sleep(1000);
-            goForward(0.7, 750);
-            sleep(200);
-            pins.deployPins();
-            strafeRight(1.0, 700);
-            stopDriving();**/
+            if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
+                isCenter = true;
+                isLeft = false;
+                isRight = false;
+                telemetry.addData("Skystone Position: ", "center");
+                telemetry.update();
+                sleep(1000);
+            } else {
+                goBackward(1.0, 200);
+                if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60) {
+                    isCenter = false;
+                    isLeft = true;
+                    isRight = false;
+                    telemetry.addData("Skystone Position: ", "left");
+                    telemetry.update();
+                    sleep(10000);
+                }
+                else {
+                    isCenter = false;
+                    isLeft = false;
+                    isRight = true;
+                    telemetry.addData("Skystone Position: ", "right");
+                    telemetry.update();
+                }
+            }
+            if(isCenter){
+                goBackward(1.0,215);
+                strafeLeft(1.0,350);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                goBackward(1.0,850);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+            }else if(isRight){
+                sleep(10000);
+            }else if(isLeft){
+                sleep(10000);
+            }
+            stopDriving();
+
+
         }
     }
 
@@ -270,10 +321,10 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
-        movement.frontLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.backRight.setPower(power);
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -281,44 +332,46 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
-        movement.frontLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.backRight.setPower(-power);
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
-    public void turnRight(double power, int angle){
-        movement.frontLeft.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backRight.setPower(-power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnRight(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(0.8);
+        movement.backLeft.setPower(0.8);
+        movement.frontRight.setPower(-0.8);
+        movement.backRight.setPower(-0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
-    public void turnLeft(double power, int angle){
-        movement.frontLeft.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backRight.setPower(power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnLeft(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(-0.8);
+        movement.backLeft.setPower(-0.8);
+        movement.frontRight.setPower(0.8);
+        movement.backRight.setPower(0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
+
     public void stopDriving (){
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
+
 }

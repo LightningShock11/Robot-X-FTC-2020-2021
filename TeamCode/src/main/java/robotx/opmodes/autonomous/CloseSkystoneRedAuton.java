@@ -190,9 +190,11 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
             strafeRight(1.0,100);

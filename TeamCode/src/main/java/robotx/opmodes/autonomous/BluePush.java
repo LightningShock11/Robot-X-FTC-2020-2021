@@ -190,9 +190,11 @@ public class BluePush extends LinearOpMode {
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
             strafeLeft(1.0,170); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(1.0,750);
             sleep(100);
