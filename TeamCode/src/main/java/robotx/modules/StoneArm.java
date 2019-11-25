@@ -36,7 +36,11 @@ public class StoneArm extends XModule {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         clawServo.setPosition(0.3);
         setTime = System.currentTimeMillis();
+<<<<<<< HEAD
+        stoneArm.setPower(-.35);
+=======
         stoneArm.setPower(-0.35);
+>>>>>>> d53921afe21210046ffa13571554ee3e72cc1d65
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){
@@ -60,10 +64,9 @@ public class StoneArm extends XModule {
         }
     }
 
-
     public void loop () {
         if (xGamepad2().right_trigger > 0 || xGamepad2().left_trigger > 0){
-            stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/1.5);
+            stoneArm.setPower((xGamepad2().right_trigger - xGamepad2().left_trigger)/2);
         }
 
         if (xGamepad2().a.wasPressed()){
@@ -80,5 +83,8 @@ public class StoneArm extends XModule {
         if(xGamepad2().dpad_right.wasPressed()) {
             clawServo.setPosition(0.3);
         }
+    }
+    public void stop(){
+        stoneArm.setPower(.35);
     }
 }
