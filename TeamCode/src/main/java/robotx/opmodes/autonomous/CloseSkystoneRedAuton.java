@@ -210,7 +210,7 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeLeft(1.0,595);
+            strafeLeft(0.5,1100);
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
@@ -239,8 +239,8 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
                 }
             }
             if(isCenter){
-                goBackward(1.0,245);
-                strafeLeft(1.0,400);
+                goBackward(1.0,175);
+                strafeLeft(1.0,450);
                 flywheelIntake.toggleFly();
                 sleep(500);
                 goForward(0.3, 900);
@@ -267,28 +267,29 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
                 flywheelIntake.toggleFlyReverse();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
+                strafeLeft(1.0, 150);
                 goBackward(1.0,350);
             }else if(isLeft){
                 strafeRight(1.0,100);
                 sleep(500);
-                goBackward(1.0,775);
+                goBackward(1.0,600);
                 sleep(500);
-                strafeLeft(1.0,350);
+                strafeLeft(1.0,450);
                 flywheelIntake.toggleFly();
                 sleep(500);
                 goForward(0.3, 900);
                 strafeRight(1.0,350);
-                goForward(1.0,1550);
+                goForward(1.0,1050);
                 flywheelIntake.toggleFly();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeLeft(1.0,300);
-                goBackward(1.0,250);
+                strafeLeft(1.0,200);
+                goBackward(1.0,350);
             }
-            turnRight(92);
+            turnRight(88);
             stopDriving();
 
 
