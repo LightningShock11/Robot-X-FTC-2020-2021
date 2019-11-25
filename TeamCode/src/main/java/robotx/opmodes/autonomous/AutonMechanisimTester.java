@@ -103,7 +103,7 @@ public class AutonMechanisimTester extends LinearOpMode {
     StoneLift stoneLift;
     FoundationPins pins;
 
-
+    @Override
     public void runOpMode() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
@@ -228,9 +228,11 @@ public class AutonMechanisimTester extends LinearOpMode {
 
             /////////////////////Movement///////////////////////
 
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(-1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelRight.setPower(0.0);
             objective = "Opening and closing claw";
             stoneClaw.clawServo.setPosition(0.75);
             sleep(750);

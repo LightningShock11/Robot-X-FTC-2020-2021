@@ -178,8 +178,8 @@ public class RedPush extends LinearOpMode {
         stoneClaw.start();
         pins.start();
 
-        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
-        telemetry.addData("Current Objective: ",objective);
+        telemetry.addData("Starting Side: ", "Foundation/Building");
+        telemetry.addData("Facing: ","Wall, Back to the other Robot");
         telemetry.update();
 
         movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -190,9 +190,11 @@ public class RedPush extends LinearOpMode {
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
             strafeRight(1.0,100); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(-1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelRight.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(1.0,750);
             sleep(100);
@@ -201,6 +203,7 @@ public class RedPush extends LinearOpMode {
             strafeRight(1.0,420);
             sleep(1000);
             goBackward(1.0,200);
+            turnLeft(88);
         }
     }
 
@@ -282,29 +285,29 @@ public class RedPush extends LinearOpMode {
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
-    public void turnRight(double power, int angle){
-        movement.frontLeft.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backRight.setPower(-power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnRight(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(0.8);
+        movement.backLeft.setPower(0.8);
+        movement.frontRight.setPower(-0.8);
+        movement.backRight.setPower(-0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
-    public void turnLeft(double power, int angle){
-        movement.frontLeft.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backRight.setPower(power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnLeft(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(-0.8);
+        movement.backLeft.setPower(-0.8);
+        movement.frontRight.setPower(0.8);
+        movement.backRight.setPower(0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
     public void stopDriving (){
         movement.frontLeft.setPower(0);

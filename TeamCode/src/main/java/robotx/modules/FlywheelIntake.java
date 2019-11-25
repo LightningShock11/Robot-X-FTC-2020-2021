@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import robotx.libraries.XModule;
 
 public class FlywheelIntake extends XModule {
-    DcMotor flywheelLeft;
-    DcMotor flywheelRight;
+    public DcMotor flywheelLeft;
+    public DcMotor flywheelRight;
     boolean isFlywheelOn = false;
 
 

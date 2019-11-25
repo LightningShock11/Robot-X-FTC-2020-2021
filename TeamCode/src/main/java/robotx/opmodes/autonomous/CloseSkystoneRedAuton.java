@@ -44,6 +44,7 @@ import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
 import robotx.modules.StoneArm;
 import robotx.modules.StoneClaw;
+import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
 /**
@@ -56,11 +57,15 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "CloseSkystoneRedAuton", group = "Autonomous")
+@Autonomous(name = "LoadingSideRedAuton", group = "Autonomous")
 public class CloseSkystoneRedAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
+    public boolean isLeft;
+    public boolean isCenter;
+    public boolean isRight;
+
 
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
@@ -88,6 +93,7 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
      */
     private TFObjectDetector tfod;
     public String objective;
+    public boolean isTurning;
 
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -95,6 +101,7 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
+    StoneDetectionColor detection;
 
 
     @Override
@@ -102,55 +109,55 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         /**
-        initVuforia();
+         initVuforia();
 
-        if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
-            initTfod();
-        } else {
-            telemetry.addData("Sorry!", "This device is not compatible with TFOD");
-        }
+         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
+         initTfod();
+         } else {
+         telemetry.addData("Sorry!", "This device is not compatible with TFOD");
+         }
 
-        /**
+         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
 
-        if (tfod != null) {
-            tfod.activate();
-        }
+         if (tfod != null) {
+         tfod.activate();
+         }
 
-        /** Wait for the game to begin
-        telemetry.addData(">", "Press Play to start op mode");
-        telemetry.update();
-        waitForStart();
+         /** Wait for the game to begin
+         telemetry.addData(">", "Press Play to start op mode");
+         telemetry.update();
+         waitForStart();
 
-        if (opModeIsActive()) {
-            while (opModeIsActive()) {
-                if (tfod != null) {
-                    // getUpdatedRecognitions() will return null if no new information is available since
-                    // the last time that call was made.
-                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                    if (updatedRecognitions != null) {
-                      telemetry.addData("# Object Detected", updatedRecognitions.size());
+         if (opModeIsActive()) {
+         while (opModeIsActive()) {
+         if (tfod != null) {
+         // getUpdatedRecognitions() will return null if no new information is available since
+         // the last time that call was made.
+         List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+         if (updatedRecognitions != null) {
+         telemetry.addData("# Object Detected", updatedRecognitions.size());
 
-                      // step through the list of recognitions and display boundary info.
-                      int i = 0;
-                      for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                          recognition.getLeft(), recognition.getTop());
-                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                recognition.getRight(), recognition.getBottom());
-                      }
-                      telemetry.update();
-                    }
-                }
-            }
-        }
+         // step through the list of recognitions and display boundary info.
+         int i = 0;
+         for (Recognition recognition : updatedRecognitions) {
+         telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+         telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+         recognition.getLeft(), recognition.getTop());
+         telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+         recognition.getRight(), recognition.getBottom());
+         }
+         telemetry.update();
+         }
+         }
+         }
+         }
 
-       if (tfod != null) {
-            tfod.shutdown();
-        }
-        **/
+         if (tfod != null) {
+         tfod.shutdown();
+         }
+         **/
         movement = new OrientationDrive(this);
         movement.init();
 
@@ -169,6 +176,9 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         stoneLift = new StoneLift(this);
         stoneLift.init();
 
+        detection = new StoneDetectionColor(this);
+        detection.init();
+
 
 
 
@@ -178,9 +188,10 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         stoneArm.start();
         stoneClaw.start();
         pins.start();
+        detection.start();
 
-        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
-        telemetry.addData("Current Objective: ",objective);
+        telemetry.addData("Starting Side: ", "Loading/Skystone");
+        telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
         telemetry.update();
 
         movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -188,24 +199,99 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
-            flywheelIntake.toggleFlyReverse();
-            sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            flywheelIntake.flywheelRight.setPower(1.0);
+            flywheelIntake.flywheelLeft.setPower(1.0);
+            sleep(800);
+            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeRight(1.0,100);
-
-           /** strafeRight(1.0, 850); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!
-            goBackward(1.0, 750);
-            sleep(250);
-            strafeRight(1.0, 250);
+            strafeLeft(1.0,595);
             sleep(1000);
-            goForward(0.7, 750);
-            sleep(200);
-            strafeLeft(1.0, 700);
-            stopDriving();**/
+            if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
+                isCenter = true;
+                isLeft = false;
+                isRight = false;
+                telemetry.addData("Skystone Position: ", "center");
+                telemetry.update();
+                sleep(1000);
+            } else {
+                goBackward(1.0, 200);
+                sleep(2000);
+                if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60) {
+                    isCenter = false;
+                    isLeft = true;
+                    isRight = false;
+                    telemetry.addData("Skystone Position: ", "left");
+                    telemetry.update();
+                    sleep(2000);
+                }
+                else {
+                    isCenter = false;
+                    isLeft = false;
+                    isRight = true;
+                    telemetry.addData("Skystone Position: ", "right");
+                    telemetry.update();
+                }
+            }
+            if(isCenter){
+                goBackward(1.0,245);
+                strafeLeft(1.0,400);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                sleep(500);
+                goForward(1.0,950);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeLeft(1.0,210);
+                goBackward(1.0,250);
+            }else if(isRight){
+                strafeLeft(1.0,400);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                sleep(500);
+                strafeRight(1.0, 350);
+                goForward(0.9, 800);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                goBackward(1.0,350);
+            }else if(isLeft){
+                strafeRight(1.0,100);
+                sleep(500);
+                goBackward(1.0,775);
+                sleep(500);
+                strafeLeft(1.0,350);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                goForward(1.0,1550);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeLeft(1.0,300);
+                goBackward(1.0,250);
+            }
+            turnRight(92);
+            stopDriving();
+
+
         }
     }
 
@@ -232,7 +318,7 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
      */
     private void initTfod() {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-            "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfodParameters.minimumConfidence = 0.8;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
@@ -266,10 +352,10 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
-        movement.frontLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.backRight.setPower(power);
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -277,44 +363,46 @@ public class CloseSkystoneRedAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
-        movement.frontLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.backRight.setPower(-power);
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
-    public void turnRight(double power, int angle){
-        movement.frontLeft.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backRight.setPower(-power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnRight(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(0.8);
+        movement.backLeft.setPower(0.8);
+        movement.frontRight.setPower(-0.8);
+        movement.backRight.setPower(-0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
-    public void turnLeft(double power, int angle){
-        movement.frontLeft.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backRight.setPower(power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnLeft(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(-0.8);
+        movement.backLeft.setPower(-0.8);
+        movement.frontRight.setPower(0.8);
+        movement.backRight.setPower(0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
+
     public void stopDriving (){
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
+
 }
