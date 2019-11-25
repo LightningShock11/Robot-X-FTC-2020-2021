@@ -196,10 +196,11 @@ public class BluePush extends LinearOpMode {
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(1.0,750);
             sleep(100);
-            goForward(1.0,100);
-            strafeLeft(1.0,500);
+            goForward(1.0,400);
+            sleep(500);
+            strafeLeft(1.0,420);
             sleep(1000);
-            goBackward(1.0,450);
+            goBackward(1.0,200);
         }
     }
 
