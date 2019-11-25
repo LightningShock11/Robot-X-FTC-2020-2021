@@ -61,7 +61,7 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "CloseSkystoneBlueAuton", group = "Autonomous")
+@Autonomous(name = "LoadingSideBlueAuton", group = "Autonomous")
 public class CloseSkystoneBlueAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
@@ -194,8 +194,8 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
         pins.start();
         detection.start();
 
-        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
-        telemetry.addData("Current Objective: ",objective);
+        telemetry.addData("Starting Side: ", "Loading/Skystone");
+        telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
         telemetry.update();
 
         movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -214,7 +214,7 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeLeft(1.0,555);
+            strafeLeft(1.0,595);
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
@@ -224,14 +224,15 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
                 telemetry.update();
                 sleep(1000);
             } else {
-                goBackward(1.0, 200);
+                sleep(1000);
+                goBackward(1.0, 125);
                 if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60) {
                     isCenter = false;
                     isLeft = true;
                     isRight = false;
                     telemetry.addData("Skystone Position: ", "left");
                     telemetry.update();
-                    sleep(10000);
+                    sleep(2000);
                 }
                 else {
                     isCenter = false;
@@ -243,6 +244,23 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
             }
             if(isCenter){
                 goBackward(1.0,215);
+                sleep(500);
+                strafeLeft(1.0,400);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                goBackward(1.0,900);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                turnRight(180);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeRight(1.0,150);
+                goBackward(1.0,450);
+            }else if(isRight){
                 strafeLeft(1.0,350);
                 flywheelIntake.toggleFly();
                 sleep(500);
@@ -250,14 +268,33 @@ public class CloseSkystoneBlueAuton extends LinearOpMode {
                 strafeRight(1.0,350);
                 goBackward(1.0,850);
                 flywheelIntake.toggleFly();
+                sleep(1000);
+                turnRight(180);
                 flywheelIntake.toggleFlyReverse();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
-            }else if(isRight){
-                sleep(10000);
+                sleep(500);
+                strafeLeft(1.0,150);
+                goBackward(1.0,350);
             }else if(isLeft){
-                sleep(10000);
+                strafeRight(1.0,150);
+                turnLeft(88);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                goBackward(1.0,250);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                turnLeft(88);
+                goForward(1.0,950);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeLeft(1.0,150);
+                goBackward(1.0,350);
             }
+            turnLeft(88);
             stopDriving();
 
 

@@ -19,12 +19,12 @@ public class FoundationPins extends XModule {
         rightPin = opMode.hardwareMap.servo.get("rightPin");
         leftPin = opMode.hardwareMap.servo.get("leftPin");
         rightPin.setPosition(0.15);
-        leftPin.setPosition(0.85);
+        leftPin.setPosition(0.92);
     }
     public void deployPins(){
         if (pinsOut){
             rightPin.setPosition(0.15);
-            leftPin.setPosition(0.85);
+            leftPin.setPosition(0.92);
             pinsOut = false;
         }
         else{

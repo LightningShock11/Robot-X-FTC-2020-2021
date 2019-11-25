@@ -56,7 +56,7 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "FarSkystoneRedAuton", group = "Autonomous")
+@Autonomous(name = "BuildingSideRedAuton", group = "Autonomous")
 public class FarSkystoneRedAuton extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
@@ -95,6 +95,8 @@ public class FarSkystoneRedAuton extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
+
+
 
 
     @Override
@@ -179,8 +181,8 @@ public class FarSkystoneRedAuton extends LinearOpMode {
         stoneClaw.start();
         pins.start();
 
-        telemetry.addData("Current Angle: ", movement.getHeadingAngle());
-        telemetry.addData("Current Objective: ",objective);
+        telemetry.addData("Starting Side: ", "Building/Foundation");
+        telemetry.addData("Position: ","Back of robot on the wall. Facing field.");
         telemetry.update();
 
         movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -190,7 +192,6 @@ public class FarSkystoneRedAuton extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
-            strafeRight(1.0,100); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
             flywheelIntake.flywheelRight.setPower(1.0);
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
@@ -198,9 +199,11 @@ public class FarSkystoneRedAuton extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
 
-            strafeRight(1.0,450);
-            sleep(1000);
-            goBackward(1.0,400);
+            goForward(1.0,500);
+            sleep(500);
+            strafeLeft(1.0,650);
+
+            //strafeLeft(1.0,200);
         }
     }
 
@@ -261,10 +264,10 @@ public class FarSkystoneRedAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
-        movement.frontLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.backRight.setPower(power);
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -272,40 +275,41 @@ public class FarSkystoneRedAuton extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
-        movement.frontLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.backRight.setPower(-power);
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
     }
-    public void turnRight(double power, int angle){
-        movement.frontLeft.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backRight.setPower(-power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnRight(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(0.8);
+        movement.backLeft.setPower(0.8);
+        movement.frontRight.setPower(-0.8);
+        movement.backRight.setPower(-0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
-    public void turnLeft(double power, int angle){
-        movement.frontLeft.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backRight.setPower(power);
-        if(movement.getHeadingAngle() == angle){
-            movement.frontLeft.setPower(0);
-            movement.frontRight.setPower(0);
-            movement.backLeft.setPower(0);
-            movement.backRight.setPower(0);
-        }
+    public void turnLeft(int angle){
+        telemetry.update();
+        movement.frontLeft.setPower(-0.8);
+        movement.backLeft.setPower(-0.8);
+        movement.frontRight.setPower(0.8);
+        movement.backRight.setPower(0.8);
+        sleep((long)(angle*13.3)/(long)Math.PI);
+        movement.frontLeft.setPower(0);
+        movement.frontRight.setPower(0);
+        movement.backLeft.setPower(0);
+        movement.backRight.setPower(0);
     }
+
     public void stopDriving (){
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);

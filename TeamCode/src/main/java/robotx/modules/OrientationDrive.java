@@ -36,7 +36,7 @@ public class OrientationDrive extends XModule {
 
     public boolean orientationMode = true;
     public boolean slowMode = false;
-    public double offset;
+    public double offset = 0;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
@@ -100,13 +100,16 @@ public class OrientationDrive extends XModule {
         getHeadingAngle();
 
         if(orientationMode){
-            robotAngle = Math.toRadians(globalAngle);
+            robotAngle = Math.toRadians(globalAngle - offset);
         }
         else{
             robotAngle = 0;
         }
         if (xGamepad1().y.wasPressed()) {
             switchMode();
+        }
+        if (xGamepad1().b.wasPressed()){
+            offset = globalAngle;
         }
         opMode.telemetry.addData("Orientation mode:", orientationMode);
 
