@@ -36,11 +36,7 @@ public class StoneArm extends XModule {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
         clawServo.setPosition(0.3);
         setTime = System.currentTimeMillis();
-<<<<<<< HEAD
-        stoneArm.setPower(-.35);
-=======
         stoneArm.setPower(-0.35);
->>>>>>> d53921afe21210046ffa13571554ee3e72cc1d65
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){
