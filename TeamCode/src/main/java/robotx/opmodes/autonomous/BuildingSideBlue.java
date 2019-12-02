@@ -188,6 +188,10 @@ public class BuildingSideBlue extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        telemetry.addData(">", "Press Play to start op mode");
+        telemetry.update();
+        waitForStart();
+
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
             flywheelIntake.flywheelRight.setPower(1.0);

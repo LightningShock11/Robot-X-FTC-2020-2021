@@ -187,6 +187,10 @@ public class RedPush extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        telemetry.addData(">", "Press Play to start op mode");
+        telemetry.update();
+        waitForStart();
+
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
             strafeRight(1.0,100); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
@@ -194,7 +198,7 @@ public class RedPush extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
             flywheelIntake.flywheelRight.setPower(0.0);
-            flywheelIntake.flywheelRight.setPower(0.0);
+            flywheelIntake.flywheelRight.setPower(0.0);s
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(1.0,750);
             sleep(100);

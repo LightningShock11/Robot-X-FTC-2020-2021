@@ -187,6 +187,10 @@ public class BluePush extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        telemetry.addData(">", "Press Play to start op mode");
+        telemetry.update();
+        waitForStart();
+
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
             strafeLeft(1.0,170); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
