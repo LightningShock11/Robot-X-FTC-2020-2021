@@ -217,7 +217,7 @@ public class LoadingSideBlue extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeLeft(0.5,1180); //how close it gets to the stones
+            strafeLeft(0.3,1500); //how close it gets to the stones
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
@@ -264,13 +264,13 @@ public class LoadingSideBlue extends LinearOpMode {
                 sleep(500);
                 goBackward(1.0,425);
             }else if(isRight){ //if the robot detected right
-                goBackward(1.0,150);
+                goBackward(1.0,100);
                 strafeLeft(1.0,350);
                 flywheelIntake.toggleFly();
                 sleep(500);
                 goForward(0.3, 900);
                 strafeRight(1.0,350);
-                goBackward(1.0,850);
+                goBackward(1.0,890);
                 flywheelIntake.toggleFly();
                 sleep(1000);
                 turnRight(180);
@@ -278,8 +278,7 @@ public class LoadingSideBlue extends LinearOpMode {
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeRight(1.0,150);
-                goBackward(1.0,350);
+                goBackward(1.0,340);
             }else if(isLeft){ //if the robot detected left
                 strafeRight(1.0,150);
                 turnLeft(88);
@@ -291,12 +290,12 @@ public class LoadingSideBlue extends LinearOpMode {
                 flywheelIntake.toggleFly();
                 sleep(1000);
                 turnLeft(88);
-                goForward(1.0,950);
+                goForward(1.0,900);
                 flywheelIntake.toggleFlyReverse();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                goBackward(1.0,400);
+                goBackward(1.0,350);
             }
             turnRight(88);
             stopDriving();
