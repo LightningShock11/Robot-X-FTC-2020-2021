@@ -198,7 +198,7 @@ public class RedPush extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
             flywheelIntake.flywheelRight.setPower(0.0);
-            flywheelIntake.flywheelRight.setPower(0.0);s
+            flywheelIntake.flywheelRight.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(1.0,750);
             sleep(100);

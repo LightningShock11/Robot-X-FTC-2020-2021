@@ -32,6 +32,7 @@ package robotx.opmodes.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -193,7 +194,6 @@ public class LoadingSideBlue extends LinearOpMode {
         stoneClaw.start();
         pins.start();
         detection.start();
-
         telemetry.addData("Starting Side: ", "Loading/Skystone");
         telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
         telemetry.update();
@@ -203,7 +203,6 @@ public class LoadingSideBlue extends LinearOpMode {
         movement.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         movement.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
 
@@ -218,7 +217,7 @@ public class LoadingSideBlue extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeLeft(0.5,1100); //how close it gets to the stones
+            strafeLeft(0.5,1180); //how close it gets to the stones
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
@@ -227,9 +226,10 @@ public class LoadingSideBlue extends LinearOpMode {
                 telemetry.addData("Skystone Position: ", "center");
                 telemetry.update();
                 sleep(1000);
-            } else {
+            } else if(isCenter == false && isLeft == false && isRight == false) {
                 sleep(1000);
                 goBackward(1.0, 125);
+                sleep(1000);
                 if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60) {
                     isCenter = false;
                     isLeft = true;
@@ -237,8 +237,8 @@ public class LoadingSideBlue extends LinearOpMode {
                     telemetry.addData("Skystone Position: ", "left");
                     telemetry.update();
                     sleep(2000);
-                }
-                else {
+                } else {
+                    sleep(1000);
                     isCenter = false;
                     isLeft = false;
                     isRight = true;
@@ -247,7 +247,7 @@ public class LoadingSideBlue extends LinearOpMode {
                 }
             }
             if(isCenter){ //if the robot detected center
-                goBackward(1.0,215);
+                goBackward(1.0,315);
                 sleep(500);
                 strafeLeft(1.0,400);
                 flywheelIntake.toggleFly();
@@ -257,14 +257,14 @@ public class LoadingSideBlue extends LinearOpMode {
                 goBackward(1.0,900);
                 flywheelIntake.toggleFly();
                 sleep(1000);
-                turnRight(180);
+                turnRight(182);
                 flywheelIntake.toggleFlyReverse();
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeRight(1.0,150);
-                goBackward(1.0,450);
+                goBackward(1.0,425);
             }else if(isRight){ //if the robot detected right
+                goBackward(1.0,150);
                 strafeLeft(1.0,350);
                 flywheelIntake.toggleFly();
                 sleep(500);
@@ -278,15 +278,16 @@ public class LoadingSideBlue extends LinearOpMode {
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeLeft(1.0,150);
+                strafeRight(1.0,150);
                 goBackward(1.0,350);
             }else if(isLeft){ //if the robot detected left
                 strafeRight(1.0,150);
                 turnLeft(88);
+                strafeLeft(0.7,250);
                 flywheelIntake.toggleFly();
                 sleep(500);
-                goForward(0.3, 900);
-                goBackward(1.0,250);
+                goForward(0.3, 1100);
+                goBackward(1.0,300);
                 flywheelIntake.toggleFly();
                 sleep(1000);
                 turnLeft(88);
@@ -295,10 +296,9 @@ public class LoadingSideBlue extends LinearOpMode {
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeLeft(1.0,150);
-                goBackward(1.0,350);
+                goBackward(1.0,400);
             }
-            turnLeft(88);
+            turnRight(88);
             stopDriving();
 
 
@@ -386,10 +386,10 @@ public class LoadingSideBlue extends LinearOpMode {
     }
     public void turnRight(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(0.8);
-        movement.backLeft.setPower(0.8);
-        movement.frontRight.setPower(-0.8);
-        movement.backRight.setPower(-0.8);
+        movement.frontLeft.setPower(-0.8);
+        movement.backLeft.setPower(-0.8);
+        movement.frontRight.setPower(0.8);
+        movement.backRight.setPower(0.8);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -398,10 +398,10 @@ public class LoadingSideBlue extends LinearOpMode {
     }
     public void turnLeft(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(-0.8);
-        movement.backLeft.setPower(-0.8);
-        movement.frontRight.setPower(0.8);
-        movement.backRight.setPower(0.8);
+        movement.frontLeft.setPower(0.8);
+        movement.backLeft.setPower(0.8);
+        movement.frontRight.setPower(-0.8);
+        movement.backRight.setPower(-0.8);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
