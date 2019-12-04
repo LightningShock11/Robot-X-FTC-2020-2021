@@ -12,12 +12,13 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous
-public class WebcamTest extends LinearOpMode {
+public class OpenCVTest extends LinearOpMode {
 
     //0 means skystone, 1 means yellow stone
     //-1 for debug, but we can keep it like this because if it works, it should change to either 0 or 255
@@ -48,119 +49,8 @@ public class WebcamTest extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources()
                 .getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
-//    phoneCam = new OpenCvInternalCamera(OpenCvInternalCamera.CameraDirection.BACK,
-//        cameraMonitorViewId);
-        phoneCam = new OpenCvInternalCamera() {
-            @Override
-            public void startStreaming(int width, int height, OpenCvCameraRotation rotation, BufferMethod bufferMethod) {
-
-            }
-
-            @Override
-            public void setFlashlightEnabled(boolean flashlightEnabled) {
-
-            }
-
-            @Override
-            public void setZoom(int zoom) {
-
-            }
-
-            @Override
-            public int getMaxSupportedZoom() {
-                return 0;
-            }
-
-            @Override
-            public void setRecordingHint(boolean hint) {
-
-            }
-
-            @Override
-            public void setHardwareFrameTimingRange(FrameTimingRange frameTiming) {
-
-            }
-
-            @Override
-            public FrameTimingRange[] getFrameTimingRangesSupportedByHardware() {
-                return new FrameTimingRange[0];
-            }
-
-            @Override
-            public void openCameraDevice() {
-
-            }
-
-            @Override
-            public void closeCameraDevice() {
-
-            }
-
-            @Override
-            public void showFpsMeterOnViewport(boolean show) {
-
-            }
-
-            @Override
-            public void pauseViewport() {
-
-            }
-
-            @Override
-            public void resumeViewport() {
-
-            }
-
-            @Override
-            public void startStreaming(int width, int height) {
-
-            }
-
-            @Override
-            public void startStreaming(int width, int height, OpenCvCameraRotation rotation) {
-
-            }
-
-            @Override
-            public void stopStreaming() {
-
-            }
-
-            @Override
-            public void setPipeline(OpenCvPipeline pipeline) {
-
-            }
-
-            @Override
-            public int getFrameCount() {
-                return 0;
-            }
-
-            @Override
-            public float getFps() {
-                return 0;
-            }
-
-            @Override
-            public int getPipelineTimeMs() {
-                return 0;
-            }
-
-            @Override
-            public int getOverheadTimeMs() {
-                return 0;
-            }
-
-            @Override
-            public int getTotalFrameTimeMs() {
-                return 0;
-            }
-
-            @Override
-            public int getCurrentPipelineMaxFps() {
-                return 0;
-            }
-        };
+        phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+        //phoneCam = new OpenCvWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
         phoneCam.openCameraDevice();//open camera
         phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
