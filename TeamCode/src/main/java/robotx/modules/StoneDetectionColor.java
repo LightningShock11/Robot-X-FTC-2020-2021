@@ -2,6 +2,7 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -12,6 +13,7 @@ import robotx.libraries.XModule;
 public class StoneDetectionColor extends XModule {
 
     public ColorSensor stoneColor;
+    public DistanceSensor stoneDistance;
     public boolean isLeft;
     public boolean isCenter;
     public boolean isRight;
