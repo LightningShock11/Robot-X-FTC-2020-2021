@@ -4,20 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
@@ -28,7 +27,7 @@ import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
 @Autonomous
-public class OpenCVTest extends LinearOpMode {
+public class LoadingBlueOpenCV extends LinearOpMode {
 
     //0 means skystone, 1+ means yellow stone
     //-1 for debug, but we can keep it like this because if it works, it should change to either 0 or 255
@@ -136,7 +135,7 @@ public class OpenCVTest extends LinearOpMode {
 
             /////////////////////Movement///////////////////////
             sleep(1000);
-            strafeLeft(0.4,100);
+            strafeLeft(0.4,200);
             flywheelIntake.flywheelRight.setPower(1.0);
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(800);
@@ -150,25 +149,81 @@ public class OpenCVTest extends LinearOpMode {
                 telemetry.update();
                 goBackward(1.0, 100);
                 turnLeft(88);
-                goForward(0.5,1200);
-            }else if(valLeft >= 1 && valMid == 0 && valRight >= 1){
-                isLeft = false;
-                isCenter = true;
-                isRight= false;
+                flywheelIntake.toggleFly();
+                goForward(0.3,1400);
+                sleep(100);
+                goBackward(1.0,450);
+                sleep(100);
+                turnLeft(92);
+                sleep(100);
+                goForward(1.0,550);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                goBackward(1.0,150);
+            }else if(valLeft >= 1 && valMid >= 1 && valRight == 0){
                 telemetry.addData("Skystone Position: ", "Right");
                 telemetry.update();
-                sleep(10000);
-            }else if(valLeft >= 1 && valMid >= 1 && valRight == 0){
-                isLeft = false;
-                isCenter = true;
-                isRight= false;
+                goBackward(1.0,120);
+                sleep(100);
+                strafeLeft(1.0,850);
+                sleep(100);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                goBackward(1.0,890);
+                flywheelIntake.toggleFly();
+                turnLeft(185);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                goBackward(1.0,340);
+            }else if(valLeft >= 1 && valMid == 0 && valRight >= 1){
                 telemetry.addData("Skystone Position: ", "center");
                 telemetry.update();
-                sleep(10000);
-
+                goBackward(1.0,150);
+                sleep(100);
+                strafeLeft(1.0, 770);
+                sleep(100);
+                stoneArm.stoneArm.setPower(0);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 400);
+                sleep(1000);
+                stoneArm.stoneArm.setPower(-0.5);
+                sleep(1000);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(1000);
+                strafeRight(1.0,400);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                goBackward(1.0,950);
+                sleep(1000);
+                turnRight(88);
+                sleep(1000);
+                goBackward(0.4,400);
+                sleep(1000);
+                pins.deployPins();
+                sleep(1000);
+                goForward(0.5,900);
+                turnLeft(190);
+                stoneArm.stoneArm.setPower(-0.5);
+                sleep(1000);
+                stoneArm.deploy();
+                sleep(2000);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(2000);
+                stoneArm.deploy();
+                sleep(2000);
+                pins.deployPins();
+                goForward(1.0,200);
+                sleep(300);
+                strafeLeft(1.0,450);
+                sleep(300);
+                goForward(0.6,900);
             }
-
-
 
         }
     }

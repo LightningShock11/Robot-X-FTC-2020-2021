@@ -21,6 +21,7 @@
 
 package robotx.RAPS.OpenCV.Stuff;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.opencv.core.Mat;
@@ -38,6 +39,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
  * by the {@link OpenCvInternalCamera} interface
  */
 @Autonomous
+@Disabled
 public class InternalCameraExample extends LinearOpMode
 {
     /**
