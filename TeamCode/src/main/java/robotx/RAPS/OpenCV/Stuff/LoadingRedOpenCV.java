@@ -134,7 +134,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             sleep(100);
 
             /////////////////////Movement///////////////////////
-            sleep(1000);
+            sleep(750);
             strafeLeft(0.4,200);
             flywheelIntake.flywheelRight.setPower(1.0);
             flywheelIntake.flywheelLeft.setPower(1.0);
@@ -142,73 +142,29 @@ public class LoadingRedOpenCV extends LinearOpMode {
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
-            sleep(2000);
+            sleep(1000);
 
-            if(valLeft == 0 && valMid >= 1 && valRight >= 1){
-                telemetry.addData("Skystone Position: ", "Left");
+            if(valLeft >= 1 && valMid >= 1 && valRight == 0){
+                telemetry.addData("Skystone Position: ", "Right");
                 telemetry.update();
-                goBackward(1.0, 100);
+                goForward(1.0, 100);
                 turnLeft(88);
                 flywheelIntake.toggleFly();
-                goForward(0.3,1400);
+                goBackward(0.3,1400);
                 sleep(100);
-                goBackward(1.0,450);
+                goForward(1.0,450);
                 sleep(100);
                 turnLeft(92);
                 sleep(100);
-                goForward(1.0,550);
-                flywheelIntake.toggleFlyReverse();
-                sleep(1000);
-                flywheelIntake.toggleFlyReverse();
-                goBackward(1.0,150);
-            }else if(valLeft >= 1 && valMid >= 1 && valRight == 0){
-                telemetry.addData("Skystone Position: ", "Right");
-                telemetry.update();
-                goBackward(1.0,120);
-                sleep(100);
-                strafeLeft(1.0,850);
-                sleep(100);
-                flywheelIntake.toggleFly();
-                sleep(500);
-                goForward(0.3, 900);
-                strafeRight(1.0,350);
-                goBackward(1.0,890);
-                flywheelIntake.toggleFly();
-                turnLeft(185);
-                flywheelIntake.toggleFlyReverse();
-                sleep(1000);
-                flywheelIntake.toggleFlyReverse();
-                goBackward(1.0,340);
-            }else if(valLeft >= 1 && valMid == 0 && valRight >= 1){
-                telemetry.addData("Skystone Position: ", "center");
-                telemetry.update();
-                goBackward(1.0,150);
-                sleep(100);
-                strafeLeft(1.0, 770);
-                sleep(100);
-                stoneArm.stoneArm.setPower(0);
-                sleep(200);
-                flywheelIntake.toggleFly();
-                sleep(500);
-                goForward(0.3, 400);
-                sleep(1000);
-                stoneArm.stoneArm.setPower(-0.5);
-                sleep(1000);
-                stoneClaw.clawServo.setPosition(0);
-                sleep(1000);
-                strafeRight(1.0,400);
-                flywheelIntake.toggleFlyReverse();
-                sleep(1000);
                 goBackward(1.0,950);
+                turnLeft(90);
                 sleep(1000);
-                turnRight(88);
-                sleep(1000);
-                goBackward(0.4,400);
+                goForward(0.4,400);
                 sleep(1000);
                 pins.deployPins();
                 sleep(1000);
-                goForward(0.5,900);
-                turnLeft(190);
+                goBackward(0.5,950);
+                turnLeft(200);
                 stoneArm.stoneArm.setPower(-0.5);
                 sleep(1000);
                 stoneArm.deploy();
@@ -218,16 +174,118 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 stoneArm.deploy();
                 sleep(2000);
                 pins.deployPins();
-                goForward(1.0,200);
+                goBackward(1.0,200);
                 sleep(300);
                 strafeLeft(1.0,450);
                 sleep(300);
-                goForward(0.6,900);
+                goBackward(0.6,900);
+            }else if(valLeft == 0 && valMid >= 1 && valRight >= 1){
+                telemetry.addData("Skystone Position: ", "Left");
+                telemetry.update();
+                goForward(1.0,100);
+                sleep(100);
+                strafeLeft(1.0, 770);
+                sleep(100);
+                stoneArm.stoneArm.setPower(.05);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goBackward(0.3, 500);
+                sleep(1000);
+                stoneArm.stoneArm.setPower(-0.5);
+                sleep(750);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(750);
+                strafeRight(1.0,400);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                goForward(1.0,1150);
+                sleep(500);
+                turnRight(88);
+                sleep(500);
+                goForward(0.4,400);
+                sleep(500);
+                pins.deployPins();
+                sleep(500);
+                goBackward(0.5,950);
+                turnLeft(200);
+                stoneArm.stoneArm.setPower(-0.5);
+                sleep(500);
+                stoneArm.deploy();
+                sleep(2000);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(1000);
+                stoneArm.deploy();
+                sleep(2000);
+                pins.deployPins();
+                sleep(300);
+                goBackward(1.0,200);
+                sleep(300);
+                strafeLeft(1.0,200);
+                turnLeft(90);
+                sleep(200);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(300);
+                strafeRight(0.6,1000);
+            }else if(valLeft >= 1 && valMid == 0 && valRight >= 1){
+                telemetry.addData("Skystone Position: ", "center");
+                telemetry.update();
+                goForward(1.0,150);
+                sleep(100);
+                strafeLeft(1.0, 770);
+                sleep(100);
+                stoneArm.stoneArm.setPower(.05);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goBackward(0.3, 400);
+                sleep(1000);
+                stoneArm.stoneArm.setPower(-0.1);
+                sleep(500);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(500);
+                strafeRight(1.0,400);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                goForward(1.0,950);
+                sleep(500);
+                turnRight(88);
+                sleep(500);
+                goForward(0.4,400);
+                sleep(500);
+                pins.deployPins();
+                sleep(500);
+                goBackward(0.5,950);
+                turnLeft(200);
+                stoneArm.stoneArm.setPower(-0.5);
+                sleep(1000);
+                stoneArm.deploy();
+                sleep(2000);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(1000);
+                stoneArm.deploy();
+                sleep(2000);
+                pins.deployPins();
+                sleep(500);
+                goBackward(1.0,200);
+                sleep(300);
+                strafeLeft(1.0,200);
+                turnLeft(90);
+                sleep(200);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFly();
+                sleep(300);
+                strafeRight(0.6,1000);
+                sleep(300);
+                goBackward(0.6,900);
             }
-            ///////////////////////////////////////////////////
 
         }
     }
+
 
 
     //detection pipeline

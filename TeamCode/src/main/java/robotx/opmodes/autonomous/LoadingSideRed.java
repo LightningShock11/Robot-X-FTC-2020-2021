@@ -212,7 +212,7 @@ public class LoadingSideRed extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-            strafeLeft(0.5,1100);
+            strafeLeft(0.5,1175);
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
@@ -241,11 +241,11 @@ public class LoadingSideRed extends LinearOpMode {
                 }
             }
             if(isCenter){
-                goBackward(1.0,175);
+                goBackward(1.0,225);
                 strafeLeft(1.0,450);
                 flywheelIntake.toggleFly();
                 sleep(500);
-                goForward(0.3, 900);
+                goForward(0.3, 950);
                 strafeRight(1.0,350);
                 sleep(500);
                 goForward(1.0,950);
@@ -255,8 +255,8 @@ public class LoadingSideRed extends LinearOpMode {
                 sleep(1000);
                 flywheelIntake.toggleFlyReverse();
                 sleep(500);
-                strafeLeft(1.0,210);
-                goBackward(1.0,250);
+                strafeLeft(1.0,150);
+                goBackward(1.0,350);
             }else if(isRight){
                 strafeLeft(1.0,400);
                 flywheelIntake.toggleFly();
