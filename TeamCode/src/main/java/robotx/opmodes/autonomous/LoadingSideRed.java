@@ -212,9 +212,6 @@ public class LoadingSideRed extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
-<<<<<<< HEAD
-            strafeRight(1.0,200);
-=======
             strafeLeft(0.5,1175);
             sleep(1000);
             if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
@@ -295,7 +292,6 @@ public class LoadingSideRed extends LinearOpMode {
                 goBackward(1.0,350);
             }
             turnRight(88);
->>>>>>> 31b73d8970499e637b37f0107574a0d312258437
             stopDriving();
             sleep(20000);
         }
