@@ -212,7 +212,90 @@ public class LoadingSideRed extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
             sleep(1000);
+<<<<<<< HEAD
             strafeRight(1.0,200);
+=======
+            strafeLeft(0.5,1175);
+            sleep(1000);
+            if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
+                isCenter = true;
+                isLeft = false;
+                isRight = false;
+                telemetry.addData("Skystone Position: ", "center");
+                telemetry.update();
+                sleep(1000);
+            } else {
+                goBackward(1.0, 200);
+                sleep(2000);
+                if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60) {
+                    isCenter = false;
+                    isLeft = true;
+                    isRight = false;
+                    telemetry.addData("Skystone Position: ", "left");
+                    telemetry.update();
+                    sleep(2000);
+                }
+                else {
+                    isCenter = false;
+                    isLeft = false;
+                    isRight = true;
+                    telemetry.addData("Skystone Position: ", "right");
+                    telemetry.update();
+                }
+            }
+            if(isCenter){
+                goBackward(1.0,225);
+                strafeLeft(1.0,450);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 950);
+                strafeRight(1.0,350);
+                sleep(500);
+                goForward(1.0,950);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeLeft(1.0,150);
+                goBackward(1.0,350);
+            }else if(isRight){
+                strafeLeft(1.0,400);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                sleep(500);
+                strafeRight(1.0, 350);
+                goForward(0.9, 800);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                strafeLeft(1.0, 150);
+                goBackward(1.0,350);
+            }else if(isLeft){
+                strafeRight(1.0,100);
+                sleep(500);
+                goBackward(1.0,600);
+                sleep(500);
+                strafeLeft(1.0,450);
+                flywheelIntake.toggleFly();
+                sleep(500);
+                goForward(0.3, 900);
+                strafeRight(1.0,350);
+                goForward(1.0,1050);
+                flywheelIntake.toggleFly();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(1000);
+                flywheelIntake.toggleFlyReverse();
+                sleep(500);
+                strafeLeft(1.0,200);
+                goBackward(1.0,350);
+            }
+            turnRight(88);
+>>>>>>> 31b73d8970499e637b37f0107574a0d312258437
             stopDriving();
             sleep(20000);
         }
