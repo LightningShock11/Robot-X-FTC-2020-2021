@@ -3,6 +3,7 @@ package robotx.modules;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import robotx.libraries.XModule;
 
@@ -10,13 +11,38 @@ public class StoneLift extends XModule {
     public StoneLift(OpMode op){super(op);}
 
     DcMotor liftMotor;
+    boolean runningUp = true;
+    boolean runningDown = false;
+    TouchSensor endStop;
 
     public void init(){
         liftMotor = opMode.hardwareMap.dcMotor.get("liftMotor");
+        liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        endStop = opMode.hardwareMap.touchSensor.get("endStop");
     }
 
     public void loop(){
-        liftMotor.setPower(xGamepad2().left_stick_y);
+        if (!endStop.isPressed() || xGamepad2().left_stick_y > 0){
+            liftMotor.setPower(xGamepad2().left_stick_y);
+        }
+        else {
+            liftMotor.setPower(0.0);
+        }
+        if (liftMotor.getPower() > 0){
+            runningUp = true;
+            runningDown = false;
+        }
+        else if (liftMotor.getPower() < 0){
+            runningUp = false;
+            runningDown = true;
+        }
+        else {
+            runningDown = false;
+            runningUp = false;
+        }
+        if (runningDown && endStop.isPressed()){
+            liftMotor.setPower(0.0);
+        }
     }
 }

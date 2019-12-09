@@ -34,9 +34,9 @@ public class StoneArm extends XModule {
         stoneArm.setDirection(DcMotorSimple.Direction.REVERSE);
         //stoneArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         clawServo = opMode.hardwareMap.servo.get("clawServo");
-        clawServo.setPosition(0.3);
+        clawServo.setPosition(0);
         setTime = System.currentTimeMillis();
-        stoneArm.setPower(-0.35);
+        stoneArm.setPower(-0.4);
     }
     public void grab(){ //Automatically grab stone and deploy arm or release stone and retract arm
         if (deployed){

@@ -201,11 +201,11 @@ public class BuildingSideBlue extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
 
-            goForward(1.0,500);
+            /*goForward(1.0,500);
             sleep(500);
-            strafeRight(1.0,650);
+            strafeRight(1.0,650);*/
 
-            //strafeRight(1.0,200);
+            strafeRight(1.0,200);
 
             stopDriving();
         }

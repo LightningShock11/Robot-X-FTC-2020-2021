@@ -11,25 +11,27 @@ public class FoundationPins extends XModule {
     Servo rightPin;
     Servo leftPin;
     //Relative to the front of the robot
-    boolean pinsOut = false;
-    double rightPos = .34;
-    double leftPos = .65;
+    boolean pinsOut = true;
+    double rightOut = .34;
+    double leftOut = .65;
+    double rightIn = 0.15;
+    double leftIn = 0.92;
 
     public void init(){
         rightPin = opMode.hardwareMap.servo.get("rightPin");
         leftPin = opMode.hardwareMap.servo.get("leftPin");
-        rightPin.setPosition(0.15);
-        leftPin.setPosition(0.92);
+        rightPin.setPosition(rightOut);
+        leftPin.setPosition(leftOut);
     }
     public void deployPins(){
         if (pinsOut){
-            rightPin.setPosition(0.15);
-            leftPin.setPosition(0.92);
+            rightPin.setPosition(rightIn);
+            leftPin.setPosition(leftIn);
             pinsOut = false;
         }
         else{
-            rightPin.setPosition(rightPos);
-            leftPin.setPosition(leftPos);
+            rightPin.setPosition(rightOut);
+            leftPin.setPosition(leftOut);
             pinsOut = true;
         }
     }

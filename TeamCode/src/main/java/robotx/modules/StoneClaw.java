@@ -13,7 +13,7 @@ public class StoneClaw extends XModule {
 
     public void init () {
         clawServo = opMode.hardwareMap.servo.get("clawServo");
-        clawServo.setPosition(0.8);
+        clawServo.setPosition(0);
     }
 
     public void loop () {
