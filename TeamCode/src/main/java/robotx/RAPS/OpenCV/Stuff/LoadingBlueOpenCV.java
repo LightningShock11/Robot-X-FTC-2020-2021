@@ -149,102 +149,186 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             if(valLeft == 0 && valMid >= 1 && valRight >= 1){
                 telemetry.addData("Skystone Position: ", "Left");
                 telemetry.update();
-                sleep(2000);
-                goForward(0.5,700);
+
+                /**Go to skystone 1**/
+
+                goForward(0.5,250);
+                sleep(100);
+                strafeLeft(0.5,300);
+                sleep(100);
+                turnLeft(182);
+                sleep(100);
+                strafeRight(0.5,1300);
+                stoneArm.stoneArm.setPower(.1);
                 sleep(200);
+                flywheelIntake.toggleFly();
+                sleep(200);
+
+                /**Collect Skystone 1**/
+
+                goForward(0.3, 600);
                 strafeLeft(1.0,400);
-                stoneArm.stoneArm.setPower(-0.4);
-                sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
-                sleep(1500);
-                goForward(1.0,900);
+                turnLeft(182);
                 sleep(200);
-                turnLeft(88);
-                sleep(200);
-                goBackward(0.4,400);
-                pins.deployPins();
-                sleep(1000);
-                goForward(0.5,900);
-                turnLeft(190);
+                goForward(0.5,300);
                 stoneArm.stoneArm.setPower(-0.4);
-                sleep(1000);
-                stoneArm.deploy();
-                sleep(2000);
+                sleep(200);
                 stoneClaw.clawServo.setPosition(0);
-                goForward(0.3,1400);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFlyReverse();
+
+                /**Reposition Foundation**/
+
+                sleep(500);
+                goBackward(1.0,1150);
+                sleep(500);
+                turnRight(90);
                 sleep(100);
-                goBackward(1.0,450);
-                sleep(100);
-                turnLeft(92);
-                sleep(100);
-                goForward(1.0,950);
-                turnLeft(90);
-                sleep(1000);
-                goBackward(0.4,400);
-                sleep(1000);
+                goBackward(0.4,800);
                 pins.deployPins();
-                sleep(1000);
-                goForward(0.5,950);
-                turnLeft(200);
-                stoneArm.stoneArm.setPower(-0.5);
-                sleep(1000);
-                stoneArm.deploy();
-                sleep(2000);
+                sleep(600);
+                goForward(0.5,1000);
+                turnLeft(190);
+
+                /**Place stone on foundation**/
+
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(1500);
                 stoneClaw.clawServo.setPosition(0.8);
-                sleep(2000);
-                stoneArm.deploy();
-                sleep(2000);
+                sleep(1000);
+                stoneArm.stoneArm.setPower(-0.35);
                 pins.deployPins();
+
+                /**Go to second skystone**/
+
+                sleep(500);
                 goForward(1.0,200);
                 sleep(300);
-                strafeLeft(1.0,450);
+                strafeLeft(1.0,100);
+                sleep(200);
+                turnRight(15);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFly();
+                sleep(200);
+                goForward(1.0,1150);
+                sleep(200);
+
+                /**Collect Skystone 2*/
+
+                strafeLeft(0.5, 300);
+                goForward(0.5,600);
+                sleep(200);
+                strafeRight(1.0,400);
+                turnRight(15);
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(200);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(200);
+
+                /**Place Skystone 2 and park**/
+
+                goBackward(1.0,1400);
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(700);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(500);
+                stoneArm.stoneArm.setPower(-0.35);
+                goForward(1.0,600);
                 sleep(300);
-                goForward(0.6,900);
+
             }else if(valLeft >= 1 && valMid >= 1 && valRight == 0){
                 telemetry.addData("Skystone Position: ", "Right");
                 telemetry.update();
+
+                /**Collect Skystone 1**/
+
                 goBackward(0.5,250);
                 sleep(100);
-                strafeLeft(0.5,1900);
+                strafeLeft(0.5,1600);
                 sleep(100);
-                stoneArm.stoneArm.setPower(0);
+                stoneArm.stoneArm.setPower(.1);
+                sleep(200);
                 flywheelIntake.toggleFly();
-                sleep(500);
-                goForward(0.3, 900);
-                sleep(300);
-                stoneArm.stoneArm.setPower(-0.5);
-                sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
-                sleep(1500);
-                strafeRight(1.0,350);
-                goBackward(1.0,950);
                 sleep(200);
-                turnRight(88);
+                goForward(0.3, 600);
+                strafeRight(1.0,400);
+                goForward(1, 100);
+                goBackward(0.5, 200);
+                stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
-                goBackward(0.4,400);
-                pins.deployPins();
-                sleep(1000);
-                goForward(0.5,900);
-                turnLeft(190);
-                stoneArm.stoneArm.setPower(-0.5);
-                sleep(1000);
-                stoneArm.deploy();
-                sleep(2000);
                 stoneClaw.clawServo.setPosition(0);
-                sleep(2000);
-                stoneArm.deploy();
-                sleep(2000);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFlyReverse();
+
+                /**Reposition Foundation**/
+
+                sleep(500);
+                goBackward(1.0,1150);
+                sleep(500);
+                turnRight(90);
+                sleep(100);
+                goBackward(0.4,800);
                 pins.deployPins();
+                sleep(600);
+                goForward(0.5,1000);
+                turnLeft(190);
+
+                /**Place stone on foundation**/
+
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(1500);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(1000);
+                stoneArm.stoneArm.setPower(-0.35);
+                pins.deployPins();
+
+                /**Go to second skystone**/
+
+                sleep(500);
                 goForward(1.0,200);
                 sleep(300);
-                strafeLeft(1.0,450);
+                strafeLeft(1.0,100);
+                sleep(200);
+                turnRight(15);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFly();
+                sleep(200);
+                goForward(1.0,1150);
+                sleep(200);
+
+                /**Collect Skystone 2*/
+
+                strafeLeft(0.5, 300);
+                goForward(0.5,600);
+                sleep(200);
+                strafeRight(1.0,400);
+                turnRight(15);
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(200);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(200);
+
+                /**Place Skystone 2 and park**/
+
+                goBackward(1.0,1400);
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(700);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(500);
+                stoneArm.stoneArm.setPower(-0.35);
+                goForward(1.0,600);
                 sleep(300);
-                goForward(0.6,900);
+
 
 
             }else if(valLeft >= 1 && valMid == 0 && valRight >= 1){
                 telemetry.addData("Skystone Position: ", "center");
                 telemetry.update();
+
+                /**Collect first skystone**/
+
                 goBackward(0.5,375);
                 sleep(100);
                 strafeLeft(0.5, 1600);
@@ -252,65 +336,80 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
                 flywheelIntake.toggleFly();
-                sleep(500);
-                goForward(0.3, 500);
-                sleep(250);
-                goBackward(1, 200);
-                sleep(250);
-                goForward(1, 200);
-                stoneArm.stoneArm.setPower(-0.5);
-                sleep(2000);
+                sleep(200);
+                goForward(0.3, 600);
+                strafeRight(1.0,400);
+                goForward(1, 100);
+                goBackward(0.5, 200);
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(200);
                 stoneClaw.clawServo.setPosition(0);
-                sleep(1000);
-                strafeRight(1.0,450);
-                flywheelIntake.toggleFlyReverse();
+                sleep(200);
+                flywheelIntake.toggleFly();
+
+                /**Reposition Foundation**/
+
                 sleep(500);
                 goBackward(1.0,1000);
                 sleep(500);
                 turnRight(90);
-                sleep(1000);
-                goBackward(0.4,700);
+                sleep(100);
+                goBackward(0.4,800);
                 pins.deployPins();
-                sleep(1000);
+                sleep(600);
                 goForward(0.5,1000);
                 turnLeft(190);
-                stoneArm.stoneArm.setPower(-0.4);
-                sleep(500);
+
+                /**Place stone on foundation**/
+
                 stoneArm.stoneArm.setPower(0.35);
-                sleep(2000);
+                sleep(1500);
                 stoneClaw.clawServo.setPosition(0.8);
-                sleep(2000);
-                sleep(500);
-                stoneArm.stoneArm.setPower(-0.35);
                 sleep(1000);
+                stoneArm.stoneArm.setPower(-0.35);
                 pins.deployPins();
+                flywheelIntake.toggleFlyReverse();
+
+
+                /**Go to second skystone**/
+
                 sleep(500);
-                turnRight(10);
-                sleep(250);
                 goForward(1.0,200);
                 sleep(300);
-                strafeLeft(1.0,200);
-                turnLeft(90);
+                strafeLeft(1.0,100);
                 sleep(200);
-                flywheelIntake.toggleFlyReverse();
-                turnLeft(20);
-                turnRight(20);
-                turnLeft(20);
-                turnRight(20);
-                sleep(250);
+                turnRight(11);
                 flywheelIntake.toggleFly();
-                sleep(300);
-                strafeRight(0.6,1000);
-                sleep(300);
-                goForward(0.6,850);
+                flywheelIntake.toggleFly();
+                sleep(200);
+                goForward(1.0,1000);
                 sleep(200);
 
+                /**Collect Skystone 2*/
+
+                strafeLeft(0.5, 700);
+                goForward(0.5,600);
+                sleep(200);
+                strafeRight(1.0,400);
+                turnRight(15);
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(200);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(200);
+
+                /**Place Skystone 2 and park**/
+
+                goBackward(1.0,1400);
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(700);
+                stoneClaw.clawServo.setPosition(0.8);
+                sleep(500);
+                stoneArm.stoneArm.setPower(-0.35);
+                goForward(1.0,600);
+                sleep(300);
+
             }
-            turnRight(170);
-            sleep(200);
-            flywheelIntake.toggleFlyReverse();
-            sleep(1000);
-            flywheelIntake.toggleFlyReverse();
+            sleep(10000);
 
         }
     }
