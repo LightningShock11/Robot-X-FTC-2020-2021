@@ -141,6 +141,8 @@ public class LoadingRedOpenCV extends LinearOpMode {
             sleep(800);
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
+            pins.deployPins();
+            stoneClaw.clawServo.setPosition(0.7);
 
             if(valLeft == 0 && valMid >= 1 && valRight >= 1){
                 telemetry.addData("Skystone Position: ", "Right");
@@ -157,7 +159,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 sleep(1000);
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(1500);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 strafeLeft(1.0,300);
                 sleep(200);
                 turnLeft(88);
@@ -216,7 +218,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 sleep(1000);
                 stoneArm.deploy();
                 sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 sleep(2000);
                 stoneArm.deploy();
                 sleep(2000);
@@ -242,7 +244,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 strafeRight(1.0,500);
                 stoneArm.stoneArm.setPower(-0.7);
                 sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 sleep(1500);
                 goForward(1.0,1000);
                 sleep(200);
@@ -292,7 +294,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 sleep(500);
                 stoneArm.deploy();
                 sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 sleep(1000);
                 stoneArm.deploy();
                 sleep(2000);
@@ -326,7 +328,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 strafeRight(1.0,500);
                 stoneArm.stoneArm.setPower(-0.7);
                 sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 sleep(1500);
                 goForward(1.0,1050);
                 sleep(200);
@@ -363,7 +365,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 sleep(1000);
                 stoneArm.deploy();
                 sleep(2000);
-                stoneClaw.clawServo.setPosition(0.8);
+                stoneClaw.clawServo.setPosition(0.7);
                 sleep(1000);
                 stoneArm.deploy();
                 sleep(500);
