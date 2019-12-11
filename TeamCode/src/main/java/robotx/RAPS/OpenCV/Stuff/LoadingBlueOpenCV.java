@@ -212,16 +212,18 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 /**Collect first skystone**/
 
-                goBackward(0.5,375);
+                goBackward(0.5,360);
                 sleep(100);
-                strafeLeft(0.5, 1700);
+                strafeLeft(0.45, 1770);
                 sleep(100);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
                 flywheelIntake.toggleFly();
                 sleep(200);
-                goForward(0.3, 500);
-                strafeRight(1.0,400);
+                goForward(0.3, 450);
+                turnRight(10);
+                turnLeft(10);
+                strafeRight(1.0,410);
                 goForward(1, 100);
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
@@ -234,15 +236,15 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             /**Reposition Foundation**/
 
             sleep(500);
-            goBackward(1.0,930);
+            goBackward(1.0,800);
             flywheelIntake.toggleFly();
             sleep(100);
             turnRight(90);
             sleep(100);
-            goBackward(0.4,800);
+            goBackward(0.4,750);
             pins.deployPins();
             sleep(600);
-            goForward(0.5,1250);
+            goForward(0.5,1150);
             turnLeft(200);
             flywheelIntake.toggleFly();
 
@@ -253,11 +255,10 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             sleep(1200);
             stoneClaw.clawServo.setPosition(0.6);
             sleep(1000);
-            stoneArm.stoneArm.setPower(-0.35);
             pins.deployPins();
             sleep(100);
-            turnLeft(10);
-
+            turnLeft(5);
+            stoneArm.stoneArm.setPower(-0.35);
             flywheelIntake.toggleFlyReverse();
 
             /**Go to second skystone**/
@@ -273,7 +274,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             flywheelIntake.toggleFly();
             flywheelIntake.toggleFly();
             sleep(200);
-            goForward(1.0,980);
+            goForward(1.0,940);
             sleep(200);
 
             /**Collect Skystone 2*/
