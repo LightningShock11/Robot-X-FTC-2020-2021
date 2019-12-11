@@ -20,11 +20,15 @@ public class StoneLift extends XModule {
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         endStop = opMode.hardwareMap.touchSensor.get("endStop");
+        liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void loop(){
         if (!endStop.isPressed() || xGamepad2().left_stick_y > 0){
             liftMotor.setPower(xGamepad2().left_stick_y);
+        }
+        if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 100){
+            liftMotor.setPower(0.0);
         }
         else {
             liftMotor.setPower(0.0);
