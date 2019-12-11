@@ -27,10 +27,10 @@ public class StoneLift extends XModule {
         if (!endStop.isPressed() || xGamepad2().left_stick_y > 0){
             liftMotor.setPower(xGamepad2().left_stick_y);
         }
-        if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 100){
+        else {
             liftMotor.setPower(0.0);
         }
-        else {
+        if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 100) {
             liftMotor.setPower(0.0);
         }
         if (liftMotor.getPower() > 0){
