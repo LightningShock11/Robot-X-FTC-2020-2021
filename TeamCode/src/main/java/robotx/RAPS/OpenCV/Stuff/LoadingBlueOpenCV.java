@@ -143,7 +143,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             flywheelIntake.flywheelLeft.setPower(0.0);
             sleep(1000);
             pins.deployPins();
-            stoneArm.clawServo.setPosition(0.7);
+            stoneArm.clawServo.setPosition(0.6);
 
 
             if(valLeft == 0 && valMid >= 1 && valRight >= 1){
@@ -214,7 +214,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 goBackward(0.5,375);
                 sleep(100);
-                strafeLeft(0.5, 1600);
+                strafeLeft(0.5, 1700);
                 sleep(100);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
@@ -226,7 +226,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
                 stoneArm.stoneArm.setPower(-0.4);
-                sleep(300);
+                sleep(400);
                 stoneClaw.clawServo.setPosition(0);
                 sleep(200);
 
@@ -235,6 +235,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
             sleep(500);
             goBackward(1.0,930);
+            flywheelIntake.toggleFly();
             sleep(100);
             turnRight(90);
             sleep(100);
@@ -243,30 +244,36 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             sleep(600);
             goForward(0.5,1250);
             turnLeft(200);
+            flywheelIntake.toggleFly();
+
 
             /**Place stone on foundation**/
 
-            stoneArm.stoneArm.setPower(0.35);
-            sleep(1500);
-            stoneClaw.clawServo.setPosition(0.7);
+            stoneArm.stoneArm.setPower(0.55);
+            sleep(1200);
+            stoneClaw.clawServo.setPosition(0.6);
             sleep(1000);
             stoneArm.stoneArm.setPower(-0.35);
             pins.deployPins();
+            sleep(100);
+            turnLeft(10);
+
             flywheelIntake.toggleFlyReverse();
 
             /**Go to second skystone**/
 
             sleep(500);
-            goForward(1.0,300);
+            goBackward(0.6,500);
+            goForward(1.0,250);
             sleep(300);
             strafeRight(0.5, 1000);
             sleep(200);
-            strafeLeft(1.0,850);
+            strafeLeft(1.0,750);
             sleep(200);
             flywheelIntake.toggleFly();
             flywheelIntake.toggleFly();
             sleep(200);
-            goForward(1.0,780);
+            goForward(1.0,980);
             sleep(200);
 
             /**Collect Skystone 2*/
@@ -275,7 +282,6 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             goForward(0.5,600);
             sleep(200);
             strafeRight(1.0,400);
-            turnRight(15);
             stoneArm.stoneArm.setPower(-0.4);
             sleep(200);
             stoneClaw.clawServo.setPosition(0);
@@ -286,7 +292,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             goBackward(1.0,1100);
             stoneArm.stoneArm.setPower(0.35);
             sleep(700);
-            stoneClaw.clawServo.setPosition(0.7);
+            stoneClaw.clawServo.setPosition(0.6);
             sleep(500);
             stoneArm.stoneArm.setPower(-0.35);
             goForward(1.0,600);
