@@ -21,7 +21,7 @@ public class StoneClaw extends XModule {
             clawServo.setPosition(0);
         }
         if(xGamepad2().dpad_right.wasPressed()) {
-            clawServo.setPosition(0.8);
+            clawServo.setPosition(0.6);
         }
     }
 }

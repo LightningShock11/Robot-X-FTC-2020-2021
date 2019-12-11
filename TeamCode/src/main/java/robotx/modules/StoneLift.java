@@ -33,20 +33,5 @@ public class StoneLift extends XModule {
         if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 100) {
             liftMotor.setPower(0.0);
         }
-        if (liftMotor.getPower() > 0){
-            runningUp = true;
-            runningDown = false;
-        }
-        else if (liftMotor.getPower() < 0){
-            runningUp = false;
-            runningDown = true;
-        }
-        else {
-            runningDown = false;
-            runningUp = false;
-        }
-        if (runningDown && endStop.isPressed()){
-            liftMotor.setPower(0.0);
-        }
     }
 }
