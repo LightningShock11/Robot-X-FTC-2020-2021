@@ -185,9 +185,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 /**Collect Skystone 1**/
 
-                goBackward(0.5,250);
+                goBackward(0.5,175);
                 sleep(100);
-                strafeLeft(0.5,1600);
+                strafeLeft(0.5,1550);
                 sleep(100);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
@@ -198,11 +198,85 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 goForward(1, 100);
                 goBackward(0.5, 400); //ONLY CHANGE THIS!!!!
                 stoneArm.stoneArm.setPower(-0.4);
-                sleep(200);
+                sleep(300);
                 stoneClaw.clawServo.setPosition(0);
                 sleep(200);
                 flywheelIntake.toggleFly();
                 flywheelIntake.toggleFlyReverse();
+
+                /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
+
+                sleep(500);
+                goBackward(1.0,950);
+                flywheelIntake.toggleFly();
+                sleep(100);
+                turnRight(90);
+                sleep(100);
+                goBackward(0.4,750);
+                goBackward(0.2,400);
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(400);
+                stoneClaw.clawServo.setPosition(0);
+                pins.deployPins();
+                sleep(600);
+                goForward(0.5,1150);
+                turnLeft(200);
+                flywheelIntake.toggleFly();
+
+
+                /**Place stone on foundation**/
+
+                stoneArm.stoneArm.setPower(0.55);
+                sleep(1200);
+                stoneClaw.clawServo.setPosition(0.6);
+                sleep(1000);
+                pins.deployPins();
+                sleep(100);
+                turnLeft(1);
+                stoneArm.stoneArm.setPower(-0.35);
+                flywheelIntake.toggleFlyReverse();
+
+                /**Go to second skystone**/
+
+                sleep(500);
+                goBackward(0.6,500);
+                goForward(1.0,250);
+                sleep(300);
+                strafeRight(0.5, 1000);
+                sleep(200);
+                strafeLeft(1.0,600);
+                sleep(200);
+                flywheelIntake.toggleFly();
+                flywheelIntake.toggleFly();
+                sleep(200);
+                goForward(1.0,980);
+                sleep(200);
+                stoneArm.stoneArm.setPower(0);
+
+                /**Collect Skystone 2*/
+
+                strafeLeft(0.5, 1000);
+                flywheelIntake.toggleFly();
+                goForward(0.5,700);
+                sleep(200);
+                strafeRight(1.0,500);
+                flywheelIntake.toggleFly();
+                stoneArm.stoneArm.setPower(-0.4);
+                sleep(200);
+                stoneClaw.clawServo.setPosition(0);
+                sleep(200);
+
+                /**Place Skystone 2 and park**/
+
+                goBackward(1.0,1250);
+                stoneArm.stoneArm.setPower(0.35);
+                sleep(700);
+                stoneClaw.clawServo.setPosition(0.6);
+                sleep(500);
+                stoneArm.stoneArm.setPower(-0.35);
+                goForward(1.0,600);
+                sleep(300);
+                sleep(10000);
 
 
 
@@ -228,7 +302,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
                 stoneArm.stoneArm.setPower(-0.4);
-                sleep(400);
+                sleep(500);
                 stoneClaw.clawServo.setPosition(0);
                 sleep(200);
 
@@ -261,7 +335,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             sleep(1000);
             pins.deployPins();
             sleep(100);
-            turnLeft(5);
+            turnLeft(3);
             stoneArm.stoneArm.setPower(-0.35);
             flywheelIntake.toggleFlyReverse();
 
@@ -278,13 +352,13 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             flywheelIntake.toggleFly();
             flywheelIntake.toggleFly();
             sleep(200);
-            goForward(1.0,940);
+            goForward(1.0,980);
             sleep(200);
             stoneArm.stoneArm.setPower(0);
 
             /**Collect Skystone 2*/
 
-            strafeLeft(0.5, 1000);
+            strafeLeft(0.5, 900);
             goForward(0.5,700);
             sleep(200);
             strafeRight(1.0,400);
