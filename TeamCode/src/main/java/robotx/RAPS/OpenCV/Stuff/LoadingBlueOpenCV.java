@@ -170,7 +170,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 strafeLeft(1.0,400);
                 turnLeft(182);
                 sleep(200);
-                goForward(0.5,300);
+                goForward(0.5,300); //ONLY CHANGE THIS!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
                 stoneClaw.clawServo.setPosition(0);
@@ -196,7 +196,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 goForward(0.3, 600);
                 strafeRight(1.0,400);
                 goForward(1, 100);
-                goBackward(0.5, 400);
+                goBackward(0.5, 400); //ONLY CHANGE THIS!!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
                 stoneClaw.clawServo.setPosition(0);
@@ -233,7 +233,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 sleep(200);
 
             }
-            /**Reposition Foundation**/
+            /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
 
             sleep(500);
             goBackward(1.0,950);
