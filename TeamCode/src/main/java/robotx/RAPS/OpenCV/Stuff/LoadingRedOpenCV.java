@@ -194,6 +194,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 goForward(0.3, 600);
                 strafeRight(1.0,400);
                 goForward(1, 100);
+                sleep(100);
+                turnLeft(182);
+                sleep(200);
                 goBackward(0.5, 400); //ONLY CHANGE THIS!!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
@@ -223,6 +226,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 turnLeft(10);*/
                 strafeRight(1.0,410);
                 goForward(1, 100);
+                sleep(100);
+                turnLeft(182);
+                sleep(200);
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
                 stoneArm.stoneArm.setPower(-0.4);
@@ -234,7 +240,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
 
             sleep(500);
-            goBackward(1.0,950);
+            goBackward(1.0,900);
             flywheelIntake.toggleFly();
             sleep(100);
             turnLeft(90);
