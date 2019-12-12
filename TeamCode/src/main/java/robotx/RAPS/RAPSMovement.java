@@ -7,9 +7,9 @@ import static robotx.RAPS.MathFunctions.*;
 public class RAPSMovement {
     public static void goToPos(double x, double y, double moveSpeed, double preferredAngle, double turnSpeed){
         //////Placeholder Variables//////
-            double worldXpos = 0;
-            double worldYpos = 0;
-            double worldAngle = 0;
+            double worldXpos = 0; //this needs to equal the odometry x pos
+            double worldYpos = 0; //this needs to equal the odometry y pos
+            double worldAngle = 0; //this needs to equal the gyro sensor angle
 
         /////////////////////////////////
 
