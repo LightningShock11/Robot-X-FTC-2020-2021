@@ -152,11 +152,11 @@ public class LoadingRedOpenCV extends LinearOpMode {
 
                 /**Go to skystone 1**/
 
-                goForward(0.5,250);
+                goForward(0.5,420);
                 sleep(100);
                 strafeLeft(0.5,300);
                 sleep(100);
-                turnLeft(182);
+                turnLeft(180);
                 sleep(100);
                 strafeRight(0.5,1300);
                 stoneArm.stoneArm.setPower(.1);
@@ -174,7 +174,6 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 stoneClaw.clawServo.setPosition(0);
                 sleep(200);
                 flywheelIntake.toggleFly();
-                flywheelIntake.toggleFlyReverse();
 
 
             }else if(valLeft >= 1 && valMid >= 1 && valRight == 0){
@@ -183,7 +182,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
 
                 /**Collect Skystone 1**/
 
-                goBackward(0.5,250);
+                goBackward(0.5,150);
                 sleep(100);
                 strafeLeft(0.5,1600);
                 sleep(100);
@@ -195,9 +194,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 strafeRight(1.0,400);
                 goForward(1, 100);
                 sleep(100);
-                turnLeft(182);
+                turnLeft(178);
                 sleep(200);
-                goBackward(0.5, 400); //ONLY CHANGE THIS!!!!
+                goForward(0.5, 300); //ONLY CHANGE THIS!!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
                 stoneClaw.clawServo.setPosition(0);
@@ -221,13 +220,13 @@ public class LoadingRedOpenCV extends LinearOpMode {
                 sleep(200);
                 flywheelIntake.toggleFly();
                 sleep(200);
-                goForward(0.3, 450);
+                goForward(0.3, 650);
                 /*turnRight(10);
                 turnLeft(10);*/
-                strafeRight(1.0,410);
+                strafeRight(1.0,350);
                 goForward(1, 100);
                 sleep(100);
-                turnLeft(182);
+                turnLeft(179);
                 sleep(200);
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
@@ -240,7 +239,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
 
             sleep(500);
-            goBackward(1.0,900);
+            goBackward(0.5,1700);
             flywheelIntake.toggleFly();
             sleep(100);
             turnLeft(90);
@@ -252,7 +251,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             stoneClaw.clawServo.setPosition(0);
             pins.deployPins();
             sleep(600);
-            goForward(0.5,1150);
+            goForward(0.5,1300);
             turnRight(200);
             flywheelIntake.toggleFly();
 
@@ -277,16 +276,18 @@ public class LoadingRedOpenCV extends LinearOpMode {
             sleep(300);
             strafeLeft(0.5, 1000);
             sleep(200);
-            strafeRight(1.0,650);
+            strafeRight(1.0,620);
             sleep(200);
             flywheelIntake.toggleFly();
             flywheelIntake.toggleFly();
             sleep(200);
-            goForward(1.0,940);
+            goForward(1.0,500);
             sleep(200);
             stoneArm.stoneArm.setPower(0);
+            stopDriving();
+            sleep(10000);
 
-            /**Collect Skystone 2*/
+            /**Collect Skystone 2
 
             strafeLeft(0.5, 1000);
             goForward(0.5,700);
@@ -297,7 +298,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             stoneClaw.clawServo.setPosition(0);
             sleep(200);
 
-            /**Place Skystone 2 and park**/
+            /**Place Skystone 2 and park*
 
             goBackward(1.0,1200);
             stoneArm.stoneArm.setPower(0.35);
@@ -307,7 +308,7 @@ public class LoadingRedOpenCV extends LinearOpMode {
             stoneArm.stoneArm.setPower(-0.35);
             goForward(1.0,600);
             sleep(300);
-            sleep(10000);
+            sleep(10000);**/
 
         }
     }
