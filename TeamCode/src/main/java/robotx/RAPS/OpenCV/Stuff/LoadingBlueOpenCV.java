@@ -3,6 +3,7 @@ package robotx.RAPS.OpenCV.Stuff;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -55,6 +56,8 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     public boolean isCenter;
     public boolean isRight;
 
+    public double multiplier = 0;
+
     OpenCvInternalCamera phoneCam;
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -77,6 +80,17 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.SIDEWAYS_RIGHT);//display on RC
         //width, height
         //width = height in this case, because camera is in portrait mode.
+
+        if(getBatteryVoltage() >= 14.00){
+            multiplier = 0.1;
+        }else if(getBatteryVoltage() < 14.00 && getBatteryVoltage() >= 13.75 ){
+            multiplier = 0.1;
+        }else if(getBatteryVoltage() < 13.75 && getBatteryVoltage() >= 13.5 ){
+            multiplier = 0.1;
+        }else{
+            multiplier = 0;
+        }
+
 
         movement = new OrientationDrive(this);
         movement.init();
@@ -448,6 +462,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     /////////////////////Controls///////////////////////
 
     public void goForward(double power, int time){
+
+        power = power - multiplier;
+
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(-power);
         movement.backLeft.setPower(-power);
@@ -460,6 +477,8 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     }
     public void goBackward(double power, int time){
 
+        power = power - multiplier;
+
         movement.frontLeft.setPower(power);
         movement.frontRight.setPower(power);
         movement.backLeft.setPower(power);
@@ -471,6 +490,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
+
+        power = power - multiplier;
+
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(power);
         movement.backLeft.setPower(power);
@@ -482,6 +504,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
+
+        power = power - multiplier;
+
         movement.frontLeft.setPower(power);
         movement.frontRight.setPower(-power);
         movement.backLeft.setPower(-power);
@@ -494,10 +519,10 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     }
     public void turnRight(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(-0.8);
-        movement.backLeft.setPower(-0.8);
-        movement.frontRight.setPower(0.8);
-        movement.backRight.setPower(0.8);
+        movement.frontLeft.setPower(-0.8 - multiplier);
+        movement.backLeft.setPower(-0.8 - multiplier);
+        movement.frontRight.setPower(0.8 - multiplier);
+        movement.backRight.setPower(0.8 - multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -506,10 +531,10 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     }
     public void turnLeft(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(0.8);
-        movement.backLeft.setPower(0.8);
-        movement.frontRight.setPower(-0.8);
-        movement.backRight.setPower(-0.8);
+        movement.frontLeft.setPower(0.8 - multiplier);
+        movement.backLeft.setPower(0.8 - multiplier);
+        movement.frontRight.setPower(-0.8 - multiplier);
+        movement.backRight.setPower(-0.8 - multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -522,6 +547,17 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         movement.frontRight.setPower(0);
         movement.backLeft.setPower(0);
         movement.backRight.setPower(0);
+    }
+
+    double getBatteryVoltage() {
+        double result = Double.POSITIVE_INFINITY;
+        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
+            double voltage = sensor.getVoltage();
+            if (voltage > 0) {
+                result = Math.min(result, voltage);
+            }
+        }
+        return result;
     }
 
 }
