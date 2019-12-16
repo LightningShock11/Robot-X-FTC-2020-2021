@@ -2,6 +2,7 @@ package robotx.RAPS.OpenCV.Stuff;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
@@ -65,7 +66,6 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
-    StoneDetectionColor detection;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -81,14 +81,21 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         //width, height
         //width = height in this case, because camera is in portrait mode.
 
-        if(getBatteryVoltage() >= 13.80){
-            multiplier = 0.1;
-        }else if(getBatteryVoltage() < 13.80 && getBatteryVoltage() >= 13.65 ){
-            multiplier = 0.1;
-        }else if(getBatteryVoltage() < 13.65 && getBatteryVoltage() >= 13.35){
-            multiplier = 0.1;
+        if(getBatteryVoltage() >= 14.00){
+            multiplier = 0.09;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 14.00 && getBatteryVoltage() >= 13.80 ){
+            multiplier = 0.07;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 13.80 && getBatteryVoltage() >= 13.65){
+            multiplier = 0.04;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 13.65 && getBatteryVoltage() >= 13.40){
+            multiplier = 0.023;
+            telemetry.addData("Multiplier", multiplier);
         }else{
             multiplier = 0;
+            telemetry.addData("Multiplier", multiplier);
         }
 
 
@@ -110,8 +117,6 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         stoneLift = new StoneLift(this);
         stoneLift.init();
 
-        detection = new StoneDetectionColor(this);
-        detection.init();
 
 
         movement.start();
@@ -120,7 +125,6 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         stoneArm.start();
         stoneClaw.start();
         pins.start();
-        detection.start();
         telemetry.addData("Starting Side: ", "Loading/Skystone");
         telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
         telemetry.update();
@@ -166,13 +170,13 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 /**Go to skystone 1**/
 
-                goForward(0.5,250);
+                goForward(0.5,300);
                 sleep(100);
                 strafeLeft(0.5,300);
                 sleep(100);
                 turnLeft(182);
                 sleep(100);
-                strafeRight(0.5,1300);
+                strafeRight(0.5,1400);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
                 flywheelIntake.toggleFly();
@@ -181,8 +185,11 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 /**Collect Skystone 1**/
 
                 goForward(0.3, 800);
+                sleep(500);
                 strafeLeft(1.0,350);
+                sleep(500);
                 turnLeft(170);
+                sleep(500);
                 sleep(200);
                 goForward(0.5,100); //ONLY CHANGE THIS!!!
                 stoneArm.stoneArm.setPower(-0.4);
@@ -208,9 +215,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 flywheelIntake.toggleFly();
                 sleep(200);
                 goForward(0.3, 600);
-                strafeRight(1.0,400);
+                strafeRight(1.0,360);
                 goForward(1, 100);
-                goBackward(0.5, 400); //ONLY CHANGE THIS!!!!
+                goBackward(0.5, 320); //ONLY CHANGE THIS!!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(300);
                 stoneClaw.clawServo.setPosition(0);
@@ -248,7 +255,17 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
 
             sleep(500);
-            goBackward(0.5,1650);
+            if(multiplier == 0) {
+                goBackward(0.5, 1750);
+            }else if(multiplier == 0.023){
+                goBackward(0.5, 1850);
+            }else if(multiplier == 0.04){
+                goBackward(0.5, 1870);
+            }else if(multiplier == 0.07){
+                goBackward(0.5, 1900);
+            }else if(multiplier == 0.09){
+                goBackward(0.5, 1900);
+            }
             flywheelIntake.toggleFly();
             sleep(100);
             turnRight(90);
@@ -273,7 +290,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             sleep(1000);
             pins.deployPins();
             sleep(100);
-            turnLeft(2);
+            turnLeft(1);
             stoneArm.stoneArm.setPower(-0.35);
             flywheelIntake.toggleFlyReverse();
 
@@ -491,7 +508,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     }
     public void strafeRight(double power, int time){
 
-        power = power - multiplier;
+        power = power - (multiplier/2);
 
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(power);
@@ -519,8 +536,8 @@ public class LoadingBlueOpenCV extends LinearOpMode {
     }
     public void turnRight(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(-0.8 - multiplier);
-        movement.backLeft.setPower(-0.8 - multiplier);
+        movement.frontLeft.setPower(-0.8 + multiplier);
+        movement.backLeft.setPower(-0.8 + multiplier);
         movement.frontRight.setPower(0.8 - multiplier);
         movement.backRight.setPower(0.8 - multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
@@ -533,8 +550,8 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         telemetry.update();
         movement.frontLeft.setPower(0.8 - multiplier);
         movement.backLeft.setPower(0.8 - multiplier);
-        movement.frontRight.setPower(-0.8 - multiplier);
-        movement.backRight.setPower(-0.8 - multiplier);
+        movement.frontRight.setPower(-0.8 + multiplier);
+        movement.backRight.setPower(-0.8 + multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);

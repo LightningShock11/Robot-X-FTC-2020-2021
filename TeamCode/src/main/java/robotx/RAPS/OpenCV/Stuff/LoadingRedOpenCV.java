@@ -3,6 +3,7 @@ package robotx.RAPS.OpenCV.Stuff;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -55,6 +56,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
     public boolean isCenter;
     public boolean isRight;
 
+    public double multiplier = 0;
+
+
     OpenCvInternalCamera phoneCam;
     FlywheelIntake flywheelIntake;
     OrientationDrive movement;
@@ -62,7 +66,6 @@ public class LoadingRedOpenCV extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
-    StoneDetectionColor detection;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -77,6 +80,23 @@ public class LoadingRedOpenCV extends LinearOpMode {
         phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.SIDEWAYS_RIGHT);//display on RC
         //width, height
         //width = height in this case, because camera is in portrait mode.
+        if(getBatteryVoltage() >= 14.00){
+            multiplier = 0.09;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 14.00 && getBatteryVoltage() >= 13.80 ){
+            multiplier = 0.07;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 13.80 && getBatteryVoltage() >= 13.65){
+            multiplier = 0.04;
+            telemetry.addData("Multiplier", multiplier);
+        }else if(getBatteryVoltage() < 13.65 && getBatteryVoltage() >= 13.40){
+            multiplier = 0.023;
+            telemetry.addData("Multiplier", multiplier);
+        }else{
+            multiplier = 0;
+            telemetry.addData("Multiplier", multiplier);
+        }
+
 
         movement = new OrientationDrive(this);
         movement.init();
@@ -96,8 +116,6 @@ public class LoadingRedOpenCV extends LinearOpMode {
         stoneLift = new StoneLift(this);
         stoneLift.init();
 
-        detection = new StoneDetectionColor(this);
-        detection.init();
 
 
         movement.start();
@@ -106,7 +124,6 @@ public class LoadingRedOpenCV extends LinearOpMode {
         stoneArm.start();
         stoneClaw.start();
         pins.start();
-        detection.start();
         telemetry.addData("Starting Side: ", "Loading/Skystone");
         telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
         telemetry.update();
@@ -239,7 +256,17 @@ public class LoadingRedOpenCV extends LinearOpMode {
             /**Reposition Foundation**/ //ONLY CHANGE THINGS BELOW THIS LINE
 
             sleep(500);
-            goBackward(0.5,1700);
+            if(multiplier == 0) {
+                goBackward(0.5,1700);
+            }else if(multiplier == 0.023){
+                goBackward(0.5, 1750);
+            }else if(multiplier == 0.04){
+                goBackward(0.5, 1800);
+            }else if(multiplier == 0.07){
+                goBackward(0.5, 1850);
+            }else if(multiplier == 0.09){
+                goBackward(0.5, 1870);
+            }
             flywheelIntake.toggleFly();
             sleep(100);
             turnLeft(90);
@@ -453,6 +480,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
     /////////////////////Controls///////////////////////
 
     public void goForward(double power, int time){
+
+        power = power - multiplier;
+
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(-power);
         movement.backLeft.setPower(-power);
@@ -465,6 +495,8 @@ public class LoadingRedOpenCV extends LinearOpMode {
     }
     public void goBackward(double power, int time){
 
+        power = power - multiplier;
+
         movement.frontLeft.setPower(power);
         movement.frontRight.setPower(power);
         movement.backLeft.setPower(power);
@@ -476,6 +508,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
+
+        power = power - (multiplier/2);
+
         movement.frontLeft.setPower(-power);
         movement.frontRight.setPower(power);
         movement.backLeft.setPower(power);
@@ -487,6 +522,9 @@ public class LoadingRedOpenCV extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
+
+        power = power - multiplier;
+
         movement.frontLeft.setPower(power);
         movement.frontRight.setPower(-power);
         movement.backLeft.setPower(-power);
@@ -499,10 +537,10 @@ public class LoadingRedOpenCV extends LinearOpMode {
     }
     public void turnRight(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(-0.8);
-        movement.backLeft.setPower(-0.8);
-        movement.frontRight.setPower(0.8);
-        movement.backRight.setPower(0.8);
+        movement.frontLeft.setPower(-0.8 + multiplier);
+        movement.backLeft.setPower(-0.8 + multiplier);
+        movement.frontRight.setPower(0.8 - multiplier);
+        movement.backRight.setPower(0.8 - multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -511,10 +549,10 @@ public class LoadingRedOpenCV extends LinearOpMode {
     }
     public void turnLeft(int angle){
         telemetry.update();
-        movement.frontLeft.setPower(0.8);
-        movement.backLeft.setPower(0.8);
-        movement.frontRight.setPower(-0.8);
-        movement.backRight.setPower(-0.8);
+        movement.frontLeft.setPower(0.8 - multiplier);
+        movement.backLeft.setPower(0.8 - multiplier);
+        movement.frontRight.setPower(-0.8 + multiplier);
+        movement.backRight.setPower(-0.8 + multiplier);
         sleep((long)(angle*13.3)/(long)Math.PI);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -529,4 +567,14 @@ public class LoadingRedOpenCV extends LinearOpMode {
         movement.backRight.setPower(0);
     }
 
+    double getBatteryVoltage() {
+        double result = Double.POSITIVE_INFINITY;
+        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
+            double voltage = sensor.getVoltage();
+            if (voltage > 0) {
+                result = Math.min(result, voltage);
+            }
+        }
+        return result;
+    }
 }
