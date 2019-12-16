@@ -81,11 +81,11 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         //width, height
         //width = height in this case, because camera is in portrait mode.
 
-        if(getBatteryVoltage() >= 14.00){
+        if(getBatteryVoltage() >= 13.80){
             multiplier = 0.1;
-        }else if(getBatteryVoltage() < 14.00 && getBatteryVoltage() >= 13.75 ){
+        }else if(getBatteryVoltage() < 13.80 && getBatteryVoltage() >= 13.65 ){
             multiplier = 0.1;
-        }else if(getBatteryVoltage() < 13.75 && getBatteryVoltage() >= 13.5 ){
+        }else if(getBatteryVoltage() < 13.65 && getBatteryVoltage() >= 13.35){
             multiplier = 0.1;
         }else{
             multiplier = 0;
