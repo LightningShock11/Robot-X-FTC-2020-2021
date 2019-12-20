@@ -14,15 +14,16 @@ import robotx.modules.FoundationPins;
 import robotx.modules.FourMotorTest;
 import robotx.modules.MechanumDriveNoLag;
 import robotx.modules.OrientationDrive;
+import robotx.modules.RgbRedTeam;
 import robotx.modules.RgbSignals;
 import robotx.modules.StoneArm;
 import robotx.modules.StoneClaw;
 import robotx.modules.StoneLift;
 
-@TeleOp(name = "JebediahOp", group = "Competition")
-public class JebediahOp extends XOpMode {
+@TeleOp(name = "JebediahRedOp", group = "Competition")
+public class JebediahRedOp extends XOpMode {
 
-    //RgbSignals rgbSignals;
+    RgbRedTeam rgbRedTeam;
     //public StoneClaw stoneClaw;
     public FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
@@ -43,8 +44,8 @@ public class JebediahOp extends XOpMode {
         stoneArm = new StoneArm(this);
         activeModules.add(stoneArm);
 
-        //rgbSignals = new RgbSignals(this);
-        //activeModules.add(rgbSignals);
+        rgbRedTeam = new RgbRedTeam(this);
+        activeModules.add(rgbRedTeam);
 
         //coachDDrive = new CoachDDrive(this);
         //activeModules.add(coachDDrive);

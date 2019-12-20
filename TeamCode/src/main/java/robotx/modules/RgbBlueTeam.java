@@ -2,14 +2,13 @@ package robotx.modules;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+
 import java.text.DecimalFormat;
 
 import robotx.libraries.StopWatch;
 import robotx.libraries.XModule;
 
-public class RgbSignals extends XModule {
+public class RgbBlueTeam extends XModule {
     RevBlinkinLedDriver rgbLights;
     RevBlinkinLedDriver.BlinkinPattern pattern;
     StopWatch stopWatch;
@@ -17,20 +16,20 @@ public class RgbSignals extends XModule {
     public boolean displayTimeTilEndGame = false;
     public boolean displayElapsedTime = true;
     public boolean displayGamePeriod = true; // i.e. "TeleOp" or "End Game"
-    public boolean displayTimeUntilEnd = false;
+    public boolean displayTimeUntilEnd = true;
 
     boolean autoStopOpMode = false;
 
-    public RgbSignals(OpMode op){super(op);}
+    public RgbBlueTeam(OpMode op){super(op);}
 
     public void init(){
         rgbLights = opMode.hardwareMap.get(RevBlinkinLedDriver.class, "rgbLights");
-        pattern = RevBlinkinLedDriver.BlinkinPattern.SKY_BLUE;
+        pattern = RevBlinkinLedDriver.BlinkinPattern.BLUE_GREEN;
         rgbLights.setPattern(pattern); //Set color to sky blue
         stopWatch = new StopWatch();
     }
     public void start(){
-        pattern = RevBlinkinLedDriver.BlinkinPattern.YELLOW;
+        pattern = RevBlinkinLedDriver.BlinkinPattern.SKY_BLUE;
         rgbLights.setPattern(pattern); //Set color to yellow
         stopWatch.startTimer(0);
     }
@@ -50,11 +49,11 @@ public class RgbSignals extends XModule {
         if (displayGamePeriod) {
             if (stopWatch.elapsedMillis() < 90_000) { // Current period is TeleOp.
                 opMode.telemetry.addData("Period", "TeleOp");
-                pattern = RevBlinkinLedDriver.BlinkinPattern.YELLOW;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.SKY_BLUE;
                 rgbLights.setPattern(pattern); //Keeps color at yellow for TeleOp
             } else { // Current period is End Game.
                 opMode.telemetry.addData("Period", "End Game");
-                pattern = RevBlinkinLedDriver.BlinkinPattern.RED;
+                pattern = RevBlinkinLedDriver.BlinkinPattern.DARK_BLUE;
                 rgbLights.setPattern(pattern); //Sets color to red for endgame
             }
         }

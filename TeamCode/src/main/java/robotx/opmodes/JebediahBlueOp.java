@@ -2,28 +2,19 @@ package robotx.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaSkyStoneNavigation;
-
 import robotx.libraries.XOpMode;
-import robotx.modules.CharlesDrive;
-import robotx.modules.ClawLift;
-import robotx.modules.CoachDDrive;
-import robotx.modules.DriverCentric;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
-import robotx.modules.FourMotorTest;
-import robotx.modules.MechanumDriveNoLag;
 import robotx.modules.OrientationDrive;
+import robotx.modules.RgbBlueTeam;
 import robotx.modules.RgbRedTeam;
-import robotx.modules.RgbSignals;
 import robotx.modules.StoneArm;
-import robotx.modules.StoneClaw;
 import robotx.modules.StoneLift;
 
 @TeleOp(name = "JebediahRedOp", group = "Competition")
-public class JebediahRedOp extends XOpMode {
+public class JebediahBlueOp extends XOpMode {
 
-    RgbRedTeam rgbRedTeam;
+    RgbBlueTeam rgbBlueTeam;
     //public StoneClaw stoneClaw;
     public FlywheelIntake flywheelIntake;
     //CoachDDrive coachDDrive;
@@ -44,8 +35,8 @@ public class JebediahRedOp extends XOpMode {
         stoneArm = new StoneArm(this);
         activeModules.add(stoneArm);
 
-        rgbRedTeam = new RgbRedTeam(this);
-        activeModules.add(rgbRedTeam);
+        rgbBlueTeam = new RgbBlueTeam(this);
+        activeModules.add(rgbBlueTeam);
 
         //coachDDrive = new CoachDDrive(this);
         //activeModules.add(coachDDrive);

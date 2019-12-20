@@ -10,7 +10,8 @@ import robotx.libraries.StopWatch;
 import robotx.libraries.XModule;
 
 public class RgbSignals extends XModule {
-    Servo rgbLights;
+    RevBlinkinLedDriver rgbLights;
+    RevBlinkinLedDriver.BlinkinPattern pattern;
     StopWatch stopWatch;
 
     public boolean displayTimeTilEndGame = false;
@@ -23,12 +24,14 @@ public class RgbSignals extends XModule {
     public RgbSignals(OpMode op){super(op);}
 
     public void init(){
-        rgbLights = opMode.hardwareMap.servo.get("rgbLights");
-        rgbLights.setPosition(.83); //Set color to sky blue
+        rgbLights = opMode.hardwareMap.get(RevBlinkinLedDriver.class, "rgbLights");
+        pattern = RevBlinkinLedDriver.BlinkinPattern.SKY_BLUE;
+        rgbLights.setPattern(pattern); //Set color to sky blue
         stopWatch = new StopWatch();
     }
     public void start(){
-        rgbLights.setPosition(.69); //Set color to yellow
+        pattern = RevBlinkinLedDriver.BlinkinPattern.YELLOW;
+        rgbLights.setPattern(pattern); //Set color to yellow
         stopWatch.startTimer(0);
     }
 
@@ -47,10 +50,12 @@ public class RgbSignals extends XModule {
         if (displayGamePeriod) {
             if (stopWatch.elapsedMillis() < 90_000) { // Current period is TeleOp.
                 opMode.telemetry.addData("Period", "TeleOp");
-                rgbLights.setPosition(.69); //Keeps color at yellow for TeleOp
+                pattern = RevBlinkinLedDriver.BlinkinPattern.YELLOW;
+                rgbLights.setPattern(pattern); //Keeps color at yellow for TeleOp
             } else { // Current period is End Game.
                 opMode.telemetry.addData("Period", "End Game");
-                rgbLights.setPosition(.61); //Sets color to red for endgame
+                pattern = RevBlinkinLedDriver.BlinkinPattern.RED;
+                rgbLights.setPattern(pattern); //Sets color to red for endgame
             }
         }
 
