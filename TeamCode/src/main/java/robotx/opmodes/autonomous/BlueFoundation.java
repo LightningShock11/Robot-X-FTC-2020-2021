@@ -55,8 +55,8 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "BluePush", group = "Autonomous")
-public class BluePush extends LinearOpMode {
+@Autonomous(name = "BlueFoundation", group = "Autonomous")
+public class BlueFoundation extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -193,21 +193,35 @@ public class BluePush extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
-            strafeLeft(1.0,170); /**STRAFE RIGHT AND STRAFE LEFT ARE REVERSED!**/
+            goBackward(0.7,170);
+            pins.deployPins();
             flywheelIntake.flywheelRight.setPower(1.0);
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
-            goBackward(1.0,650);
-            sleep(100);
-            goForward(1.0,400);
+            goBackward(0.8,450);
             sleep(500);
-            strafeRight(1.0,420);
-            sleep(1000);
-            goBackward(1.0,200);
-            turnRight(88);
+            strafeRight(0.5,300);
+            sleep(200);
+            goBackward(0.2,800);
+            pins.deployPins();
+            sleep(600);
+            goForward(0.5,1400);
+            turnRight(200);
+            pins.deployPins();
+            sleep(500);
+            goBackward(0.6,500);
+            goForward(1.0,250);
+            sleep(300);
+            strafeRight(0.5, 1000);
+            sleep(200);
+            goForward(1.0,500);
+            sleep(200);
+            stoneArm.stoneArm.setPower(0);
+            stopDriving();
+            sleep(15000);
         }
     }
 
@@ -268,10 +282,11 @@ public class BluePush extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeRight(double power, int time){
-        movement.frontLeft.setPower(power);
-        movement.frontRight.setPower(-power);
-        movement.backLeft.setPower(-power);
-        movement.backRight.setPower(power);
+
+        movement.frontLeft.setPower(-power);
+        movement.frontRight.setPower(power);
+        movement.backLeft.setPower(power);
+        movement.backRight.setPower(-power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);
@@ -279,10 +294,10 @@ public class BluePush extends LinearOpMode {
         movement.backRight.setPower(0);
     }
     public void strafeLeft(double power, int time){
-        movement.frontLeft.setPower(-power);
-        movement.frontRight.setPower(power);
-        movement.backLeft.setPower(power);
-        movement.backRight.setPower(-power);
+        movement.frontLeft.setPower(power);
+        movement.frontRight.setPower(-power);
+        movement.backLeft.setPower(-power);
+        movement.backRight.setPower(power);
         sleep(time);
         movement.frontLeft.setPower(0);
         movement.frontRight.setPower(0);

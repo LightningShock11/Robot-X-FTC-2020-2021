@@ -1,6 +1,7 @@
 package robotx.RAPS.OpenCV.Stuff;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -27,7 +28,7 @@ import robotx.modules.StoneClaw;
 import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
-@Autonomous
+@Disabled
 public class OpenCVTest extends LinearOpMode {
 
     //0 means skystone, 1+ means yellow stone

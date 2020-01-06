@@ -31,7 +31,6 @@ package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -56,8 +55,8 @@ import robotx.modules.StoneLift;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "BuildingSideRedAuton", group = "Autonomous")
-public class BuildingSideRed extends LinearOpMode {
+@Autonomous(name = "ThreeStoneBlue", group = "Autonomous")
+public class ThreeStoneBlue extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";
@@ -95,8 +94,6 @@ public class BuildingSideRed extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
-
-
 
 
     @Override
@@ -182,7 +179,7 @@ public class BuildingSideRed extends LinearOpMode {
         pins.start();
 
         telemetry.addData("Starting Side: ", "Building/Foundation");
-        telemetry.addData("Position: ","Back of robot on the wall. Facing field.");
+        telemetry.addData("Position: ","Facing Back wall, Left side touching wall. Side panel mount lines up with tile connectors");
         telemetry.update();
 
         movement.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -196,17 +193,38 @@ public class BuildingSideRed extends LinearOpMode {
 
         if (opModeIsActive()) {
             /////////////////////Movement///////////////////////
+            strafeRight(0.5,2100);
+            sleep(500);
+            goBackward(0.8,400);
+            sleep(500);
+            stopDriving();
+            stoneArm.stoneArm.setPower(0);
             flywheelIntake.flywheelRight.setPower(1.0);
             flywheelIntake.flywheelLeft.setPower(1.0);
             sleep(1000);
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
-            stoneArm.stoneArm.setPower(-0.5);
-
-            //goForward(1.0,500);
-            //sleep(500);
-            //strafeLeft(1.0,650);
-            strafeLeft(1.0,200);
+            sleep(17000);
+            strafeRight(1.0,150);
+            goBackward(1.0,600);
+            sleep(500);
+            turnRight(182);
+            sleep(200);
+            flywheelIntake.toggleFly();
+            strafeRight(1.0,520);
+            sleep(200);
+            goForward(0.5,900);
+            stoneArm.stoneArm.setPower(-0.4);
+            sleep(600);
+            stoneClaw.clawServo.setPosition(0);
+            flywheelIntake.toggleFly();
+            strafeRight(0.7,900);
+            flywheelIntake.toggleFlyReverse();
+            strafeLeft(0.7,200);
+            goBackward(1.0,700);
+            goForward(1.0,300);
+            sleep(5000);
+            stopDriving();
         }
     }
 

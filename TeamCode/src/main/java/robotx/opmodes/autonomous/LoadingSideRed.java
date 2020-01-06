@@ -211,6 +211,14 @@ public class LoadingSideRed extends LinearOpMode {
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
+            /*goForward(1.0,500);
+            sleep(500);
+            strafeRight(1.0,650);*/
+
+            strafeRight(1.0,200);
+
+            stopDriving();
+            /**
             sleep(1000);
             strafeLeft(0.5,1175);
             sleep(1000);
@@ -293,7 +301,7 @@ public class LoadingSideRed extends LinearOpMode {
             }
             turnRight(88);
             stopDriving();
-            sleep(20000);
+            sleep(20000);**/
         }
     }
 

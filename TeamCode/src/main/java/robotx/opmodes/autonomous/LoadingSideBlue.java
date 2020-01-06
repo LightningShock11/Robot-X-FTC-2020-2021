@@ -186,7 +186,6 @@ public class LoadingSideBlue extends LinearOpMode {
 
 
 
-
         movement.start();
         stoneClaw.start();
         flywheelIntake.start();
@@ -216,10 +215,15 @@ public class LoadingSideBlue extends LinearOpMode {
             flywheelIntake.flywheelRight.setPower(0.0);
             flywheelIntake.flywheelLeft.setPower(0.0);
             stoneArm.stoneArm.setPower(-0.5);
-            sleep(1000);
-            strafeLeft(0.3,2800); //how close it gets to the stones
-            sleep(1000);
-            if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
+            //goForward(1.0,500);
+            //sleep(500);
+            //strafeLeft(1.0,650);
+            strafeLeft(1.0,200);
+
+
+
+
+            /**if (detection.stoneColor.red() < 60 && detection.stoneColor.green() < 60 && detection.stoneColor.blue() < 60){
                 isCenter = true;
                 isLeft = false;
                 isRight = false;
@@ -298,7 +302,7 @@ public class LoadingSideBlue extends LinearOpMode {
                 goBackward(1.0,350);
             }
             turnRight(94);
-            stopDriving();
+            stopDriving();**/
 
 
         }
