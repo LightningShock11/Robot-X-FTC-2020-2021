@@ -1,5 +1,9 @@
 package robotx.RAPS;
 
+import android.graphics.Point;
+
+import java.util.ArrayList;
+
 public class MathFunctions {
     public static double angleWrap (double angle){
         /**
@@ -16,4 +20,8 @@ public class MathFunctions {
          }
          return angle;
     }
+   /* public static ArrayList<Point> lineCircleIntersection(Point circleCenter, double radius, Point linePoint1, Point linepoint2){
+
+
+    }*/
 }

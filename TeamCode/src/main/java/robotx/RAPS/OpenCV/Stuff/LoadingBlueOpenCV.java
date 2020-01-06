@@ -205,7 +205,6 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 telemetry.update();
 
                 /**Collect Skystone 1**/
-
                 goBackward(0.5,175);
                 sleep(100);
                 strafeLeft(0.5,1550);
