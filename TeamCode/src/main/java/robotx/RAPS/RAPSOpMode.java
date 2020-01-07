@@ -2,6 +2,7 @@ package robotx.RAPS;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 /**
  * Created by Kush Dalal on 11/15/19.
  */
-@TeleOp(name = "RAPSOpMode", group = "Default")
+@Autonomous(name = "RAPSOpMode", group = "Default")
 public class RAPSOpMode extends OpMode {
 	public DcMotor frontLeft;
 	public DcMotor frontRight;
@@ -95,10 +96,9 @@ public class RAPSOpMode extends OpMode {
 
 
 	public void loop() {
-		RAPSMovement.goToPos(2159,0,0.5,0,0.5);
 		worldXpos = -xEncoder.getCurrentPosition();
 		worldYpos = yEncoder.getCurrentPosition();
-		worldAngle = getHeadingAngle();
+		worldAngle = Math.toRadians(getHeadingAngle());
 
 		xO = RAPSMovement.xMotorPower;
 		yO = RAPSMovement.yMotorPower;
@@ -118,6 +118,8 @@ public class RAPSOpMode extends OpMode {
 
 		telemetry.addData("X Power: ", RAPSMovement.movementXPower + "Y Power: " + RAPSMovement.movementYPower);
 		telemetry.addData("Angle", worldAngle + " " + worldXpos + " " + worldYpos);
+
+		RAPSMovement.goToPos(0,2000,0.5,0,0.5);
 
 	}
 
