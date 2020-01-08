@@ -1,5 +1,7 @@
 package robotx.modules;
 
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.*;
@@ -10,7 +12,7 @@ import robotx.libraries.XModule;
 /**
  * Created by Robot-X Team Member on 11/20/2017.
  */
-
+@Disabled
 public class VuMarkDetection extends XModule {
 
     public static final String LICENSE_KEY = "AaxLsq//////AAAAGSFJk9eNu0C8p0756xps11ldkjgwInDdO4QlKRR9BSShfQIuQCd+iY+mtl0OiOZijZ3JUC5gol2gSSFwYL8bwcUn9oSe0eNSb17rCJ5ghlAtV/pka0KwhzNTEM9oeFExK91ohikwtUb4+naf+zo1hHHvKwC4kjwfeoUF+V6572vyN94r2n/KYEnOGS6rXjm5p8RMdtYu/EZN6WsuHpqlkp7doJr1sc2xwKWKBDfesFX9JF24zj920rjtC6TGeUt+kH22MjsXGInRxqibbuRatmZKQQFRfEFPeWbqeh0MCd3fTbkdX2rsXTT+wF4NJFhC39+Dzg6Zxb9VOJd5/IRDVb67e6XwRu129cHtkuKL6aM8";
@@ -23,7 +25,7 @@ public class VuMarkDetection extends XModule {
         super(op);
     }
 
-    @Override
+
     public void init() {
         // Vuforia setup code
         int cameraMonitorViewId = opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", opMode.hardwareMap.appContext.getPackageName());
@@ -34,7 +36,7 @@ public class VuMarkDetection extends XModule {
         parameters.vuforiaLicenseKey = LICENSE_KEY;
 
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
-        this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+        //this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
         relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         relicTemplate = relicTrackables.get(0);

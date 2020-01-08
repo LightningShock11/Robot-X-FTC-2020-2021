@@ -22,6 +22,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
+import robotx.RAPS.RAPSOpMode;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
@@ -30,7 +31,7 @@ import robotx.modules.StoneClaw;
 import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
-@Disabled
+@Autonomous
 public class OpenCVBaseProgram extends LinearOpMode {
 
     //0 means skystone, 1+ means yellow stone
@@ -61,6 +62,7 @@ public class OpenCVBaseProgram extends LinearOpMode {
 
     OpenCvCamera webcam;
     OrientationDrive movement;
+    RAPSOpMode raps;
 
 
     @Override
@@ -77,6 +79,9 @@ public class OpenCVBaseProgram extends LinearOpMode {
 
         movement = new OrientationDrive(this);
         movement.init();
+
+        raps.init();
+        raps.loop();
 
 
         movement.start();
@@ -126,6 +131,7 @@ public class OpenCVBaseProgram extends LinearOpMode {
                 isRight= false;
                 telemetry.addData("Skystone Position: ", "center");
                 telemetry.update();
+                raps.goToPos(10000,5000,0.5);
                 //add movement for center here
             }
         }

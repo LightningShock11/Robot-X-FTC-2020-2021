@@ -1,0 +1,16 @@
+---
+poses:
+- x: -40.0
+  y: 60.0
+  heading: 0.0
+- x: -30.0
+  y: 20.0
+  heading: 0.0
+constraints:
+  maxVel: 25.0
+  maxAccel: 40.0
+  maxJerk: 0.0
+  maxAngVel: 3.141592653589793
+  maxAngAccel: 6.283185307179586
+  maxAngJerk: 0.0
+resolution: 0.25

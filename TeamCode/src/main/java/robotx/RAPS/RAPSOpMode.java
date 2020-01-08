@@ -29,6 +29,10 @@ public class RAPSOpMode extends OpMode {
 	public double rO;
 	public double sO;
 
+	public double targetX;
+	public double targetY;
+	public double movePower;
+
 
 	public DcMotor xEncoder;
 	public DcMotor yEncoder;
@@ -50,9 +54,14 @@ public class RAPSOpMode extends OpMode {
 		//backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 		backLeft = hardwareMap.dcMotor.get("backLeft");
 		backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+
+		backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 		
-		xEncoder = hardwareMap.dcMotor.get("stoneArm");
-		yEncoder = hardwareMap.dcMotor.get("liftMotor");
+		xEncoder = hardwareMap.dcMotor.get("liftMotor");
+		yEncoder = hardwareMap.dcMotor.get("stoneArm");
 
 		xEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 		yEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -94,6 +103,12 @@ public class RAPSOpMode extends OpMode {
 
 	}
 
+	public void goToPos(double xPos, double yPos, double power){
+		targetX = xPos;
+		targetY = yPos;
+		movePower = power;
+	}
+
 
 	public void loop() {
 		worldXpos = -xEncoder.getCurrentPosition();
@@ -103,8 +118,29 @@ public class RAPSOpMode extends OpMode {
 		xO = RAPSMovement.xMotorPower;
 		yO = RAPSMovement.yMotorPower;
 		rO = RAPSMovement.rotationPower;
-		sO = ((Math.max(Math.abs(xO), Math.max(Math.abs(yO), Math.abs(rO))))*(Math.max(Math.abs(xO), Math.max(Math.abs(yO), Math.abs(rO)))))/((xO*xO)+(yO*yO)+(rO*rO));
+		sO = ((Math.max(Math.abs(xO), Math.max(Math.abs(yO), Math.abs(rO))))*(Math.max(Math.abs(xO),
+				Math.max(Math.abs(yO), Math.abs(rO)))))/((xO*xO)+(yO*yO)+(rO*rO));
 
+		/**if (xO>0){
+			joystickAngle = Math.atan(yO/xO);
+		}
+		else if (xO<0){
+			joystickAngle = Math.atan(yO/xO) + Math.toRadians(180);
+		}
+		else if (xO == 0 && yO>0){
+			joystickAngle = Math.toRadians(90);
+		}
+		else if (xO == 0 && yO<0){
+			joystickAngle = Math.toRadians(270);
+		}
+
+		double xPO = (Math.sqrt((xO*xO) + (yO*yO))) * (Math.cos(worldAngle + joystickAngle));
+		double yPO = (Math.sqrt((xO*xO + yO*yO))) * (Math.sin(worldAngle + joystickAngle));
+
+		frontLeft.setPower((yPO-xPO-rO)*(sO));
+		frontRight.setPower((yPO+xPO+rO)*(sO));
+		backLeft.setPower((yPO+xPO-rO)*(sO));
+		backRight.setPower((yPO-xPO+rO)*(sO));**/
 
 		frontLeft.setPower((yO-xO-rO)*(sO));
 		frontRight.setPower((yO+xO+rO)*(sO));
@@ -116,12 +152,18 @@ public class RAPSOpMode extends OpMode {
 		backRight.setPower(RAPSMovement.xMotorPower - RAPSMovement.yMotorPower + RAPSMovement.rotationPower);
 		backLeft.setPower(RAPSMovement.xMotorPower - RAPSMovement.yMotorPower - RAPSMovement.rotationPower);*/
 
-		telemetry.addData("X Power: ", RAPSMovement.movementXPower + "Y Power: " + RAPSMovement.movementYPower);
-		telemetry.addData("Angle", worldAngle + " " + worldXpos + " " + worldYpos);
+		telemetry.addData(" X Power: ", RAPSMovement.movementXPower + " Y Power: " +
+				RAPSMovement.movementYPower + " Rotation Power: " + RAPSMovement.rotationPower);
+		telemetry.addLine(" ");
+		telemetry.addData("Angle: ", worldAngle + " X-Pos: " + worldXpos + " Y-Pos: " + worldYpos);
 
-		RAPSMovement.goToPos(0,2000,0.5,0,0.5);
+		RAPSMovement.goToPos(targetX,targetY,movePower, Math.toRadians(0),0.5);
+
+
 
 	}
+
+
 
 
 }
