@@ -12,21 +12,24 @@ public class StoneLift extends XModule {
     public StoneLift(OpMode op){super(op);}
 
     DcMotor liftMotor;
+    DcMotor encoder;
     TouchSensor endStop;
-    Servo capServo;
+    //Servo capServo;
+    public double motorPower = -0.15;
+
     boolean capped = false;
     double inPos;
     double cappedPos;
 
     public void init(){
         liftMotor = opMode.hardwareMap.dcMotor.get("liftMotor");
-        liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        endStop = opMode.hardwareMap.touchSensor.get("endStop");
-        capServo = opMode.hardwareMap.servo.get("capServo");
+        encoder = opMode.hardwareMap.dcMotor.get("flywheelRight");
+        //endStop = opMode.hardwareMap.touchSensor.get("endStop");
+        //capServo = opMode.hardwareMap.servo.get("capServo");
     }
 
-    public void toggleCap(){
+    /*public void toggleCap(){
         if (capped){
             capServo.setPosition(inPos);
             capped = false;
@@ -35,19 +38,19 @@ public class StoneLift extends XModule {
             capServo.setPosition(cappedPos);
             capped = true;
         }
+    }*/
+
+        public void loop() {
+
+            opMode.telemetry.addData("Motor Power: ", liftMotor.getPower() + xGamepad2().left_stick_y + " Encoder Value: " + encoder.getCurrentPosition());
+            if(encoder.getCurrentPosition() <= -150 && xGamepad2().left_stick_y == 0){
+                liftMotor.setPower(motorPower);
+            }else{
+                liftMotor.setPower(xGamepad2().left_stick_y);
+            }
+        }
+        /*if (xGamepad2().x.wasPressed()){
+            toggleCap();
+        }*/
     }
 
-    public void loop() {
-        if (!endStop.isPressed() || xGamepad2().left_stick_y > 0) {
-            liftMotor.setPower(xGamepad2().left_stick_y);
-        } else {
-            liftMotor.setPower(0.0);
-        }
-        if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 50) {
-            liftMotor.setPower(0.0);
-        }
-        if (xGamepad2().x.wasPressed()){
-            toggleCap();
-        }
-    }
-}

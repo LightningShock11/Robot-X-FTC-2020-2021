@@ -15,15 +15,15 @@ public class CapstonePositioning extends XModule {
 
     public void init () {
         capstoneServo = opMode.hardwareMap.servo.get("capstoneServo");
-        capstoneServo.setPosition(0);
+        capstoneServo.setPosition(0.46);
     }
     public void loop () {
 
         if(xGamepad2().x.wasPressed()) {
-            if(capstoneServo.getPosition() == 0) {
-                capstoneServo.setPosition(0.5);
+            if(capstoneServo.getPosition() == 0.46) {
+                capstoneServo.setPosition(0.96);
             } else {
-                capstoneServo.setPosition(0);
+                capstoneServo.setPosition(0.46);
             }
         }
     }

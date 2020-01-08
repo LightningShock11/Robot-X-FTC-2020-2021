@@ -1,5 +1,6 @@
 package robotx.opmodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaSkyStoneNavigation;
@@ -20,6 +21,7 @@ import robotx.modules.StoneArm;
 import robotx.modules.StoneClaw;
 import robotx.modules.StoneLift;
 
+@Disabled
 @TeleOp(name = "JebediahRedOp", group = "Competition")
 public class JebediahRedOp extends XOpMode {
 

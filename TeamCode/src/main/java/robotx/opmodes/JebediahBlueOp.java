@@ -1,5 +1,6 @@
 package robotx.opmodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
@@ -11,7 +12,8 @@ import robotx.modules.RgbRedTeam;
 import robotx.modules.StoneArm;
 import robotx.modules.StoneLift;
 
-@TeleOp(name = "JebediahRedOp", group = "Competition")
+@Disabled
+@TeleOp(name = "JebediahBlueOp", group = "Competition")
 public class JebediahBlueOp extends XOpMode {
 
     RgbBlueTeam rgbBlueTeam;

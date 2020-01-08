@@ -1,8 +1,11 @@
 package robotx.opmodes;
 
+import android.graphics.Paint;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+import robotx.modules.CapstonePositioning;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
@@ -10,7 +13,7 @@ import robotx.modules.RgbRedTeam;
 import robotx.modules.StoneArm;
 import robotx.modules.StoneLift;
 
-@TeleOp(name = "JebediahRedOp", group = "Competition")
+@TeleOp(name = "JebediahNoRgbOP", group = "Competition")
 public class JebediahNoRgbOp extends XOpMode {
 
     //public StoneClaw stoneClaw;
@@ -20,6 +23,7 @@ public class JebediahNoRgbOp extends XOpMode {
     public StoneArm stoneArm;
     public StoneLift stoneLift;
     public FoundationPins foundationPins;
+    public CapstonePositioning capstonePositioning;
 
 
     public void initModules(){
@@ -44,5 +48,9 @@ public class JebediahNoRgbOp extends XOpMode {
 
         foundationPins = new FoundationPins(this);
         activeModules.add(foundationPins);
+
+        capstonePositioning = new CapstonePositioning(this);
+        activeModules.add(capstonePositioning);
+
     }
 }
