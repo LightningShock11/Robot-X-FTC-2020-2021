@@ -157,7 +157,7 @@ public class RAPSOpMode extends OpMode {
 		telemetry.addLine(" ");
 		telemetry.addData("Angle: ", worldAngle + " X-Pos: " + worldXpos + " Y-Pos: " + worldYpos);
 
-		RAPSMovement.goToPos(targetX,targetY,movePower, Math.toRadians(0),0.5);
+		RAPSMovement.goToPos(15000,5000,0.5, Math.toRadians(0),0.5);
 
 
 

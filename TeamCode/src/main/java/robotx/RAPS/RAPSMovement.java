@@ -77,10 +77,10 @@ public class RAPSMovement {
 
         double distanceToTarget = Math.hypot(x - RAPSOpMode.worldXpos, y - RAPSOpMode.worldYpos);
 
-        double absoluteAngleToTarget = goalAngle;
-        //double absoluteAngleToTarget = Math.atan2(y - RAPSOpMode.worldYpos, x - RAPSOpMode.worldXpos);
+        //double absoluteAngleToTarget = goalAngle;
+        double absoluteAngleToTarget = Math.atan2(y - RAPSOpMode.worldYpos, x - RAPSOpMode.worldXpos);
 
-        double relativeAngleToTarget = angleWrap(absoluteAngleToTarget - RAPSOpMode.worldAngle);
+        double relativeAngleToTarget = angleWrap(goalAngle - RAPSOpMode.worldAngle);
         //double relativeAngleToTarget = angleWrap(absoluteAngleToTarget - RAPSOpMode.worldAngle);
 
         double relativeXToPoint = Math.cos(relativeAngleToTarget)*distanceToTarget;
