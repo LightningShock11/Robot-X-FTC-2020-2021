@@ -14,7 +14,7 @@ public class CapstonePositioning extends XModule {
     public CapstonePositioning(OpMode op){super(op);}
 
     public void init () {
-        capstoneServo = opMode.hardwareMap.servo.get("clawServo");
+        capstoneServo = opMode.hardwareMap.servo.get("capstoneServo");
         capstoneServo.setPosition(0);
     }
     public void loop () {
