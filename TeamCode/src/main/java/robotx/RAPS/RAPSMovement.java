@@ -15,6 +15,7 @@ import org.opencv.core.Point;
 
 import java.util.ArrayList;
 
+import robotx.RAPS.OpenCV.Stuff.OdometryOpenCVTest;
 import robotx.modules.RAPS;
 
 import static robotx.RAPS.MathFunctions.*;
@@ -73,15 +74,15 @@ public class RAPSMovement {
 
 
 
-    public static void goToPos(double x, double y, double moveSpeed, double goalAngle, double turnSpeed){
+    public static void goToPos(double x, double y, double moveSpeed /*double goalAngle, double turnSpeed*/){
 
-        double distanceToTarget = Math.hypot(x - RAPSOpMode.worldXpos, y - RAPSOpMode.worldYpos);
+        double distanceToTarget = Math.hypot(x - OdometryOpenCVTest.worldXpos, y - OdometryOpenCVTest.worldYpos);
 
         //double absoluteAngleToTarget = goalAngle;
-        double absoluteAngleToTarget = Math.atan2(y - RAPSOpMode.worldYpos, x - RAPSOpMode.worldXpos);
+        double absoluteAngleToTarget = Math.atan2(y - OdometryOpenCVTest.worldYpos, x - OdometryOpenCVTest.worldXpos);
 
-        double relativeAngleToTarget = angleWrap(goalAngle - RAPSOpMode.worldAngle);
-        //double relativeAngleToTarget = angleWrap(absoluteAngleToTarget - RAPSOpMode.worldAngle);
+        //double relativeAngleToTarget = angleWrap(goalAngle - RAPSOpMode.worldAngle);
+        double relativeAngleToTarget = angleWrap(absoluteAngleToTarget - OdometryOpenCVTest.worldAngle);
 
         double relativeXToPoint = Math.cos(relativeAngleToTarget)*distanceToTarget;
         double relativeYtoPoint = Math.sin(relativeAngleToTarget)*distanceToTarget;
@@ -94,9 +95,9 @@ public class RAPSMovement {
 
         //double relativeTurnAngle = relativeAngleToTarget - Math.toRadians(180) + preferredAngle;
 
-        rotationPower = Range.clip(relativeAngleToTarget/Math.toRadians(30),-1, 1)* turnSpeed;
+        //rotationPower = Range.clip(relativeAngleToTarget/Math.toRadians(30),-1, 1)* turnSpeed;
 
-        if(distanceToTarget < 660){
+        if(distanceToTarget < 360){
             rotationPower = 0;
             xMotorPower = 0;
             yMotorPower = 0;

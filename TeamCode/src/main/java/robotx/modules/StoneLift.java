@@ -13,7 +13,6 @@ public class StoneLift extends XModule {
 
     DcMotor liftMotor;
     TouchSensor endStop;
-    Servo capServo;
     boolean capped = false;
     double inPos;
     double cappedPos;
@@ -23,19 +22,9 @@ public class StoneLift extends XModule {
         liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         endStop = opMode.hardwareMap.touchSensor.get("endStop");
-        capServo = opMode.hardwareMap.servo.get("capServo");
     }
 
-    public void toggleCap(){
-        if (capped){
-            capServo.setPosition(inPos);
-            capped = false;
-        }
-        else {
-            capServo.setPosition(cappedPos);
-            capped = true;
-        }
-    }
+
 
     public void loop() {
         if (!endStop.isPressed() || xGamepad2().left_stick_y > 0) {
@@ -46,8 +35,6 @@ public class StoneLift extends XModule {
         if (xGamepad2().left_stick_y < 0 && liftMotor.getCurrentPosition() <= 50) {
             liftMotor.setPower(0.0);
         }
-        if (xGamepad2().x.wasPressed()){
-            toggleCap();
-        }
+
     }
 }

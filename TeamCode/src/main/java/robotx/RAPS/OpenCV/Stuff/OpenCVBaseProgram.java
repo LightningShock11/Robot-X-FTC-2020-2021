@@ -31,7 +31,7 @@ import robotx.modules.StoneClaw;
 import robotx.modules.StoneDetectionColor;
 import robotx.modules.StoneLift;
 
-@Autonomous
+@Disabled
 public class OpenCVBaseProgram extends LinearOpMode {
 
     //0 means skystone, 1+ means yellow stone

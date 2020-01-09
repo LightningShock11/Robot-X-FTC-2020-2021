@@ -3,6 +3,7 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+import robotx.modules.ContinuousServoTest;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
@@ -20,6 +21,7 @@ public class JebediahNoRgbOp extends XOpMode {
     public StoneArm stoneArm;
     public StoneLift stoneLift;
     public FoundationPins foundationPins;
+    public ContinuousServoTest crtest;
 
 
     public void initModules(){
@@ -44,5 +46,9 @@ public class JebediahNoRgbOp extends XOpMode {
 
         foundationPins = new FoundationPins(this);
         activeModules.add(foundationPins);
+
+        crtest = new ContinuousServoTest(this);
+        activeModules.add(crtest);
+
     }
 }

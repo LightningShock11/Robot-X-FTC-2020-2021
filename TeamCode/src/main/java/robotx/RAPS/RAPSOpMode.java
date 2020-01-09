@@ -104,6 +104,7 @@ public class RAPSOpMode extends OpMode {
 	}
 
 	public void goToPos(double xPos, double yPos, double power){
+		loop();
 		targetX = xPos;
 		targetY = yPos;
 		movePower = power;
@@ -121,26 +122,6 @@ public class RAPSOpMode extends OpMode {
 		sO = ((Math.max(Math.abs(xO), Math.max(Math.abs(yO), Math.abs(rO))))*(Math.max(Math.abs(xO),
 				Math.max(Math.abs(yO), Math.abs(rO)))))/((xO*xO)+(yO*yO)+(rO*rO));
 
-		/**if (xO>0){
-			joystickAngle = Math.atan(yO/xO);
-		}
-		else if (xO<0){
-			joystickAngle = Math.atan(yO/xO) + Math.toRadians(180);
-		}
-		else if (xO == 0 && yO>0){
-			joystickAngle = Math.toRadians(90);
-		}
-		else if (xO == 0 && yO<0){
-			joystickAngle = Math.toRadians(270);
-		}
-
-		double xPO = (Math.sqrt((xO*xO) + (yO*yO))) * (Math.cos(worldAngle + joystickAngle));
-		double yPO = (Math.sqrt((xO*xO + yO*yO))) * (Math.sin(worldAngle + joystickAngle));
-
-		frontLeft.setPower((yPO-xPO-rO)*(sO));
-		frontRight.setPower((yPO+xPO+rO)*(sO));
-		backLeft.setPower((yPO+xPO-rO)*(sO));
-		backRight.setPower((yPO-xPO+rO)*(sO));**/
 
 		frontLeft.setPower((yO-xO-rO)*(sO));
 		frontRight.setPower((yO+xO+rO)*(sO));
@@ -157,7 +138,7 @@ public class RAPSOpMode extends OpMode {
 		telemetry.addLine(" ");
 		telemetry.addData("Angle: ", worldAngle + " X-Pos: " + worldXpos + " Y-Pos: " + worldYpos);
 
-		RAPSMovement.goToPos(15000,5000,0.5, Math.toRadians(0),0.5);
+		RAPSMovement.goToPos(targetX,targetY,movePower);
 
 
 
