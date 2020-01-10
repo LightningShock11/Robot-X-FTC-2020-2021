@@ -17,10 +17,10 @@ public class ContinuousServoTest extends XModule {
 
     public void loop(){
         if (xGamepad1().dpad_up.isDown()){
-            testCRServo.setPower(1.0);
+            testCRServo.setPower(0.7);
         }
         else if (xGamepad1().dpad_down.isDown()){
-            testCRServo.setPower(-1.0);
+            testCRServo.setPower(-0.7);
         }
         else {
             testCRServo.setPower(0.0);
