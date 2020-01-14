@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
 import robotx.modules.CapstonePositioning;
+import robotx.modules.ContinuousServoTest;
 import robotx.modules.FlywheelIntake;
 import robotx.modules.FoundationPins;
 import robotx.modules.OrientationDrive;
@@ -24,7 +25,6 @@ public class JebediahNoRgbOp extends XOpMode {
     public StoneLift stoneLift;
     public FoundationPins foundationPins;
     public CapstonePositioning capstonePositioning;
-
 
     public void initModules(){
         super.initModules();
@@ -51,6 +51,5 @@ public class JebediahNoRgbOp extends XOpMode {
 
         capstonePositioning = new CapstonePositioning(this);
         activeModules.add(capstonePositioning);
-
     }
 }
