@@ -43,10 +43,13 @@ public class StoneLift extends XModule {
         public void loop() {
 
             opMode.telemetry.addData("Motor Power: ", liftMotor.getPower() + xGamepad2().left_stick_y + " Encoder Value: " + encoder.getCurrentPosition());
+
+            //check if the encoder position is greater than the starting position and that there is no power from
+            //the joy sticks.
             if(encoder.getCurrentPosition() <= -150 && xGamepad2().left_stick_y == 0){
-                liftMotor.setPower(motorPower);
+                liftMotor.setPower(motorPower); //if so, set a constant motor power
             }else{
-                liftMotor.setPower(xGamepad2().left_stick_y);
+                liftMotor.setPower(xGamepad2().left_stick_y); // if not, just set it to the joystick value as normal
             }
         }
         /*if (xGamepad2().x.wasPressed()){
