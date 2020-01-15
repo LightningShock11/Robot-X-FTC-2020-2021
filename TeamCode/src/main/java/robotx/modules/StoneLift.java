@@ -3,6 +3,7 @@ package robotx.modules;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -16,6 +17,7 @@ public class StoneLift extends XModule {
     TouchSensor endStop;
     //Servo capServo;
     public double motorPower = -0.15;
+    public DigitalChannel magSwitch;
 
     boolean capped = false;
     double inPos;
@@ -27,6 +29,8 @@ public class StoneLift extends XModule {
         encoder = opMode.hardwareMap.dcMotor.get("flywheelRight");
         //endStop = opMode.hardwareMap.touchSensor.get("endStop");
         //capServo = opMode.hardwareMap.servo.get("capServo");
+        magSwitch = opMode.hardwareMap.get(DigitalChannel.class, "magSwitch");
+        magSwitch.setMode(DigitalChannel.Mode.INPUT);
     }
 
     /*public void toggleCap(){
@@ -41,6 +45,8 @@ public class StoneLift extends XModule {
     }*/
 
         public void loop() {
+            magSwitch.getState();
+            opMode.telemetry.addData("Magnetic Switch:", magSwitch.getState());
 
             opMode.telemetry.addData("Motor Power: ", liftMotor.getPower() + xGamepad2().left_stick_y + " Encoder Value: " + encoder.getCurrentPosition());
 
@@ -51,6 +57,7 @@ public class StoneLift extends XModule {
             }else{
                 liftMotor.setPower(xGamepad2().left_stick_y); // if not, just set it to the joystick value as normal
             }
+
         }
         /*if (xGamepad2().x.wasPressed()){
             toggleCap();
