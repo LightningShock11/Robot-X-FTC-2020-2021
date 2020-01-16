@@ -90,7 +90,7 @@ public class FlywheelIntake extends XModule {
             stone = false;
         }
 
-        if (jiggle && timer.seconds() > .75){
+        if (jiggle && timer.seconds() > .2){
             if (flyForward) {
                 flywheelLeft.setPower(1.0);
                 flywheelRight.setPower(1.0);
