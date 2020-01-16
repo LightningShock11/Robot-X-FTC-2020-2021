@@ -18,6 +18,7 @@ public class StoneLift extends XModule {
     //Servo capServo;
     public double motorPower = -0.15;
     public DigitalChannel magSwitch;
+    public boolean magLimit = true;
 
     boolean capped = false;
     double inPos;
@@ -45,8 +46,9 @@ public class StoneLift extends XModule {
     }*/
 
         public void loop() {
-            magSwitch.getState();
-            opMode.telemetry.addData("Magnetic Switch:", magSwitch.getState());
+            magLimit = magSwitch.getState();
+
+            opMode.telemetry.addData("Magnetic Switch Pressed?", magLimit);
 
             opMode.telemetry.addData("Motor Power: ", liftMotor.getPower() + xGamepad2().left_stick_y + " Encoder Value: " + encoder.getCurrentPosition());
 
