@@ -93,7 +93,10 @@ public class OrientationDrive extends XModule {
     public void toggleSlow(){
         if (slowMode){
             slowMode = false;
+        }
+        else if (superSlowMode){
             superSlowMode = false;
+            slowMode = true;
         }
         else {
             slowMode = true;
@@ -102,7 +105,10 @@ public class OrientationDrive extends XModule {
     public void toggleSuperSlow(){
         if (superSlowMode){
             superSlowMode = false;
+        }
+        else if (slowMode){
             slowMode = false;
+            superSlowMode = true;
         }
         else {
             superSlowMode = true;
@@ -147,10 +153,10 @@ public class OrientationDrive extends XModule {
         xPrime = (Math.sqrt((x*x) + (y*y))) * (Math.cos(robotAngle + joystickAngle));
         yPrime = (Math.sqrt((x*x + y*y))) * (Math.sin(robotAngle + joystickAngle));
 
-        if (xGamepad1().x.wasPressed()){
+        if (xGamepad1().left_bumper.wasPressed()){
             toggleSlow();
         }
-        if (xGamepad1().a.wasPressed()){
+        if (xGamepad1().right_bumper.wasPressed()){
             toggleSuperSlow();
         }
 
@@ -162,11 +168,11 @@ public class OrientationDrive extends XModule {
             backLeft.setPower((yPrime+xPrime-r)*(s) * .5);
         }
         else if (superSlowMode){
-            frontLeft.setPower((yPrime-xPrime-r)*(s) * .2);
-            backRight.setPower((yPrime-xPrime+r)*(s) * .2);
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .3);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .3);
 
-            frontRight.setPower((yPrime+xPrime+r)*(s) * .2);
-            backLeft.setPower((yPrime+xPrime-r)*(s) * .2);
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .3);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .3);
         }
         else {
             frontLeft.setPower((yPrime-xPrime-r)*(s));
