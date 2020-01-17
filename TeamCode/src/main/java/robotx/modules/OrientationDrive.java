@@ -35,8 +35,10 @@ public class OrientationDrive extends XModule {
     public double yPrime;
 
     public boolean orientationMode = true;
-    public boolean slowMode = false;
     public double offset = 0;
+
+    public boolean slowMode = false;
+    public boolean superSlowMode = false;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
@@ -91,9 +93,19 @@ public class OrientationDrive extends XModule {
     public void toggleSlow(){
         if (slowMode){
             slowMode = false;
+            superSlowMode = false;
         }
         else {
             slowMode = true;
+        }
+    }
+    public void toggleSuperSlow(){
+        if (superSlowMode){
+            superSlowMode = false;
+            slowMode = false;
+        }
+        else {
+            superSlowMode = true;
         }
     }
     public void loop(){
@@ -138,12 +150,23 @@ public class OrientationDrive extends XModule {
         if (xGamepad1().x.wasPressed()){
             toggleSlow();
         }
-        if (slowMode){
-            frontLeft.setPower((yPrime-xPrime-r)*(s) * .4);
-            backRight.setPower((yPrime-xPrime+r)*(s) * .4);
+        if (xGamepad1().a.wasPressed()){
+            toggleSuperSlow();
+        }
 
-            frontRight.setPower((yPrime+xPrime+r)*(s) * .4);
-            backLeft.setPower((yPrime+xPrime-r)*(s) * .4);
+        if (slowMode){
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .5);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .5);
+
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .5);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .5);
+        }
+        else if (superSlowMode){
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .2);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .2);
+
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .2);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .2);
         }
         else {
             frontLeft.setPower((yPrime-xPrime-r)*(s));
