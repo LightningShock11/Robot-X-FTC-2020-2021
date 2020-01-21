@@ -139,11 +139,11 @@ public class OrientationDrive extends XModule {
             toggleSlow();
         }
         if (slowMode){
-            frontLeft.setPower((yPrime-xPrime-r)*(s) * .5);
-            backRight.setPower((yPrime-xPrime+r)*(s) * .5);
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .4);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .4);
 
-            frontRight.setPower((yPrime+xPrime+r)*(s) * .5);
-            backLeft.setPower((yPrime+xPrime-r)*(s) * .5);
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .4);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .4);
         }
         else {
             frontLeft.setPower((yPrime-xPrime-r)*(s));
