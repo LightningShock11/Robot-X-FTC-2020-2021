@@ -139,7 +139,7 @@ public class OrientationDrive extends XModule {
             toggleSlow();
         }
         if (slowMode){
-            frontLeft.setPower((yPrime-xPrime-r)*(s) * .5);
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * rampAdjustment(.5, ));
             backRight.setPower((yPrime-xPrime+r)*(s) * .5);
 
             frontRight.setPower((yPrime+xPrime+r)*(s) * .5);
@@ -152,5 +152,12 @@ public class OrientationDrive extends XModule {
             frontRight.setPower((yPrime+xPrime+r)*(s));
             backLeft.setPower((yPrime+xPrime-r)*(s));
         }
+    }
+    private double rampAdjustment(double maxPower, double distance, double currentDist) {
+        double rampUpCoeff = 0.0;
+        double normalCoeff = 1.0;
+        double rampDownCoeff = 0.0;
+
+        rampUpCoeff = (currentDist)
     }
 }
