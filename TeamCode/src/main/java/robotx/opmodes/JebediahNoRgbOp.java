@@ -27,7 +27,6 @@ public class JebediahNoRgbOp extends XOpMode {
     public CapstonePositioning capstonePositioning;
     public ContinuousServoTest continuousServoTest;
 
-
     public void initModules(){
         super.initModules();
         //stoneClaw = new StoneClaw(this);

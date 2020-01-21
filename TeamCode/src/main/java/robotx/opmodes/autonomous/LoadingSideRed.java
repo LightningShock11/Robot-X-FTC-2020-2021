@@ -101,7 +101,7 @@ public class LoadingSideRed extends LinearOpMode {
     StoneClaw stoneClaw;
     StoneLift stoneLift;
     FoundationPins pins;
-    StoneDetectionColor detection;
+    //StoneDetectionColor detection;
 
 
     @Override
@@ -176,8 +176,8 @@ public class LoadingSideRed extends LinearOpMode {
         stoneLift = new StoneLift(this);
         stoneLift.init();
 
-        detection = new StoneDetectionColor(this);
-        detection.init();
+        //detection = new StoneDetectionColor(this);
+        //detection.init();
 
 
 
@@ -188,7 +188,7 @@ public class LoadingSideRed extends LinearOpMode {
         stoneArm.start();
         stoneClaw.start();
         pins.start();
-        detection.start();
+        //detection.start();
 
         telemetry.addData("Starting Side: ", "Loading/Skystone");
         telemetry.addData("Position: ","Facing back wall, Color Sensor lines up with middle of tile");
