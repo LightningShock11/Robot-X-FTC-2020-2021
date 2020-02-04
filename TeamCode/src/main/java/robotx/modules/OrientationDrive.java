@@ -35,8 +35,10 @@ public class OrientationDrive extends XModule {
     public double yPrime;
 
     public boolean orientationMode = true;
-    public boolean slowMode = false;
     public double offset = 0;
+
+    public boolean slowMode = false;
+    public boolean superSlowMode = false;
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
@@ -92,8 +94,24 @@ public class OrientationDrive extends XModule {
         if (slowMode){
             slowMode = false;
         }
+        else if (superSlowMode){
+            superSlowMode = false;
+            slowMode = true;
+        }
         else {
             slowMode = true;
+        }
+    }
+    public void toggleSuperSlow(){
+        if (superSlowMode){
+            superSlowMode = false;
+        }
+        else if (slowMode){
+            slowMode = false;
+            superSlowMode = true;
+        }
+        else {
+            superSlowMode = true;
         }
     }
     public void loop(){
@@ -135,15 +153,31 @@ public class OrientationDrive extends XModule {
         xPrime = (Math.sqrt((x*x) + (y*y))) * (Math.cos(robotAngle + joystickAngle));
         yPrime = (Math.sqrt((x*x + y*y))) * (Math.sin(robotAngle + joystickAngle));
 
-        if (xGamepad1().x.wasPressed()){
+        if (xGamepad1().left_bumper.wasPressed()){
             toggleSlow();
         }
+        if (xGamepad1().right_bumper.wasPressed()){
+            toggleSuperSlow();
+        }
+
         if (slowMode){
+<<<<<<< HEAD
             frontLeft.setPower((yPrime-xPrime-r)*(s) * rampAdjustment(.5, ));
             backRight.setPower((yPrime-xPrime+r)*(s) * .5);
+=======
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .4);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .4);
 
-            frontRight.setPower((yPrime+xPrime+r)*(s) * .5);
-            backLeft.setPower((yPrime+xPrime-r)*(s) * .5);
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .4);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .4);
+        }
+        else if (superSlowMode){
+            frontLeft.setPower((yPrime-xPrime-r)*(s) * .3);
+            backRight.setPower((yPrime-xPrime+r)*(s) * .3);
+>>>>>>> ec866334ed6e8a854f7feec6aceaa86b0ee4fc7f
+
+            frontRight.setPower((yPrime+xPrime+r)*(s) * .3);
+            backLeft.setPower((yPrime+xPrime-r)*(s) * .3);
         }
         else {
             frontLeft.setPower((yPrime-xPrime-r)*(s));

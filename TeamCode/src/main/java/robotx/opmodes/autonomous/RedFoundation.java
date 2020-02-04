@@ -203,7 +203,7 @@ public class RedFoundation extends LinearOpMode {
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(0.8,450);
             sleep(500);
-            strafeLeft(0.5,300);
+            strafeLeft(0.5,360);
             sleep(200);
             goBackward(0.2,800);
             pins.deployPins();
@@ -216,12 +216,13 @@ public class RedFoundation extends LinearOpMode {
             goForward(1.0,250);
             sleep(300);
             strafeLeft(0.5, 1000);
-            sleep(200);
+            sleep(5200);
             goForward(1.0,500);
             sleep(200);
             stoneArm.stoneArm.setPower(0);
             stopDriving();
-            sleep(10000);
+            sleep(20000);
+            stop();
         }
     }
 

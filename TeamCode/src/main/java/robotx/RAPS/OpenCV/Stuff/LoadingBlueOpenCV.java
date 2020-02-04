@@ -82,10 +82,10 @@ public class LoadingBlueOpenCV extends LinearOpMode {
         //width = height in this case, because camera is in portrait mode.
 
         if(getBatteryVoltage() >= 14.00){
-            multiplier = 0.09;
+            multiplier = 0.07;
             telemetry.addData("Multiplier", multiplier);
         }else if(getBatteryVoltage() < 14.00 && getBatteryVoltage() >= 13.80 ){
-            multiplier = 0.07;
+            multiplier = 0.06;
             telemetry.addData("Multiplier", multiplier);
         }else if(getBatteryVoltage() < 13.80 && getBatteryVoltage() >= 13.65){
             multiplier = 0.04;
@@ -191,7 +191,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
                 turnLeft(170);
                 sleep(500);
                 sleep(200);
-                goForward(0.5,100); //ONLY CHANGE THIS!!!
+                goForward(0.5,20); //ONLY CHANGE THIS!!!
                 stoneArm.stoneArm.setPower(-0.4);
                 sleep(200);
                 stoneClaw.clawServo.setPosition(0);
@@ -206,9 +206,9 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 /**Collect Skystone 1**/
 
-                goBackward(0.5,175);
+                goBackward(0.5,195);
                 sleep(100);
-                strafeLeft(0.5,1550);
+                strafeLeft(0.5,1800);
                 sleep(100);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
@@ -233,17 +233,16 @@ public class LoadingBlueOpenCV extends LinearOpMode {
 
                 goBackward(0.5,360);
                 sleep(100);
-                strafeLeft(0.45, 1770);
+                strafeLeft(0.5, 1650);
                 sleep(100);
                 stoneArm.stoneArm.setPower(.1);
                 sleep(200);
                 flywheelIntake.toggleFly();
                 sleep(200);
-                goForward(0.3, 450);
+                goForward(0.3, 600);
                 /*turnRight(10);
                 turnLeft(10);*/
                 strafeRight(1.0,410);
-                goForward(1, 100);
                 goBackward(0.5, 200);
                 flywheelIntake.toggleFly();
                 stoneArm.stoneArm.setPower(-0.4);
@@ -302,7 +301,7 @@ public class LoadingBlueOpenCV extends LinearOpMode {
             sleep(300);
             strafeRight(0.5, 1000);
             sleep(200);
-            strafeLeft(1.0,650);
+            strafeLeft(1.0,600);
             sleep(200);
             flywheelIntake.toggleFly();
             flywheelIntake.toggleFly();

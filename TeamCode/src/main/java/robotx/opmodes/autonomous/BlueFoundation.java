@@ -203,7 +203,7 @@ public class BlueFoundation extends LinearOpMode {
             stoneArm.stoneArm.setPower(-0.5);
             goBackward(0.8,450);
             sleep(500);
-            strafeRight(0.5,300);
+            strafeRight(0.5,420);
             sleep(200);
             goBackward(0.2,800);
             pins.deployPins();
@@ -217,7 +217,9 @@ public class BlueFoundation extends LinearOpMode {
             sleep(300);
             strafeRight(0.5, 1000);
             sleep(200);
-            goForward(1.0,500);
+            strafeLeft(1.0,600);
+            sleep(200);
+            goForward(1.0,550);
             sleep(200);
             stoneArm.stoneArm.setPower(0);
             stopDriving();

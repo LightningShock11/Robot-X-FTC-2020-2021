@@ -32,8 +32,8 @@ public class MechanumDriveNoLag extends XModule {
     }
 
     public void loop() {
-        float forwardBackAxis = xGamepad1().left_stick_x; //Forward and backwards axis
-        float leftRightAxis = xGamepad1().left_stick_y; //Strafing axis
+        float forwardBackAxis = xGamepad1().left_stick_y; //Forward and backwards axis
+        float leftRightAxis = xGamepad1().left_stick_x; //Strafing axis
         float spinAxis = xGamepad1().right_stick_x; //spinning axis
 
         // Combine the 3 powers to get a power for each motor with Mechanum wheels.
