@@ -24,21 +24,22 @@ public class MechanumDriveNoLag extends XModule {
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = opMode.hardwareMap.dcMotor.get("backRight");
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = opMode.hardwareMap.dcMotor.get("backLeft");
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        //This is reversed for hardware reasons
     }
 
     public void loop() {
         float forwardBackAxis = xGamepad1().left_stick_y; //Forward and backwards axis
         float leftRightAxis = xGamepad1().left_stick_x; //Strafing axis
-        float spinAxis = -xGamepad1().right_stick_x; //spinning axis
+        float spinAxis = xGamepad1().right_stick_x; //spinning axis
 
         // Combine the 3 powers to get a power for each motor with Mechanum wheels.
-        float FRpower = forwardBackAxis - leftRightAxis + spinAxis;
+        float FRpower = forwardBackAxis + leftRightAxis + spinAxis;
         float FLpower = forwardBackAxis + leftRightAxis - spinAxis;
-        float BRpower = forwardBackAxis + leftRightAxis + spinAxis;
+        float BRpower = forwardBackAxis - leftRightAxis + spinAxis;
         float BLpower = forwardBackAxis - leftRightAxis - spinAxis;
 
         // Slow down the robot if bumpers are held down.
